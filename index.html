@@ -81,11 +81,14 @@
     .nav-hamburger span { width: 22px; height: 1.5px; background: var(--navy); display: block; }
 
     /* ── HERO ── */
-    .hero { display: flex; flex-direction: column; justify-content: center; padding: 7rem 3.5rem 3.5rem; }
-    .hero-left { display: flex; flex-direction: column; justify-content: center; max-width: 720px; }
+    .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 7rem 3.5rem 3.5rem; gap: 3rem; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; }
+    .hero-right { display: flex; align-items: center; justify-content: center; }
+    .hero-bed { width: 100%; max-width: 480px; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 48px rgba(20,50,90,0.18); }
+    .hero-bed img { width: 100%; display: block; object-fit: cover; }
     .hero-eyebrow { font-family: var(--ff-display); font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--navy-soft); margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
     .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--sun-deep); flex-shrink: 0; }
-    .hero-headline { font-family: var(--ff-display); font-size: clamp(1.6rem, 2.4vw, 2.2rem); font-weight: 300; line-height: 1.35; color: var(--navy); margin-bottom: 1.25rem; }
+    .hero-headline { font-family: var(--ff-display); font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; line-height: 1.35; color: var(--navy); margin-bottom: 1.25rem; }
     .hero-headline em { font-style: italic; color: var(--navy-mid); }
     .hero-subtext { font-family: var(--ff-body); font-size: 0.95rem; line-height: 1.8; color: var(--text-soft); max-width: 58ch; margin-bottom: 2rem; font-style: italic; }
     .hero-actions { display: flex; align-items: center; gap: 2rem; }
@@ -214,7 +217,8 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       nav, nav.scrolled { padding: 1.1rem 2rem; }
-      .hero { padding: 5rem 2rem 2.5rem; }
+      .hero { grid-template-columns: 1fr; padding: 5rem 2rem 2.5rem; }
+      .hero-right { display: none; }
       .about-section { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-photo { align-items: center; }
       .approach-section { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 2rem; margin: 0 1rem; }
@@ -272,6 +276,11 @@
         <a href="#offerings" class="btn-ghost">Learn More</a>
       </div>
       <p class="hero-language reveal delay-4">Sessions in English & Spanish</p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-bed reveal delay-2">
+        <img src="bed.png" alt="A bed — where dreams begin"/>
+      </div>
     </div>
   </section>
 
