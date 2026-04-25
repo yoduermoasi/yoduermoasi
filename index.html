@@ -391,9 +391,9 @@
         <div class="newsletter-label">Stay in the Loop</div>
         <h3 class="newsletter-title">New workshops & sessions — straight to your inbox.</h3>
       </div>
-      <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+      <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)" action="https://formspree.io/f/xbdqblkd" method="POST">
         <input type="hidden" name="_subject" value="New signup — Stay in the Loop"/>
-        <input type="hidden" name="_replyto" value=""/>
+        <input type="hidden" name="_replyto" value="yoduermoasi@gmail.com"/>
         <div class="newsletter-fields">
           <input type="text" class="newsletter-input" name="name" placeholder="Name" required autocomplete="given-name"/>
           <input type="email" class="newsletter-input" name="email" placeholder="Email" required autocomplete="email"/>
@@ -462,15 +462,35 @@
     function handleModalClick(e) { if (e.target === modal) closeModal(); }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-    function handleNewsletterSubmit(e) {
+    async function handleNewsletterSubmit(e) {
       e.preventDefault();
-      const card = e.target.closest('.newsletter-card');
-      e.target.style.display = 'none';
-      card.querySelector('.newsletter-desc').style.display = 'none';
-      const success = document.createElement('p');
-      success.className = 'newsletter-success';
-      success.innerHTML = 'You\'re on the list.<br/><span style="font-size:0.85rem;opacity:0.7;">We\'ll be in touch when something new opens up.</span>';
-      card.appendChild(success);
+      const form = e.target;
+      const card = form.closest('.newsletter-card');
+      const btn = form.querySelector('.newsletter-btn');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://formspree.io/f/xbdqblkd', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          const success = document.createElement('p');
+          success.className = 'newsletter-success';
+          success.innerHTML = 'You\'re on the list.<br/><span style="font-size:0.85rem;opacity:0.7;">We\'ll be in touch when something new opens up.</span>';
+          card.appendChild(success);
+        } else {
+          btn.textContent = 'Join';
+          btn.disabled = false;
+          alert('Something went wrong. Please try again.');
+        }
+      } catch {
+        btn.textContent = 'Join';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again.');
+      }
     }
 
     function toggleMobileMenu() {
