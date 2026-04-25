@@ -149,12 +149,14 @@
     .for-promises li::before { content: '—'; position: absolute; left: 0; color: var(--sun-deep); background: rgba(255,255,255,0.9); }
 
     /* ── ABOUT ── */
-    .about-section { padding: 3rem 3.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: stretch; }
+    .about-section { padding: 3rem 3.5rem; }
+    .about-header { margin-bottom: 2rem; }
+    .about-body { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: stretch; }
     .about-photo { display: flex; flex-direction: column; }
-    .about-photo .hero-photo-frame { aspect-ratio: unset; height: 100%; min-height: 300px; }
+    .about-photo .hero-photo-frame { aspect-ratio: unset; height: 100%; min-height: 200px; }
     .about-label { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 2rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
     .about-label::before { content: ''; width: 28px; height: 1px; background: var(--sun-deep); }
-    .about-name { font-family: var(--ff-display); font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 300; line-height: 1.1; color: var(--navy); margin-bottom: 2.5rem; }
+    .about-name { font-family: var(--ff-display); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; line-height: 1.2; color: var(--navy); margin-bottom: 0; }
     .about-bio { font-family: var(--ff-body); font-size: 0.95rem; line-height: 1.9; color: var(--text-soft); }
     .about-bio p + p { margin-top: 1.25rem; }
 
@@ -358,27 +360,29 @@
 
   <!-- ABOUT -->
   <section class="about-section" id="about">
-    <div class="about-content">
+    <div class="about-header">
       <p class="about-label reveal">About</p>
-      <h2 class="about-name reveal delay-1">Camila<br/>Figueroa</h2>
+      <h2 class="about-name reveal delay-1">Camila Figueroa</h2>
+    </div>
+    <div class="about-body">
       <div class="about-bio reveal delay-2">
         <p>Camila studied Psychology and later completed a Master's in Global Mental Health in New York City, grounding her work in both clinical rigor and a cross-cultural perspective.</p>
         <p>She works at the Mental Wellness Equity Center in the Department of Psychiatry at Columbia University, bringing over a decade of experience translating scientific research into scalable mental health programs, technologies, and real-world interventions.</p>
         <p>Since 2019, she has developed a dream-based practice that integrates depth psychology, Gestalt exploration, imagery rehearsal techniques, and somatic, trauma-informed support. Her work focuses on recurring themes, symbols, and unconscious patterns in dreams — helping reduce nightmares and improve overall daily functioning.</p>
         <p>She is the Head of Science and Innovation at Mindflow, a dream-focused app that helps individuals understand the patterns shaping how they think, feel, and act.</p>
       </div>
-    </div>
-    <div class="about-photo reveal delay-1">
-      <div class="hero-photo-frame">
-        <!-- <img src="camila-photo.jpg" alt="Camila Figueroa"/> -->
-        <div class="photo-placeholder">
-          <span class="photo-placeholder-text">Portrait Photograph</span>
+      <div class="about-photo reveal delay-1">
+        <div class="hero-photo-frame">
+          <!-- <img src="camila-photo.jpg" alt="Camila Figueroa"/> -->
+          <div class="photo-placeholder">
+            <span class="photo-placeholder-text">Portrait Photograph</span>
+          </div>
         </div>
+        <p class="about-photo-caption">
+          <strong>Camila Figueroa</strong>
+          <span>Therapist · Researcher · Dream Practitioner</span>
+        </p>
       </div>
-      <p class="about-photo-caption">
-        <strong>Camila Figueroa</strong>
-        <span>Therapist · Researcher · Dream Practitioner</span>
-      </p>
     </div>
   </section>
 
