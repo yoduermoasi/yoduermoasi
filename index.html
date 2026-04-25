@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Camila Figueroa — Dream-Based Practice</title>
+  <meta name="description" content="A psychologist specializing in dream-based work. Individual sessions, social dreaming, and workshops integrating depth psychology, Gestalt, and somatic approaches."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --sky-high:    #a8c8e8;
+      --sky-mid:     #c5ddf0;
+      --sky-low:     #deeef8;
+      --sky-horizon: #eef6fc;
+      --dawn:        #f5f0e4;
+      --navy:        #1a304a;
+      --navy-mid:    #2e4f72;
+      --navy-soft:   #4a6f96;
+      --sun:         #e8c84a;
+      --sun-deep:    #c9a82a;
+      --sun-pale:    #fdf3c0;
+      --cloud:       rgba(255,255,255,0.82);
+      --cloud-edge:  rgba(255,255,255,0.4);
+      --text-soft:   #3a5a7a;
+      --text-muted:  #6080a0;
+      --rule:        rgba(26,48,74,0.12);
+      --rule-strong: rgba(26,48,74,0.25);
+      --ff-display:  'Cormorant Garamond', Georgia, serif;
+      --ff-body:     'Lora', Georgia, serif;
+      --ease:        cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--sky-horizon); color: var(--navy); font-family: var(--ff-body); line-height: 1.7; overflow-x: hidden; }
+
+    /* ── SKY ── */
+    .sky-canvas { position: fixed; inset: 0; z-index: 0;
+      background: linear-gradient(180deg, var(--sky-high) 0%, var(--sky-mid) 28%, var(--sky-low) 58%, var(--sky-horizon) 82%, var(--dawn) 100%);
+    }
+    .sky-canvas::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 400px 95px at 14% 20%, var(--cloud) 60%, transparent 100%),
+        radial-gradient(ellipse 210px 58px at 6%  25%, var(--cloud) 68%, transparent 100%),
+        radial-gradient(ellipse 170px 48px at 30% 18%, var(--cloud) 58%, transparent 100%),
+        radial-gradient(ellipse 520px 115px at 74% 13%, var(--cloud) 52%, transparent 100%),
+        radial-gradient(ellipse 270px 68px at 90% 17%, var(--cloud) 62%, transparent 100%),
+        radial-gradient(ellipse 200px 52px at 62% 11%, var(--cloud) 48%, transparent 100%),
+        radial-gradient(ellipse 340px 78px at 46% 36%, var(--cloud-edge) 52%, transparent 100%),
+        radial-gradient(ellipse 260px 62px at 28% 48%, rgba(255,255,255,0.22) 48%, transparent 100%),
+        radial-gradient(ellipse 420px 82px at 82% 43%, rgba(255,255,255,0.18) 48%, transparent 100%);
+    }
+    .sky-canvas::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+      background: radial-gradient(ellipse 70% 60% at 62% 110%, rgba(232,200,80,0.16) 0%, transparent 70%);
+    }
+    nav, section, footer, .modal-overlay { position: relative; z-index: 1; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.85s ease, transform 0.85s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.22s; }
+    .delay-3 { transition-delay: 0.36s; }
+    .delay-4 { transition-delay: 0.5s; }
+
+    .sky-rule { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--rule-strong) 20%, var(--rule-strong) 80%, transparent); }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 3.5rem; transition: all 0.5s var(--ease); }
+    nav.scrolled { background: rgba(190,218,238,0.75); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); padding: 0.9rem 3.5rem; border-bottom: 1px solid rgba(255,255,255,0.45); }
+    .nav-wordmark { font-family: var(--ff-display); font-size: 1rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: var(--ff-display); font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy-mid); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta { font-family: var(--ff-display); font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: 1.5px solid rgba(255,255,255,0.6); padding: 0.6rem 1.5rem; text-decoration: none; border-radius: 2px; box-shadow: 0 2px 16px rgba(255,255,255,0.5), 0 2px 8px rgba(150,110,0,0.2); transition: background 0.3s, color 0.3s; }
+    .nav-cta:hover { background: var(--sun-deep); color: #fff; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-hamburger span { width: 22px; height: 1.5px; background: var(--navy); display: block; }
+
+    /* ── HERO ── */
+    .hero { min-height: 92vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 5.5rem; align-items: center; }
+    .hero-left { padding: 4rem 3.5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .hero-eyebrow { font-family: var(--ff-display); font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--navy-soft); margin-bottom: 2rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
+    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--sun-deep); flex-shrink: 0; }
+    .hero-headline { font-family: var(--ff-display); font-size: clamp(3.4rem, 6vw, 5.8rem); font-weight: 300; line-height: 1.04; color: var(--navy); margin-bottom: 2rem; }
+    .hero-headline em { font-style: italic; color: var(--navy-mid); }
+    .hero-subtext { font-family: var(--ff-body); font-size: 1.05rem; line-height: 1.8; color: var(--text-soft); max-width: 40ch; margin-bottom: 2.5rem; font-style: italic; }
+    .hero-actions { display: flex; align-items: center; gap: 2rem; }
+    .btn-primary { font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: none; padding: 1rem 2.5rem; text-decoration: none; border-radius: 2px; box-shadow: 0 4px 18px rgba(200,160,40,0.3); transition: background 0.3s, box-shadow 0.3s, color 0.3s; }
+    .btn-primary:hover { background: var(--sun-deep); color: #fff; box-shadow: 0 6px 24px rgba(180,130,20,0.35); }
+    .btn-ghost { font-family: var(--ff-display); font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy-mid); text-decoration: none; border-bottom: 1px solid var(--rule-strong); padding-bottom: 2px; transition: color 0.3s, border-color 0.3s; }
+    .btn-ghost:hover { color: var(--navy); border-color: var(--navy); }
+    .hero-language { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 1.25rem; }
+    .hero-right { padding: 4rem 3.5rem 3rem 2rem; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+    .hero-photo-frame { width: 100%; max-width: 420px; aspect-ratio: 3/4; border-radius: 4px; overflow: hidden; background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.85); box-shadow: 0 8px 32px rgba(30,60,100,0.12), inset 0 1px 0 rgba(255,255,255,0.9); backdrop-filter: blur(4px); }
+    .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, rgba(255,255,255,0.5) 0%, rgba(180,215,240,0.3) 100%); }
+    .photo-placeholder-text { font-family: var(--ff-display); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy-soft); opacity: 0.6; }
+    .hero-caption { margin-top: 1.25rem; font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--navy); line-height: 1.8; }
+    .hero-caption strong { display: block; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.06em; margin-bottom: 0.15rem; }
+    .hero-caption span { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* ── SHARED SECTION LABEL ── */
+    .section-eyebrow { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 2.5rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
+    .section-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--sun-deep); }
+
+    /* ── APPROACH ── */
+    .approach-section { margin: 0 2rem; border-radius: 8px; background: rgba(255,255,255,0.52); border: 1px solid rgba(255,255,255,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 40px rgba(30,60,100,0.1), inset 0 1px 0 rgba(255,255,255,0.9); padding: 4rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .approach-label { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 2rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
+    .approach-label::before { content: ''; width: 28px; height: 1px; background: var(--sun-deep); }
+    .approach-headline { font-family: var(--ff-display); font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 300; font-style: italic; line-height: 1.25; color: var(--navy); margin-bottom: 2rem; }
+    .approach-body { font-family: var(--ff-body); font-size: 0.95rem; line-height: 1.85; color: var(--text-soft); }
+    .methods { display: flex; flex-direction: column; }
+    .method-item { padding: 1.4rem 0; border-bottom: 1px solid rgba(26,48,74,0.1); display: flex; gap: 1.5rem; align-items: flex-start; }
+    .method-item:first-child { border-top: 1px solid rgba(26,48,74,0.1); }
+    .method-num { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.16em; color: var(--sun-deep); min-width: 1.5rem; margin-top: 0.2rem; background: rgba(255,255,255,0.55); padding: 0.2rem 0.65rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.8); }
+    .method-name { font-family: var(--ff-display); font-size: 1.05rem; font-weight: 500; color: var(--navy); margin-bottom: 0.25rem; }
+    .method-desc { font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-soft); line-height: 1.65; }
+
+    /* ── WORK TOGETHER ── */
+    .offerings-section { padding: 5rem 3.5rem; }
+    .offerings-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule-strong); }
+    .offerings-title { font-family: var(--ff-display); font-size: clamp(2rem, 3.8vw, 3rem); font-weight: 300; color: var(--navy); }
+    .offerings-label { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sun-deep); background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
+    .offering-card { background: rgba(255,255,255,0.48); border: 1px solid rgba(255,255,255,0.88); border-radius: 6px; padding: 2.5rem 2rem; display: flex; flex-direction: column; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 4px 24px rgba(30,60,100,0.08), inset 0 1px 0 rgba(255,255,255,0.9); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); max-width: 620px; }
+    .offering-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(30,60,100,0.14), inset 0 1px 0 rgba(255,255,255,0.9); }
+    .offering-card.featured { background: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.96); }
+    .offering-num { font-family: var(--ff-display); font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 1.75rem; display: inline-block; background: rgba(255,255,255,0.55); padding: 0.2rem 0.65rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.8); }
+    .offering-title { font-family: var(--ff-display); font-size: 1.65rem; font-weight: 400; line-height: 1.2; color: var(--navy); margin-bottom: 1rem; }
+    .offering-timing { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--rule); }
+    .offering-desc { font-family: var(--ff-body); font-size: 0.88rem; line-height: 1.8; color: var(--text-soft); flex: 1; margin-bottom: 2rem; }
+    .offering-cta { font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); text-decoration: none; border: 1px solid var(--rule-strong); padding: 0.8rem 1.5rem; display: inline-block; text-align: center; border-radius: 2px; transition: all 0.3s; background: transparent; }
+    .offering-cta:hover { background: var(--navy); color: var(--sky-horizon); border-color: var(--navy); }
+    .offering-cta.primary { background: var(--sun); border-color: var(--sun); box-shadow: 0 3px 14px rgba(200,160,40,0.28); }
+    .offering-cta.primary:hover { background: var(--sun-deep); border-color: var(--sun-deep); color: #fff; }
+
+    /* ── FOR WHOM ── */
+    .for-section { padding: 5rem 3.5rem; }
+    .for-grid { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0 5rem; }
+    .for-divider { background: var(--rule); }
+    .for-num { font-family: var(--ff-display); font-size: 4.5rem; font-weight: 300; color: rgba(26,48,74,0.08); line-height: 1; margin-bottom: 1.25rem; }
+    .for-type { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 0.75rem; display: inline-block; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
+    .for-title { font-family: var(--ff-display); font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 400; line-height: 1.2; color: var(--navy); margin-bottom: 1.25rem; }
+    .for-pain { font-family: var(--ff-body); font-size: 0.95rem; line-height: 1.8; color: var(--text-soft); font-style: italic; margin-bottom: 1.75rem; }
+    .for-promises { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+    .for-promises li { font-family: var(--ff-body); font-size: 0.9rem; line-height: 1.65; color: var(--navy); padding-left: 1.25rem; position: relative; }
+    .for-promises li::before { content: '—'; position: absolute; left: 0; color: var(--sun-deep); background: rgba(255,255,255,0.9); }
+
+    /* ── ABOUT ── */
+    .about-section { padding: 5rem 3.5rem; max-width: 680px; }
+    .about-label { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 2rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
+    .about-label::before { content: ''; width: 28px; height: 1px; background: var(--sun-deep); }
+    .about-name { font-family: var(--ff-display); font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 300; line-height: 1.1; color: var(--navy); margin-bottom: 2.5rem; }
+    .about-bio { font-family: var(--ff-body); font-size: 0.95rem; line-height: 1.9; color: var(--text-soft); }
+    .about-bio p + p { margin-top: 1.25rem; }
+
+    /* ── NEWSLETTER ── */
+    .newsletter-section { padding: 2.5rem 3.5rem 2rem; border-top: 1px solid var(--rule); background: rgba(255,255,255,0.22); }
+    .newsletter-card { max-width: 560px; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
+    .newsletter-intro { flex: 1; min-width: 200px; }
+    .newsletter-icon { display: none; }
+    .newsletter-label { font-family: var(--ff-display); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 0.4rem; display: inline-block; background: rgba(255,255,255,0.72); padding: 0.15rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.85); }
+    .newsletter-title { font-family: var(--ff-display); font-size: 1rem; font-weight: 400; line-height: 1.3; color: var(--navy); margin-bottom: 0; }
+    .newsletter-desc { display: none; }
+    .newsletter-form { display: flex; gap: 0.5rem; flex-wrap: wrap; flex: 2; min-width: 280px; }
+    .newsletter-fields { display: flex; gap: 0.5rem; flex: 1; flex-wrap: wrap; }
+    .newsletter-input { font-family: var(--ff-body); font-size: 0.82rem; color: var(--navy); background: rgba(255,255,255,0.7); border: 1px solid rgba(26,48,74,0.18); border-radius: 2px; padding: 0.55rem 0.85rem; flex: 1; min-width: 120px; outline: none; transition: border-color 0.2s, background 0.2s; }
+    .newsletter-input::placeholder { color: var(--text-muted); font-size: 0.8rem; }
+    .newsletter-input:focus { border-color: var(--navy-soft); background: rgba(255,255,255,0.9); }
+    .newsletter-btn { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: none; padding: 0.55rem 1.25rem; border-radius: 2px; cursor: pointer; white-space: nowrap; transition: background 0.3s, color 0.3s; box-shadow: 0 2px 8px rgba(200,160,40,0.2); }
+    .newsletter-btn:hover { background: var(--sun-deep); color: #fff; }
+    .newsletter-fine { font-family: var(--ff-display); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-muted); margin-top: 0.4rem; width: 100%; }
+    .newsletter-success { font-family: var(--ff-display); font-size: 0.88rem; font-style: italic; color: var(--navy); padding: 0.5rem 0; }
+
+    /* ── BOOK CTA ── */
+    .book-section { padding: 5rem 3.5rem; text-align: center; position: relative; }
+    .book-section::before { content: ''; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(232,200,74,0.16) 0%, transparent 70%); pointer-events: none; }
+    .book-eyebrow { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 2rem; display: inline-block; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
+    .book-headline { font-family: var(--ff-display); font-size: clamp(2.8rem, 5.5vw, 5rem); font-weight: 300; font-style: italic; line-height: 1.12; color: var(--navy); max-width: 20ch; margin: 0 auto 1.5rem; }
+    .book-subtext { font-family: var(--ff-body); font-size: 1rem; color: var(--text-soft); max-width: 44ch; margin: 0 auto 3.5rem; line-height: 1.75; font-style: italic; }
+    .btn-large { font-family: var(--ff-display); font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: none; padding: 1.1rem 3.2rem; text-decoration: none; display: inline-block; border-radius: 2px; box-shadow: 0 6px 24px rgba(200,160,40,0.32); transition: all 0.3s; }
+    .btn-large:hover { background: var(--sun-deep); color: #fff; }
+    .book-note { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-top: 2rem; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--rule); background: rgba(255,255,255,0.32); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 2.5rem 3.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .footer-wordmark { font-family: var(--ff-display); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--navy); }
+    .footer-copy { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-muted); }
+
+    /* ── MODAL ── */
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(20,40,70,0.55); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 2rem; }
+    .modal-overlay.active { display: flex; }
+    .modal-box { background: rgba(238,246,252,0.94); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 24px 80px rgba(20,40,80,0.2); border-radius: 8px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; }
+    .modal-header { padding: 2rem 2.5rem 1.5rem; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: flex-start; }
+    .modal-title { font-family: var(--ff-display); font-size: 1.5rem; font-weight: 400; color: var(--navy); }
+    .modal-subtitle { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sun-deep); margin-top: 0.4rem; }
+    .modal-close { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; transition: color 0.2s; padding: 0.25rem; }
+    .modal-close:hover { color: var(--navy); }
+    .modal-body { padding: 2.5rem; }
+    .modal-session-info { margin-bottom: 2rem; padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.85); border-radius: 4px; }
+    .modal-session-tag { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 0.5rem; }
+    .modal-session-desc { font-family: var(--ff-body); font-size: 0.88rem; color: var(--text-soft); line-height: 1.7; font-style: italic; }
+    .modal-calendly-placeholder { background: rgba(255,255,255,0.5); border: 1px dashed var(--rule-strong); border-radius: 4px; padding: 3rem; text-align: center; font-family: var(--ff-display); font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); line-height: 2.2; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav, nav.scrolled { padding: 1.1rem 2rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 6rem 2rem 3rem; }
+      .hero-right { padding: 2rem 2rem 4rem; align-items: center; }
+      .hero-photo-frame { max-width: 320px; }
+      .approach-section { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 2rem; margin: 0 1rem; }
+      .offerings-section { padding: 3.5rem 2rem; }
+      .for-section { padding: 3.5rem 2rem; }
+      .for-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .for-divider { display: none; }
+      .about-section { padding: 3.5rem 2rem; }
+      .newsletter-section { padding: 2rem 2rem 1rem; }
+      .newsletter-card { flex-direction: column; align-items: flex-start; }
+      .book-section { padding: 4rem 2rem; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .hero-headline { font-size: 2.9rem; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .modal-body { padding: 1.5rem; }
+      .modal-header { padding: 1.5rem; }
+    }
+  </style>
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="sky-canvas" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav id="mainNav">
+    <a href="#" class="nav-wordmark">Camila Figueroa</a>
+    <ul class="nav-links">
+      <li><a href="#offerings">Sessions</a></li>
+      <li><a href="#for-whom">For Whom</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a href="#" class="nav-cta" onclick="openModal(event)">Book a 1:1 Session</a>
+    <button class="nav-hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow reveal">Dream-Based Practice · Since 2019</p>
+      <h1 class="hero-headline reveal delay-1">
+        The night<br/>knows what<br/><em>the day</em><br/>conceals.
+      </h1>
+      <p class="hero-subtext reveal delay-2">
+        Dreams are not noise. They are data — reliable, specific, yours.
+        A practice that brings what you carry in sleep
+        into direct dialogue with your waking life.
+      </p>
+      <div class="hero-actions reveal delay-3">
+        <a href="#" class="btn-primary" onclick="openModal(event)">Book a 1:1 Session</a>
+        <a href="#offerings" class="btn-ghost">Learn More</a>
+      </div>
+      <p class="hero-language reveal delay-4">Sessions in English & Spanish</p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo-frame reveal delay-2">
+        <!-- <img src="camila-photo.jpg" alt="Camila Figueroa"/> -->
+        <div class="photo-placeholder">
+          <span class="photo-placeholder-text">Portrait Photograph</span>
+        </div>
+      </div>
+      <p class="hero-caption reveal delay-3">
+        <strong>Camila Figueroa</strong>
+        <span>Therapist · Researcher · Dream Practitioner</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="sky-rule"></div>
+
+  <!-- APPROACH -->
+  <section class="approach-section">
+    <div>
+      <p class="approach-label reveal">The Approach</p>
+      <h2 class="approach-headline reveal delay-1">Not fixed symbols.<br/>Decentralized data<br/>from your inner life.</h2>
+      <p class="approach-body reveal delay-2">
+        Rather than searching for generic interpretations, dreams are treated here as a reliable and individual source of data — about who you are, what you carry, and the socio-cultural world you inhabit. Sessions bring the dream into direct dialogue with waking life through methods that are somatic, imaginative, and evidence-based.
+      </p>
+    </div>
+    <div class="methods">
+      <div class="method-item reveal">
+        <span class="method-num">I</span>
+        <div><div class="method-name">Depth Psychology</div><div class="method-desc">Jungian and psychodynamic frameworks for working with unconscious material and archetypal patterns.</div></div>
+      </div>
+      <div class="method-item reveal delay-1">
+        <span class="method-num">II</span>
+        <div><div class="method-name">Gestalt Exploration</div><div class="method-desc">Embodied, present-moment engagement with dream figures, images, and unresolved gestalts.</div></div>
+      </div>
+      <div class="method-item reveal delay-2">
+        <span class="method-num">III</span>
+        <div><div class="method-name">Imagery Rehearsal</div><div class="method-desc">Evidence-based technique for reshaping nightmare content and reducing recurrence.</div></div>
+      </div>
+      <div class="method-item reveal delay-3">
+        <span class="method-num">IV</span>
+        <div><div class="method-name">Somatic & Trauma-Informed</div><div class="method-desc">Body-based awareness integrated with trauma-sensitive support throughout all sessions.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sky-rule"></div>
+
+  <!-- WORK TOGETHER -->
+  <section class="offerings-section" id="offerings">
+    <div class="offerings-header reveal">
+      <h2 class="offerings-title">Work Together</h2>
+      <span class="offerings-label">One Way to Begin</span>
+    </div>
+    <div class="offering-card featured reveal">
+      <div class="offering-num">Individual Session</div>
+      <h3 class="offering-title">1:1 with the Dream</h3>
+      <div class="offering-timing">By Appointment · 60 min · English & Spanish</div>
+      <p class="offering-desc">The goal is to upset your overtrained conscious mind and use dreams to make sense of what feels random, meaningless, or disconnected. Sessions can center on specific dreams, figures, personal or professional projects, recurring patterns, or the ongoing development of your creative self. You leave with concrete tools to work with dreams independently.</p>
+      <a href="#" class="offering-cta primary" onclick="openModal(event)">Book a 1:1 Session</a>
+    </div>
+  </section>
+
+  <div class="sky-rule"></div>
+
+  <!-- FOR WHOM -->
+  <section class="for-section" id="for-whom">
+    <p class="section-eyebrow reveal">For Whom</p>
+    <div class="for-grid">
+      <div>
+        <div class="for-num reveal">01</div>
+        <div class="for-type reveal delay-1">Nightmare & Recurring Dream Sufferers</div>
+        <h3 class="for-title reveal delay-1">When dreams set the emotional tone of your entire day.</h3>
+        <p class="for-pain reveal delay-2">Ignoring these experiences doesn't make them disappear — it can deepen their impact on how you feel, relate, and function.</p>
+        <ul class="for-promises reveal delay-3">
+          <li>Reduce the frequency of nightmares and repetitive dream patterns</li>
+          <li>Understand what your emotional world is telling you</li>
+          <li>Accelerate your therapeutic process using dreams as a tool</li>
+        </ul>
+      </div>
+      <div class="for-divider"></div>
+      <div>
+        <div class="for-num reveal">02</div>
+        <div class="for-type reveal delay-1">Creative Self-Explorers</div>
+        <h3 class="for-title reveal delay-1">Waking with something important that fades within minutes.</h3>
+        <p class="for-pain reveal delay-2">An emotion, an image, a sense of significance — gone before the day begins. You've lost access to something that mattered.</p>
+        <ul class="for-promises reveal delay-3">
+          <li>Access parts of yourself unreachable when you're awake</li>
+          <li>Understand what you're feeling before the day numbs it</li>
+          <li>Transform fleeting fragments into meaningful personal insight</li>
+          <li>Reconnect with your inner voice as a source of creative direction</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="sky-rule"></div>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <p class="about-label reveal">About</p>
+    <h2 class="about-name reveal delay-1">Camila<br/>Figueroa</h2>
+    <div class="about-bio reveal delay-2">
+      <p>Camila studied Psychology and later completed a Master's in Global Mental Health in New York City, grounding her work in both clinical rigor and a cross-cultural perspective.</p>
+      <p>She works at the Mental Wellness Equity Center in the Department of Psychiatry at Columbia University, bringing over a decade of experience translating scientific research into scalable mental health programs, technologies, and real-world interventions.</p>
+      <p>Since 2019, she has developed a dream-based practice that integrates depth psychology, Gestalt exploration, imagery rehearsal techniques, and somatic, trauma-informed support. Her work focuses on recurring themes, symbols, and unconscious patterns in dreams — helping reduce nightmares and improve overall daily functioning.</p>
+      <p>She is the Head of Science and Innovation at Mindflow, a dream-focused app that helps individuals understand the patterns shaping how they think, feel, and act.</p>
+    </div>
+  </section>
+
+  <div class="sky-rule"></div>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section" id="newsletter">
+    <div class="newsletter-card reveal">
+      <div class="newsletter-intro">
+        <div class="newsletter-label">Stay in the Loop</div>
+        <h3 class="newsletter-title">New workshops & sessions — straight to your inbox.</h3>
+      </div>
+      <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+        <input type="hidden" name="_subject" value="New signup — Stay in the Loop"/>
+        <input type="hidden" name="_replyto" value=""/>
+        <div class="newsletter-fields">
+          <input type="text" class="newsletter-input" name="name" placeholder="Name" required autocomplete="given-name"/>
+          <input type="email" class="newsletter-input" name="email" placeholder="Email" required autocomplete="email"/>
+        </div>
+        <button type="submit" class="newsletter-btn">Join</button>
+        <p class="newsletter-fine">No spam. Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- BOOK CTA -->
+  <section class="book-section">
+    <p class="book-eyebrow reveal">Begin</p>
+    <h2 class="book-headline reveal delay-1">Your dreams are already saying something.</h2>
+    <p class="book-subtext reveal delay-2">Book a session and begin the work of listening.</p>
+    <div class="reveal delay-3">
+      <a href="#" class="btn-large" onclick="openModal(event)">Book a 1:1 Session</a>
+    </div>
+    <p class="book-note reveal delay-4">Sessions available in English & Spanish</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-wordmark">Camila Figueroa</span>
+    <ul class="footer-links">
+      <li><a href="#offerings">Sessions</a></li>
+      <li><a href="#for-whom">For Whom</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="mailto:hello@example.com">Contact</a></li>
+    </ul>
+    <span class="footer-copy">© 2025 Camila Figueroa</span>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="bookingModal" onclick="handleModalClick(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Book a 1:1 Session</div>
+          <div class="modal-subtitle">Dream-Based Practice · Camila Figueroa</div>
+        </div>
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-session-info">
+          <div class="modal-session-tag">Individual · 60 min · English & Spanish</div>
+          <p class="modal-session-desc">Book your 1:1 session below. Choose a time that works for you — sessions are held virtually.</p>
+        </div>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/yoduermoasi/dreamsession?hide_gdpr_banner=1&primary_color=c9a82a" style="min-width:300px;height:660px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const modal = document.getElementById('bookingModal');
+    function openModal(e) { e.preventDefault(); modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeModal() { modal.classList.remove('active'); document.body.style.overflow = ''; }
+    function handleModalClick(e) { if (e.target === modal) closeModal(); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const card = e.target.closest('.newsletter-card');
+      e.target.style.display = 'none';
+      card.querySelector('.newsletter-desc').style.display = 'none';
+      const success = document.createElement('p');
+      success.className = 'newsletter-success';
+      success.innerHTML = 'You\'re on the list.<br/><span style="font-size:0.85rem;opacity:0.7;">We\'ll be in touch when something new opens up.</span>';
+      card.appendChild(success);
+    }
+
+    function toggleMobileMenu() {
+      const links = document.querySelector('.nav-links');
+      if (links.style.display === 'flex') { links.style.display = 'none'; }
+      else { links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(190,218,238,0.92);backdrop-filter:blur(14px);padding:1.5rem 2rem;border-bottom:1px solid rgba(255,255,255,0.4);gap:1.5rem;'; }
+    }
+  </script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</body>
+</html>
