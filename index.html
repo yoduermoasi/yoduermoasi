@@ -266,7 +266,9 @@
     .offerings-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule-strong); }
     .offerings-title { font-family: var(--ff-display); font-size: clamp(2rem, 3.8vw, 3rem); font-weight: 300; color: var(--navy); }
     .offerings-label { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sun-deep); background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
-    .offering-card { background: rgba(255,255,255,0.48); border: 1px solid rgba(255,255,255,0.88); border-radius: 6px; padding: 2.5rem 2rem; display: flex; flex-direction: column; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 4px 24px rgba(30,60,100,0.08), inset 0 1px 0 rgba(255,255,255,0.9); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); max-width: 620px; }
+    .offering-card { background: rgba(255,255,255,0.48); border: 1px solid rgba(255,255,255,0.88); border-radius: 6px; padding: 2.5rem 2rem; display: flex; flex-direction: column; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 4px 24px rgba(30,60,100,0.08), inset 0 1px 0 rgba(255,255,255,0.9); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); }
+    .offerings-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2.5rem; align-items: start; }
+    .offerings-testimonials { display: flex; flex-direction: column; gap: 1rem; }
     .offering-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(30,60,100,0.14), inset 0 1px 0 rgba(255,255,255,0.9); }
     .offering-card.featured { background: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.96); }
     .offering-num { font-family: var(--ff-display); font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 1.75rem; display: inline-block; background: rgba(255,255,255,0.55); padding: 0.2rem 0.65rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.8); }
@@ -391,6 +393,7 @@
       .about-photo { align-items: center; }
       .approach-section { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 2rem; margin: 0 1rem; }
       .offerings-section { padding: 3.5rem 2rem; }
+      .offerings-layout { grid-template-columns: 1fr; }
       .for-section { padding: 3.5rem 2rem; }
       .for-grid { grid-template-columns: 1fr; gap: 3rem; }
       .for-divider { display: none; }
@@ -492,32 +495,28 @@
       <h2 class="offerings-title">Work Together</h2>
       <span class="offerings-label">One Way to Begin</span>
     </div>
-    <div class="offering-card featured reveal">
-      <div class="offering-num">Individual Session</div>
-      <h3 class="offering-title">1:1 Dream Session</h3>
-      <div class="offering-timing">By Appointment · 60 min · English & Spanish</div>
-      <p class="offering-desc">The goal is to use dreams to make sense of what feels random, meaningless, or disconnected, especially during moments of stress, transition and relational changes. Sessions can center on specific dreams, figures, personal or professional projects, recurring patterns, or the ongoing development of your creative self. You leave with concrete tools to work with dreams independently.</p>
-      <a href="#" class="offering-cta primary" onclick="openModal(event)">Book a 1:1 Session</a>
-    </div>
-  </section>
-
-  <div class="sky-rule"></div>
-
-  <!-- TESTIMONIALS -->
-  <section class="testimonials-section" id="testimonials">
-    <p class="section-eyebrow reveal">What Clients Say</p>
-    <div class="testimonials-grid">
-      <div class="testimonial-card reveal">
-        <p class="testimonial-quote testimonial-placeholder">Client testimonial coming soon.</p>
-        <p class="testimonial-author">— Name, Location</p>
+    <div class="offerings-layout">
+      <div class="offering-card featured reveal">
+        <div class="offering-num">Individual Session</div>
+        <h3 class="offering-title">1:1 Dream Session</h3>
+        <div class="offering-timing">By Appointment · 60 min · English & Spanish</div>
+        <p class="offering-desc">The goal is to use dreams to make sense of what feels random, meaningless, or disconnected, especially during moments of stress, transition and relational changes. Sessions can center on specific dreams, figures, personal or professional projects, recurring patterns, or the ongoing development of your creative self. You leave with concrete tools to work with dreams independently.</p>
+        <a href="#" class="offering-cta primary" onclick="openModal(event)">Book a 1:1 Session</a>
       </div>
-      <div class="testimonial-card reveal delay-1">
-        <p class="testimonial-quote testimonial-placeholder">Client testimonial coming soon.</p>
-        <p class="testimonial-author">— Name, Location</p>
-      </div>
-      <div class="testimonial-card reveal delay-2">
-        <p class="testimonial-quote testimonial-placeholder">Client testimonial coming soon.</p>
-        <p class="testimonial-author">— Name, Location</p>
+      <div class="offerings-testimonials">
+        <p class="section-eyebrow reveal">What Clients Say</p>
+        <div class="testimonial-card reveal delay-1">
+          <p class="testimonial-quote">I didn't expect the session to go so deep. It touched on things I haven't discussed in many years of therapy.</p>
+          <p class="testimonial-author">— Session Client</p>
+        </div>
+        <div class="testimonial-card reveal delay-2">
+          <p class="testimonial-quote">I haven't met anyone so knowledgeable and passionate about dreams. Thank you for making this experience so intimate and thoughtful, and at the same time, fun.</p>
+          <p class="testimonial-author">— Session Client</p>
+        </div>
+        <div class="testimonial-card reveal delay-3">
+          <p class="testimonial-quote">I came to my first session with a repetitive and very unpleasant nightmare. It's been a year since then, and after working on it together, it has completely disappeared.</p>
+          <p class="testimonial-author">— Session Client</p>
+        </div>
       </div>
     </div>
   </section>
