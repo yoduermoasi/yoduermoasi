@@ -213,7 +213,11 @@
     .modal-body { padding: 2.5rem; }
     .modal-session-info { margin-bottom: 2rem; padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.85); border-radius: 4px; }
     .modal-session-tag { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 0.5rem; }
-    .modal-session-desc { font-family: var(--ff-body); font-size: 0.88rem; color: var(--text-soft); line-height: 1.7; font-style: italic; }
+    .modal-session-desc { font-family: var(--ff-body); font-size: 0.88rem; color: var(--text-soft); line-height: 1.7; }
+    .modal-session-desc p { margin-bottom: 1rem; }
+    .modal-session-desc p:last-child { margin-bottom: 0; }
+    .modal-session-desc em { font-style: italic; }
+    .modal-session-desc strong { font-weight: 500; color: var(--navy); }
     .modal-calendly-placeholder { background: rgba(255,255,255,0.5); border: 1px dashed var(--rule-strong); border-radius: 4px; padding: 3rem; text-align: center; font-family: var(--ff-display); font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); line-height: 2.2; }
 
     /* ── RESPONSIVE ── */
@@ -450,7 +454,21 @@
       <div class="modal-body">
         <div class="modal-session-info">
           <div class="modal-session-tag">Individual · 60 min · English & Spanish</div>
-          <p class="modal-session-desc">Book your 1:1 session below. Choose a time that works for you — sessions are held virtually.</p>
+          <div class="modal-session-desc">
+            <p>👋 Welcome to our one-on-one experience of exploring your dreams!</p>
+            <p>✨ <strong>What to Expect:</strong> During our time together (60 min), we will use dreams from any point in time to explore and connect the elements, images, symbolism and patterns with your waking life. Our goal is to understand how our decisions, thoughts and behaviors are influenced by unconscious dynamics.</p>
+            <p>🧭 <strong>Tailored to You:</strong> Sessions are customized to meet your unique needs and questions. This includes education on sleep and restorative practices, resources to continue remembering your dreams, and tools to further explore your dreams independently.</p>
+            <p>🌐 <strong>Language Options:</strong> Available in both Spanish and English.</p>
+            <p>🪙 <strong>Sliding scale:</strong><br/>
+            — Need a lil help: $99<br/>
+            — True cost: $119</p>
+            <p>To secure your spot, please make a payment via:<br/>
+            Venmo @ camila_figueroa<br/>
+            Llave: @camilaf8239<br/>
+            Wise: @camilaf1510</p>
+            <p><em>*Please reach out if you need additional financial assistance — it's always available.</em></p>
+            <p>📆 <strong>Schedule Your Session.</strong> Once you save your spot, I will follow up and provide more details!</p>
+          </div>
         </div>
         <div class="calendly-inline-widget" data-url="https://calendly.com/yoduermoasi/dreamsession?hide_gdpr_banner=1&primary_color=c9a82a" style="min-width:300px;height:660px;"></div>
       </div>
