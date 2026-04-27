@@ -351,7 +351,7 @@
     .book-section { padding: 3rem 3.5rem; text-align: center; position: relative; }
     .book-section::before { content: ''; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(232,200,74,0.16) 0%, transparent 70%); pointer-events: none; }
     .book-eyebrow { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 2rem; display: inline-block; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
-    .book-headline { font-family: var(--ff-display); font-size: clamp(2.8rem, 5.5vw, 5rem); font-weight: 300; font-style: italic; line-height: 1.12; color: var(--navy); max-width: 20ch; margin: 0 auto 1.5rem; }
+    .book-headline { font-family: var(--ff-display); font-size: clamp(1.8rem, 2.8vw, 2.6rem); font-weight: 300; font-style: italic; line-height: 1.12; color: var(--navy); max-width: none; white-space: nowrap; margin: 0 auto 1.5rem; }
     .book-subtext { font-family: var(--ff-body); font-size: 1rem; color: var(--text-soft); max-width: 44ch; margin: 0 auto 3.5rem; line-height: 1.75; font-style: italic; }
     .btn-large { font-family: var(--ff-display); font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: none; padding: 1.1rem 3.2rem; text-decoration: none; display: inline-block; border-radius: 2px; box-shadow: 0 6px 24px rgba(200,160,40,0.32); transition: all 0.3s; }
     .btn-large:hover { background: var(--sun-deep); color: #fff; }
@@ -401,6 +401,7 @@
       .newsletter-section { padding: 2rem 2rem 1rem; }
       .newsletter-card { flex-direction: column; align-items: flex-start; }
       .book-section { padding: 4rem 2rem; }
+      .book-headline { white-space: normal; }
       footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem; }
       .nav-links { display: none; }
 
