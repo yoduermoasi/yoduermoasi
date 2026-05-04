@@ -219,6 +219,12 @@
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .nav-hamburger span { width: 22px; height: 1.5px; background: var(--navy); display: block; }
 
+    /* ── LANG SWITCH ── */
+    .lang-switch { display: flex; align-items: center; border: 1px solid rgba(26,48,74,0.22); border-radius: 2px; overflow: hidden; background: rgba(255,255,255,0.5); }
+    .lang-btn { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy-mid); background: transparent; border: none; padding: 0.35rem 0.7rem; cursor: pointer; transition: all 0.2s; line-height: 1; }
+    .lang-btn.active { background: var(--navy); color: var(--sky-horizon); }
+    .lang-btn:hover:not(.active) { background: rgba(26,48,74,0.08); }
+
     /* ── HERO ── */
     .hero { display: grid; grid-template-columns: 1fr 1.4fr; align-items: center; padding: 7rem 3.5rem 3.5rem; gap: 2rem; }
     .hero-left { display: flex; flex-direction: column; justify-content: center; }
@@ -432,7 +438,6 @@
       .book-headline { white-space: normal; }
       footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem; }
       .nav-links { display: none; }
-
       .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
       .nav-wordmark { font-size: 0.72rem; }
@@ -455,11 +460,15 @@
   <nav id="mainNav">
     <a href="#" class="nav-wordmark">yoduermoasi x Camila Figueroa</a>
     <ul class="nav-links">
-      <li><a href="#offerings">Sessions</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#offerings" data-i18n="nav.sessions">Sessions</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
     </ul>
-    <a href="#" class="nav-cta" onclick="openModal(event)">Book a 1:1 Session</a>
+    <div class="lang-switch">
+      <button class="lang-btn active" id="langEN" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="langES" onclick="setLang('es')">ES</button>
+    </div>
+    <a href="#" class="nav-cta" onclick="openModal(event)" data-i18n="nav.book">Book a 1:1 Session</a>
     <button class="nav-hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
       <span></span><span></span><span></span>
     </button>
@@ -468,24 +477,24 @@
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-left">
-      <p class="hero-eyebrow reveal">Dream practice grounded in evidence</p>
-      <h1 class="hero-headline reveal delay-1">
+      <p class="hero-eyebrow reveal" data-i18n="hero.eyebrow">Dream practice grounded in evidence</p>
+      <h1 class="hero-headline reveal delay-1" data-i18n-html="hero.headline">
         Dreams are a reliable source of data we shouldn't overlook. Nor is there any good reason to keep neglecting <em>⅓ of our lives.</em>
       </h1>
-      <p class="hero-subtext reveal delay-2">
+      <p class="hero-subtext reveal delay-2" data-i18n="hero.subtext">
         Our decisions, thoughts, and behaviors are largely influenced by unconscious processes. Our unconscious reveals itself through dreams, yet we have this very unfortunate tendency to neglect them.
       </p>
       <div class="hero-actions reveal delay-3">
-        <a href="#" class="btn-primary" onclick="openModal(event)">Book a 1:1 Session</a>
-        <a href="#offerings" class="btn-ghost">Learn More</a>
+        <a href="#" class="btn-primary" onclick="openModal(event)" data-i18n="hero.book">Book a 1:1 Session</a>
+        <a href="#offerings" class="btn-ghost" data-i18n="hero.learn">Learn More</a>
       </div>
-      <p class="hero-language reveal delay-4">Sessions in English & Spanish</p>
+      <p class="hero-language reveal delay-4" data-i18n="hero.language">Sessions in English & Spanish</p>
     </div>
     <div class="hero-right">
       <div class="hero-bed reveal delay-2">
         <img src="bed.png" alt="A bed — where dreams begin"/>
       </div>
-      <p class="hero-keywords reveal delay-3">Sleep · Mental Health · Wellbeing</p>
+      <p class="hero-keywords reveal delay-3" data-i18n="hero.keywords">Sleep · Mental Health · Wellbeing</p>
     </div>
   </section>
 
@@ -494,28 +503,28 @@
   <!-- APPROACH -->
   <section class="approach-section">
     <div>
-      <p class="approach-label reveal">The Approach</p>
-      <h2 class="approach-headline reveal delay-1">Not fixed symbols.<br/>Decentralized data<br/>from your inner life.</h2>
-      <p class="approach-body reveal delay-2">
+      <p class="approach-label reveal" data-i18n="approach.label">The Approach</p>
+      <h2 class="approach-headline reveal delay-1" data-i18n-html="approach.headline">Not fixed symbols.<br/>Decentralized data<br/>from your inner life.</h2>
+      <p class="approach-body reveal delay-2" data-i18n="approach.body">
         Rather than searching for generic interpretations, dreams are treated as a reliable source of data — about who you are, what you carry, and the socio-cultural world you inhabit. Dreams are placed in direct dialogue with waking life through the following approaches:
       </p>
     </div>
     <div class="methods">
       <div class="method-item reveal">
         <span class="method-num">I</span>
-        <div><div class="method-name">Depth Psychology</div><div class="method-desc">Jungian and psychodynamic frameworks for working with unconscious material and archetypal patterns.</div></div>
+        <div><div class="method-name" data-i18n="method1.name">Depth Psychology</div><div class="method-desc" data-i18n="method1.desc">Jungian and psychodynamic frameworks for working with unconscious material and archetypal patterns.</div></div>
       </div>
       <div class="method-item reveal delay-1">
         <span class="method-num">II</span>
-        <div><div class="method-name">Gestalt Exploration</div><div class="method-desc">Embodied, present-moment engagement with dream figures and images.</div></div>
+        <div><div class="method-name" data-i18n="method2.name">Gestalt Exploration</div><div class="method-desc" data-i18n="method2.desc">Embodied, present-moment engagement with dream figures and images.</div></div>
       </div>
       <div class="method-item reveal delay-2">
         <span class="method-num">III</span>
-        <div><div class="method-name">Imagery Rehearsal</div><div class="method-desc">Evidence-based technique for reshaping nightmare content and reducing recurrence.</div></div>
+        <div><div class="method-name" data-i18n="method3.name">Imagery Rehearsal</div><div class="method-desc" data-i18n="method3.desc">Evidence-based technique for reshaping nightmare content and reducing recurrence.</div></div>
       </div>
       <div class="method-item reveal delay-3">
         <span class="method-num">IV</span>
-        <div><div class="method-name">Somatic & Trauma-Informed</div><div class="method-desc">Body-based awareness integrated with trauma-sensitive support throughout all sessions.</div></div>
+        <div><div class="method-name" data-i18n="method4.name">Somatic & Trauma-Informed</div><div class="method-desc" data-i18n="method4.desc">Body-based awareness integrated with trauma-sensitive support throughout all sessions.</div></div>
       </div>
     </div>
   </section>
@@ -525,30 +534,30 @@
   <!-- WORK TOGETHER -->
   <section class="offerings-section" id="offerings">
     <div class="offerings-header reveal">
-      <h2 class="offerings-title">Work Together</h2>
-      <span class="offerings-label">One Way to Begin</span>
+      <h2 class="offerings-title" data-i18n="offerings.title">Work Together</h2>
+      <span class="offerings-label" data-i18n="offerings.label">One Way to Begin</span>
     </div>
     <div class="offerings-layout">
       <div class="offering-card featured reveal">
-        <div class="offering-num">Individual Session</div>
-        <h3 class="offering-title">1:1 Dream Session</h3>
-        <div class="offering-timing">By Appointment · 60 min · English & Spanish</div>
-        <p class="offering-desc">The goal is to use dreams to make sense of what feels random, meaningless, or disconnected, especially during moments of stress, transition and relational changes. Sessions can center on specific dreams, figures, personal or professional projects, recurring patterns, or the ongoing development of your creative self. You leave with concrete tools to work with dreams independently.</p>
-        <a href="#" class="offering-cta primary" onclick="openModal(event)">Book a 1:1 Session</a>
+        <div class="offering-num" data-i18n="offering.num">Individual Session</div>
+        <h3 class="offering-title" data-i18n="offering.title">1:1 Dream Session</h3>
+        <div class="offering-timing" data-i18n="offering.timing">By Appointment · 60 min · English & Spanish</div>
+        <p class="offering-desc" data-i18n="offering.desc">The goal is to use dreams to make sense of what feels random, meaningless, or disconnected, especially during moments of stress, transition and relational changes. Sessions can center on specific dreams, figures, personal or professional projects, recurring patterns, or the ongoing development of your creative self. You leave with concrete tools to work with dreams independently.</p>
+        <a href="#" class="offering-cta primary" onclick="openModal(event)" data-i18n="offering.cta">Book a 1:1 Session</a>
       </div>
       <div class="offerings-testimonials">
-        <p class="section-eyebrow reveal">What Clients Say</p>
+        <p class="section-eyebrow reveal" data-i18n="testimonials.label">What Clients Say</p>
         <div class="testimonial-card reveal delay-1">
-          <p class="testimonial-quote">I didn't expect the session to go so deep. It touched on things I haven't discussed in seven years of therapy.</p>
-          <p class="testimonial-author">— Session Client</p>
+          <p class="testimonial-quote" data-i18n="t1.quote">I didn't expect the session to go so deep. It touched on things I haven't discussed in seven years of therapy.</p>
+          <p class="testimonial-author" data-i18n="t1.author">— Session Client</p>
         </div>
         <div class="testimonial-card reveal delay-2">
-          <p class="testimonial-quote">I haven't met anyone so knowledgeable and passionate about dreams. Thank you for making this experience so intimate and thoughtful, and at the same time, fun.</p>
-          <p class="testimonial-author">— Session Client</p>
+          <p class="testimonial-quote" data-i18n="t2.quote">I haven't met anyone so knowledgeable and passionate about dreams. Thank you for making this experience so intimate and thoughtful, and at the same time, fun.</p>
+          <p class="testimonial-author" data-i18n="t2.author">— Session Client</p>
         </div>
         <div class="testimonial-card reveal delay-3">
-          <p class="testimonial-quote">I came to my first session with a repetitive and very unpleasant nightmare. It's been a year since then, and it has completely disappeared!</p>
-          <p class="testimonial-author">— Session Client</p>
+          <p class="testimonial-quote" data-i18n="t3.quote">I came to my first session with a repetitive and very unpleasant nightmare. It's been a year since then, and it has completely disappeared!</p>
+          <p class="testimonial-author" data-i18n="t3.author">— Session Client</p>
         </div>
       </div>
     </div>
@@ -591,21 +600,21 @@
   <!-- ABOUT -->
   <section class="about-section" id="about">
     <div class="about-header">
-      <p class="about-label reveal">About</p>
+      <p class="about-label reveal" data-i18n="about.label">About</p>
       <h2 class="about-name reveal delay-1">Camila Figueroa</h2>
     </div>
     <div class="about-body">
       <div class="about-bio reveal delay-2">
-        <p>Camila studied Psychology and later completed a Master's in Global Mental Health in New York City, grounding her work in both clinical rigor and a cross-cultural perspective.</p>
-        <p>She works at the Mental Wellness Equity Center in the Department of Psychiatry at Columbia University, bringing over a decade of experience translating scientific research into scalable mental health programs, technologies, and real-world interventions.</p>
-        <p>Since 2019, she has developed an integrative, multidisciplinary dream-based practice that helps individuals explore the recurring themes, symbols, and patterns that emerge in dreams. Camila has facilitated more than 150 dreamwork sessions and workshops for people from diverse backgrounds, guiding them in using dreams as practical tools for self-knowledge, emotional clarity, and intentional change.</p>
-        <p>She is the Head of Science and Innovation at <a href="https://mindflow.life/" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;text-underline-offset:3px;">Mindflow</a>, a dream-focused app that helps individuals understand the patterns shaping how they think, feel, and act.</p>
+        <p data-i18n="about.bio.p1">Camila studied Psychology and later completed a Master's in Global Mental Health in New York City, grounding her work in both clinical rigor and a cross-cultural perspective.</p>
+        <p data-i18n="about.bio.p2">She works at the Mental Wellness Equity Center in the Department of Psychiatry at Columbia University, bringing over a decade of experience translating scientific research into scalable mental health programs, technologies, and real-world interventions.</p>
+        <p data-i18n="about.bio.p3">Since 2019, she has developed an integrative, multidisciplinary dream-based practice that helps individuals explore the recurring themes, symbols, and patterns that emerge in dreams. Camila has facilitated more than 150 dreamwork sessions and workshops for people from diverse backgrounds, guiding them in using dreams as practical tools for self-knowledge, emotional clarity, and intentional change.</p>
+        <p data-i18n-html="about.bio.p4">She is the Head of Science and Innovation at <a href="https://mindflow.life/" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;text-underline-offset:3px;">Mindflow</a>, a dream-focused app that helps individuals understand the patterns shaping how they think, feel, and act.</p>
       </div>
       <div class="about-photo reveal delay-1">
         <img src="camila-portrait.jpg" alt="Camila Figueroa"/>
         <p class="about-photo-caption">
           <strong>Camila Figueroa</strong>
-          <span>Therapist · Researcher · Dream Practitioner</span>
+          <span data-i18n="about.caption.role">Therapist · Researcher · Dream Practitioner</span>
         </p>
       </div>
     </div>
@@ -615,35 +624,35 @@
 
   <!-- FAQ -->
   <section class="faq-section" id="faq">
-    <p class="section-eyebrow reveal">Questions</p>
+    <p class="section-eyebrow reveal" data-i18n="faq.label">Questions</p>
     <div class="faq-list">
       <details class="faq-item reveal">
-        <summary class="faq-question">What is dreamwork therapy?</summary>
-        <p class="faq-answer">Dreamwork offers a way for individuals to engage with unconscious dynamics. It is a practice that uses dreams to help people gain insight into their inner thoughts, process conflicts and tensions, and support personal growth and wellbeing.</p>
+        <summary class="faq-question" data-i18n="faq.q1">What is dreamwork therapy?</summary>
+        <p class="faq-answer" data-i18n="faq.a1">Dreamwork offers a way for individuals to engage with unconscious dynamics. It is a practice that uses dreams to help people gain insight into their inner thoughts, process conflicts and tensions, and support personal growth and wellbeing.</p>
       </details>
       <details class="faq-item reveal delay-1">
-        <summary class="faq-question">How do dreams affect mental health and behavior?</summary>
-        <p class="faq-answer">Dreams reflect unconscious processing of emotions, conflicts, and experiences. Research shows that dream content is associated with mood regulation, stress response, and behavioral patterns — making them a valuable and underused source of self-knowledge.</p>
+        <summary class="faq-question" data-i18n="faq.q2">How do dreams affect mental health and behavior?</summary>
+        <p class="faq-answer" data-i18n="faq.a2">Dreams reflect unconscious processing of emotions, conflicts, and experiences. Research shows that dream content is associated with mood regulation, stress response, and behavioral patterns — making them a valuable and underused source of self-knowledge.</p>
       </details>
       <details class="faq-item reveal delay-2">
-        <summary class="faq-question">What evidence-based methods does Camila use?</summary>
-        <p class="faq-answer">Sessions draw on depth psychology, Gestalt exploration, somatic awareness, and Imagery Rehearsal Therapy (IRT) — all methods with research support for improving emotional clarity and psychological wellbeing.</p>
+        <summary class="faq-question" data-i18n="faq.q3">What evidence-based methods does Camila use?</summary>
+        <p class="faq-answer" data-i18n="faq.a3">Sessions draw on depth psychology, Gestalt exploration, somatic awareness, and Imagery Rehearsal Therapy (IRT) — all methods with research support for improving emotional clarity and psychological wellbeing.</p>
       </details>
       <details class="faq-item reveal delay-3">
-        <summary class="faq-question">Who benefits from dreamwork sessions?</summary>
-        <p class="faq-answer">Anyone curious about their inner life — whether you're navigating a life transition, experiencing recurring or unsettling dreams, going through relational changes, feeling stuck in a creative project, or simply wanting to understand yourself more deeply. No prior experience with therapy or dreamwork is needed.</p>
+        <summary class="faq-question" data-i18n="faq.q4">Who benefits from dreamwork sessions?</summary>
+        <p class="faq-answer" data-i18n="faq.a4">Anyone curious about their inner life — whether you're navigating a life transition, experiencing recurring or unsettling dreams, going through relational changes, feeling stuck in a creative project, or simply wanting to understand yourself more deeply. No prior experience with therapy or dreamwork is needed.</p>
       </details>
       <details class="faq-item reveal">
-        <summary class="faq-question">What is Imagery Rehearsal Therapy?</summary>
-        <p class="faq-answer">IRT is an evidence-based technique originally developed for nightmare disorder. It involves consciously rewriting a distressing dream narrative and rehearsing the new version, reducing nightmare frequency and improving sleep quality.</p>
+        <summary class="faq-question" data-i18n="faq.q5">What is Imagery Rehearsal Therapy?</summary>
+        <p class="faq-answer" data-i18n="faq.a5">IRT is an evidence-based technique originally developed for nightmare disorder. It involves consciously rewriting a distressing dream narrative and rehearsing the new version, reducing nightmare frequency and improving sleep quality.</p>
       </details>
       <details class="faq-item reveal delay-1">
-        <summary class="faq-question">How long is a session and what does it cost?</summary>
-        <p class="faq-answer">Sessions are 60 minutes. Pricing is on a sliding scale: $99 USD (need a little help) or $119 USD (true cost). Additional financial assistance is always available — just reach out.</p>
+        <summary class="faq-question" data-i18n="faq.q6">How long is a session and what does it cost?</summary>
+        <p class="faq-answer" data-i18n="faq.a6">Sessions are 60 minutes. Pricing is on a sliding scale: $99 USD (need a little help) or $119 USD (true cost). Additional financial assistance is always available — just reach out.</p>
       </details>
       <details class="faq-item reveal delay-2">
-        <summary class="faq-question">Are sessions available in Spanish?</summary>
-        <p class="faq-answer">Yes. Sessions are available in both English and Spanish.</p>
+        <summary class="faq-question" data-i18n="faq.q7">Are sessions available in Spanish?</summary>
+        <p class="faq-answer" data-i18n="faq.a7">Yes. Sessions are available in both English and Spanish.</p>
       </details>
     </div>
   </section>
@@ -654,41 +663,40 @@
   <section class="newsletter-section" id="newsletter">
     <div class="newsletter-card reveal">
       <div class="newsletter-intro">
-        <div class="newsletter-label">Stay in the Loop</div>
-        <h3 class="newsletter-title">Be the first to hear about new offerings, workshops, and reflections.</h3>
+        <div class="newsletter-label" data-i18n="newsletter.label">Stay in the Loop</div>
+        <h3 class="newsletter-title" data-i18n="newsletter.title">Be the first to hear about new offerings, workshops, and reflections.</h3>
       </div>
       <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)" action="https://formspree.io/f/xbdqblkd" method="POST">
         <input type="hidden" name="_subject" value="New signup — Stay in the Loop"/>
         <input type="hidden" name="_replyto" value="yoduermoasi@gmail.com"/>
         <div class="newsletter-fields">
-          <input type="text" class="newsletter-input" name="name" placeholder="Name" required autocomplete="given-name"/>
-          <input type="email" class="newsletter-input" name="email" placeholder="Email" required autocomplete="email"/>
+          <input type="text" class="newsletter-input" name="name" data-i18n-placeholder="newsletter.placeholder.name" placeholder="Name" required autocomplete="given-name"/>
+          <input type="email" class="newsletter-input" name="email" data-i18n-placeholder="newsletter.placeholder.email" placeholder="Email" required autocomplete="email"/>
         </div>
-        <button type="submit" class="newsletter-btn">Join</button>
-        <p class="newsletter-fine">No spam. Unsubscribe anytime.</p>
+        <button type="submit" class="newsletter-btn" data-i18n="newsletter.btn">Join</button>
+        <p class="newsletter-fine" data-i18n="newsletter.fine">No spam. Unsubscribe anytime.</p>
       </form>
     </div>
   </section>
 
   <!-- BOOK CTA -->
   <section class="book-section">
-    <p class="book-eyebrow reveal">Begin</p>
-    <h2 class="book-headline reveal delay-1">Your dreams complement your waking life.</h2>
-    <p class="book-subtext reveal delay-2">Book a session and begin to understand both.</p>
+    <p class="book-eyebrow reveal" data-i18n="book.eyebrow">Begin</p>
+    <h2 class="book-headline reveal delay-1" data-i18n="book.headline">Your dreams complement your waking life.</h2>
+    <p class="book-subtext reveal delay-2" data-i18n="book.subtext">Book a session and begin to understand both.</p>
     <div class="reveal delay-3">
-      <a href="#" class="btn-large" onclick="openModal(event)">Book a 1:1 Session</a>
+      <a href="#" class="btn-large" onclick="openModal(event)" data-i18n="book.cta">Book a 1:1 Session</a>
     </div>
-    <p class="book-note reveal delay-4">Sessions available in English & Spanish</p>
+    <p class="book-note reveal delay-4" data-i18n="book.note">Sessions available in English & Spanish</p>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <span class="footer-wordmark">yoduermoasi x Camila Figueroa</span>
     <ul class="footer-links">
-      <li><a href="#offerings">Sessions</a></li>
-
-      <li><a href="#about">About</a></li>
-      <li><a href="mailto:yoduermoasi@gmail.com">Contact</a></li>
+      <li><a href="#offerings" data-i18n="footer.sessions">Sessions</a></li>
+      <li><a href="#about" data-i18n="footer.about">About</a></li>
+      <li><a href="mailto:yoduermoasi@gmail.com" data-i18n="footer.contact">Contact</a></li>
     </ul>
     <span class="footer-copy">© 2025 Camila Figueroa</span>
   </footer>
@@ -718,44 +726,44 @@
 
         <!-- ── STEP 1: Pricing tiers ── -->
         <div id="step1">
-          <p class="price-intro">In an effort to keep this work accessible, sessions are offered on a sliding scale. You're welcome to choose an amount that feels comfortable and honest for your current situation.</p>
+          <p class="price-intro" data-i18n="modal.price.intro">In an effort to keep this work accessible, sessions are offered on a sliding scale. You're welcome to choose an amount that feels comfortable and honest for your current situation.</p>
           <div class="price-tiers">
 
             <div class="price-tier" onclick="selectTier(119)">
               <div class="price-tier-top">
-                <span class="price-tier-label">True cost</span>
+                <span class="price-tier-label" data-i18n="tier1.label">True cost</span>
                 <span class="price-tier-amount">$119</span>
               </div>
-              <p class="price-tier-desc">I have financial security, can pay for wants, and don't worry about necessities. Choosing this price helps sustain access for others.</p>
-              <div class="price-tier-cta">Continue with this option</div>
+              <p class="price-tier-desc" data-i18n="tier1.desc">I have financial security, can pay for wants, and don't worry about necessities. Choosing this price helps sustain access for others.</p>
+              <div class="price-tier-cta" data-i18n="tier1.cta">Continue with this option</div>
             </div>
 
             <div class="price-tier" onclick="selectTier(99)">
               <div class="price-tier-top">
-                <span class="price-tier-label">I just need a little help</span>
+                <span class="price-tier-label" data-i18n="tier2.label">I just need a little help</span>
                 <span class="price-tier-amount">$99</span>
               </div>
-              <p class="price-tier-desc">I have access to steady income and can cover basic needs, but a small reduction genuinely helps right now.</p>
-              <div class="price-tier-cta">Continue with this option</div>
+              <p class="price-tier-desc" data-i18n="tier2.desc">I have access to steady income and can cover basic needs, but a small reduction genuinely helps right now.</p>
+              <div class="price-tier-cta" data-i18n="tier2.cta">Continue with this option</div>
             </div>
 
             <div class="price-tier" onclick="selectTier(75)">
               <div class="price-tier-top">
-                <span class="price-tier-label">I can't do it without support</span>
+                <span class="price-tier-label" data-i18n="tier3.label">I can't do it without support</span>
                 <span class="price-tier-amount">$75</span>
               </div>
-              <p class="price-tier-desc">I'm navigating real financial difficulty — managing debt, living paycheck to paycheck, or without steady income. This offering is for you, and it's honored as equal to every other price on this scale.</p>
-              <div class="price-tier-cta">Continue with this option</div>
+              <p class="price-tier-desc" data-i18n="tier3.desc">I'm navigating real financial difficulty — managing debt, living paycheck to paycheck, or without steady income. This offering is for you, and it's honored as equal to every other price on this scale.</p>
+              <div class="price-tier-cta" data-i18n="tier3.cta">Continue with this option</div>
             </div>
 
           </div>
-          <p class="price-assistance">If the cost is still a barrier, please write to <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a> — additional support is always available.</p>
+          <p class="price-assistance" data-i18n-html="price.assistance">If the cost is still a barrier, please write to <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a> — additional support is always available.</p>
         </div>
 
         <!-- ── STEP 2: Calendly ── -->
         <div id="step2" style="display:none">
           <div class="step-selected-price">
-            <span class="step-selected-label">Your selected price</span>
+            <span class="step-selected-label" data-i18n="step2.selected.label">Your selected price</span>
             <span class="step-selected-value" id="selectedPriceDisplay">—</span>
           </div>
           <div class="calendly-inline-widget" data-url="https://calendly.com/yoduermoasi/dreamsession?hide_gdpr_banner=1&primary_color=c9a82a" style="min-width:300px;height:660px;"></div>
@@ -764,21 +772,21 @@
         <!-- ── STEP 3: PayPal payment ── -->
         <div id="step3" style="display:none">
           <div style="text-align:center; margin-bottom: 1.75rem;">
-            <div class="payment-confirmed-badge">✓ Session scheduled</div>
-            <div class="payment-summary-title">Complete your payment to secure your spot</div>
+            <div class="payment-confirmed-badge" data-i18n="step3.badge">✓ Session scheduled</div>
+            <div class="payment-summary-title" data-i18n="step3.title">Complete your payment to secure your spot</div>
           </div>
           <div class="payment-summary">
             <div class="payment-summary-amount" id="paymentAmount">$119</div>
-            <div class="payment-summary-desc">1:1 Dream Session · 60 min</div>
+            <div class="payment-summary-desc" data-i18n="step3.session.desc">1:1 Dream Session · 60 min</div>
           </div>
           <a id="paypalLink" href="https://www.paypal.me/yoduermoasi/119" target="_blank" rel="noopener" class="paypal-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M7.144 19.532l1.049-5.751c.11-.606.691-1.002 1.304-.9.71.12 1.48.179 2.303.152 3.94-.13 7.2-2.966 7.2-7.25C19 2.585 16.318 0 12.31 0H5.036C4.36 0 3.785.49 3.67 1.156L1 17.278c-.08.462.268.88.738.88h3.7l1.706-9.354v-.272z"/><path d="M20.187 7.807c-.39 3.83-3.5 6.493-7.644 6.493H11.2l-1.1 6.02c-.07.384.224.736.614.736h3.12c.54 0 1-.39 1.085-.924l.77-4.127c.085-.534.545-.924 1.085-.924h.772c3.08 0 5.494-1.904 6.157-4.816.28-1.217.147-2.222-.516-2.858z"/></svg>
-            Pay with PayPal
+            <span data-i18n="step3.paypal">Pay with PayPal</span>
           </a>
           <ul class="payment-notes">
-            <li>Your session is confirmed — payment completes your booking.</li>
-            <li>If your PayPal name differs from the name you booked with, please mention it in the PayPal note so I can match your payment.</li>
-            <li>Once payment is received I'll send a confirmation with everything you need to prepare.</li>
+            <li data-i18n="step3.note1">Your session is confirmed — payment completes your booking.</li>
+            <li data-i18n="step3.note2">If your PayPal name differs from the name you booked with, please mention it in the PayPal note so I can match your payment.</li>
+            <li data-i18n="step3.note3">Once payment is received I'll send a confirmation with everything you need to prepare.</li>
           </ul>
         </div>
 
@@ -787,14 +795,242 @@
   </div>
 
   <script>
+    /* ── TRANSLATIONS ── */
+    const translations = {
+      en: {
+        'nav.sessions': 'Sessions',
+        'nav.about': 'About',
+        'nav.faq': 'FAQ',
+        'nav.book': 'Book a 1:1 Session',
+        'hero.eyebrow': 'Dream practice grounded in evidence',
+        'hero.headline': 'Dreams are a reliable source of data we shouldn\'t overlook. Nor is there any good reason to keep neglecting <em>⅓ of our lives.</em>',
+        'hero.subtext': 'Our decisions, thoughts, and behaviors are largely influenced by unconscious processes. Our unconscious reveals itself through dreams, yet we have this very unfortunate tendency to neglect them.',
+        'hero.book': 'Book a 1:1 Session',
+        'hero.learn': 'Learn More',
+        'hero.language': 'Sessions in English & Spanish',
+        'hero.keywords': 'Sleep · Mental Health · Wellbeing',
+        'approach.label': 'The Approach',
+        'approach.headline': 'Not fixed symbols.<br/>Decentralized data<br/>from your inner life.',
+        'approach.body': 'Rather than searching for generic interpretations, dreams are treated as a reliable source of data — about who you are, what you carry, and the socio-cultural world you inhabit. Dreams are placed in direct dialogue with waking life through the following approaches:',
+        'method1.name': 'Depth Psychology',
+        'method1.desc': 'Jungian and psychodynamic frameworks for working with unconscious material and archetypal patterns.',
+        'method2.name': 'Gestalt Exploration',
+        'method2.desc': 'Embodied, present-moment engagement with dream figures and images.',
+        'method3.name': 'Imagery Rehearsal',
+        'method3.desc': 'Evidence-based technique for reshaping nightmare content and reducing recurrence.',
+        'method4.name': 'Somatic & Trauma-Informed',
+        'method4.desc': 'Body-based awareness integrated with trauma-sensitive support throughout all sessions.',
+        'offerings.title': 'Work Together',
+        'offerings.label': 'One Way to Begin',
+        'offering.num': 'Individual Session',
+        'offering.title': '1:1 Dream Session',
+        'offering.timing': 'By Appointment · 60 min · English & Spanish',
+        'offering.desc': 'The goal is to use dreams to make sense of what feels random, meaningless, or disconnected, especially during moments of stress, transition and relational changes. Sessions can center on specific dreams, figures, personal or professional projects, recurring patterns, or the ongoing development of your creative self. You leave with concrete tools to work with dreams independently.',
+        'offering.cta': 'Book a 1:1 Session',
+        'testimonials.label': 'What Clients Say',
+        't1.quote': 'I didn\'t expect the session to go so deep. It touched on things I haven\'t discussed in seven years of therapy.',
+        't2.quote': 'I haven\'t met anyone so knowledgeable and passionate about dreams. Thank you for making this experience so intimate and thoughtful, and at the same time, fun.',
+        't3.quote': 'I came to my first session with a repetitive and very unpleasant nightmare. It\'s been a year since then, and it has completely disappeared!',
+        't1.author': '— Session Client',
+        't2.author': '— Session Client',
+        't3.author': '— Session Client',
+        'about.label': 'About',
+        'about.bio.p1': 'Camila studied Psychology and later completed a Master\'s in Global Mental Health in New York City, grounding her work in both clinical rigor and a cross-cultural perspective.',
+        'about.bio.p2': 'She works at the Mental Wellness Equity Center in the Department of Psychiatry at Columbia University, bringing over a decade of experience translating scientific research into scalable mental health programs, technologies, and real-world interventions.',
+        'about.bio.p3': 'Since 2019, she has developed an integrative, multidisciplinary dream-based practice that helps individuals explore the recurring themes, symbols, and patterns that emerge in dreams. Camila has facilitated more than 150 dreamwork sessions and workshops for people from diverse backgrounds, guiding them in using dreams as practical tools for self-knowledge, emotional clarity, and intentional change.',
+        'about.bio.p4': 'She is the Head of Science and Innovation at <a href="https://mindflow.life/" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;text-underline-offset:3px;">Mindflow</a>, a dream-focused app that helps individuals understand the patterns shaping how they think, feel, and act.',
+        'about.caption.role': 'Therapist · Researcher · Dream Practitioner',
+        'faq.label': 'Questions',
+        'faq.q1': 'What is dreamwork therapy?',
+        'faq.a1': 'Dreamwork offers a way for individuals to engage with unconscious dynamics. It is a practice that uses dreams to help people gain insight into their inner thoughts, process conflicts and tensions, and support personal growth and wellbeing.',
+        'faq.q2': 'How do dreams affect mental health and behavior?',
+        'faq.a2': 'Dreams reflect unconscious processing of emotions, conflicts, and experiences. Research shows that dream content is associated with mood regulation, stress response, and behavioral patterns — making them a valuable and underused source of self-knowledge.',
+        'faq.q3': 'What evidence-based methods does Camila use?',
+        'faq.a3': 'Sessions draw on depth psychology, Gestalt exploration, somatic awareness, and Imagery Rehearsal Therapy (IRT) — all methods with research support for improving emotional clarity and psychological wellbeing.',
+        'faq.q4': 'Who benefits from dreamwork sessions?',
+        'faq.a4': 'Anyone curious about their inner life — whether you\'re navigating a life transition, experiencing recurring or unsettling dreams, going through relational changes, feeling stuck in a creative project, or simply wanting to understand yourself more deeply. No prior experience with therapy or dreamwork is needed.',
+        'faq.q5': 'What is Imagery Rehearsal Therapy?',
+        'faq.a5': 'IRT is an evidence-based technique originally developed for nightmare disorder. It involves consciously rewriting a distressing dream narrative and rehearsing the new version, reducing nightmare frequency and improving sleep quality.',
+        'faq.q6': 'How long is a session and what does it cost?',
+        'faq.a6': 'Sessions are 60 minutes. Pricing is on a sliding scale: $99 USD (need a little help) or $119 USD (true cost). Additional financial assistance is always available — just reach out.',
+        'faq.q7': 'Are sessions available in Spanish?',
+        'faq.a7': 'Yes. Sessions are available in both English and Spanish.',
+        'newsletter.label': 'Stay in the Loop',
+        'newsletter.title': 'Be the first to hear about new offerings, workshops, and reflections.',
+        'newsletter.placeholder.name': 'Name',
+        'newsletter.placeholder.email': 'Email',
+        'newsletter.btn': 'Join',
+        'newsletter.fine': 'No spam. Unsubscribe anytime.',
+        'newsletter.success': 'You\'re on the list.<br/><span style="font-size:0.85rem;opacity:0.7;">We\'ll be in touch when something new opens up.</span>',
+        'book.eyebrow': 'Begin',
+        'book.headline': 'Your dreams complement your waking life.',
+        'book.subtext': 'Book a session and begin to understand both.',
+        'book.cta': 'Book a 1:1 Session',
+        'book.note': 'Sessions available in English & Spanish',
+        'footer.sessions': 'Sessions',
+        'footer.about': 'About',
+        'footer.contact': 'Contact',
+        'modal.title.1': 'Choose your price',
+        'modal.title.2': 'Book your time',
+        'modal.title.3': 'Complete payment',
+        'modal.subtitle.1': '1:1 Dream Session · 60 min · English & Spanish',
+        'modal.subtitle.2': '1:1 Dream Session · 60 min · English & Spanish',
+        'modal.subtitle.3': 'Secure your spot',
+        'modal.price.intro': 'In an effort to keep this work accessible, sessions are offered on a sliding scale. You\'re welcome to choose an amount that feels comfortable and honest for your current situation.',
+        'tier1.label': 'True cost',
+        'tier1.desc': 'I have financial security, can pay for wants, and don\'t worry about necessities. Choosing this price helps sustain access for others.',
+        'tier1.cta': 'Continue with this option',
+        'tier2.label': 'I just need a little help',
+        'tier2.desc': 'I have access to steady income and can cover basic needs, but a small reduction genuinely helps right now.',
+        'tier2.cta': 'Continue with this option',
+        'tier3.label': 'I can\'t do it without support',
+        'tier3.desc': 'I\'m navigating real financial difficulty — managing debt, living paycheck to paycheck, or without steady income. This offering is for you, and it\'s honored as equal to every other price on this scale.',
+        'tier3.cta': 'Continue with this option',
+        'price.assistance': 'If the cost is still a barrier, please write to <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a> — additional support is always available.',
+        'step2.selected.label': 'Your selected price',
+        'step3.badge': '✓ Session scheduled',
+        'step3.title': 'Complete your payment to secure your spot',
+        'step3.session.desc': '1:1 Dream Session · 60 min',
+        'step3.paypal': 'Pay with PayPal',
+        'step3.note1': 'Your session is confirmed — payment completes your booking.',
+        'step3.note2': 'If your PayPal name differs from the name you booked with, please mention it in the PayPal note so I can match your payment.',
+        'step3.note3': 'Once payment is received I\'ll send a confirmation with everything you need to prepare.',
+      },
+      es: {
+        'nav.sessions': 'Sesiones',
+        'nav.about': 'Sobre mí',
+        'nav.faq': 'Preguntas',
+        'nav.book': 'Reserva tu sesión',
+        'hero.eyebrow': 'Práctica de sueños basada en evidencia',
+        'hero.headline': 'Los sueños son una fuente confiable de datos que no deberíamos ignorar. Tampoco hay razón para seguir descuidando <em>⅓ de nuestras vidas.</em>',
+        'hero.subtext': 'Nuestras decisiones, pensamientos y comportamientos están influenciados en gran medida por procesos inconscientes. Lo inconsciente se revela a través de los sueños, sin embargo, tenemos esta desafortunada tendencia a ignorarlos.',
+        'hero.book': 'Reserva tu sesión',
+        'hero.learn': 'Saber más',
+        'hero.language': 'Sesiones en inglés y español',
+        'hero.keywords': 'Sueño · Salud Mental · Bienestar',
+        'approach.label': 'El Enfoque',
+        'approach.headline': 'No símbolos fijos.<br/>Datos descentralizados<br/>de tu vida interior.',
+        'approach.body': 'En lugar de buscar interpretaciones genéricas, los sueños se tratan como una fuente confiable de datos — sobre quién eres, lo que cargas, y el mundo sociocultural que habitas. Los sueños se ponen en diálogo directo con la vida despierta a través de los siguientes enfoques:',
+        'method1.name': 'Psicología Profunda',
+        'method1.desc': 'Marcos junguianos y psicodinámicos para trabajar con material inconsciente y patrones arquetípicos.',
+        'method2.name': 'Exploración Gestalt',
+        'method2.desc': 'Compromiso encarnado y en el momento presente con las figuras e imágenes del sueño.',
+        'method3.name': 'Ensayo de Imágenes',
+        'method3.desc': 'Técnica basada en evidencia para transformar el contenido de pesadillas y reducir su recurrencia.',
+        'method4.name': 'Somático e Informado por Trauma',
+        'method4.desc': 'Conciencia corporal integrada con apoyo sensible al trauma a lo largo de todas las sesiones.',
+        'offerings.title': 'Trabajar Juntos',
+        'offerings.label': 'Una Forma de Comenzar',
+        'offering.num': 'Sesión Individual',
+        'offering.title': 'Sesión 1:1 de Sueños',
+        'offering.timing': 'Con Cita · 60 min · Inglés y Español',
+        'offering.desc': 'El objetivo es usar los sueños para darle sentido a lo que parece aleatorio, sin significado o desconectado, especialmente durante momentos de estrés, transición y cambios relacionales. Las sesiones pueden centrarse en sueños específicos, figuras, proyectos personales o profesionales, patrones recurrentes, o el desarrollo continuo de tu yo creativo. Sales con herramientas concretas para trabajar con los sueños de manera independiente.',
+        'offering.cta': 'Reserva tu sesión',
+        'testimonials.label': 'Lo Que Dicen los Clientes',
+        't1.quote': 'No esperaba que la sesión fuera tan profunda. Tocó cosas que no había discutido en siete años de terapia.',
+        't2.quote': 'No he conocido a nadie tan informada y apasionada por los sueños. Gracias por hacer esta experiencia tan íntima y reflexiva, y al mismo tiempo, divertida.',
+        't3.quote': 'Llegué a mi primera sesión con una pesadilla repetitiva y muy desagradable. Ha pasado un año desde entonces, ¡y ha desaparecido por completo!',
+        't1.author': '— Clienta',
+        't2.author': '— Clienta',
+        't3.author': '— Clienta',
+        'about.label': 'Sobre mí',
+        'about.bio.p1': 'Camila estudió Psicología y luego completó una Maestría en Salud Mental Global en la ciudad de Nueva York, basando su trabajo tanto en el rigor clínico como en una perspectiva intercultural.',
+        'about.bio.p2': 'Trabaja en el Centro de Equidad en Salud Mental del Departamento de Psiquiatría de la Universidad de Columbia, con más de una década de experiencia traduciendo investigación científica en programas de salud mental escalables, tecnologías e intervenciones en el mundo real.',
+        'about.bio.p3': 'Desde 2019, ha desarrollado una práctica integrativa y multidisciplinaria basada en sueños que ayuda a las personas a explorar los temas recurrentes, símbolos y patrones que emergen en los sueños. Camila ha facilitado más de 150 sesiones y talleres de trabajo con sueños para personas de diversos orígenes, guiándolas en el uso de los sueños como herramientas prácticas para el autoconocimiento, la claridad emocional y el cambio intencional.',
+        'about.bio.p4': 'Es la Directora de Ciencia e Innovación en <a href="https://mindflow.life/" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;text-underline-offset:3px;">Mindflow</a>, una aplicación enfocada en sueños que ayuda a las personas a comprender los patrones que moldean su forma de pensar, sentir y actuar.',
+        'about.caption.role': 'Terapeuta · Investigadora · Practicante de Sueños',
+        'faq.label': 'Preguntas',
+        'faq.q1': '¿Qué es la terapia de trabajo con sueños?',
+        'faq.a1': 'El trabajo con sueños ofrece una forma de relacionarse con las dinámicas inconscientes. Es una práctica que usa los sueños para ayudar a las personas a obtener claridad sobre sus pensamientos internos, procesar conflictos y tensiones, y apoyar el crecimiento personal y el bienestar.',
+        'faq.q2': '¿Cómo afectan los sueños a la salud mental y el comportamiento?',
+        'faq.a2': 'Los sueños reflejan el procesamiento inconsciente de emociones, conflictos y experiencias. La investigación muestra que el contenido de los sueños está asociado con la regulación del estado de ánimo, la respuesta al estrés y los patrones de comportamiento, convirtiéndolos en una fuente de autoconocimiento valiosa y poco utilizada.',
+        'faq.q3': '¿Qué métodos basados en evidencia usa Camila?',
+        'faq.a3': 'Las sesiones se basan en la psicología profunda, la exploración Gestalt, la conciencia somática y la Terapia de Ensayo de Imágenes (TEI) — todos métodos con respaldo investigativo para mejorar la claridad emocional y el bienestar psicológico.',
+        'faq.q4': '¿Quién se beneficia de las sesiones de trabajo con sueños?',
+        'faq.a4': 'Cualquier persona curiosa sobre su vida interior — ya sea que estés atravesando una transición, experimentando sueños recurrentes o perturbadores, pasando por cambios relacionales, sintiéndote estancado/a en un proyecto creativo, o simplemente queriendo entenderte más profundamente. No se necesita experiencia previa con terapia ni trabajo con sueños.',
+        'faq.q5': '¿Qué es la Terapia de Ensayo de Imágenes?',
+        'faq.a5': 'La TEI es una técnica basada en evidencia desarrollada originalmente para el trastorno de pesadillas. Consiste en reescribir conscientemente la narrativa de un sueño perturbador y ensayar la nueva versión, lo que reduce la frecuencia de las pesadillas y mejora la calidad del sueño.',
+        'faq.q6': '¿Cuánto dura una sesión y cuánto cuesta?',
+        'faq.a6': 'Las sesiones duran 60 minutos. Los precios son en escala variable: $99 USD (necesito un poco de ayuda) o $119 USD (costo real). Siempre hay apoyo financiero adicional disponible — solo escríbeme.',
+        'faq.q7': '¿Están disponibles las sesiones en español?',
+        'faq.a7': 'Sí. Las sesiones están disponibles en inglés y en español.',
+        'newsletter.label': 'Mantente al Tanto',
+        'newsletter.title': 'Sé el primero en enterarte de nuevas ofertas, talleres y reflexiones.',
+        'newsletter.placeholder.name': 'Nombre',
+        'newsletter.placeholder.email': 'Correo electrónico',
+        'newsletter.btn': 'Unirme',
+        'newsletter.fine': 'Sin spam. Cancela cuando quieras.',
+        'newsletter.success': 'Ya estás en la lista.<br/><span style="font-size:0.85rem;opacity:0.7;">Te avisaremos cuando haya algo nuevo.</span>',
+        'book.eyebrow': 'Comenzar',
+        'book.headline': 'Tus sueños complementan tu vida despierta.',
+        'book.subtext': 'Reserva una sesión y empieza a entender ambas.',
+        'book.cta': 'Reserva tu sesión',
+        'book.note': 'Sesiones disponibles en inglés y español',
+        'footer.sessions': 'Sesiones',
+        'footer.about': 'Sobre mí',
+        'footer.contact': 'Contacto',
+        'modal.title.1': 'Elige tu precio',
+        'modal.title.2': 'Reserva tu horario',
+        'modal.title.3': 'Completa el pago',
+        'modal.subtitle.1': 'Sesión 1:1 de Sueños · 60 min · Inglés y Español',
+        'modal.subtitle.2': 'Sesión 1:1 de Sueños · 60 min · Inglés y Español',
+        'modal.subtitle.3': 'Asegura tu lugar',
+        'modal.price.intro': 'Con el fin de mantener este trabajo accesible, las sesiones se ofrecen en una escala variable. Eres bienvenido/a a elegir un monto que se sienta cómodo y honesto para tu situación actual.',
+        'tier1.label': 'Costo real',
+        'tier1.desc': 'Tengo estabilidad financiera, puedo pagar lo que quiero y no me preocupo por lo necesario. Elegir este precio ayuda a sostener el acceso para otros.',
+        'tier1.cta': 'Continuar con esta opción',
+        'tier2.label': 'Solo necesito un poco de ayuda',
+        'tier2.desc': 'Tengo ingresos estables y puedo cubrir las necesidades básicas, pero una pequeña reducción genuinamente me ayuda en este momento.',
+        'tier2.cta': 'Continuar con esta opción',
+        'tier3.label': 'No puedo sin apoyo',
+        'tier3.desc': 'Estoy atravesando dificultades financieras reales — manejando deudas, viviendo de quincena en quincena, o sin ingresos estables. Esta oferta es para ti, y se honra como igual a cualquier otro precio en esta escala.',
+        'tier3.cta': 'Continuar con esta opción',
+        'price.assistance': 'Si el costo sigue siendo una barrera, escribe a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a> — siempre hay apoyo adicional disponible.',
+        'step2.selected.label': 'Tu precio seleccionado',
+        'step3.badge': '✓ Sesión programada',
+        'step3.title': 'Completa tu pago para asegurar tu lugar',
+        'step3.session.desc': 'Sesión 1:1 de Sueños · 60 min',
+        'step3.paypal': 'Pagar con PayPal',
+        'step3.note1': 'Tu sesión está confirmada — el pago completa tu reserva.',
+        'step3.note2': 'Si tu nombre de PayPal es diferente al nombre con el que reservaste, por favor mencionalo en la nota de PayPal para que pueda vincular tu pago.',
+        'step3.note3': 'Una vez recibido el pago, te enviaré una confirmación con todo lo que necesitas para prepararte.',
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang;
+      document.getElementById('langEN').classList.toggle('active', lang === 'en');
+      document.getElementById('langES').classList.toggle('active', lang === 'es');
+      const t = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key] !== undefined) el.placeholder = t[key];
+      });
+    }
+
+    /* ── NAV ── */
     const nav = document.getElementById('mainNav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
 
+    /* ── REVEAL ── */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    /* ── MODAL ── */
     const modal = document.getElementById('bookingModal');
     let selectedPrice = null;
 
@@ -813,26 +1049,20 @@
       document.getElementById('step1').style.display = step === 1 ? 'block' : 'none';
       document.getElementById('step2').style.display = step === 2 ? 'block' : 'none';
       document.getElementById('step3').style.display = step === 3 ? 'block' : 'none';
-      // Step dots
       [1,2,3].forEach(n => {
         const dot = document.getElementById('dot' + n);
         dot.classList.remove('active','done');
         if (n === step) dot.classList.add('active');
         else if (n < step) dot.classList.add('done');
       });
-      // Back button
       document.getElementById('modalBack').style.visibility = step === 2 ? 'visible' : 'hidden';
-      // Header text
-      const titles    = { 1: 'Choose your price',    2: 'Book your time',                    3: 'Complete payment' };
-      const subtitles = { 1: '1:1 Dream Session · 60 min · English & Spanish', 2: '1:1 Dream Session · 60 min · English & Spanish', 3: 'Secure your spot' };
-      document.getElementById('modalTitle').textContent    = titles[step];
-      document.getElementById('modalSubtitle').textContent = subtitles[step];
-      // Payment step — update amount + PayPal link
+      const t = translations[currentLang];
+      document.getElementById('modalTitle').textContent    = t['modal.title.' + step];
+      document.getElementById('modalSubtitle').textContent = t['modal.subtitle.' + step];
       if (step === 3 && selectedPrice) {
         document.getElementById('paymentAmount').textContent = '$' + selectedPrice;
         document.getElementById('paypalLink').href = 'https://www.paypal.me/yoduermoasi/' + selectedPrice;
       }
-      // Scroll to top of modal on step change
       document.querySelector('.modal-box').scrollTop = 0;
     }
 
@@ -844,11 +1074,8 @@
 
     function goBack() { showStep(1); }
 
-    // Auto-advance to payment after Calendly booking is confirmed
     window.addEventListener('message', function(e) {
-      if (e.data && e.data.event === 'calendly.event_scheduled') {
-        showStep(3);
-      }
+      if (e.data && e.data.event === 'calendly.event_scheduled') { showStep(3); }
     });
 
     async function handleNewsletterSubmit(e) {
@@ -856,7 +1083,7 @@
       const form = e.target;
       const card = form.closest('.newsletter-card');
       const btn = form.querySelector('.newsletter-btn');
-      btn.textContent = 'Sending…';
+      btn.textContent = currentLang === 'es' ? 'Enviando…' : 'Sending…';
       btn.disabled = true;
       try {
         const res = await fetch('https://formspree.io/f/xbdqblkd', {
@@ -868,17 +1095,17 @@
           form.style.display = 'none';
           const success = document.createElement('p');
           success.className = 'newsletter-success';
-          success.innerHTML = 'You\'re on the list.<br/><span style="font-size:0.85rem;opacity:0.7;">We\'ll be in touch when something new opens up.</span>';
+          success.innerHTML = translations[currentLang]['newsletter.success'];
           card.appendChild(success);
         } else {
-          btn.textContent = 'Join';
+          btn.textContent = translations[currentLang]['newsletter.btn'];
           btn.disabled = false;
-          alert('Something went wrong. Please try again.');
+          alert(currentLang === 'es' ? 'Algo salió mal. Por favor intenta de nuevo.' : 'Something went wrong. Please try again.');
         }
       } catch {
-        btn.textContent = 'Join';
+        btn.textContent = translations[currentLang]['newsletter.btn'];
         btn.disabled = false;
-        alert('Something went wrong. Please try again.');
+        alert(currentLang === 'es' ? 'Algo salió mal. Por favor intenta de nuevo.' : 'Something went wrong. Please try again.');
       }
     }
 
@@ -887,6 +1114,9 @@
       if (links.style.display === 'flex') { links.style.display = 'none'; }
       else { links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(190,218,238,0.92);backdrop-filter:blur(14px);padding:1.5rem 2rem;border-bottom:1px solid rgba(255,255,255,0.4);gap:1.5rem;'; }
     }
+
+    /* ── INIT ── */
+    setLang(currentLang);
   </script>
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
