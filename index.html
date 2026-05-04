@@ -418,6 +418,23 @@
     .payment-notes li { font-family: var(--ff-body); font-size: 0.8rem; color: var(--text-soft); line-height: 1.6; padding-left: 1rem; position: relative; }
     .payment-notes li::before { content: '·'; position: absolute; left: 0; color: var(--sun-deep); }
 
+    /* ── GIFT ── */
+    .btn-gift { font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; text-decoration: none; border: 1px solid #b87a8c; padding: 0.8rem 1.5rem; display: inline-block; text-align: center; border-radius: 2px; transition: all 0.3s; background: #b87a8c; margin-top: 0.75rem; }
+    .btn-gift:hover { background: #9a5e70; border-color: #9a5e70; }
+    .gift-name-group { margin-bottom: 1.25rem; }
+    .gift-name-label { font-family: var(--ff-display); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; display: block; }
+    .gift-name-input { font-family: var(--ff-body); font-size: 0.9rem; color: var(--navy); background: rgba(255,255,255,0.7); border: 1px solid rgba(26,48,74,0.18); border-radius: 2px; padding: 0.7rem 1rem; width: 100%; outline: none; transition: border-color 0.2s; }
+    .gift-name-input:focus { border-color: var(--navy-soft); background: rgba(255,255,255,0.9); }
+    .gift-create-btn { font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; background: #b87a8c; border: none; padding: 0.85rem 1.75rem; border-radius: 2px; cursor: pointer; display: block; width: 100%; margin-top: 0.75rem; transition: background 0.2s; }
+    .gift-create-btn:hover { background: #9a5e70; }
+    .gift-link-reveal { background: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.85); border-radius: 6px; padding: 1.5rem; margin-top: 1.5rem; }
+    .gift-link-title { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 0.85rem; }
+    .gift-link-box { display: flex; gap: 0.5rem; }
+    .gift-link-input { font-family: var(--ff-body); font-size: 0.72rem; color: var(--navy); background: rgba(255,255,255,0.7); border: 1px solid rgba(26,48,74,0.18); border-radius: 2px; padding: 0.6rem 0.85rem; flex: 1; min-width: 0; outline: none; }
+    .gift-copy-btn { font-family: var(--ff-display); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); background: rgba(255,255,255,0.65); border: 1px solid rgba(26,48,74,0.2); border-radius: 2px; padding: 0.6rem 1rem; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+    .gift-copy-btn:hover, .gift-copy-btn.copied { background: var(--navy); color: var(--sky-horizon); border-color: var(--navy); }
+    .gift-paypal-note { font-family: var(--ff-body); font-size: 0.82rem; color: var(--text-soft); font-style: italic; margin-top: 1.25rem; text-align: center; line-height: 1.65; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       nav, nav.scrolled { padding: 1.1rem 2rem; }
@@ -544,6 +561,7 @@
         <div class="offering-timing" data-i18n="offering.timing">By Appointment · 60 min · English & Spanish</div>
         <p class="offering-desc" data-i18n="offering.desc">The goal is to use dreams to make sense of what feels random, meaningless, or disconnected, especially during moments of stress, transition and relational changes. Sessions can center on specific dreams, figures, personal or professional projects, recurring patterns, or the ongoing development of your creative self. You leave with concrete tools to work with dreams independently.</p>
         <a href="#" class="offering-cta primary" onclick="openModal(event)" data-i18n="offering.cta">Book a 1:1 Session</a>
+        <a href="#" class="btn-gift" onclick="openGiftModal(event)" data-i18n="gift.btn">Give as a Gift</a>
       </div>
       <div class="offerings-testimonials">
         <p class="section-eyebrow reveal" data-i18n="testimonials.label">What Clients Say</p>
@@ -794,6 +812,81 @@
     </div>
   </div>
 
+  <!-- GIFT MODAL -->
+  <div class="modal-overlay" id="giftModal" onclick="handleGiftModalClick(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <button class="modal-back-btn" id="giftModalBack" onclick="goBackGift()" style="visibility:hidden">←</button>
+        <div>
+          <div class="modal-title" id="giftModalTitle">Give a Dream Session</div>
+          <div class="modal-subtitle" id="giftModalSubtitle">A meaningful gift for someone you love</div>
+        </div>
+        <button class="modal-close" onclick="closeGiftModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-steps">
+        <div class="modal-step-dot active" id="gdot1"></div>
+        <div class="modal-step-dot" id="gdot2"></div>
+      </div>
+      <div class="modal-body">
+
+        <!-- Gift Step 1: Price -->
+        <div id="gstep1">
+          <p class="price-intro" data-i18n="gift.price.intro">Choose the amount you'd like to gift. All options include the full 60-minute session.</p>
+          <div class="price-tiers">
+            <div class="price-tier" onclick="selectGiftTier(119)">
+              <div class="price-tier-top">
+                <span class="price-tier-label" data-i18n="tier1.label">True cost</span>
+                <span class="price-tier-amount">$119 USD</span>
+              </div>
+              <p class="price-tier-desc" data-i18n="tier1.desc">I have financial security, can pay for wants, and don't worry about necessities. Choosing this price helps sustain access for others.</p>
+              <div class="price-tier-cta" data-i18n="tier1.cta">Continue with this option</div>
+            </div>
+            <div class="price-tier" onclick="selectGiftTier(99)">
+              <div class="price-tier-top">
+                <span class="price-tier-label" data-i18n="tier2.label">I just need a little help</span>
+                <span class="price-tier-amount">$99 USD</span>
+              </div>
+              <p class="price-tier-desc" data-i18n="tier2.desc">I have access to steady income and can cover basic needs, but a small reduction genuinely helps right now.</p>
+              <div class="price-tier-cta" data-i18n="tier2.cta">Continue with this option</div>
+            </div>
+            <div class="price-tier" onclick="selectGiftTier(75)">
+              <div class="price-tier-top">
+                <span class="price-tier-label" data-i18n="tier3.label">I can't do it without support</span>
+                <span class="price-tier-amount">$75 USD</span>
+              </div>
+              <p class="price-tier-desc" data-i18n="tier3.desc">I'm navigating real financial difficulty — managing debt, living paycheck to paycheck, or without steady income. This offering is for you, and it's honored as equal to every other price on this scale.</p>
+              <div class="price-tier-cta" data-i18n="tier3.cta">Continue with this option</div>
+            </div>
+          </div>
+          <p class="price-assistance" data-i18n-html="price.assistance">If the cost is still a barrier, please write to <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a> — additional support is always available.</p>
+        </div>
+
+        <!-- Gift Step 2: Name + Link + PayPal -->
+        <div id="gstep2" style="display:none">
+          <div class="gift-name-group">
+            <label class="gift-name-label" data-i18n="gift.name.label">Your name (so they know who it's from)</label>
+            <input id="giftGiverName" class="gift-name-input" type="text" data-i18n-placeholder="gift.name.placeholder" placeholder="Your name"/>
+          </div>
+          <button class="gift-create-btn" onclick="createGiftLink()" data-i18n="gift.create.btn">Create Gift Card</button>
+
+          <div id="giftLinkReveal" style="display:none" class="gift-link-reveal">
+            <div class="gift-link-title" data-i18n="gift.link.title">Share this link with them</div>
+            <div class="gift-link-box">
+              <input id="giftLinkInput" class="gift-link-input" readonly/>
+              <button id="giftCopyBtn" class="gift-copy-btn" onclick="copyGiftLink()" data-i18n="gift.copy.btn">Copy Link</button>
+            </div>
+            <a id="giftPaypalLink" href="#" target="_blank" rel="noopener" class="paypal-btn" style="margin-top:1.5rem;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M7.144 19.532l1.049-5.751c.11-.606.691-1.002 1.304-.9.71.12 1.48.179 2.303.152 3.94-.13 7.2-2.966 7.2-7.25C19 2.585 16.318 0 12.31 0H5.036C4.36 0 3.785.49 3.67 1.156L1 17.278c-.08.462.268.88.738.88h3.7l1.706-9.354v-.272z"/><path d="M20.187 7.807c-.39 3.83-3.5 6.493-7.644 6.493H11.2l-1.1 6.02c-.07.384.224.736.614.736h3.12c.54 0 1-.39 1.085-.924l.77-4.127c.085-.534.545-.924 1.085-.924h.772c3.08 0 5.494-1.904 6.157-4.816.28-1.217.147-2.222-.516-2.858z"/></svg>
+              <span data-i18n="step3.paypal">Pay with PayPal</span>
+            </a>
+            <p class="gift-paypal-note" data-i18n="gift.paypal.note">Complete your payment below to confirm the gift. Once paid, share the link above with your person.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <script>
     /* ── TRANSLATIONS ── */
     const translations = {
@@ -895,6 +988,19 @@
         'step3.note1': 'Your session is confirmed — payment completes your booking.',
         'step3.note2': 'If your PayPal name differs from the name you booked with, please mention it in the PayPal note so I can match your payment.',
         'step3.note3': 'Once payment is received I\'ll send a confirmation with everything you need to prepare.',
+        'gift.btn': 'Give as a Gift',
+        'gift.price.intro': 'Choose the amount you\'d like to gift. All options include the full 60-minute session.',
+        'gift.modal.title.1': 'Give a Dream Session',
+        'gift.modal.title.2': 'Personalize Your Gift',
+        'gift.modal.subtitle.1': 'A meaningful gift for someone you love',
+        'gift.modal.subtitle.2': 'One last step — then share',
+        'gift.name.label': 'Your name (so they know who it\'s from)',
+        'gift.name.placeholder': 'Your name',
+        'gift.create.btn': 'Create Gift Card',
+        'gift.link.title': 'Share this link with them',
+        'gift.copy.btn': 'Copy Link',
+        'gift.copy.copied': 'Copied!',
+        'gift.paypal.note': 'Complete your payment below to confirm the gift. Once paid, share the link above with your person.',
       },
       es: {
         'nav.sessions': 'Sesiones',
@@ -994,6 +1100,19 @@
         'step3.note1': 'Tu sesión está confirmada — el pago completa tu reserva.',
         'step3.note2': 'Si tu nombre de PayPal es diferente al nombre con el que reservaste, por favor mencionalo en la nota de PayPal para que pueda vincular tu pago.',
         'step3.note3': 'Una vez recibido el pago, te enviaré una confirmación con todo lo que necesitas para prepararte.',
+        'gift.btn': 'Regala una sesión',
+        'gift.price.intro': 'Elige el monto que deseas regalar. Todas las opciones incluyen la sesión completa de 60 minutos.',
+        'gift.modal.title.1': 'Regala una sesión de sueños',
+        'gift.modal.title.2': 'Personaliza tu regalo',
+        'gift.modal.subtitle.1': 'Un regalo significativo para alguien especial',
+        'gift.modal.subtitle.2': 'Último paso — luego comparte',
+        'gift.name.label': 'Tu nombre (para que sepa de quién viene)',
+        'gift.name.placeholder': 'Tu nombre',
+        'gift.create.btn': 'Crear tarjeta de regalo',
+        'gift.link.title': 'Comparte este enlace con esa persona',
+        'gift.copy.btn': 'Copiar enlace',
+        'gift.copy.copied': '¡Copiado!',
+        'gift.paypal.note': 'Completa tu pago para confirmar el regalo. Una vez pagado, comparte el enlace de arriba con esa persona especial.',
       }
     };
 
@@ -1113,6 +1232,66 @@
       const links = document.querySelector('.nav-links');
       if (links.style.display === 'flex') { links.style.display = 'none'; }
       else { links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(190,218,238,0.92);backdrop-filter:blur(14px);padding:1.5rem 2rem;border-bottom:1px solid rgba(255,255,255,0.4);gap:1.5rem;'; }
+    }
+
+    /* ── GIFT MODAL ── */
+    let selectedGiftPrice = null;
+
+    function openGiftModal(e) {
+      e.preventDefault();
+      selectedGiftPrice = null;
+      document.getElementById('giftGiverName').value = '';
+      document.getElementById('giftLinkReveal').style.display = 'none';
+      showGiftStep(1);
+      document.getElementById('giftModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeGiftModal() {
+      document.getElementById('giftModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function handleGiftModalClick(e) { if (e.target === document.getElementById('giftModal')) closeGiftModal(); }
+
+    function showGiftStep(step) {
+      document.getElementById('gstep1').style.display = step === 1 ? 'block' : 'none';
+      document.getElementById('gstep2').style.display = step === 2 ? 'block' : 'none';
+      [1,2].forEach(n => {
+        const dot = document.getElementById('gdot' + n);
+        dot.classList.remove('active','done');
+        if (n === step) dot.classList.add('active');
+        else if (n < step) dot.classList.add('done');
+      });
+      document.getElementById('giftModalBack').style.visibility = step === 2 ? 'visible' : 'hidden';
+      const t = translations[currentLang];
+      document.getElementById('giftModalTitle').textContent    = t['gift.modal.title.' + step];
+      document.getElementById('giftModalSubtitle').textContent = t['gift.modal.subtitle.' + step];
+      document.querySelector('#giftModal .modal-box').scrollTop = 0;
+    }
+
+    function selectGiftTier(price) {
+      selectedGiftPrice = price;
+      showGiftStep(2);
+    }
+    function goBackGift() { showGiftStep(1); }
+
+    function createGiftLink() {
+      const name = document.getElementById('giftGiverName').value.trim();
+      let url = 'https://yoduermoasi.github.io/yoduermoasi/gift.html?amount=' + selectedGiftPrice;
+      if (name) url += '&from=' + encodeURIComponent(name);
+      url += '&lang=' + currentLang;
+      document.getElementById('giftLinkInput').value = url;
+      document.getElementById('giftPaypalLink').href = 'https://www.paypal.me/yoduermoasi/' + selectedGiftPrice;
+      document.getElementById('giftLinkReveal').style.display = 'block';
+    }
+
+    function copyGiftLink() {
+      const input = document.getElementById('giftLinkInput');
+      const btn = document.getElementById('giftCopyBtn');
+      const t = translations[currentLang];
+      navigator.clipboard.writeText(input.value).catch(() => { input.select(); document.execCommand('copy'); });
+      btn.textContent = t['gift.copy.copied'];
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = t['gift.copy.btn']; btn.classList.remove('copied'); }, 2000);
     }
 
     /* ── INIT ── */

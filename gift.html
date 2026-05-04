@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Dream Session Gift · yoduermoasi</title>
+  <meta name="robots" content="noindex"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --sky-high:    #a8c8e8;
+      --sky-mid:     #c5ddf0;
+      --sky-low:     #deeef8;
+      --sky-horizon: #eef6fc;
+      --dawn:        #f5f0e4;
+      --navy:        #1a304a;
+      --navy-mid:    #2e4f72;
+      --navy-soft:   #4a6f96;
+      --sun-deep:    #c9a82a;
+      --rose:        #b87a8c;
+      --text-soft:   #3a5a7a;
+      --text-muted:  #6080a0;
+      --rule:        rgba(26,48,74,0.12);
+      --ff-display:  'Cormorant Garamond', Georgia, serif;
+      --ff-body:     'Lora', Georgia, serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--sky-horizon); color: var(--navy); font-family: var(--ff-body); line-height: 1.7; overflow-x: hidden; min-height: 100vh; }
+
+    /* ── SKY ── */
+    .sky-canvas { position: fixed; inset: 0; z-index: 0;
+      background: linear-gradient(180deg, var(--sky-high) 0%, var(--sky-mid) 25%, var(--sky-low) 55%, var(--sky-horizon) 80%, var(--dawn) 100%);
+    }
+    .sky-canvas::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 520px 130px at 18% 12%, rgba(255,255,255,0.85) 58%, transparent 100%),
+        radial-gradient(ellipse 280px 80px at 6%  20%, rgba(255,255,255,0.80) 65%, transparent 100%),
+        radial-gradient(ellipse 200px 60px at 38% 10%, rgba(255,255,255,0.65) 55%, transparent 100%),
+        radial-gradient(ellipse 640px 140px at 78% 8%,  rgba(255,255,255,0.80) 50%, transparent 100%),
+        radial-gradient(ellipse 320px 85px at 92% 16%, rgba(255,255,255,0.75) 60%, transparent 100%),
+        radial-gradient(ellipse 240px 65px at 58% 18%, rgba(255,255,255,0.55) 48%, transparent 100%),
+        radial-gradient(ellipse 180px 48px at 28% 28%, rgba(255,255,255,0.35) 48%, transparent 100%),
+        radial-gradient(ellipse 400px 90px at 65% 35%, rgba(255,255,255,0.22) 45%, transparent 100%);
+    }
+    .sky-canvas::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+      background: radial-gradient(ellipse 70% 60% at 50% 110%, rgba(232,200,80,0.12) 0%, transparent 70%);
+    }
+
+    /* ── LAYOUT ── */
+    .page-wrapper { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+    /* ── WORDMARK ── */
+    .site-wordmark { font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy-soft); text-align: center; margin-bottom: 2.5rem; text-decoration: none; display: block; opacity: 0.85; transition: opacity 0.2s; }
+    .site-wordmark:hover { opacity: 1; }
+
+    /* ── GIFT CARD ── */
+    .gift-card { background: rgba(255,255,255,0.78); border: 1px solid rgba(255,255,255,0.96); border-radius: 12px; box-shadow: 0 16px 56px rgba(30,60,100,0.13), inset 0 1px 0 rgba(255,255,255,0.96); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); overflow: hidden; margin-bottom: 1.75rem; }
+
+    /* Top sky section */
+    .gift-card-sky { position: relative; height: 220px; overflow: hidden;
+      background: linear-gradient(160deg, #7ab8e0 0%, #a8c8e8 30%, #c5ddf0 65%, #deeef8 100%);
+    }
+    .gift-card-sky::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 360px 100px at 20% 35%, rgba(255,255,255,0.9) 55%, transparent 100%),
+        radial-gradient(ellipse 200px 65px at 8%  50%, rgba(255,255,255,0.85) 62%, transparent 100%),
+        radial-gradient(ellipse 160px 52px at 42% 25%, rgba(255,255,255,0.75) 55%, transparent 100%),
+        radial-gradient(ellipse 440px 110px at 82% 28%, rgba(255,255,255,0.82) 50%, transparent 100%),
+        radial-gradient(ellipse 220px 70px at 95% 45%, rgba(255,255,255,0.78) 58%, transparent 100%),
+        radial-gradient(ellipse 120px 40px at 60% 15%, rgba(255,255,255,0.6) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .gift-card-sky::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+      background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.6) 100%);
+    }
+    .gift-sky-content { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem; text-align: center; }
+    .gift-eyebrow { font-family: var(--ff-display); font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--rose); background: rgba(255,255,255,0.82); border: 1px solid rgba(255,255,255,0.95); border-radius: 20px; padding: 0.22rem 0.85rem; display: inline-block; margin-bottom: 1rem; }
+    .gift-for-you { font-family: var(--ff-display); font-size: clamp(3rem, 9vw, 5rem); font-weight: 300; font-style: italic; line-height: 1; color: var(--navy); text-shadow: 0 2px 16px rgba(255,255,255,0.8); }
+    .gift-from-line { font-family: var(--ff-display); font-size: 0.9rem; letter-spacing: 0.06em; color: var(--navy-mid); font-style: italic; margin-top: 0.5rem; min-height: 1.4em; text-shadow: 0 1px 8px rgba(255,255,255,0.9); }
+
+    /* Body */
+    .gift-card-body { padding: 2rem 2.5rem 2.5rem; }
+    .gift-session-badge { font-family: var(--ff-display); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun-deep); background: rgba(255,255,255,0.72); border: 1px solid rgba(255,255,255,0.9); border-radius: 20px; padding: 0.22rem 0.75rem; display: inline-block; margin-bottom: 1.1rem; }
+    .gift-session-title { font-family: var(--ff-display); font-size: 1.65rem; font-weight: 400; color: var(--navy); line-height: 1.2; margin-bottom: 0.2rem; }
+    .gift-session-with { font-family: var(--ff-display); font-size: 0.88rem; letter-spacing: 0.1em; color: var(--navy-soft); font-style: italic; margin-bottom: 0.85rem; }
+    .gift-session-meta { font-family: var(--ff-display); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--rule); }
+    .gift-desc { font-family: var(--ff-body); font-size: 0.9rem; line-height: 1.85; color: var(--text-soft); font-style: italic; }
+
+    /* ── BOOKING SECTION ── */
+    .booking-section { background: rgba(255,255,255,0.58); border: 1px solid rgba(255,255,255,0.9); border-radius: 12px; padding: 2rem 2rem 1.5rem; box-shadow: 0 4px 24px rgba(30,60,100,0.07), inset 0 1px 0 rgba(255,255,255,0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    .booking-eyebrow { font-family: var(--ff-display); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun-deep); background: rgba(255,255,255,0.72); border: 1px solid rgba(255,255,255,0.9); border-radius: 20px; padding: 0.22rem 0.75rem; display: inline-block; margin-bottom: 1rem; }
+    .booking-title { font-family: var(--ff-display); font-size: 1.5rem; font-weight: 400; color: var(--navy); margin-bottom: 0.3rem; }
+    .booking-sub { font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-bottom: 1.5rem; line-height: 1.7; }
+
+    /* ── FOOTER ── */
+    .gift-footer { text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(26,48,74,0.1); }
+    .gift-footer a { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .gift-footer a:hover { color: var(--navy); }
+
+    @media (max-width: 600px) {
+      .page-wrapper { padding: 2rem 1rem 4rem; }
+      .gift-card-body { padding: 1.5rem; }
+      .gift-card-sky { height: 180px; }
+      .booking-section { padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sky-canvas" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <a href="https://yoduermoasi.github.io/yoduermoasi/" class="site-wordmark">yoduermoasi × Camila Figueroa</a>
+
+    <!-- Gift Card -->
+    <div class="gift-card">
+      <div class="gift-card-sky">
+        <div class="gift-sky-content">
+          <div class="gift-eyebrow" id="giftEyebrow">✦ A Dream Session Gift ✦</div>
+          <div class="gift-for-you" id="giftForYou">For You</div>
+          <div class="gift-from-line" id="giftFromLine"></div>
+        </div>
+      </div>
+      <div class="gift-card-body">
+        <div class="gift-session-badge" id="giftSessionBadge">1:1 Dream Session</div>
+        <div class="gift-session-title" id="giftSessionTitle">with Camila Figueroa</div>
+        <div class="gift-session-with" id="giftSessionWith">Psychologist & Dream Practitioner</div>
+        <div class="gift-session-meta" id="giftSessionMeta">60 min · Depth Psychology · Gestalt · Imagery Rehearsal · Somatic</div>
+        <p class="gift-desc" id="giftDesc">Someone you love has gifted you a 60-minute 1:1 dreamwork session with Camila Figueroa — a psychologist and dream practitioner. Together, you'll explore what your dreams reveal about your inner life, emotional patterns, and what lives beneath the surface. Use the booking link below to choose a time that works for you.</p>
+      </div>
+    </div>
+
+    <!-- Booking -->
+    <div class="booking-section">
+      <div class="booking-eyebrow" id="bookingEyebrow">Book Your Session</div>
+      <div class="booking-title" id="bookingTitle">Choose a time that works for you</div>
+      <p class="booking-sub" id="bookingSub">The session is ready when you are. Pick a date and time below — no preparation needed.</p>
+      <div class="calendly-inline-widget" data-url="https://calendly.com/yoduermoasi/dreamsession?hide_gdpr_banner=1&primary_color=c9a82a" style="min-width:280px;height:660px;"></div>
+    </div>
+
+    <div class="gift-footer">
+      <a href="https://yoduermoasi.github.io/yoduermoasi/">yoduermoasi.github.io/yoduermoasi</a>
+    </div>
+
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const from   = params.get('from');
+    const lang   = params.get('lang') || 'en';
+
+    const text = {
+      en: {
+        eyebrow:       '✦ A Dream Session Gift ✦',
+        forYou:        'For You',
+        fromLine:      from ? 'A gift from ' + from : 'A gift from someone who loves you',
+        sessionBadge:  '1:1 Dream Session',
+        sessionTitle:  'with Camila Figueroa',
+        sessionWith:   'Psychologist & Dream Practitioner',
+        sessionMeta:   '60 min · Depth Psychology · Gestalt · Imagery Rehearsal · Somatic',
+        desc:          'Someone you love has gifted you a 60-minute 1:1 dreamwork session with Camila Figueroa — a psychologist and dream practitioner. Together, you\'ll explore what your dreams reveal about your inner life, emotional patterns, and what lives beneath the surface. Use the booking link below to choose a time that works for you.',
+        bookingEyebrow:'Book Your Session',
+        bookingTitle:  'Choose a time that works for you',
+        bookingSub:    'The session is ready when you are. Pick a date and time below — no preparation needed.',
+        pageTitle:     'A Dream Session Gift · yoduermoasi',
+      },
+      es: {
+        eyebrow:       '✦ Un Regalo de Sesión de Sueños ✦',
+        forYou:        'Para Ti',
+        fromLine:      from ? 'Un regalo de ' + from : 'Un regalo de alguien que te quiere',
+        sessionBadge:  'Sesión 1:1 de Sueños',
+        sessionTitle:  'con Camila Figueroa',
+        sessionWith:   'Psicóloga y Practicante de Sueños',
+        sessionMeta:   '60 min · Psicología Profunda · Gestalt · Terapia de Ensayo en Imaginación · Somático',
+        desc:          'Alguien que te quiere te ha regalado una sesión 1:1 de trabajo con sueños de 60 minutos con Camila Figueroa — psicóloga y practicante de sueños. Juntes explorarán lo que tus sueños revelan sobre tu vida interior, patrones emocionales y lo que vive bajo la superficie. Usa el enlace de reserva de abajo para elegir un horario que te funcione.',
+        bookingEyebrow:'Reserva Tu Sesión',
+        bookingTitle:  'Elige el horario que mejor te funcione',
+        bookingSub:    'La sesión te espera cuando estés listo/a. Elige una fecha y hora abajo — no necesitas preparación previa.',
+        pageTitle:     'Un Regalo de Sesión de Sueños · yoduermoasi',
+      }
+    };
+
+    const t = text[lang] || text.en;
+    document.documentElement.lang = lang;
+    document.title = t.pageTitle;
+
+    document.getElementById('giftEyebrow').textContent    = t.eyebrow;
+    document.getElementById('giftForYou').textContent     = t.forYou;
+    document.getElementById('giftFromLine').textContent   = t.fromLine;
+    document.getElementById('giftSessionBadge').textContent = t.sessionBadge;
+    document.getElementById('giftSessionTitle').textContent = t.sessionTitle;
+    document.getElementById('giftSessionWith').textContent  = t.sessionWith;
+    document.getElementById('giftSessionMeta').textContent  = t.sessionMeta;
+    document.getElementById('giftDesc').textContent         = t.desc;
+    document.getElementById('bookingEyebrow').textContent   = t.bookingEyebrow;
+    document.getElementById('bookingTitle').textContent     = t.bookingTitle;
+    document.getElementById('bookingSub').textContent       = t.bookingSub;
+  </script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</body>
+</html>
