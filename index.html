@@ -434,6 +434,12 @@
     .gift-copy-btn { font-family: var(--ff-display); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); background: rgba(255,255,255,0.65); border: 1px solid rgba(26,48,74,0.2); border-radius: 2px; padding: 0.6rem 1rem; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
     .gift-copy-btn:hover, .gift-copy-btn.copied { background: var(--navy); color: var(--sky-horizon); border-color: var(--navy); }
     .gift-paypal-note { font-family: var(--ff-body); font-size: 0.82rem; color: var(--text-soft); font-style: italic; margin-top: 1.25rem; text-align: center; line-height: 1.65; }
+    .gift-success-msg { font-family: var(--ff-body); font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-bottom: 0.75rem; }
+    .gift-link-box { display: flex; gap: 0.5rem; margin: 0.5rem 0 0.75rem; }
+    .gift-link-input { flex: 1; padding: 0.55rem 0.75rem; border: 1px solid rgba(26,48,74,0.2); border-radius: 4px; font-size: 0.75rem; background: rgba(255,255,255,0.8); color: var(--navy); min-width: 0; }
+    #giftCopyBtn { padding: 0.55rem 1rem; background: var(--navy); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.08em; white-space: nowrap; transition: background 0.2s; }
+    #giftCopyBtn:hover { background: #2a4a74; }
+    .gift-send-note { font-family: var(--ff-body); font-size: 0.78rem; color: var(--text-soft); line-height: 1.5; }
     .gift-email-self-btn { font-family: var(--ff-display); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy-mid); text-decoration: none; border-bottom: 1px solid rgba(26,48,74,0.2); padding-bottom: 1px; display: inline-block; margin-top: 0.75rem; transition: color 0.2s, border-color 0.2s; }
     .gift-email-self-btn:hover { color: var(--navy); border-color: var(--navy); }
 
@@ -863,24 +869,24 @@
           <p class="price-assistance" data-i18n-html="price.assistance">If the cost is still a barrier, please write to <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a> — additional support is always available.</p>
         </div>
 
-        <!-- Gift Step 2: Name + Link + PayPal -->
+        <!-- Gift Step 2: Name + PayPal SDK -->
         <div id="gstep2" style="display:none">
           <div class="gift-name-group">
             <label class="gift-name-label" data-i18n="gift.name.label">Your name (so they know who it's from)</label>
             <input id="giftGiverName" class="gift-name-input" type="text" data-i18n-placeholder="gift.name.placeholder" placeholder="Your name"/>
           </div>
           <div class="gift-name-group">
-            <label class="gift-name-label" data-i18n="gift.email.label">Your email (we'll send you the gift link)</label>
+            <label class="gift-name-label" data-i18n="gift.email.label">Your email (optional — for your records)</label>
             <input id="giftGiverEmail" class="gift-name-input" type="email" data-i18n-placeholder="gift.email.placeholder" placeholder="your@email.com"/>
           </div>
-          <button class="gift-create-btn" onclick="createGiftLink()" data-i18n="gift.create.btn">Purchase a Gift Card</button>
-
+          <div id="paypal-button-container" style="margin-top:1.25rem;"></div>
           <div id="giftLinkReveal" style="display:none" class="gift-link-reveal">
-            <p class="gift-paypal-note" style="margin-bottom:1.25rem;" data-i18n="gift.paypal.note">Once you complete your payment, you'll receive a personalized gift card link to share.</p>
-            <a id="giftPaypalLink" href="#" onclick="openPayPalPopup(event)" class="paypal-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M7.144 19.532l1.049-5.751c.11-.606.691-1.002 1.304-.9.71.12 1.48.179 2.303.152 3.94-.13 7.2-2.966 7.2-7.25C19 2.585 16.318 0 12.31 0H5.036C4.36 0 3.785.49 3.67 1.156L1 17.278c-.08.462.268.88.738.88h3.7l1.706-9.354v-.272z"/><path d="M20.187 7.807c-.39 3.83-3.5 6.493-7.644 6.493H11.2l-1.1 6.02c-.07.384.224.736.614.736h3.12c.54 0 1-.39 1.085-.924l.77-4.127c.085-.534.545-.924 1.085-.924h.772c3.08 0 5.494-1.904 6.157-4.816.28-1.217.147-2.222-.516-2.858z"/></svg>
-              <span data-i18n="step3.paypal">Pay with PayPal</span>
-            </a>
+            <p class="gift-success-msg" data-i18n="gift.success">🎁 Payment confirmed! Copy this link and send it to them:</p>
+            <div class="gift-link-box">
+              <input id="giftLinkInput" class="gift-link-input" type="text" readonly/>
+              <button id="giftCopyBtn" onclick="copyGiftLink()" data-i18n="gift.copy.btn">Copy Link</button>
+            </div>
+            <p class="gift-send-note" data-i18n="gift.send.note">They'll use this link to schedule their session directly.</p>
           </div>
         </div>
 
@@ -994,19 +1000,15 @@
         'gift.modal.title.1': 'Give a Dream Session',
         'gift.modal.title.2': 'Personalize Your Gift',
         'gift.modal.subtitle.1': 'A meaningful gift for someone you love',
-        'gift.modal.subtitle.2': 'One last step — then share',
+        'gift.modal.subtitle.2': 'Complete your payment below — then share',
         'gift.name.label': 'Your name (so they know who it\'s from)',
         'gift.name.placeholder': 'Your name',
-        'gift.create.btn': 'Purchase a Gift Card',
-        'gift.link.title': 'Share this link with them',
+        'gift.email.label': 'Your email (optional — for your records)',
+        'gift.email.placeholder': 'your@email.com',
         'gift.copy.btn': 'Copy Link',
         'gift.copy.copied': 'Copied!',
-        'gift.paypal.note': "Once you complete your payment, you'll receive a personalized gift card link to share.",
-        'gift.email.label': 'Your email (we\'ll send you the gift link)',
-        'gift.email.placeholder': 'your@email.com',
-        'gift.email.self': 'Send link to my email ↗',
-        'gift.email.subject': 'Your dream session gift link — yoduermoasi',
-        'gift.email.body': 'Hi!\n\nHere is the gift link to share with the person you\'re gifting a session to:\n\n',
+        'gift.success': '🎁 Payment confirmed! Copy this link and send it to them:',
+        'gift.send.note': 'They\'ll use this link to schedule their session directly.',
       },
       es: {
         'nav.sessions': 'Sesiones',
@@ -1111,19 +1113,15 @@
         'gift.modal.title.1': 'Regala una sesión de sueños',
         'gift.modal.title.2': 'Personaliza tu regalo',
         'gift.modal.subtitle.1': 'Un regalo significativo para alguien especial',
-        'gift.modal.subtitle.2': 'Último paso — luego comparte',
+        'gift.modal.subtitle.2': 'Completa tu pago — luego comparte',
         'gift.name.label': 'Tu nombre (para que sepa de quién viene)',
         'gift.name.placeholder': 'Tu nombre',
-        'gift.create.btn': 'Comprar una tarjeta de regalo',
-        'gift.link.title': 'Comparte este enlace con esa persona',
+        'gift.email.label': 'Tu correo (opcional — para tus registros)',
+        'gift.email.placeholder': 'tu@correo.com',
         'gift.copy.btn': 'Copiar enlace',
         'gift.copy.copied': '¡Copiado!',
-        'gift.paypal.note': 'Una vez que completes tu pago, recibirás un enlace personalizado de tarjeta de regalo para compartir.',
-        'gift.email.label': 'Tu correo (te enviaremos el enlace del regalo)',
-        'gift.email.placeholder': 'tu@correo.com',
-        'gift.email.self': 'Enviar enlace a mi correo ↗',
-        'gift.email.subject': 'Tu enlace de regalo de sesión de sueños — yoduermoasi',
-        'gift.email.body': '¡Hola!\n\nAquí está el enlace de regalo para compartir con la persona a quien le regalarás la sesión:\n\n',
+        'gift.success': '🎁 ¡Pago confirmado! Copia este enlace y envíaselo:',
+        'gift.send.note': 'Usarán este enlace para reservar su sesión directamente.',
       }
     };
 
@@ -1261,6 +1259,9 @@
     function closeGiftModal() {
       document.getElementById('giftModal').classList.remove('active');
       document.body.style.overflow = '';
+      document.getElementById('giftLinkReveal').style.display = 'none';
+      document.getElementById('paypal-button-container').style.display = 'block';
+      document.getElementById('paypal-button-container').innerHTML = '';
     }
     function handleGiftModalClick(e) { if (e.target === document.getElementById('giftModal')) closeGiftModal(); }
 
@@ -1278,51 +1279,77 @@
       document.getElementById('giftModalTitle').textContent    = t['gift.modal.title.' + step];
       document.getElementById('giftModalSubtitle').textContent = t['gift.modal.subtitle.' + step];
       document.querySelector('#giftModal .modal-box').scrollTop = 0;
+      if (step === 2) renderPayPalButtons();
     }
 
     function selectGiftTier(price) {
       selectedGiftPrice = price;
       showGiftStep(2);
     }
-    function goBackGift() { showGiftStep(1); }
 
-    function createGiftLink() {
-      const name  = document.getElementById('giftGiverName').value.trim();
-      const email = document.getElementById('giftGiverEmail').value.trim();
-
-      const url = 'https://yoduermoasi.github.io/yoduermoasi/gift.html?amount=' + selectedGiftPrice
-        + (name ? '&from=' + encodeURIComponent(name) : '') + '&lang=' + currentLang;
-
-      document.getElementById('giftPaypalLink').href = 'https://www.paypal.me/yoduermoasi/' + selectedGiftPrice;
-      document.querySelector('.gift-create-btn').style.display = 'none';
-      document.getElementById('giftLinkReveal').style.display = 'block';
-
-      // Notify Camila via Formspree in the background — does not block the UI
-      const fd = new FormData();
-      fd.append('_subject', '🎁 Gift Purchase — $' + selectedGiftPrice + ' USD from ' + (name || 'Anonymous'));
-      fd.append('Giver Name',  name  || 'Anonymous');
-      fd.append('Giver Email', email || 'Not provided');
-      fd.append('Amount',      '$' + selectedGiftPrice + ' USD');
-      fd.append('Gift Link',   url);
-      fd.append('Instructions', 'Please send the gift link above to ' + (email || 'the buyer') + ' once PayPal payment is confirmed.');
-      fetch('https://formspree.io/f/xbdqblkd', {
-        method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
-      }).catch(() => {});
+    function goBackGift() {
+      document.getElementById('giftLinkReveal').style.display = 'none';
+      document.getElementById('paypal-button-container').style.display = 'block';
+      document.getElementById('paypal-button-container').innerHTML = '';
+      showGiftStep(1);
     }
 
-    function openPayPalPopup(e) {
-      e.preventDefault();
-      const url = document.getElementById('giftPaypalLink').href;
-      if (url === '#') return;
-      const popup = window.open(url, 'paypal_window', 'width=520,height=750,scrollbars=yes,resizable=yes,left=200,top=80');
-      if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-        window.open(url, '_blank');
+    function renderPayPalButtons() {
+      const container = document.getElementById('paypal-button-container');
+      container.innerHTML = '';
+      container.style.display = 'block';
+      if (typeof paypal === 'undefined') {
+        setTimeout(renderPayPalButtons, 400);
+        return;
       }
+      paypal.Buttons({
+        style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay', height: 45 },
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{ amount: { value: String(selectedGiftPrice), currency_code: 'USD' }, description: 'Dreamwork Session Gift Card — yoduermoasi' }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            const name  = document.getElementById('giftGiverName').value.trim();
+            const email = document.getElementById('giftGiverEmail').value.trim();
+            const url = 'https://yoduermoasi.github.io/yoduermoasi/gift.html?amount=' + selectedGiftPrice
+              + (name ? '&from=' + encodeURIComponent(name) : '') + '&lang=' + currentLang;
+
+            document.getElementById('giftLinkInput').value = url;
+            container.style.display = 'none';
+            document.getElementById('giftLinkReveal').style.display = 'block';
+
+            // Notify Camila in the background
+            const fd = new FormData();
+            fd.append('_subject', '🎁 Gift Purchase — $' + selectedGiftPrice + ' USD from ' + (name || 'Anonymous'));
+            fd.append('Giver Name',  name  || 'Anonymous');
+            fd.append('Giver Email', email || 'Not provided');
+            fd.append('Amount',      '$' + selectedGiftPrice + ' USD');
+            fd.append('PayPal Order', details.id || '');
+            fd.append('Gift Link',   url);
+            fetch('https://formspree.io/f/xbdqblkd', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }).catch(() => {});
+          });
+        },
+        onError: function() {
+          alert(translations[currentLang]['gift.payerror'] || 'Payment failed. Please try again.');
+        }
+      }).render('#paypal-button-container');
+    }
+
+    function copyGiftLink() {
+      const input = document.getElementById('giftLinkInput');
+      const btn   = document.getElementById('giftCopyBtn');
+      const t     = translations[currentLang];
+      navigator.clipboard.writeText(input.value).catch(() => { input.select(); document.execCommand('copy'); });
+      btn.textContent = t['gift.copy.copied'];
+      setTimeout(() => { btn.textContent = t['gift.copy.btn']; }, 2000);
     }
 
     /* ── INIT ── */
     setLang(currentLang);
   </script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AXYDgqK_3fp4Re8DDr5dnwbjzB8r1Yss6PbCZvmIgi4Z2vnEyfZFHbuMebekODegzQUjg3pGiXpMvPqW&currency=USD" defer></script>
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
