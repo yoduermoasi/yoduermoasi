@@ -230,7 +230,7 @@
     .hero-left { display: flex; flex-direction: column; justify-content: center; }
     .hero-right { display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .hero-bed { width: 100%; }
-    .hero-bed img { width: 100%; display: block; mix-blend-mode: screen; }
+    .hero-bed img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 8px 40px rgba(30,60,100,0.15); }
     .hero-eyebrow { font-family: var(--ff-display); font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--navy-soft); margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
     .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--sun-deep); flex-shrink: 0; }
     .hero-headline { font-family: var(--ff-display); font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; line-height: 1.35; color: var(--navy); margin-bottom: 1.25rem; }
@@ -517,7 +517,7 @@
     </div>
     <div class="hero-right">
       <div class="hero-bed reveal delay-2">
-        <img src="bed.png" alt="A bed — where dreams begin"/>
+        <img src="bed-window.jpg" alt="A bed — where dreams begin"/>
       </div>
       <p class="hero-keywords reveal delay-3" data-i18n="hero.keywords">Sleep · Mental Health · Wellbeing</p>
     </div>
