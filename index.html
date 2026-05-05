@@ -876,10 +876,12 @@
             <input id="giftGiverName" class="gift-name-input" type="text" data-i18n-placeholder="gift.name.placeholder" placeholder="Your name"/>
           </div>
           <div class="gift-name-group">
-            <label class="gift-name-label" data-i18n="gift.email.label">Your email (optional — for your records)</label>
-            <input id="giftGiverEmail" class="gift-name-input" type="email" data-i18n-placeholder="gift.email.placeholder" placeholder="your@email.com"/>
+            <label class="gift-name-label" data-i18n="gift.email.label">Your email <span style="color:#b87a8c">*</span></label>
+            <input id="giftGiverEmail" class="gift-name-input" type="email" data-i18n-placeholder="gift.email.placeholder" placeholder="your@email.com" required/>
+            <p id="giftEmailError" style="display:none;color:#b87a8c;font-size:0.75rem;margin-top:0.35rem;" data-i18n="gift.email.error">Please enter your email to continue.</p>
           </div>
-          <div id="paypal-button-container" style="margin-top:1.25rem;"></div>
+          <button class="gift-create-btn" id="giftProceedBtn" onclick="proceedToPayment()" data-i18n="gift.proceed.btn">Continue to Payment</button>
+          <div id="paypal-button-container" style="display:none;margin-top:1.25rem;"></div>
           <div id="giftLinkReveal" style="display:none" class="gift-link-reveal">
             <p class="gift-success-msg" data-i18n="gift.success">🎁 Payment confirmed! Copy this link and send it to them:</p>
             <div class="gift-link-box">
@@ -1003,8 +1005,10 @@
         'gift.modal.subtitle.2': 'Complete your payment below — then share',
         'gift.name.label': 'Your name (so they know who it\'s from)',
         'gift.name.placeholder': 'Your name',
-        'gift.email.label': 'Your email (optional — for your records)',
+        'gift.email.label': 'Your email',
         'gift.email.placeholder': 'your@email.com',
+        'gift.email.error': 'Please enter your email to continue.',
+        'gift.proceed.btn': 'Continue to Payment',
         'gift.copy.btn': 'Copy Link',
         'gift.copy.copied': 'Copied!',
         'gift.success': '🎁 Payment confirmed! Copy this link and send it to them:',
@@ -1116,8 +1120,10 @@
         'gift.modal.subtitle.2': 'Completa tu pago — luego comparte',
         'gift.name.label': 'Tu nombre (para que sepa de quién viene)',
         'gift.name.placeholder': 'Tu nombre',
-        'gift.email.label': 'Tu correo (opcional — para tus registros)',
+        'gift.email.label': 'Tu correo',
         'gift.email.placeholder': 'tu@correo.com',
+        'gift.email.error': 'Por favor ingresa tu correo para continuar.',
+        'gift.proceed.btn': 'Continuar al pago',
         'gift.copy.btn': 'Copiar enlace',
         'gift.copy.copied': '¡Copiado!',
         'gift.success': '🎁 ¡Pago confirmado! Copia este enlace y envíaselo:',
@@ -1260,8 +1266,10 @@
       document.getElementById('giftModal').classList.remove('active');
       document.body.style.overflow = '';
       document.getElementById('giftLinkReveal').style.display = 'none';
-      document.getElementById('paypal-button-container').style.display = 'block';
+      document.getElementById('paypal-button-container').style.display = 'none';
       document.getElementById('paypal-button-container').innerHTML = '';
+      document.getElementById('giftProceedBtn').style.display = 'block';
+      document.getElementById('giftEmailError').style.display = 'none';
     }
     function handleGiftModalClick(e) { if (e.target === document.getElementById('giftModal')) closeGiftModal(); }
 
@@ -1279,7 +1287,6 @@
       document.getElementById('giftModalTitle').textContent    = t['gift.modal.title.' + step];
       document.getElementById('giftModalSubtitle').textContent = t['gift.modal.subtitle.' + step];
       document.querySelector('#giftModal .modal-box').scrollTop = 0;
-      if (step === 2) renderPayPalButtons();
     }
 
     function selectGiftTier(price) {
@@ -1289,9 +1296,23 @@
 
     function goBackGift() {
       document.getElementById('giftLinkReveal').style.display = 'none';
-      document.getElementById('paypal-button-container').style.display = 'block';
+      document.getElementById('paypal-button-container').style.display = 'none';
       document.getElementById('paypal-button-container').innerHTML = '';
+      document.getElementById('giftProceedBtn').style.display = 'block';
+      document.getElementById('giftEmailError').style.display = 'none';
       showGiftStep(1);
+    }
+
+    function proceedToPayment() {
+      const email = document.getElementById('giftGiverEmail').value.trim();
+      if (!email || !email.includes('@')) {
+        document.getElementById('giftEmailError').style.display = 'block';
+        document.getElementById('giftGiverEmail').focus();
+        return;
+      }
+      document.getElementById('giftEmailError').style.display = 'none';
+      document.getElementById('giftProceedBtn').style.display = 'none';
+      renderPayPalButtons();
     }
 
     function renderPayPalButtons() {
@@ -1320,14 +1341,14 @@
             container.style.display = 'none';
             document.getElementById('giftLinkReveal').style.display = 'block';
 
-            // Notify Camila in the background
+            // Notify Camila via Formspree
             const fd = new FormData();
-            fd.append('_subject', '🎁 Gift Purchase — $' + selectedGiftPrice + ' USD from ' + (name || 'Anonymous'));
-            fd.append('Giver Name',  name  || 'Anonymous');
-            fd.append('Giver Email', email || 'Not provided');
-            fd.append('Amount',      '$' + selectedGiftPrice + ' USD');
-            fd.append('PayPal Order', details.id || '');
-            fd.append('Gift Link',   url);
+            fd.append('_subject', 'Gift Card Purchase — $' + selectedGiftPrice + ' USD');
+            fd.append('name',  name  || 'Anonymous');
+            fd.append('email', email);
+            fd.append('amount', '$' + selectedGiftPrice + ' USD');
+            fd.append('paypal_order', details.id || '');
+            fd.append('gift_link', url);
             fetch('https://formspree.io/f/xbdqblkd', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }).catch(() => {});
           });
         },
