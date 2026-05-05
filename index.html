@@ -877,7 +877,7 @@
 
           <div id="giftLinkReveal" style="display:none" class="gift-link-reveal">
             <p class="gift-paypal-note" style="margin-bottom:1.25rem;" data-i18n="gift.paypal.note">Once you complete your payment, you'll receive a personalized gift card link to share.</p>
-            <a id="giftPaypalLink" href="#" target="_blank" rel="noopener" class="paypal-btn">
+            <a id="giftPaypalLink" href="#" onclick="openPayPalPopup(event)" class="paypal-btn">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M7.144 19.532l1.049-5.751c.11-.606.691-1.002 1.304-.9.71.12 1.48.179 2.303.152 3.94-.13 7.2-2.966 7.2-7.25C19 2.585 16.318 0 12.31 0H5.036C4.36 0 3.785.49 3.67 1.156L1 17.278c-.08.462.268.88.738.88h3.7l1.706-9.354v-.272z"/><path d="M20.187 7.807c-.39 3.83-3.5 6.493-7.644 6.493H11.2l-1.1 6.02c-.07.384.224.736.614.736h3.12c.54 0 1-.39 1.085-.924l.77-4.127c.085-.534.545-.924 1.085-.924h.772c3.08 0 5.494-1.904 6.157-4.816.28-1.217.147-2.222-.516-2.858z"/></svg>
               <span data-i18n="step3.paypal">Pay with PayPal</span>
             </a>
@@ -1308,6 +1308,16 @@
       fetch('https://formspree.io/f/xbdqblkd', {
         method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
       }).catch(() => {});
+    }
+
+    function openPayPalPopup(e) {
+      e.preventDefault();
+      const url = document.getElementById('giftPaypalLink').href;
+      if (url === '#') return;
+      const popup = window.open(url, 'paypal_window', 'width=520,height=750,scrollbars=yes,resizable=yes,left=200,top=80');
+      if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+        window.open(url, '_blank');
+      }
     }
 
     /* ── INIT ── */
