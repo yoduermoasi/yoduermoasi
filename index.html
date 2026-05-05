@@ -873,22 +873,14 @@
             <label class="gift-name-label" data-i18n="gift.email.label">Your email (we'll send you the gift link)</label>
             <input id="giftGiverEmail" class="gift-name-input" type="email" data-i18n-placeholder="gift.email.placeholder" placeholder="your@email.com"/>
           </div>
-          <button class="gift-create-btn" onclick="createGiftLink()" data-i18n="gift.create.btn">Create Gift Card</button>
+          <button class="gift-create-btn" onclick="createGiftLink()" data-i18n="gift.create.btn">Purchase a Gift Card</button>
 
           <div id="giftLinkReveal" style="display:none" class="gift-link-reveal">
+            <p class="gift-paypal-note" style="margin-bottom:1.25rem;" data-i18n="gift.paypal.note">Once you complete your payment, you'll receive a personalized gift card link to share.</p>
             <a id="giftPaypalLink" href="#" target="_blank" rel="noopener" class="paypal-btn">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M7.144 19.532l1.049-5.751c.11-.606.691-1.002 1.304-.9.71.12 1.48.179 2.303.152 3.94-.13 7.2-2.966 7.2-7.25C19 2.585 16.318 0 12.31 0H5.036C4.36 0 3.785.49 3.67 1.156L1 17.278c-.08.462.268.88.738.88h3.7l1.706-9.354v-.272z"/><path d="M20.187 7.807c-.39 3.83-3.5 6.493-7.644 6.493H11.2l-1.1 6.02c-.07.384.224.736.614.736h3.12c.54 0 1-.39 1.085-.924l.77-4.127c.085-.534.545-.924 1.085-.924h.772c3.08 0 5.494-1.904 6.157-4.816.28-1.217.147-2.222-.516-2.858z"/></svg>
               <span data-i18n="step3.paypal">Pay with PayPal</span>
             </a>
-            <div class="gift-link-title" data-i18n="gift.link.title" style="margin-top:1.25rem;">Share this link with them</div>
-            <div class="gift-link-box">
-              <input id="giftLinkInput" class="gift-link-input" readonly/>
-              <button id="giftCopyBtn" class="gift-copy-btn" onclick="copyGiftLink()" data-i18n="gift.copy.btn">Copy Link</button>
-            </div>
-            <div style="text-align:center;">
-              <a id="giftEmailSelf" href="#" class="gift-email-self-btn" data-i18n="gift.email.self">Send link to my email ↗</a>
-            </div>
-            <p class="gift-paypal-note" data-i18n="gift.paypal.note">Complete your payment above to confirm the gift. Then share the link with your person.</p>
           </div>
         </div>
 
@@ -1005,11 +997,11 @@
         'gift.modal.subtitle.2': 'One last step — then share',
         'gift.name.label': 'Your name (so they know who it\'s from)',
         'gift.name.placeholder': 'Your name',
-        'gift.create.btn': 'Create Gift Card',
+        'gift.create.btn': 'Purchase a Gift Card',
         'gift.link.title': 'Share this link with them',
         'gift.copy.btn': 'Copy Link',
         'gift.copy.copied': 'Copied!',
-        'gift.paypal.note': 'Complete your payment above to confirm the gift. Then share the link with your person.',
+        'gift.paypal.note': "Once you complete your payment, you'll receive a personalized gift card link to share.",
         'gift.email.label': 'Your email (we\'ll send you the gift link)',
         'gift.email.placeholder': 'your@email.com',
         'gift.email.self': 'Send link to my email ↗',
@@ -1122,11 +1114,11 @@
         'gift.modal.subtitle.2': 'Último paso — luego comparte',
         'gift.name.label': 'Tu nombre (para que sepa de quién viene)',
         'gift.name.placeholder': 'Tu nombre',
-        'gift.create.btn': 'Crear tarjeta de regalo',
+        'gift.create.btn': 'Comprar una tarjeta de regalo',
         'gift.link.title': 'Comparte este enlace con esa persona',
         'gift.copy.btn': 'Copiar enlace',
         'gift.copy.copied': '¡Copiado!',
-        'gift.paypal.note': 'Completa tu pago para confirmar el regalo. Luego comparte el enlace con esa persona especial.',
+        'gift.paypal.note': 'Una vez que completes tu pago, recibirás un enlace personalizado de tarjeta de regalo para compartir.',
         'gift.email.label': 'Tu correo (te enviaremos el enlace del regalo)',
         'gift.email.placeholder': 'tu@correo.com',
         'gift.email.self': 'Enviar enlace a mi correo ↗',
@@ -1297,24 +1289,14 @@
     async function createGiftLink() {
       const name  = document.getElementById('giftGiverName').value.trim();
       const email = document.getElementById('giftGiverEmail').value.trim();
-      const t = translations[currentLang];
 
-      let url = 'https://yoduermoasi.github.io/yoduermoasi/gift.html?amount=' + selectedGiftPrice;
-      if (name) url += '&from=' + encodeURIComponent(name);
-      url += '&lang=' + currentLang;
+      const url = 'https://yoduermoasi.github.io/yoduermoasi/gift.html?amount=' + selectedGiftPrice
+        + (name ? '&from=' + encodeURIComponent(name) : '') + '&lang=' + currentLang;
 
-      document.getElementById('giftLinkInput').value = url;
       document.getElementById('giftPaypalLink').href = 'https://www.paypal.me/yoduermoasi/' + selectedGiftPrice;
+      document.querySelector('.gift-create-btn').style.display = 'none';
 
-      // Pre-fill mailto so giver can send the link to themselves
-      const mailSubject = t['gift.email.subject'];
-      const mailBody    = t['gift.email.body'] + url;
-      document.getElementById('giftEmailSelf').href =
-        'mailto:' + encodeURIComponent(email) +
-        '?subject=' + encodeURIComponent(mailSubject) +
-        '&body='    + encodeURIComponent(mailBody);
-
-      // Notify yoduermoasi@gmail.com via Formspree
+      // Notify Camila via Formspree with the gift link so she can send it after payment
       try {
         const fd = new FormData();
         fd.append('_subject', '🎁 Gift Purchase — $' + selectedGiftPrice + ' USD from ' + (name || 'Anonymous'));
@@ -1322,22 +1304,13 @@
         fd.append('Giver Email', email || 'Not provided');
         fd.append('Amount',      '$' + selectedGiftPrice + ' USD');
         fd.append('Gift Link',   url);
+        fd.append('Instructions', 'Please send the gift link above to ' + (email || 'the buyer') + ' once PayPal payment is confirmed.');
         await fetch('https://formspree.io/f/xbdqblkd', {
           method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
         });
-      } catch (e) { /* silent fail — don't block UI */ }
+      } catch (e) { /* silent fail */ }
 
       document.getElementById('giftLinkReveal').style.display = 'block';
-    }
-
-    function copyGiftLink() {
-      const input = document.getElementById('giftLinkInput');
-      const btn = document.getElementById('giftCopyBtn');
-      const t = translations[currentLang];
-      navigator.clipboard.writeText(input.value).catch(() => { input.select(); document.execCommand('copy'); });
-      btn.textContent = t['gift.copy.copied'];
-      btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = t['gift.copy.btn']; btn.classList.remove('copied'); }, 2000);
     }
 
     /* ── INIT ── */
