@@ -1286,7 +1286,7 @@
     }
     function goBackGift() { showGiftStep(1); }
 
-    async function createGiftLink() {
+    function createGiftLink() {
       const name  = document.getElementById('giftGiverName').value.trim();
       const email = document.getElementById('giftGiverEmail').value.trim();
 
@@ -1295,22 +1295,19 @@
 
       document.getElementById('giftPaypalLink').href = 'https://www.paypal.me/yoduermoasi/' + selectedGiftPrice;
       document.querySelector('.gift-create-btn').style.display = 'none';
-
-      // Notify Camila via Formspree with the gift link so she can send it after payment
-      try {
-        const fd = new FormData();
-        fd.append('_subject', '🎁 Gift Purchase — $' + selectedGiftPrice + ' USD from ' + (name || 'Anonymous'));
-        fd.append('Giver Name',  name  || 'Anonymous');
-        fd.append('Giver Email', email || 'Not provided');
-        fd.append('Amount',      '$' + selectedGiftPrice + ' USD');
-        fd.append('Gift Link',   url);
-        fd.append('Instructions', 'Please send the gift link above to ' + (email || 'the buyer') + ' once PayPal payment is confirmed.');
-        await fetch('https://formspree.io/f/xbdqblkd', {
-          method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
-        });
-      } catch (e) { /* silent fail */ }
-
       document.getElementById('giftLinkReveal').style.display = 'block';
+
+      // Notify Camila via Formspree in the background — does not block the UI
+      const fd = new FormData();
+      fd.append('_subject', '🎁 Gift Purchase — $' + selectedGiftPrice + ' USD from ' + (name || 'Anonymous'));
+      fd.append('Giver Name',  name  || 'Anonymous');
+      fd.append('Giver Email', email || 'Not provided');
+      fd.append('Amount',      '$' + selectedGiftPrice + ' USD');
+      fd.append('Gift Link',   url);
+      fd.append('Instructions', 'Please send the gift link above to ' + (email || 'the buyer') + ' once PayPal payment is confirmed.');
+      fetch('https://formspree.io/f/xbdqblkd', {
+        method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
+      }).catch(() => {});
     }
 
     /* ── INIT ── */
