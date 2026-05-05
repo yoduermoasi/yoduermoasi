@@ -434,6 +434,8 @@
     .gift-copy-btn { font-family: var(--ff-display); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); background: rgba(255,255,255,0.65); border: 1px solid rgba(26,48,74,0.2); border-radius: 2px; padding: 0.6rem 1rem; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
     .gift-copy-btn:hover, .gift-copy-btn.copied { background: var(--navy); color: var(--sky-horizon); border-color: var(--navy); }
     .gift-paypal-note { font-family: var(--ff-body); font-size: 0.82rem; color: var(--text-soft); font-style: italic; margin-top: 1.25rem; text-align: center; line-height: 1.65; }
+    .gift-email-self-btn { font-family: var(--ff-display); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy-mid); text-decoration: none; border-bottom: 1px solid rgba(26,48,74,0.2); padding-bottom: 1px; display: inline-block; margin-top: 0.75rem; transition: color 0.2s, border-color 0.2s; }
+    .gift-email-self-btn:hover { color: var(--navy); border-color: var(--navy); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
@@ -867,6 +869,10 @@
             <label class="gift-name-label" data-i18n="gift.name.label">Your name (so they know who it's from)</label>
             <input id="giftGiverName" class="gift-name-input" type="text" data-i18n-placeholder="gift.name.placeholder" placeholder="Your name"/>
           </div>
+          <div class="gift-name-group">
+            <label class="gift-name-label" data-i18n="gift.email.label">Your email (we'll send you the gift link)</label>
+            <input id="giftGiverEmail" class="gift-name-input" type="email" data-i18n-placeholder="gift.email.placeholder" placeholder="your@email.com"/>
+          </div>
           <button class="gift-create-btn" onclick="createGiftLink()" data-i18n="gift.create.btn">Create Gift Card</button>
 
           <div id="giftLinkReveal" style="display:none" class="gift-link-reveal">
@@ -879,7 +885,10 @@
               <input id="giftLinkInput" class="gift-link-input" readonly/>
               <button id="giftCopyBtn" class="gift-copy-btn" onclick="copyGiftLink()" data-i18n="gift.copy.btn">Copy Link</button>
             </div>
-            <p class="gift-paypal-note" data-i18n="gift.paypal.note">Complete your payment below to confirm the gift. Once paid, share the link above with your person.</p>
+            <div style="text-align:center;">
+              <a id="giftEmailSelf" href="#" class="gift-email-self-btn" data-i18n="gift.email.self">Send link to my email ↗</a>
+            </div>
+            <p class="gift-paypal-note" data-i18n="gift.paypal.note">Complete your payment above to confirm the gift. Then share the link with your person.</p>
           </div>
         </div>
 
@@ -1000,7 +1009,12 @@
         'gift.link.title': 'Share this link with them',
         'gift.copy.btn': 'Copy Link',
         'gift.copy.copied': 'Copied!',
-        'gift.paypal.note': 'Complete your payment below to confirm the gift. Once paid, share the link above with your person.',
+        'gift.paypal.note': 'Complete your payment above to confirm the gift. Then share the link with your person.',
+        'gift.email.label': 'Your email (we\'ll send you the gift link)',
+        'gift.email.placeholder': 'your@email.com',
+        'gift.email.self': 'Send link to my email ↗',
+        'gift.email.subject': 'Your dream session gift link — yoduermoasi',
+        'gift.email.body': 'Hi!\n\nHere is the gift link to share with the person you\'re gifting a session to:\n\n',
       },
       es: {
         'nav.sessions': 'Sesiones',
@@ -1112,7 +1126,12 @@
         'gift.link.title': 'Comparte este enlace con esa persona',
         'gift.copy.btn': 'Copiar enlace',
         'gift.copy.copied': '¡Copiado!',
-        'gift.paypal.note': 'Completa tu pago para confirmar el regalo. Una vez pagado, comparte el enlace de arriba con esa persona especial.',
+        'gift.paypal.note': 'Completa tu pago para confirmar el regalo. Luego comparte el enlace con esa persona especial.',
+        'gift.email.label': 'Tu correo (te enviaremos el enlace del regalo)',
+        'gift.email.placeholder': 'tu@correo.com',
+        'gift.email.self': 'Enviar enlace a mi correo ↗',
+        'gift.email.subject': 'Tu enlace de regalo de sesión de sueños — yoduermoasi',
+        'gift.email.body': '¡Hola!\n\nAquí está el enlace de regalo para compartir con la persona a quien le regalarás la sesión:\n\n',
       }
     };
 
@@ -1241,6 +1260,7 @@
       e.preventDefault();
       selectedGiftPrice = null;
       document.getElementById('giftGiverName').value = '';
+      document.getElementById('giftGiverEmail').value = '';
       document.getElementById('giftLinkReveal').style.display = 'none';
       showGiftStep(1);
       document.getElementById('giftModal').classList.add('active');
@@ -1274,13 +1294,39 @@
     }
     function goBackGift() { showGiftStep(1); }
 
-    function createGiftLink() {
-      const name = document.getElementById('giftGiverName').value.trim();
+    async function createGiftLink() {
+      const name  = document.getElementById('giftGiverName').value.trim();
+      const email = document.getElementById('giftGiverEmail').value.trim();
+      const t = translations[currentLang];
+
       let url = 'https://yoduermoasi.github.io/yoduermoasi/gift.html?amount=' + selectedGiftPrice;
       if (name) url += '&from=' + encodeURIComponent(name);
       url += '&lang=' + currentLang;
+
       document.getElementById('giftLinkInput').value = url;
       document.getElementById('giftPaypalLink').href = 'https://www.paypal.me/yoduermoasi/' + selectedGiftPrice;
+
+      // Pre-fill mailto so giver can send the link to themselves
+      const mailSubject = t['gift.email.subject'];
+      const mailBody    = t['gift.email.body'] + url;
+      document.getElementById('giftEmailSelf').href =
+        'mailto:' + encodeURIComponent(email) +
+        '?subject=' + encodeURIComponent(mailSubject) +
+        '&body='    + encodeURIComponent(mailBody);
+
+      // Notify yoduermoasi@gmail.com via Formspree
+      try {
+        const fd = new FormData();
+        fd.append('_subject', '🎁 Gift Purchase — $' + selectedGiftPrice + ' USD from ' + (name || 'Anonymous'));
+        fd.append('Giver Name',  name  || 'Anonymous');
+        fd.append('Giver Email', email || 'Not provided');
+        fd.append('Amount',      '$' + selectedGiftPrice + ' USD');
+        fd.append('Gift Link',   url);
+        await fetch('https://formspree.io/f/xbdqblkd', {
+          method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
+        });
+      } catch (e) { /* silent fail — don't block UI */ }
+
       document.getElementById('giftLinkReveal').style.display = 'block';
     }
 
