@@ -411,9 +411,12 @@
     .payment-summary-title { font-family: var(--ff-display); font-size: 1.4rem; font-weight: 300; font-style: italic; color: var(--navy); margin-bottom: 0.35rem; }
     .payment-summary-amount { font-family: var(--ff-display); font-size: 2.8rem; font-weight: 300; color: var(--sun-deep); line-height: 1; margin-bottom: 0.25rem; }
     .payment-summary-desc { font-family: var(--ff-body); font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
-    .paypal-btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: #0070BA; color: #fff; font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 1rem 2rem; border-radius: 3px; margin: 1.5rem 0 1rem; transition: background 0.2s; box-shadow: 0 4px 16px rgba(0,112,186,0.28); }
+    .paypal-btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: #0070BA; color: #fff; font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 1rem 2rem; border-radius: 3px; margin: 1.5rem 0 1rem; transition: background 0.2s; box-shadow: 0 4px 16px rgba(0,112,186,0.28); border: none; cursor: pointer; width: 100%; }
     .paypal-btn:hover { background: #005fa3; }
     .paypal-btn svg { flex-shrink: 0; }
+    .payment-done-btn { font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; background: transparent; color: var(--navy); border: 1.5px solid var(--navy); padding: 0.75rem 1.75rem; cursor: pointer; border-radius: 3px; transition: background 0.2s, color 0.2s; }
+    .payment-done-btn:hover { background: var(--navy); color: #fff; }
+    .payment-confirmed-check { font-size: 2.5rem; color: var(--sun-deep); margin-bottom: 0.5rem; }
     .payment-fnf-note { font-family: var(--ff-body); font-size: 0.78rem; color: var(--text-soft); text-align: center; line-height: 1.6; margin-top: 0.75rem; font-style: italic; }
 
     /* ── GIFT ── */
@@ -803,11 +806,21 @@
             <div class="payment-summary-amount" id="paymentAmount">$119</div>
             <div class="payment-summary-desc" data-i18n="step3.session.desc">1:1 Dream Session · 60 min</div>
           </div>
-          <a id="bookingPaypalLink" href="https://www.paypal.me/yoduermoasi/119" target="_blank" rel="noopener" class="paypal-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M7.144 19.532l1.049-5.751c.11-.606.691-1.002 1.304-.9.71.12 1.48.179 2.303.152 3.94-.13 7.2-2.966 7.2-7.25C19 2.585 16.318 0 12.31 0H5.036C4.36 0 3.785.49 3.67 1.156L1 17.278c-.08.462.268.88.738.88h3.7l1.706-9.354v-.272z"/><path d="M20.187 7.807c-.39 3.83-3.5 6.493-7.644 6.493H11.2l-1.1 6.02c-.07.384.224.736.614.736h3.12c.54 0 1-.39 1.085-.924l.77-4.127c.085-.534.545-.924 1.085-.924h.772c3.08 0 5.494-1.904 6.157-4.816.28-1.217.147-2.222-.516-2.858z"/></svg>
-            <span data-i18n="step3.paypal">Pay with PayPal</span>
-          </a>
-          <p class="payment-fnf-note" data-i18n="step3.fnf.note">Select "Friends &amp; Family" when sending. Your session is booked — payment secures your spot.</p>
+          <div id="booking-payment-area">
+            <button id="bookingPaypalBtn" onclick="openBookingPaypal()" class="paypal-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M7.144 19.532l1.049-5.751c.11-.606.691-1.002 1.304-.9.71.12 1.48.179 2.303.152 3.94-.13 7.2-2.966 7.2-7.25C19 2.585 16.318 0 12.31 0H5.036C4.36 0 3.785.49 3.67 1.156L1 17.278c-.08.462.268.88.738.88h3.7l1.706-9.354v-.272z"/><path d="M20.187 7.807c-.39 3.83-3.5 6.493-7.644 6.493H11.2l-1.1 6.02c-.07.384.224.736.614.736h3.12c.54 0 1-.39 1.085-.924l.77-4.127c.085-.534.545-.924 1.085-.924h.772c3.08 0 5.494-1.904 6.157-4.816.28-1.217.147-2.222-.516-2.858z"/></svg>
+              <span data-i18n="step3.paypal">Pay with PayPal</span>
+            </button>
+            <p class="payment-fnf-note" data-i18n="step3.fnf.note">Select "Friends &amp; Family" when sending. Once payment is processed, you'll receive instructions to prepare for your session.</p>
+            <div id="booking-done-wrap" style="display:none; text-align:center; margin-top:1.25rem;">
+              <button onclick="confirmBookingPayment()" class="payment-done-btn" data-i18n="step3.done.btn">I've completed my payment →</button>
+            </div>
+          </div>
+          <div id="booking-confirmed-msg" style="display:none; text-align:center; padding:1.5rem 0 0.5rem;">
+            <div class="payment-confirmed-check">✓</div>
+            <p class="payment-summary-title" data-i18n="step3.confirmed.title">Thank you!</p>
+            <p class="payment-fnf-note" data-i18n-html="step3.confirmed">You'll receive instructions to prepare for your session by email. Questions? Write to <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
+          </div>
         </div>
 
       </div>
@@ -876,11 +889,21 @@
           </div>
           <button class="gift-create-btn" id="giftProceedBtn" onclick="proceedToPayment()" data-i18n="gift.proceed.btn">Continue to Payment</button>
           <div id="giftLinkReveal" style="display:none" class="gift-link-reveal">
-            <a id="giftPaypalLink" href="#" target="_blank" rel="noopener" class="paypal-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M7.144 19.532l1.049-5.751c.11-.606.691-1.002 1.304-.9.71.12 1.48.179 2.303.152 3.94-.13 7.2-2.966 7.2-7.25C19 2.585 16.318 0 12.31 0H5.036C4.36 0 3.785.49 3.67 1.156L1 17.278c-.08.462.268.88.738.88h3.7l1.706-9.354v-.272z"/><path d="M20.187 7.807c-.39 3.83-3.5 6.493-7.644 6.493H11.2l-1.1 6.02c-.07.384.224.736.614.736h3.12c.54 0 1-.39 1.085-.924l.77-4.127c.085-.534.545-.924 1.085-.924h.772c3.08 0 5.494-1.904 6.157-4.816.28-1.217.147-2.222-.516-2.858z"/></svg>
-              <span data-i18n="step3.paypal">Pay with PayPal</span>
-            </a>
-            <p class="payment-fnf-note" data-i18n="gift.fnf.note">Select "Friends &amp; Family". Once payment is confirmed, you'll receive the gift card link by email.</p>
+            <div id="gift-payment-area">
+              <button id="giftPaypalBtn" onclick="openGiftPaypal()" class="paypal-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M7.144 19.532l1.049-5.751c.11-.606.691-1.002 1.304-.9.71.12 1.48.179 2.303.152 3.94-.13 7.2-2.966 7.2-7.25C19 2.585 16.318 0 12.31 0H5.036C4.36 0 3.785.49 3.67 1.156L1 17.278c-.08.462.268.88.738.88h3.7l1.706-9.354v-.272z"/><path d="M20.187 7.807c-.39 3.83-3.5 6.493-7.644 6.493H11.2l-1.1 6.02c-.07.384.224.736.614.736h3.12c.54 0 1-.39 1.085-.924l.77-4.127c.085-.534.545-.924 1.085-.924h.772c3.08 0 5.494-1.904 6.157-4.816.28-1.217.147-2.222-.516-2.858z"/></svg>
+                <span data-i18n="step3.paypal">Pay with PayPal</span>
+              </button>
+              <p class="payment-fnf-note" data-i18n="gift.fnf.note">Select "Friends &amp; Family". Once payment is confirmed, you'll receive the gift card link by email.</p>
+              <div id="gift-done-wrap" style="display:none; text-align:center; margin-top:1.25rem;">
+                <button onclick="confirmGiftPayment()" class="payment-done-btn" data-i18n="step3.done.btn">I've completed my payment →</button>
+              </div>
+            </div>
+            <div id="gift-confirmed-msg" style="display:none; text-align:center; padding:1.5rem 0 0.5rem;">
+              <div class="payment-confirmed-check">✓</div>
+              <p class="payment-summary-title" data-i18n="gift.confirmed.title">Thank you!</p>
+              <p class="payment-fnf-note" data-i18n-html="gift.confirmed">You'll receive the gift card link by email once we verify your payment.</p>
+            </div>
           </div>
         </div>
 
@@ -986,8 +1009,13 @@
         'step3.title': 'Complete your payment to secure your spot',
         'step3.session.desc': '1:1 Dream Session · 60 min',
         'step3.paypal': 'Pay with PayPal',
-        'step3.fnf.note': 'Select "Friends &amp; Family" when sending. Your session is booked — payment secures your spot.',
+        'step3.fnf.note': 'Select "Friends &amp; Family" when sending. Once payment is processed, you\'ll receive instructions to prepare for your session.',
+        'step3.done.btn': 'I\'ve completed my payment →',
+        'step3.confirmed.title': 'Thank you!',
+        'step3.confirmed': 'You\'ll receive instructions to prepare for your session by email. Questions? Write to <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
         'gift.fnf.note': 'Select "Friends &amp; Family". Once payment is confirmed, you\'ll receive the gift card link by email.',
+        'gift.confirmed.title': 'Thank you!',
+        'gift.confirmed': 'You\'ll receive the gift card link by email once we verify your payment.',
         'gift.btn': 'Gift Card for Someone Special',
         'gift.price.intro': 'Choose the amount you\'d like to gift. All options include the full 60-minute session.',
         'gift.modal.title.1': 'Give a Dream Session',
@@ -1100,8 +1128,13 @@
         'step3.title': 'Completa tu pago para asegurar tu lugar',
         'step3.session.desc': 'Sesión 1:1 de Sueños · 60 min',
         'step3.paypal': 'Pagar con PayPal',
-        'step3.fnf.note': 'Selecciona "Familiares y amigos" al enviar. Tu sesión está reservada — el pago asegura tu lugar.',
+        'step3.fnf.note': 'Selecciona "Familiares y amigos" al enviar. Una vez el pago esté procesado, recibirás instrucciones para preparar la sesión.',
+        'step3.done.btn': 'Completé mi pago →',
+        'step3.confirmed.title': '¡Gracias!',
+        'step3.confirmed': 'Recibirás instrucciones para preparar tu sesión por correo. ¿Preguntas? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
         'gift.fnf.note': 'Selecciona "Familiares y amigos". Una vez confirmado el pago, recibirás el enlace de la tarjeta de regalo por correo.',
+        'gift.confirmed.title': '¡Gracias!',
+        'gift.confirmed': 'Recibirás el enlace de la tarjeta de regalo por correo una vez que verifiquemos tu pago.',
         'gift.btn': 'Tarjeta de regalo para alguien especial',
         'gift.price.intro': 'Elige el monto que deseas regalar. Todas las opciones incluyen la sesión completa de 60 minutos.',
         'gift.modal.title.1': 'Regala una sesión de sueños',
@@ -1168,6 +1201,9 @@
     function closeModal() {
       modal.classList.remove('active');
       document.body.style.overflow = '';
+      document.getElementById('booking-payment-area').style.display = 'block';
+      document.getElementById('booking-confirmed-msg').style.display = 'none';
+      document.getElementById('booking-done-wrap').style.display = 'none';
     }
     function handleModalClick(e) { if (e.target === modal) closeModal(); }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
@@ -1188,7 +1224,6 @@
       document.getElementById('modalSubtitle').textContent = t['modal.subtitle.' + step];
       if (step === 3 && selectedPrice) {
         document.getElementById('paymentAmount').textContent = '$' + selectedPrice;
-        document.getElementById('bookingPaypalLink').href = 'https://www.paypal.me/yoduermoasi/' + selectedPrice;
       }
       document.querySelector('.modal-box').scrollTop = 0;
     }
@@ -1200,6 +1235,20 @@
     }
 
     function goBack() { showStep(1); }
+
+    function openBookingPaypal() {
+      const url = 'https://www.paypal.me/yoduermoasi/' + selectedPrice;
+      const w = 500, h = 700;
+      window.open(url, 'paypal-popup', 'width=' + w + ',height=' + h + ',left=' + Math.round(screen.width/2-w/2) + ',top=' + Math.round(screen.height/2-h/2));
+      document.getElementById('booking-done-wrap').style.display = 'block';
+    }
+    function confirmBookingPayment() {
+      document.getElementById('booking-payment-area').style.display = 'none';
+      document.getElementById('booking-confirmed-msg').style.display = 'block';
+      const t = translations[currentLang];
+      document.getElementById('modalTitle').textContent = t['step3.confirmed.title'];
+      document.getElementById('modalSubtitle').textContent = '';
+    }
 
     window.addEventListener('message', function(e) {
       if (e.data && e.data.event === 'calendly.event_scheduled') { showStep(3); }
@@ -1251,6 +1300,10 @@
       document.getElementById('giftGiverName').value = '';
       document.getElementById('giftGiverEmail').value = '';
       document.getElementById('giftLinkReveal').style.display = 'none';
+      document.getElementById('gift-payment-area').style.display = 'block';
+      document.getElementById('gift-confirmed-msg').style.display = 'none';
+      document.getElementById('gift-done-wrap').style.display = 'none';
+      document.getElementById('giftProceedBtn').style.display = 'block';
       showGiftStep(1);
       document.getElementById('giftModal').classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -1261,6 +1314,9 @@
       document.getElementById('giftLinkReveal').style.display = 'none';
       document.getElementById('giftProceedBtn').style.display = 'block';
       document.getElementById('giftEmailError').style.display = 'none';
+      document.getElementById('gift-payment-area').style.display = 'block';
+      document.getElementById('gift-confirmed-msg').style.display = 'none';
+      document.getElementById('gift-done-wrap').style.display = 'none';
     }
     function handleGiftModalClick(e) { if (e.target === document.getElementById('giftModal')) closeGiftModal(); }
 
@@ -1289,7 +1345,24 @@
       document.getElementById('giftLinkReveal').style.display = 'none';
       document.getElementById('giftProceedBtn').style.display = 'block';
       document.getElementById('giftEmailError').style.display = 'none';
+      document.getElementById('gift-payment-area').style.display = 'block';
+      document.getElementById('gift-confirmed-msg').style.display = 'none';
+      document.getElementById('gift-done-wrap').style.display = 'none';
       showGiftStep(1);
+    }
+
+    function openGiftPaypal() {
+      const url = 'https://www.paypal.me/yoduermoasi/' + selectedGiftPrice;
+      const w = 500, h = 700;
+      window.open(url, 'paypal-popup', 'width=' + w + ',height=' + h + ',left=' + Math.round(screen.width/2-w/2) + ',top=' + Math.round(screen.height/2-h/2));
+      document.getElementById('gift-done-wrap').style.display = 'block';
+    }
+    function confirmGiftPayment() {
+      document.getElementById('gift-payment-area').style.display = 'none';
+      document.getElementById('gift-confirmed-msg').style.display = 'block';
+      const t = translations[currentLang];
+      document.getElementById('giftModalTitle').textContent = t['gift.confirmed.title'];
+      document.getElementById('giftModalSubtitle').textContent = '';
     }
 
     function proceedToPayment() {
@@ -1306,7 +1379,6 @@
       const url  = 'https://yoduermoasi.github.io/yoduermoasi/gift.html?amount=' + selectedGiftPrice
         + (name ? '&from=' + encodeURIComponent(name) : '') + '&lang=' + currentLang;
 
-      document.getElementById('giftPaypalLink').href = 'https://www.paypal.me/yoduermoasi/' + selectedGiftPrice;
       document.getElementById('giftLinkReveal').style.display = 'block';
 
       // Notify Camila with all details so she can send gift link after verifying payment
