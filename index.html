@@ -796,17 +796,19 @@
 
         <!-- ── STEP 3: PayPal payment ── -->
         <div id="step3" style="display:none">
-          <div style="text-align:center; margin-bottom: 1.75rem;">
-            <div class="payment-confirmed-badge" data-i18n="step3.badge">✓ Session scheduled</div>
-            <div class="payment-summary-title" data-i18n="step3.title">Complete your payment to secure your spot</div>
+          <div id="booking-pre-payment">
+            <div style="text-align:center; margin-bottom: 1.75rem;">
+              <div class="payment-confirmed-badge" data-i18n="step3.badge">✓ Session scheduled</div>
+              <div class="payment-summary-title" data-i18n="step3.title">Complete your payment to secure your spot</div>
+            </div>
+            <div class="payment-summary">
+              <div class="payment-summary-amount" id="paymentAmount">$119</div>
+              <div class="payment-summary-desc" data-i18n="step3.session.desc">1:1 Dream Session · 60 min</div>
+            </div>
+            <div id="booking-paypal-container" style="margin-top:1.5rem;"></div>
           </div>
-          <div class="payment-summary">
-            <div class="payment-summary-amount" id="paymentAmount">$119</div>
-            <div class="payment-summary-desc" data-i18n="step3.session.desc">1:1 Dream Session · 60 min</div>
-          </div>
-          <div id="booking-paypal-container" style="margin-top:1.5rem;"></div>
           <div id="booking-confirmed" style="display:none; text-align:center; padding:2rem 0.5rem;">
-            <p class="booking-confirmed-msg" data-i18n-html="step3.confirmed">You are all set! If you need to reschedule or have any questions contact me at <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
+            <p class="booking-confirmed-msg" data-i18n-html="step3.confirmed">Payment confirmed! If you need to reschedule or have any questions contact me at <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
           </div>
         </div>
 
@@ -987,7 +989,8 @@
         'step3.badge': '✓ Session scheduled',
         'step3.title': 'Complete your payment to secure your spot',
         'step3.session.desc': '1:1 Dream Session · 60 min',
-        'step3.confirmed': 'You are all set! If you need to reschedule or have any questions contact me at <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
+        'step3.confirmed': 'Payment confirmed! If you need to reschedule or have any questions contact me at <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
+        'step3.confirmed.title': 'Payment Confirmed',
         'gift.btn': 'Gift Card for Someone Special',
         'gift.price.intro': 'Choose the amount you\'d like to gift. All options include the full 60-minute session.',
         'gift.modal.title.1': 'Give a Dream Session',
@@ -1099,7 +1102,8 @@
         'step3.badge': '✓ Sesión programada',
         'step3.title': 'Completa tu pago para asegurar tu lugar',
         'step3.session.desc': 'Sesión 1:1 de Sueños · 60 min',
-        'step3.confirmed': '¡Todo listo! Si necesitas reprogramar o tienes alguna pregunta, contáctame en <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
+        'step3.confirmed': '¡Pago confirmado! Si necesitas reprogramar o tienes alguna pregunta, contáctame en <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
+        'step3.confirmed.title': 'Pago Confirmado',
         'gift.btn': 'Tarjeta de regalo para alguien especial',
         'gift.price.intro': 'Elige el monto que deseas regalar. Todas las opciones incluyen la sesión completa de 60 minutos.',
         'gift.modal.title.1': 'Regala una sesión de sueños',
@@ -1167,6 +1171,7 @@
       modal.classList.remove('active');
       document.body.style.overflow = '';
       document.getElementById('booking-confirmed').style.display = 'none';
+      document.getElementById('booking-pre-payment').style.display = 'block';
       document.getElementById('booking-paypal-container').innerHTML = '';
     }
 
@@ -1184,8 +1189,10 @@
         },
         onApprove: function(data, actions) {
           return actions.order.capture().then(function(details) {
-            container.style.display = 'none';
+            document.getElementById('booking-pre-payment').style.display = 'none';
             document.getElementById('booking-confirmed').style.display = 'block';
+            document.getElementById('modalTitle').textContent = translations[currentLang]['step3.confirmed.title'];
+            document.getElementById('modalSubtitle').textContent = '';
             const fd = new FormData();
             fd.append('_subject', 'Session Payment — $' + selectedPrice + ' USD');
             fd.append('amount', '$' + selectedPrice + ' USD');
