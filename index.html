@@ -814,6 +814,7 @@
             <p class="payment-fnf-note" data-i18n="step3.fnf.note">Confirm your session by completing payment — select "Friends &amp; Family".</p>
             <div id="booking-done-wrap" style="display:none; text-align:center; margin-top:1.25rem;">
               <button onclick="confirmBookingPayment()" class="payment-done-btn" data-i18n="step3.done.btn">I've completed my payment →</button>
+              <p class="payment-fnf-note" style="margin-top:1rem;" data-i18n-html="step3.payment.issue">Having issues with payment? Contact <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
             </div>
           </div>
           <div id="booking-confirmed-msg" style="display:none; text-align:center; padding:1.5rem 0 0.5rem;">
@@ -897,6 +898,7 @@
               <p class="payment-fnf-note" data-i18n="gift.fnf.note">Select "Friends &amp; Family". Once payment is confirmed, you'll receive the gift card link by email.</p>
               <div id="gift-done-wrap" style="display:none; text-align:center; margin-top:1.25rem;">
                 <button onclick="confirmGiftPayment()" class="payment-done-btn" data-i18n="step3.done.btn">I've completed my payment →</button>
+                <p class="payment-fnf-note" style="margin-top:1rem;" data-i18n-html="step3.payment.issue">Having issues with payment? Contact <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
               </div>
             </div>
             <div id="gift-confirmed-msg" style="display:none; text-align:center; padding:1.5rem 0 0.5rem;">
@@ -1016,6 +1018,7 @@
         'gift.fnf.note': 'Select "Friends &amp; Family". Once payment is confirmed, you\'ll receive the gift card link by email.',
         'gift.confirmed.title': 'Thank you!',
         'gift.confirmed': 'You\'ll receive the gift card link by email once we verify your payment.',
+        'step3.payment.issue': 'Having issues with payment? Contact <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
         'gift.btn': 'Gift Card for Someone Special',
         'gift.price.intro': 'Choose the amount you\'d like to gift. All options include the full 60-minute session.',
         'gift.modal.title.1': 'Give a Dream Session',
@@ -1135,6 +1138,7 @@
         'gift.fnf.note': 'Selecciona "Familiares y amigos". Una vez confirmado el pago, recibirás el enlace de la tarjeta de regalo por correo.',
         'gift.confirmed.title': '¡Gracias!',
         'gift.confirmed': 'Recibirás el enlace de la tarjeta de regalo por correo una vez que verifiquemos tu pago.',
+        'step3.payment.issue': '¿Problemas con el pago? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
         'gift.btn': 'Tarjeta de regalo para alguien especial',
         'gift.price.intro': 'Elige el monto que deseas regalar. Todas las opciones incluyen la sesión completa de 60 minutos.',
         'gift.modal.title.1': 'Regala una sesión de sueños',
@@ -1237,9 +1241,7 @@
     function goBack() { showStep(1); }
 
     function openBookingPaypal() {
-      const url = 'https://www.paypal.me/yoduermoasi/' + selectedPrice;
-      const w = 500, h = 700;
-      window.open(url, 'paypal-popup', 'width=' + w + ',height=' + h + ',left=' + Math.round(screen.width/2-w/2) + ',top=' + Math.round(screen.height/2-h/2));
+      window.open('https://www.paypal.me/yoduermoasi/' + selectedPrice, '_blank');
       document.getElementById('booking-done-wrap').style.display = 'block';
     }
     function confirmBookingPayment() {
@@ -1352,9 +1354,7 @@
     }
 
     function openGiftPaypal() {
-      const url = 'https://www.paypal.me/yoduermoasi/' + selectedGiftPrice;
-      const w = 500, h = 700;
-      window.open(url, 'paypal-popup', 'width=' + w + ',height=' + h + ',left=' + Math.round(screen.width/2-w/2) + ',top=' + Math.round(screen.height/2-h/2));
+      window.open('https://www.paypal.me/yoduermoasi/' + selectedGiftPrice, '_blank');
       document.getElementById('gift-done-wrap').style.display = 'block';
     }
     function confirmGiftPayment() {
