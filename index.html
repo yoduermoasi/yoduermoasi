@@ -851,10 +851,14 @@
         <p class="lead-desc" data-i18n="lead.desc">Enter your name and email and get instant access to a practical guide for building a dream recall practice.</p>
         <div id="leadFormWrap">
           <input class="gift-name-input" type="text" id="leadName" data-i18n-placeholder="lead.name.placeholder" placeholder="Your name"/>
-          <input class="gift-name-input" style="margin-top:0.6rem" type="email" id="leadEmail" data-i18n-placeholder="lead.email.placeholder" placeholder="your@email.com"/>
+          <input class="gift-name-input" style="margin-top:0.6rem" type="email" id="leadEmail" data-i18n-placeholder="lead.email.placeholder" placeholder="your@email.com" onblur="checkLeadEmailDomain()"/>
           <p id="leadEmailError" style="display:none;color:#b87a8c;font-size:0.75rem;margin-top:0.35rem;" data-i18n="lead.email.error">Please enter a valid email.</p>
+          <div id="leadEmailSuggest" style="display:none;margin-top:0.4rem;font-size:0.78rem;background:var(--sun-pale);border:1px solid var(--sun-deep);border-radius:3px;padding:0.5rem 0.75rem;text-align:left;">
+            <span id="leadSuggestText" style="color:var(--navy);"></span><br/>
+            <button type="button" onclick="applyLeadSuggestion()" style="font-family:var(--ff-display);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--sun-deep);color:#fff;border:none;padding:0.3rem 0.8rem;border-radius:2px;cursor:pointer;margin-top:0.4rem;margin-right:0.5rem;" data-i18n="lead.suggest.fix">Fix it</button>
+            <button type="button" onclick="dismissLeadSuggestion()" style="font-family:var(--ff-display);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:var(--text-muted);border:none;padding:0.3rem 0;cursor:pointer;margin-top:0.4rem;" data-i18n="lead.suggest.keep">My email is correct</button>
+          </div>
           <button type="button" onclick="submitLeadForm()" class="lead-btn" id="leadSubmitBtn" data-i18n="lead.btn">Get the free guide</button>
-          <p class="lead-fine" data-i18n="lead.fine">No spam. Unsubscribe anytime.</p>
         </div>
         <div id="leadThankYou" style="display:none; text-align:center; padding:0.5rem 0;">
           <div class="payment-confirmed-check">✓</div>
@@ -1078,7 +1082,9 @@
         'lead.email.placeholder': 'your@email.com',
         'lead.email.error': 'Please enter a valid email.',
         'lead.btn': 'Get the free guide',
-        'lead.fine': 'No spam. Unsubscribe anytime.',
+        'lead.suggest.text': 'Did you mean ',
+        'lead.suggest.fix': 'Fix it',
+        'lead.suggest.keep': 'My email is correct',
         'lead.thanks.title': 'Your guide is ready.',
         'lead.download.btn': 'Download the guide ↓',
       },
@@ -1207,7 +1213,9 @@
         'lead.email.placeholder': 'tu@correo.com',
         'lead.email.error': 'Por favor ingresa un correo válido.',
         'lead.btn': 'Obtener la guía gratis',
-        'lead.fine': 'Sin spam. Cancela cuando quieras.',
+        'lead.suggest.text': '¿Quisiste decir ',
+        'lead.suggest.fix': 'Corregir',
+        'lead.suggest.keep': 'Mi correo es correcto',
         'lead.thanks.title': 'Tu guía está lista.',
         'lead.download.btn': 'Descargar la guía ↓',
       }
@@ -1447,6 +1455,49 @@
       fetch('https://formspree.io/f/xbdqblkd', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }).catch(() => {});
     }
 
+    /* ── EMAIL DOMAIN CHECKER ── */
+    const KNOWN_DOMAINS = ['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','me.com','mac.com','protonmail.com','live.com','msn.com','aol.com','googlemail.com','ymail.com','yahoo.es','hotmail.es','outlook.es'];
+    function levenshtein(a, b) {
+      const m = a.length, n = b.length;
+      const dp = Array.from({length:m+1},(_,i)=>Array.from({length:n+1},(_,j)=>j===0?i:0));
+      for (let j=1;j<=n;j++) dp[0][j]=j;
+      for (let i=1;i<=m;i++) for (let j=1;j<=n;j++)
+        dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j-1],dp[i-1][j],dp[i][j-1]);
+      return dp[m][n];
+    }
+    let leadSuggestedEmail = null;
+    function checkLeadEmailDomain() {
+      const email = document.getElementById('leadEmail').value.trim();
+      const suggestBox = document.getElementById('leadEmailSuggest');
+      const atIdx = email.lastIndexOf('@');
+      if (atIdx < 1) { suggestBox.style.display='none'; leadSuggestedEmail=null; return; }
+      const domain = email.slice(atIdx+1).toLowerCase();
+      if (KNOWN_DOMAINS.includes(domain)) { suggestBox.style.display='none'; leadSuggestedEmail=null; return; }
+      let best=null, bestDist=Infinity;
+      for (const d of KNOWN_DOMAINS) {
+        const dist = levenshtein(domain, d);
+        if (dist < bestDist && dist <= 2) { best=d; bestDist=dist; }
+      }
+      if (best) {
+        leadSuggestedEmail = email.slice(0, atIdx+1) + best;
+        const t = translations[currentLang];
+        document.getElementById('leadSuggestText').textContent = t['lead.suggest.text'] + leadSuggestedEmail + '?';
+        suggestBox.style.display = 'block';
+      } else {
+        suggestBox.style.display = 'none';
+        leadSuggestedEmail = null;
+      }
+    }
+    function applyLeadSuggestion() {
+      if (leadSuggestedEmail) document.getElementById('leadEmail').value = leadSuggestedEmail;
+      document.getElementById('leadEmailSuggest').style.display = 'none';
+      leadSuggestedEmail = null;
+    }
+    function dismissLeadSuggestion() {
+      document.getElementById('leadEmailSuggest').style.display = 'none';
+      leadSuggestedEmail = null;
+    }
+
     /* ── LEAD CAPTURE POPUP ── */
     let leadPopupTimer = null;
     function initLeadPopup() {
@@ -1476,6 +1527,8 @@
         return;
       }
       document.getElementById('leadEmailError').style.display = 'none';
+      checkLeadEmailDomain();
+      if (document.getElementById('leadEmailSuggest').style.display !== 'none') return;
       const btn = document.getElementById('leadSubmitBtn');
       btn.disabled = true;
       btn.textContent = currentLang === 'es' ? 'Enviando…' : 'Sending…';
