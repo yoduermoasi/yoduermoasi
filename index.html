@@ -859,7 +859,7 @@
         <div id="leadThankYou" style="display:none; text-align:center; padding:0.5rem 0;">
           <div class="payment-confirmed-check">✓</div>
           <p class="lead-headline" data-i18n="lead.thanks.title">Your guide is ready.</p>
-          <a href="https://yoduermoasi.github.io/yoduermoasi/dream-guide.pdf" target="_blank" rel="noopener" class="lead-download-btn" data-i18n="lead.download.btn">Download the guide ↓</a>
+          <a id="leadDownloadLink" href="https://yoduermoasi.github.io/yoduermoasi/dream-guide.pdf" target="_blank" rel="noopener" class="lead-download-btn" data-i18n="lead.download.btn">Download the guide ↓</a>
         </div>
       </div>
     </div>
@@ -1448,7 +1448,6 @@
 
     /* ── LEAD CAPTURE POPUP ── */
     function initLeadPopup() {
-      if (currentLang !== 'en') return;
       const last = localStorage.getItem('leadPopupShown');
       if (last && Date.now() - parseInt(last) < 30 * 24 * 60 * 60 * 1000) return;
       setTimeout(openLeadPopup, 3000);
@@ -1483,6 +1482,10 @@
       try {
         await fetch('https://formspree.io/f/xbdqblkd', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
       } catch(err) {}
+      const guideUrl = currentLang === 'es'
+        ? 'https://yoduermoasi.github.io/yoduermoasi/guia-suenos.pdf'
+        : 'https://yoduermoasi.github.io/yoduermoasi/dream-guide.pdf';
+      document.getElementById('leadDownloadLink').href = guideUrl;
       document.getElementById('leadFormWrap').style.display = 'none';
       document.getElementById('leadThankYou').style.display = 'block';
       localStorage.setItem('leadPopupShown', Date.now());
