@@ -417,6 +417,19 @@
     .payment-done-btn { font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; background: transparent; color: var(--navy); border: 1.5px solid var(--navy); padding: 0.75rem 1.75rem; cursor: pointer; border-radius: 3px; transition: background 0.2s, color 0.2s; }
     .payment-done-btn:hover { background: var(--navy); color: #fff; }
     .payment-confirmed-check { font-size: 2.5rem; color: var(--sun-deep); margin-bottom: 0.5rem; }
+    /* ── LEAD POPUP ── */
+    .lead-box { max-width: 460px; position: relative; }
+    .lead-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1rem; padding: 0.25rem; transition: color 0.2s; line-height: 1; }
+    .lead-close:hover { color: var(--navy); }
+    .lead-body { padding: 2.5rem 2.5rem 2rem; text-align: center; }
+    .lead-icon { font-size: 2.4rem; margin-bottom: 1rem; line-height: 1; }
+    .lead-headline { font-family: var(--ff-display); font-size: 1.55rem; font-weight: 400; font-style: italic; color: var(--navy); margin-bottom: 0.75rem; line-height: 1.35; }
+    .lead-desc { font-family: var(--ff-body); font-size: 0.88rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 1.5rem; }
+    .lead-btn { font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; background: var(--sun); color: var(--navy); border: none; padding: 0.9rem 2rem; border-radius: 2px; cursor: pointer; width: 100%; margin-top: 1rem; transition: background 0.2s, color 0.2s; box-shadow: 0 2px 8px rgba(200,160,40,0.25); }
+    .lead-btn:hover { background: var(--sun-deep); color: #fff; }
+    .lead-fine { font-family: var(--ff-display); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-muted); margin-top: 0.75rem; text-transform: uppercase; }
+    .lead-download-btn { display: inline-block; font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; background: var(--sun); color: var(--navy); text-decoration: none; padding: 0.9rem 2rem; border-radius: 2px; margin-top: 1.25rem; transition: background 0.2s, color 0.2s; box-shadow: 0 2px 8px rgba(200,160,40,0.25); }
+    .lead-download-btn:hover { background: var(--sun-deep); color: #fff; }
     .payment-fnf-note { font-family: var(--ff-body); font-size: 0.78rem; color: var(--text-soft); text-align: center; line-height: 1.6; margin-top: 0.75rem; font-style: italic; }
 
     /* ── GIFT ── */
@@ -828,6 +841,30 @@
     </div>
   </div>
 
+  <!-- LEAD CAPTURE POPUP -->
+  <div class="modal-overlay" id="leadModal" onclick="handleLeadModalClick(event)">
+    <div class="modal-box lead-box">
+      <button class="lead-close" onclick="closeLeadPopup()" aria-label="Close">✕</button>
+      <div class="lead-body">
+        <div class="lead-icon">🌙</div>
+        <h2 class="lead-headline" data-i18n="lead.headline">Free guide: How to remember your dreams</h2>
+        <p class="lead-desc" data-i18n="lead.desc">Enter your name and email and get instant access to a practical guide for building a dream recall practice.</p>
+        <div id="leadFormWrap">
+          <input class="gift-name-input" type="text" id="leadName" data-i18n-placeholder="lead.name.placeholder" placeholder="Your name"/>
+          <input class="gift-name-input" style="margin-top:0.6rem" type="email" id="leadEmail" data-i18n-placeholder="lead.email.placeholder" placeholder="your@email.com"/>
+          <p id="leadEmailError" style="display:none;color:#b87a8c;font-size:0.75rem;margin-top:0.35rem;" data-i18n="lead.email.error">Please enter a valid email.</p>
+          <button type="button" onclick="submitLeadForm()" class="lead-btn" id="leadSubmitBtn" data-i18n="lead.btn">Get the free guide</button>
+          <p class="lead-fine" data-i18n="lead.fine">No spam. Unsubscribe anytime.</p>
+        </div>
+        <div id="leadThankYou" style="display:none; text-align:center; padding:0.5rem 0;">
+          <div class="payment-confirmed-check">✓</div>
+          <p class="lead-headline" data-i18n="lead.thanks.title">Your guide is ready.</p>
+          <a href="https://yoduermoasi.github.io/yoduermoasi/yoduermoasi%20guide%20to%20remember%20dreams.pdf" target="_blank" rel="noopener" class="lead-download-btn" data-i18n="lead.download.btn">Download the guide ↓</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- GIFT MODAL -->
   <div class="modal-overlay" id="giftModal" onclick="handleGiftModalClick(event)">
     <div class="modal-box">
@@ -1035,6 +1072,15 @@
         'gift.copy.copied': 'Copied!',
         'gift.success': '🎁 Payment confirmed! Copy this link and send it to them:',
         'gift.send.note': 'They\'ll use this link to schedule their session directly.',
+        'lead.headline': 'Free guide: How to remember your dreams',
+        'lead.desc': 'Enter your name and email and get instant access to a practical guide for building a dream recall practice.',
+        'lead.name.placeholder': 'Your name',
+        'lead.email.placeholder': 'your@email.com',
+        'lead.email.error': 'Please enter a valid email.',
+        'lead.btn': 'Get the free guide',
+        'lead.fine': 'No spam. Unsubscribe anytime.',
+        'lead.thanks.title': 'Your guide is ready.',
+        'lead.download.btn': 'Download the guide ↓',
       },
       es: {
         'nav.sessions': 'Sesiones',
@@ -1155,6 +1201,15 @@
         'gift.copy.copied': '¡Copiado!',
         'gift.success': '🎁 ¡Pago confirmado! Copia este enlace y envíaselo:',
         'gift.send.note': 'Usarán este enlace para reservar su sesión directamente.',
+        'lead.headline': 'Guía gratuita: Cómo recordar tus sueños',
+        'lead.desc': 'Ingresa tu nombre y correo y accede de inmediato a una guía práctica para desarrollar tu práctica de registro de sueños.',
+        'lead.name.placeholder': 'Tu nombre',
+        'lead.email.placeholder': 'tu@correo.com',
+        'lead.email.error': 'Por favor ingresa un correo válido.',
+        'lead.btn': 'Obtener la guía gratis',
+        'lead.fine': 'Sin spam. Cancela cuando quieras.',
+        'lead.thanks.title': 'Tu guía está lista.',
+        'lead.download.btn': 'Descargar la guía ↓',
       }
     };
 
@@ -1391,8 +1446,51 @@
       fetch('https://formspree.io/f/xbdqblkd', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }).catch(() => {});
     }
 
+    /* ── LEAD CAPTURE POPUP ── */
+    function initLeadPopup() {
+      const last = localStorage.getItem('leadPopupShown');
+      if (last && Date.now() - parseInt(last) < 30 * 24 * 60 * 60 * 1000) return;
+      setTimeout(openLeadPopup, 3000);
+    }
+    function openLeadPopup() {
+      document.getElementById('leadModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLeadPopup() {
+      document.getElementById('leadModal').classList.remove('active');
+      document.body.style.overflow = '';
+      localStorage.setItem('leadPopupShown', Date.now());
+    }
+    function handleLeadModalClick(e) {
+      if (e.target === document.getElementById('leadModal')) closeLeadPopup();
+    }
+    async function submitLeadForm() {
+      const email = document.getElementById('leadEmail').value.trim();
+      if (!email || !email.includes('@')) {
+        document.getElementById('leadEmailError').style.display = 'block';
+        document.getElementById('leadEmail').focus();
+        return;
+      }
+      document.getElementById('leadEmailError').style.display = 'none';
+      const btn = document.getElementById('leadSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = currentLang === 'es' ? 'Enviando…' : 'Sending…';
+      const fd = new FormData();
+      fd.append('name', document.getElementById('leadName').value.trim() || 'Anonymous');
+      fd.append('email', email);
+      fd.append('_subject', 'New lead — Free dream guide download');
+      try {
+        await fetch('https://formspree.io/f/xbdqblkd', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+      } catch(err) {}
+      document.getElementById('leadFormWrap').style.display = 'none';
+      document.getElementById('leadThankYou').style.display = 'block';
+      localStorage.setItem('leadPopupShown', Date.now());
+    }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLeadPopup(); });
+
     /* ── INIT ── */
     setLang(currentLang);
+    initLeadPopup();
   </script>
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
