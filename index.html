@@ -1448,6 +1448,9 @@
 
     /* ── LEAD CAPTURE POPUP ── */
     function initLeadPopup() {
+      if (currentLang !== 'en') return;
+      const last = localStorage.getItem('leadPopupShown');
+      if (last && Date.now() - parseInt(last) < 30 * 24 * 60 * 60 * 1000) return;
       setTimeout(openLeadPopup, 3000);
     }
     function openLeadPopup() {
