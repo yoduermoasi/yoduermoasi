@@ -290,15 +290,8 @@
         <div class="confirmation-box" id="confirmationBox">
           <div class="conf-check">✓</div>
           <h3 class="conf-title">¡Recibimos tu registro!</h3>
-          <p class="conf-text">Para confirmar tu lugar, completa el pago según las instrucciones a continuación.<br/>También te enviamos esta información por correo electrónico.</p>
-          <div class="conf-payment">
-            <div class="conf-payment-label">Instrucciones de pago</div>
-            <p class="conf-payment-line">Envía tu pago vía <strong>PayPal — Familiares y amigos</strong> a:</p>
-            <p class="conf-payment-line" style="font-size:1.05rem;font-weight:600;margin:0.4rem 0 0.6rem;">yoduermoasi@gmail.com</p>
-            <p class="conf-payment-line">Monto: <strong id="confAmount">$45 USD</strong></p>
-            <p class="conf-payment-line" style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-muted);">En el asunto del pago escribe: <em>Taller Pesadillas — [tu nombre]</em></p>
-          </div>
-          <p class="conf-footer-note">Una vez confirmado el pago recibirás el enlace de Zoom y los detalles finales del taller.<br/>¿Preguntas? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
+          <p class="conf-text">Las instrucciones de pago serán enviadas por correo electrónico.</p>
+          <p class="conf-footer-note">¿Preguntas? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
         </div>
       </div>
 
@@ -330,8 +323,6 @@
       '<div class="price-current">$' + price + ' USD</div>' +
       '<p class="price-note">' + priceNote + '</p>' +
       (price === 45 ? '<p class="price-future">$60 USD desde el 28 de mayo</p>' : '');
-    document.getElementById('confAmount').textContent = '$' + price + ' USD';
-
     // EMAILJS — replace these three values after setting up your EmailJS account
     const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
     const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
