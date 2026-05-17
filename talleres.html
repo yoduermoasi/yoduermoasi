@@ -258,6 +258,16 @@
         <h2 class="register-title">Reserva tu lugar</h2>
         <span class="register-subtitle">Cupos limitados</span>
 
+        <!-- Hidden form posts directly to Formspree (most reliable on static sites) -->
+        <iframe name="formspree-hidden" style="display:none;" aria-hidden="true"></iframe>
+        <form id="formspreeForm" action="https://formspree.io/f/maqkwkwj" method="POST" target="formspree-hidden" style="display:none;">
+          <input type="hidden" name="_subject" value="Nuevo registro — Taller 1:1 con tus Pesadillas"/>
+          <input type="hidden" name="nombre"   id="fs_nombre"/>
+          <input type="hidden" name="correo"   id="fs_correo"/>
+          <input type="hidden" name="telefono" id="fs_telefono"/>
+          <input type="hidden" name="monto"    id="fs_monto"/>
+        </form>
+
         <div id="regForm">
           <div class="form-group">
             <label class="form-label" for="regName">Nombre completo</label>
@@ -352,21 +362,12 @@
 
       const phone = code + ' ' + num;
 
-      // Notify Camila via Formspree
-      try {
-        const res = await fetch('https://formspree.io/f/maqkwkwj', {
-          method: 'POST',
-          body: JSON.stringify({
-            _subject: 'Nuevo registro — Taller 1:1 con tus Pesadillas',
-            nombre:   name,
-            correo:   email,
-            telefono: phone,
-            monto:    '$' + price + ' USD'
-          }),
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
-        });
-        if (!res.ok) console.error('Formspree error:', res.status, await res.text());
-      } catch(e) { console.error('Formspree fetch failed:', e); }
+      // Notify Camila via Formspree (hidden form submit — most reliable on static sites)
+      document.getElementById('fs_nombre').value   = name;
+      document.getElementById('fs_correo').value   = email;
+      document.getElementById('fs_telefono').value = phone;
+      document.getElementById('fs_monto').value    = '$' + price + ' USD';
+      document.getElementById('formspreeForm').submit();
 
       // Auto-reply to registrant via EmailJS
       try {
