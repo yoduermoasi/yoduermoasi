@@ -263,7 +263,8 @@
         <form id="formspreeForm" action="https://formspree.io/f/maqkwkwj" method="POST" target="formspree-hidden" style="display:none;">
           <input type="hidden" name="_subject" value="Nuevo registro — Taller 1:1 con tus Pesadillas"/>
           <input type="hidden" name="nombre"   id="fs_nombre"/>
-          <input type="hidden" name="correo"   id="fs_correo"/>
+          <input type="hidden" name="email"     id="fs_correo"/>
+          <input type="hidden" name="_replyto" id="fs_replyto"/>
           <input type="hidden" name="telefono" id="fs_telefono"/>
           <input type="hidden" name="monto"    id="fs_monto"/>
         </form>
@@ -365,6 +366,7 @@
       // Notify Camila via Formspree (hidden form submit — most reliable on static sites)
       document.getElementById('fs_nombre').value   = name;
       document.getElementById('fs_correo').value   = email;
+      document.getElementById('fs_replyto').value  = email;
       document.getElementById('fs_telefono').value = phone;
       document.getElementById('fs_monto').value    = '$' + price + ' USD';
       document.getElementById('formspreeForm').submit();
