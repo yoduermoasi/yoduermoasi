@@ -330,7 +330,7 @@
     // DYNAMIC PRICE
     const EARLY_END = new Date('2026-05-28T00:00:00-05:00');
     const price = Date.now() < EARLY_END.getTime() ? 45 : 60;
-    const priceNote = price === 45 ? 'Precio especial hasta el 27 de mayo' : 'Precio regular';
+    const priceNote = price === 45 ? 'Precio hasta el 27 de mayo' : 'Precio regular';
     document.getElementById('priceWrap').innerHTML =
       '<div class="price-current">$' + price + ' USD</div>' +
       '<p class="price-note">' + priceNote + '</p>' +
