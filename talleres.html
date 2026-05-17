@@ -89,7 +89,8 @@
     /* CONTENT */
     .taller-content { max-width: 700px; margin: 0 auto; padding: 0 3.5rem 2rem; }
     .content-section { margin-bottom: 3.5rem; }
-    .content-label { font-family: var(--ff-display); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 1.25rem; display: block; }
+    .content-label { font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.3rem 1.1rem 0.3rem 0.9rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
+    .content-label::before { content: ''; display: block; width: 1.6rem; height: 1.5px; background: var(--sun-deep); flex-shrink: 0; }
     .content-section p { font-family: var(--ff-body); font-size: 0.95rem; color: var(--text-soft); line-height: 1.85; }
     .session-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
     .session-item { background: rgba(255,255,255,0.58); border: 1px solid rgba(255,255,255,0.9); border-radius: 6px; padding: 1.25rem 1.5rem; }
@@ -211,7 +212,7 @@
     <div class="taller-content">
 
       <div class="content-section">
-        <span class="content-label">Lo que vas a vivir</span>
+        <div style="margin-bottom:1.5rem;"><span class="content-label">Lo que vas a vivir</span></div>
         <ul class="session-list">
           <li class="session-item">
             <div class="session-num">Sesión 1</div>
@@ -229,7 +230,7 @@
       </div>
 
       <div class="content-section">
-        <span class="content-label">Te vas a llevar</span>
+        <div style="margin-bottom:1.5rem;"><span class="content-label">Te vas a llevar</span></div>
         <ul class="benefit-list">
           <li class="benefit-item">Una comprensión clara de qué son las pesadillas, cuál es su función y qué dice la ciencia sobre cómo trabajarlas y reducirlas.</li>
           <li class="benefit-item">Un conjunto de herramientas y técnicas a las que puedes volver cada vez que aparezca una pesadilla, y un hábito de práctica de imágenes mentales.</li>
@@ -239,7 +240,7 @@
       </div>
 
       <div class="content-section">
-        <span class="content-label">Este taller es para ti si…</span>
+        <div style="margin-bottom:1.5rem;"><span class="content-label">Este taller es para ti si…</span></div>
         <ul class="for-you-list">
           <li class="for-you-item">Tienes pesadillas o sueños perturbadores que le ponen el tono a todo tu día.</li>
           <li class="for-you-item">Amaneces agotado/a después de una noche corriendo, cayendo o enfrentando lo que no tiene resolución.</li>
