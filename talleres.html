@@ -353,13 +353,20 @@
       const phone = code + ' ' + num;
 
       // Notify Camila via Formspree
-      const fd = new FormData();
-      fd.append('_subject', 'Nuevo registro — Taller 1:1 con tus Pesadillas');
-      fd.append('nombre',   name);
-      fd.append('correo',   email);
-      fd.append('telefono', phone);
-      fd.append('monto',    '$' + price + ' USD');
-      fetch('https://formspree.io/f/maqkwkwj', { method:'POST', body:fd, headers:{'Accept':'application/json'} }).catch(()=>{});
+      try {
+        const res = await fetch('https://formspree.io/f/maqkwkwj', {
+          method: 'POST',
+          body: JSON.stringify({
+            _subject: 'Nuevo registro — Taller 1:1 con tus Pesadillas',
+            nombre:   name,
+            correo:   email,
+            telefono: phone,
+            monto:    '$' + price + ' USD'
+          }),
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+        });
+        if (!res.ok) console.error('Formspree error:', res.status, await res.text());
+      } catch(e) { console.error('Formspree fetch failed:', e); }
 
       // Auto-reply to registrant via EmailJS
       try {
