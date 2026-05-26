@@ -334,13 +334,18 @@
     .hero-keywords { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--navy-soft); text-align: center; margin-top: 1rem; }
 
     /* ── TESTIMONIALS ── */
-    .testimonials-section { padding: 3rem 3.5rem; }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
-    .testimonial-card { background: rgba(255,255,255,0.52); border: 1px solid rgba(255,255,255,0.88); border-radius: 6px; padding: 2rem 1.75rem; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 4px 24px rgba(30,60,100,0.06), inset 0 1px 0 rgba(255,255,255,0.9); display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem; }
+    /* ── TESTIMONIALS CAROUSEL ── */
+    .testimonials-section { padding: 2.5rem 3.5rem 3rem; }
+    .testimonials-carousel-wrap { position: relative; margin-top: 2rem; }
+    .testimonials-track { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; padding-bottom: 0.5rem; scrollbar-width: none; }
+    .testimonials-track::-webkit-scrollbar { display: none; }
+    .testimonial-card { flex: 0 0 calc(33.333% - 1rem); min-width: 260px; scroll-snap-align: start; background: rgba(255,255,255,0.52); border: 1px solid rgba(255,255,255,0.88); border-radius: 6px; padding: 2rem 1.75rem; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 4px 24px rgba(30,60,100,0.06), inset 0 1px 0 rgba(255,255,255,0.9); display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem; }
     .testimonial-quote { font-family: var(--ff-body); font-size: 0.92rem; line-height: 1.8; color: var(--text-soft); font-style: italic; }
     .testimonial-quote::before { content: '\201C'; font-family: var(--ff-display); font-size: 2rem; color: var(--sun-deep); line-height: 0; vertical-align: -0.5rem; margin-right: 0.2rem; }
     .testimonial-author { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy-soft); }
-    .testimonial-placeholder { color: var(--text-muted); font-style: italic; opacity: 0.5; }
+    .carousel-btns { display: flex; gap: 0.75rem; margin-top: 1.25rem; justify-content: center; }
+    .carousel-btn { width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 1.5px solid var(--rule-strong); background: rgba(255,255,255,0.7); color: var(--navy-mid); font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; backdrop-filter: blur(8px); }
+    .carousel-btn:hover { background: var(--navy); color: var(--sky-horizon); border-color: var(--navy); }
 
     /* ── FAQ ── */
     .faq-section { padding: 3rem 3.5rem; max-width: 780px; }
@@ -586,20 +591,31 @@
         <a href="#" class="offering-cta primary" onclick="openModal(event)" data-i18n="offering.cta">Book a 1:1 Session</a>
         <a href="#" class="btn-gift" onclick="openGiftModal(event)" data-i18n="gift.btn">Gift Card for Someone Special</a>
       </div>
-      <div class="offerings-testimonials">
-        <p class="section-eyebrow reveal" data-i18n="testimonials.label">What Clients Say</p>
-        <div class="testimonial-card reveal delay-1">
+      <div class="offerings-testimonials"></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS CAROUSEL -->
+  <section class="testimonials-section">
+    <p class="section-eyebrow reveal" data-i18n="testimonials.label">What Clients Say</p>
+    <div class="testimonials-carousel-wrap reveal delay-1">
+      <div class="testimonials-track" id="testimonialsTrack">
+        <div class="testimonial-card">
           <p class="testimonial-quote" data-i18n="t1.quote">I didn't expect the session to go so deep. It touched on things I haven't discussed in seven years of therapy.</p>
           <p class="testimonial-author" data-i18n="t1.author">— Session Client</p>
         </div>
-        <div class="testimonial-card reveal delay-2">
+        <div class="testimonial-card">
           <p class="testimonial-quote" data-i18n="t2.quote">I haven't met anyone so knowledgeable and passionate about dreams. Thank you for making this experience so intimate and thoughtful, and at the same time, fun.</p>
           <p class="testimonial-author" data-i18n="t2.author">— Session Client</p>
         </div>
-        <div class="testimonial-card reveal delay-3">
+        <div class="testimonial-card">
           <p class="testimonial-quote" data-i18n="t3.quote">I came to my first session with a repetitive and very unpleasant nightmare. It's been a year since then, and it has completely disappeared!</p>
           <p class="testimonial-author" data-i18n="t3.author">— Session Client</p>
         </div>
+      </div>
+      <div class="carousel-btns">
+        <button class="carousel-btn" onclick="carouselScroll(-1)" aria-label="Previous">&#8592;</button>
+        <button class="carousel-btn" onclick="carouselScroll(1)" aria-label="Next">&#8594;</button>
       </div>
     </div>
   </section>
@@ -1550,6 +1566,13 @@
       localStorage.setItem('leadPopupShown_' + currentLang, Date.now());
     }
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLeadPopup(); });
+
+    /* ── TESTIMONIALS CAROUSEL ── */
+    function carouselScroll(dir) {
+      const track = document.getElementById('testimonialsTrack');
+      const card = track.querySelector('.testimonial-card');
+      track.scrollBy({ left: dir * (card.offsetWidth + 24), behavior: 'smooth' });
+    }
 
     /* ── INIT ── */
     setLang(currentLang);
