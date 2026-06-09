@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Talleres — 1:1 con tus Pesadillas | Camila Figueroa</title>
-  <meta name="description" content="Taller grupal online de 4 sesiones para reducir la frecuencia e intensidad de las pesadillas. Método basado en evidencia. Martes 9, 16, 23 y 30 de Junio 2026."/>
+  <title>Talleres | Camila Figueroa</title>
+  <meta name="description" content="Talleres grupales online de dreamwork con Camila Figueroa. Archivo de talleres pasados y próximas ediciones."/>
   <link rel="canonical" href="https://yoduermoasi.github.io/yoduermoasi/talleres.html"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -64,79 +64,69 @@
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .nav-hamburger span { width: 22px; height: 1.5px; background: var(--navy); display: block; }
 
-    /* HERO */
-    .taller-hero { padding: 8rem 3.5rem 3.5rem; max-width: 780px; margin: 0 auto; text-align: center; }
-    .taller-eyebrow { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun-deep); background: rgba(255,255,255,0.72); padding: 0.2rem 0.8rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.85); display: inline-block; margin-bottom: 1.5rem; }
-    .taller-title { font-family: var(--ff-display); font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 300; font-style: italic; color: var(--navy); line-height: 1.1; margin-bottom: 1rem; }
-    .taller-subtitle { font-family: var(--ff-display); font-size: clamp(1.2rem, 2.5vw, 1.7rem); font-weight: 400; font-style: italic; color: var(--navy); line-height: 1.35; max-width: 620px; margin: 0 auto 1.5rem; }
-    .taller-divider { width: 3rem; height: 1.5px; background: var(--rule-strong); margin: 0 auto 1.5rem; }
-    .taller-tagline { font-family: var(--ff-body); font-size: 1rem; color: var(--text-soft); line-height: 1.85; max-width: 600px; margin: 0 auto; }
+    /* PAGE HEADER */
+    .page-header { padding: 8rem 3.5rem 3rem; max-width: 780px; margin: 0 auto; text-align: center; }
+    .page-title { font-family: var(--ff-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; font-style: italic; color: var(--navy); line-height: 1.1; margin-bottom: 0.75rem; }
+    .page-subtitle { font-family: var(--ff-body); font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; }
 
-    /* DETAILS STRIP */
-    .details-wrap { max-width: 700px; margin: 3rem auto; padding: 0 3.5rem; }
-    .details-strip { display: flex; flex-wrap: wrap; justify-content: center; background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.9); border-radius: 6px; overflow: hidden; }
-    .detail-item { flex: 1; min-width: 140px; padding: 1.25rem 1.5rem; text-align: center; border-right: 1px solid var(--rule); }
+    /* EVENTS GRID */
+    .events-wrap { max-width: 780px; margin: 0 auto; padding: 0 3.5rem 5rem; }
+    .events-label { font-family: var(--ff-display); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--rule-strong); display: block; }
+
+    /* EVENT CARD */
+    .event-card { background: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.9); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 24px rgba(30,60,100,0.07); transition: box-shadow 0.3s var(--ease); cursor: pointer; margin-bottom: 1.5rem; }
+    .event-card:hover { box-shadow: 0 8px 36px rgba(30,60,100,0.13); }
+    .event-card-header { display: flex; align-items: center; justify-content: space-between; padding: 1.75rem 2rem; gap: 1.5rem; }
+    .event-card-left { flex: 1; }
+    .event-badge { font-family: var(--ff-display); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; background: rgba(26,48,74,0.08); color: var(--text-muted); border: 1px solid var(--rule-strong); border-radius: 20px; padding: 0.2rem 0.7rem; display: inline-block; margin-bottom: 0.6rem; }
+    .event-name { font-family: var(--ff-display); font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 400; font-style: italic; color: var(--navy); line-height: 1.15; margin-bottom: 0.4rem; }
+    .event-meta { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+    .event-toggle { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy-soft); display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; transition: color 0.2s; flex-shrink: 0; }
+    .event-toggle-arrow { display: inline-block; transition: transform 0.3s var(--ease); font-style: normal; }
+    .event-card.open .event-toggle-arrow { transform: rotate(180deg); }
+    .event-card.open .event-toggle { color: var(--navy); }
+
+    /* EVENT DETAIL (collapsed by default) */
+    .event-detail { max-height: 0; overflow: hidden; transition: max-height 0.5s var(--ease); border-top: 1px solid var(--rule); }
+    .event-card.open .event-detail { max-height: 3000px; }
+    .event-detail-inner { padding: 2rem 2rem 2.5rem; }
+
+    /* DETAIL STRIP */
+    .details-strip { display: flex; flex-wrap: wrap; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.9); border-radius: 6px; overflow: hidden; margin-bottom: 2.5rem; }
+    .detail-item { flex: 1; min-width: 120px; padding: 1rem 1.25rem; text-align: center; border-right: 1px solid var(--rule); }
     .detail-item:last-child { border-right: none; }
-    .detail-icon { font-size: 1.1rem; margin-bottom: 0.25rem; }
-    .detail-label { font-family: var(--ff-display); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.25rem; }
-    .detail-value { font-family: var(--ff-display); font-size: 0.95rem; color: var(--navy); line-height: 1.3; }
-    .detail-sub { font-family: var(--ff-body); font-size: 0.72rem; color: var(--text-muted); font-style: italic; }
+    .detail-icon { font-size: 1rem; margin-bottom: 0.2rem; }
+    .detail-label { font-family: var(--ff-display); font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .detail-value { font-family: var(--ff-display); font-size: 0.9rem; color: var(--navy); line-height: 1.3; }
+    .detail-sub { font-family: var(--ff-body); font-size: 0.68rem; color: var(--text-muted); font-style: italic; }
 
-    /* PRICE */
-    .price-wrap { text-align: center; margin-bottom: 3.5rem; }
-    .price-current { font-family: var(--ff-display); font-size: 3rem; font-weight: 300; color: var(--sun-deep); line-height: 1; }
-    .price-note { font-family: var(--ff-body); font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-top: 0.3rem; }
-    .price-future { font-family: var(--ff-body); font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem; }
-
-    /* CONTENT */
-    .taller-content { max-width: 700px; margin: 0 auto; padding: 0 3.5rem 2rem; }
-    .content-section { margin-bottom: 3.5rem; }
+    /* CONTENT SECTIONS */
+    .content-section { margin-bottom: 2.5rem; }
     .content-label { font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.3rem 1.1rem 0.3rem 0.9rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
     .content-label::before { content: ''; display: block; width: 1.6rem; height: 1.5px; background: var(--sun-deep); flex-shrink: 0; }
-    .content-section p { font-family: var(--ff-body); font-size: 0.95rem; color: var(--text-soft); line-height: 1.85; }
-    .session-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-    .session-item { background: rgba(255,255,255,0.58); border: 1px solid rgba(255,255,255,0.9); border-radius: 6px; padding: 1.25rem 1.5rem; }
-    .session-num { font-family: var(--ff-display); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 0.4rem; }
-    .session-text { font-family: var(--ff-body); font-size: 1rem; color: var(--text-soft); line-height: 1.78; }
-    .benefit-list, .for-you-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
-    .benefit-item, .for-you-item { font-family: var(--ff-body); font-size: 0.92rem; color: var(--text-soft); line-height: 1.75; padding-left: 1.5rem; position: relative; }
+    .session-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+    .session-item { background: rgba(255,255,255,0.58); border: 1px solid rgba(255,255,255,0.9); border-radius: 6px; padding: 1.1rem 1.4rem; }
+    .session-num { font-family: var(--ff-display); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 0.35rem; }
+    .session-text { font-family: var(--ff-body); font-size: 0.95rem; color: var(--text-soft); line-height: 1.78; }
+    .benefit-list, .for-you-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .benefit-item, .for-you-item { font-family: var(--ff-body); font-size: 0.9rem; color: var(--text-soft); line-height: 1.75; padding-left: 1.5rem; position: relative; }
     .benefit-item::before { content: '—'; position: absolute; left: 0; color: var(--sun-deep); font-family: var(--ff-display); }
     .for-you-item::before { content: '○'; position: absolute; left: 0; color: var(--navy-soft); font-size: 0.6rem; top: 0.42rem; }
 
+    /* TAGLINE */
+    .event-tagline { font-family: var(--ff-body); font-size: 0.95rem; color: var(--text-soft); line-height: 1.85; margin-bottom: 2rem; }
+    .event-subtitle { font-family: var(--ff-display); font-size: 1.1rem; font-style: italic; color: var(--navy-mid); margin-bottom: 1.25rem; line-height: 1.4; }
+
+    /* FINALIZADO NOTICE */
+    .finalizado-box { background: rgba(238,246,252,0.75); border: 1px solid var(--rule-strong); border-radius: 6px; padding: 1.5rem 2rem; text-align: center; margin-top: 1rem; }
+    .finalizado-title { font-family: var(--ff-display); font-size: 1.1rem; font-style: italic; color: var(--navy); margin-bottom: 0.5rem; }
+    .finalizado-text { font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
+    .finalizado-text a { color: var(--navy-soft); }
+
     /* SAFETY NOTE */
-    .safety-note { background: rgba(238,246,252,0.75); border: 1px solid var(--rule-strong); border-left: 3px solid var(--navy-soft); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 3.5rem; }
-    .safety-note-title { font-family: var(--ff-display); font-size: 0.88rem; font-weight: 500; color: var(--navy); margin-bottom: 0.5rem; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
-    .safety-note p { font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-soft); line-height: 1.8; font-style: italic; }
-
-    /* REGISTRATION */
-    .register-section { background: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.95); border-radius: 8px; padding: 2.5rem; margin-bottom: 4rem; }
-    .register-title { font-family: var(--ff-display); font-size: 1.8rem; font-weight: 300; font-style: italic; color: var(--navy); margin-bottom: 0.3rem; }
-    .register-subtitle { font-family: var(--ff-display); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 2rem; display: block; }
-    .form-group { margin-bottom: 1.25rem; }
-    .form-label { font-family: var(--ff-display); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; display: block; }
-    .form-input { font-family: var(--ff-body); font-size: 0.9rem; color: var(--navy); background: rgba(255,255,255,0.72); border: 1px solid rgba(26,48,74,0.18); border-radius: 2px; padding: 0.75rem 1rem; width: 100%; outline: none; transition: border-color 0.2s, background 0.2s; }
-    .form-input:focus { border-color: var(--navy-soft); background: rgba(255,255,255,0.92); }
-    .form-input::placeholder { color: var(--text-muted); font-size: 0.85rem; }
-    .form-error { color: #b87a8c; font-size: 0.75rem; margin-top: 0.35rem; display: none; font-family: var(--ff-body); }
-    .phone-wrap { display: flex; gap: 0.5rem; align-items: flex-start; }
-    .phone-code-input { width: 75px; flex-shrink: 0; text-align: center; }
-    .phone-num-input { flex: 1; }
-    .form-hint { font-family: var(--ff-body); font-size: 0.72rem; color: var(--text-muted); font-style: italic; margin-top: 0.3rem; }
-    .register-btn { font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; background: var(--navy); color: #fff; border: none; padding: 1rem 2.5rem; border-radius: 2px; cursor: pointer; width: 100%; margin-top: 0.75rem; transition: background 0.2s; box-shadow: 0 4px 16px rgba(26,48,74,0.22); }
-    .register-btn:hover { background: var(--navy-mid); }
-    .register-btn:disabled { opacity: 0.6; cursor: default; }
-    .cupos-note { font-family: var(--ff-display); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-top: 0.75rem; }
-
-    /* CONFIRMATION */
-    .confirmation-box { display: none; text-align: center; }
-    .conf-check { font-size: 2.5rem; color: var(--sun-deep); margin-bottom: 0.75rem; }
-    .conf-title { font-family: var(--ff-display); font-size: 1.8rem; font-weight: 300; font-style: italic; color: var(--navy); margin-bottom: 0.75rem; }
-    .conf-text { font-family: var(--ff-body); font-size: 0.9rem; color: var(--text-soft); line-height: 1.8; margin-bottom: 1.5rem; }
-    .conf-payment { background: var(--sun-pale); border: 1px solid var(--sun-deep); border-radius: 6px; padding: 1.5rem; text-align: left; margin-bottom: 1.25rem; }
-    .conf-payment-label { font-family: var(--ff-display); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 0.75rem; }
-    .conf-payment-line { font-family: var(--ff-body); font-size: 0.88rem; color: var(--navy); line-height: 1.9; }
-    .conf-footer-note { font-family: var(--ff-body); font-size: 0.82rem; color: var(--text-muted); line-height: 1.75; }
-    .conf-footer-note a { color: var(--navy); }
+    .safety-note { background: rgba(238,246,252,0.75); border: 1px solid var(--rule-strong); border-left: 3px solid var(--navy-soft); border-radius: 4px; padding: 1.1rem 1.4rem; margin-bottom: 2rem; }
+    .safety-note-title { font-family: var(--ff-display); font-size: 0.85rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
+    .safety-note p { font-family: var(--ff-body); font-size: 0.82rem; color: var(--text-soft); line-height: 1.8; font-style: italic; }
 
     /* FOOTER */
     footer { display: flex; align-items: center; justify-content: space-between; padding: 2rem 3.5rem; border-top: 1px solid var(--rule); }
@@ -150,11 +140,10 @@
       .nav-links { display: none; }
       .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
-      .taller-hero { padding: 6rem 1.5rem 2.5rem; }
-      .details-wrap { padding: 0 1.5rem; }
-      .taller-content { padding: 0 1.5rem 2rem; }
-      .detail-item { min-width: 100px; padding: 1rem; }
-      .register-section { padding: 1.75rem 1.25rem; }
+      .page-header { padding: 6rem 1.5rem 2rem; }
+      .events-wrap { padding: 0 1.5rem 4rem; }
+      .event-card-header { padding: 1.25rem 1.25rem; }
+      .event-detail-inner { padding: 1.5rem 1.25rem 2rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
     }
   </style>
@@ -177,142 +166,92 @@
   </nav>
 
   <main>
-    <!-- HERO -->
-    <div class="taller-hero">
-      <div class="taller-eyebrow">Taller grupal online · 4 sesiones</div>
-      <h1 class="taller-title">1:1 con tus Pesadillas</h1>
-      <p class="taller-subtitle">¿Qué pasa cuando usamos la pesadilla<br>como insumo para el trabajo creativo y emocional?</p>
-      <div class="taller-divider"></div>
-      <p class="taller-tagline">Las pesadillas no son solo imágenes cargadas de emoción. Son también hábitos que responden a la práctica. En este taller vas a aprender qué son las pesadillas, cómo funcionan a nivel fisiológico y psicológico, y herramientas concretas para reducir su intensidad y frecuencia.</p>
+    <div class="page-header">
+      <h1 class="page-title">Talleres</h1>
+      <p class="page-subtitle">Espacios grupales de trabajo con sueños, pesadillas y vida emocional.</p>
     </div>
 
-    <!-- DETAILS -->
-    <div class="details-wrap">
-      <div class="details-strip">
-        <div class="detail-item">
-          <div class="detail-icon">📅</div>
-          <div class="detail-label">Fechas</div>
-          <div class="detail-value">9, 16, 23 y 30<br/>de Junio, 2026</div>
-          <div class="detail-sub">Martes</div>
-        </div>
-        <div class="detail-item">
-          <div class="detail-icon">⏰</div>
-          <div class="detail-label">Horario</div>
-          <div class="detail-value">7:00 pm</div>
-          <div class="detail-sub">Hora Colombia · 60 min / sesión</div>
-        </div>
-        <div class="detail-item">
-          <div class="detail-icon">📍</div>
-          <div class="detail-label">Lugar</div>
-          <div class="detail-value">Virtual</div>
-          <div class="detail-sub">Zoom</div>
-        </div>
-      </div>
-    </div>
+    <div class="events-wrap">
+      <span class="events-label">Talleres pasados</span>
 
-    <!-- PRICE -->
-    <div class="price-wrap" id="priceWrap"></div>
-
-    <!-- CONTENT -->
-    <div class="taller-content">
-
-      <div class="content-section">
-        <div style="margin-bottom:1.5rem;"><span class="content-label">Lo que vas a vivir</span></div>
-        <ul class="session-list">
-          <li class="session-item">
-            <div class="session-num">Sesión 1</div>
-            <p class="session-text">Introducción a las pesadillas: qué son, por qué persisten (e insisten), diferencias con otros tipos de sueños y su relación con la salud mental y los síntomas psicológicos, y estrategias basadas en la evidencia para trabajar con pesadillas y reducir su intensidad o frecuencia.</p>
-          </li>
-          <li class="session-item">
-            <div class="session-num">Sesiones 2 y 3</div>
-            <p class="session-text">La práctica central: trabajo somático combinado con estrategias de ensayo de imágenes mentales. A través de un proceso guiado, cada persona explorará los personajes, escenarios, tramas, patrones y símbolos de la pesadilla con la que quieres trabajar. Cada persona trabaja individualmente dentro de un contenedor grupal.</p>
-          </li>
-          <li class="session-item">
-            <div class="session-num">Sesión 4</div>
-            <p class="session-text">Integraremos los cambios que surgieron a lo largo de las 4 semanas: en el contenido de tus sueños, y en tu relación con el dormir. Cerraremos el contenedor grupal con respuestas a preguntas abiertas y una guía con herramientas y recursos para que puedas continuar trabajando con tus sueños de manera individual.</p>
-          </li>
-        </ul>
-      </div>
-
-      <div class="content-section">
-        <div style="margin-bottom:1.5rem;"><span class="content-label">Te vas a llevar</span></div>
-        <ul class="benefit-list">
-          <li class="benefit-item">Una comprensión clara de qué son las pesadillas y los sueños repetitivos, y cuál puede ser su función en nuestra vida emocional.</li>
-          <li class="benefit-item">Herramientas prácticas para trabajar con el contenido de tus sueños desde la primera sesión, incluyendo imagery rehearsal, ejercicios somáticos y de escritura.</li>
-          <li class="benefit-item">Una rutina de diario de sueños y prácticas de higiene del sueño que podrás incorporar en tu vida cotidiana.</li>
-          <li class="benefit-item">Una relación distinta con tu vida nocturna y el contenido de tus sueños.</li>
-          <li class="benefit-item"><strong>Bonus:</strong> un código de descuento para descargar Mindflow (app de sueños) y seguir utilizando tus sueños como material para el trabajo creativo y emocional.</li>
-        </ul>
-      </div>
-
-      <div class="content-section">
-        <div style="margin-bottom:1.5rem;"><span class="content-label">Este taller es para ti si…</span></div>
-        <ul class="for-you-list">
-          <li class="for-you-item">Tienes un sueño (figura, personaje, situación o imagen) no tan placentero, de este u otro momento de tu vida, que se ha repetido y lo recuerdas nítidamente.</li>
-          <li class="for-you-item">Amaneces agotado/a y sientes que no importa cuántas horas duermas, no descansas.</li>
-          <li class="for-you-item">Te acuestas tarde porque no te gusta lo que la noche trae.</li>
-          <li class="for-you-item">Sientes que tus sueños intentan decirte algo pero no sabes por dónde empezar a entenderlos.</li>
-          <li class="for-you-item">Sientes curiosidad por las imágenes e historias de tu inconsciente y quieres herramientas prácticas, no solo teoría.</li>
-        </ul>
-      </div>
-
-      <div class="safety-note">
-        <p class="safety-note-title">🌿 Antes de inscribirte</p>
-        <p>Este taller es educativo y experiencial. No es psicoterapia ni la reemplaza. Si estás atravesando un momento de crisis aguda o un trauma reciente, escríbeme antes de registrarte para evaluar si este es el mejor momento para un espacio como este.</p>
-      </div>
-
-      <!-- REGISTRATION -->
-      <div class="register-section" id="registerSection">
-        <h2 class="register-title">Reserva tu lugar</h2>
-        <span class="register-subtitle">Cupos limitados</span>
-
-        <!-- Hidden form posts directly to Formspree (most reliable on static sites) -->
-        <iframe name="formspree-hidden" style="display:none;" aria-hidden="true"></iframe>
-        <form id="formspreeForm" action="https://formspree.io/f/maqkwkwj" method="POST" target="formspree-hidden" style="display:none;">
-          <input type="hidden" name="_subject" value="Nuevo registro — Taller 1:1 con tus Pesadillas"/>
-          <input type="hidden" name="nombre"   id="fs_nombre"/>
-          <input type="hidden" name="email"     id="fs_correo"/>
-          <input type="hidden" name="_replyto" id="fs_replyto"/>
-          <input type="hidden" name="telefono" id="fs_telefono"/>
-          <input type="hidden" name="monto"    id="fs_monto"/>
-        </form>
-
-        <div id="regForm">
-          <div class="form-group">
-            <label class="form-label" for="regName">Nombre completo</label>
-            <input class="form-input" type="text" id="regName" placeholder="Tu nombre completo"/>
-            <p class="form-error" id="regNameError">Por favor ingresa tu nombre.</p>
+      <!-- EVENT CARD: 1:1 con tus Pesadillas -->
+      <div class="event-card" id="card-pesadillas" onclick="toggleCard('card-pesadillas')">
+        <div class="event-card-header">
+          <div class="event-card-left">
+            <div class="event-badge">Finalizado · Junio 2026</div>
+            <div class="event-name">1:1 con tus Pesadillas</div>
+            <div class="event-meta">Taller grupal online · 4 sesiones · Martes 9, 16, 23 y 30 de junio</div>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="regEmail">Correo electrónico</label>
-            <input class="form-input" type="email" id="regEmail" placeholder="tu@correo.com"/>
-            <p class="form-error" id="regEmailError">Por favor ingresa un correo válido.</p>
+          <div class="event-toggle">
+            Ver más <span class="event-toggle-arrow">↓</span>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="regEmailConfirm">Confirmar correo electrónico</label>
-            <input class="form-input" type="email" id="regEmailConfirm" placeholder="tu@correo.com"/>
-            <p class="form-error" id="regEmailConfirmError">Los correos no coinciden.</p>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Número de teléfono <span style="color:#b87a8c">*</span></label>
-            <div class="phone-wrap">
-              <input class="form-input phone-code-input" type="text" id="regPhoneCode" placeholder="+57" maxlength="5"/>
-              <input class="form-input phone-num-input" type="tel" id="regPhoneNum" placeholder="300 123 4567"/>
+        </div>
+
+        <div class="event-detail">
+          <div class="event-detail-inner">
+
+            <p class="event-subtitle">¿Qué pasa cuando usamos la pesadilla como insumo para el trabajo creativo y emocional?</p>
+            <p class="event-tagline">Las pesadillas no son solo imágenes cargadas de emoción. Son también hábitos que responden a la práctica. En este taller aprendimos qué son las pesadillas, cómo funcionan a nivel fisiológico y psicológico, y herramientas concretas para reducir su intensidad y frecuencia.</p>
+
+            <div class="details-strip">
+              <div class="detail-item">
+                <div class="detail-icon">📅</div>
+                <div class="detail-label">Fechas</div>
+                <div class="detail-value">9, 16, 23 y 30<br/>de Junio, 2026</div>
+                <div class="detail-sub">Martes</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-icon">⏰</div>
+                <div class="detail-label">Horario</div>
+                <div class="detail-value">7:00 pm</div>
+                <div class="detail-sub">Hora Colombia · 60 min / sesión</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-icon">📍</div>
+                <div class="detail-label">Lugar</div>
+                <div class="detail-value">Virtual</div>
+                <div class="detail-sub">Zoom</div>
+              </div>
             </div>
-            <p class="form-hint">Código de país obligatorio — ej: +57 Colombia, +1 USA/Canada, +34 España</p>
-            <p class="form-error" id="regPhoneError">Incluye el código de país comenzando con + (ej: +57)</p>
-          </div>
-          <button class="register-btn" id="regBtn" onclick="submitRegistration()">Reservar mi lugar</button>
-          <p class="cupos-note">Cupos limitados · Tu lugar se confirma con el pago</p>
-        </div>
 
-        <div class="confirmation-box" id="confirmationBox">
-          <div class="conf-check">✓</div>
-          <h3 class="conf-title">¡Recibimos tu registro!</h3>
-          <p class="conf-text">Las instrucciones de pago para confirmar tu cupo serán enviadas al correo electrónico en el que te registraste.</p>
-          <p class="conf-footer-note">¿Preguntas? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
+            <div class="content-section">
+              <div style="margin-bottom:1.25rem;"><span class="content-label">Lo que vivimos</span></div>
+              <ul class="session-list">
+                <li class="session-item">
+                  <div class="session-num">Sesión 1</div>
+                  <p class="session-text">Introducción a las pesadillas: qué son, por qué persisten (e insisten), diferencias con otros tipos de sueños y su relación con la salud mental y los síntomas psicológicos, y estrategias basadas en la evidencia para trabajar con pesadillas y reducir su intensidad o frecuencia.</p>
+                </li>
+                <li class="session-item">
+                  <div class="session-num">Sesiones 2 y 3</div>
+                  <p class="session-text">La práctica central: trabajo somático combinado con estrategias de ensayo de imágenes mentales. A través de un proceso guiado, cada persona exploró los personajes, escenarios, tramas, patrones y símbolos de la pesadilla con la que quería trabajar.</p>
+                </li>
+                <li class="session-item">
+                  <div class="session-num">Sesión 4</div>
+                  <p class="session-text">Integramos los cambios que surgieron a lo largo de las 4 semanas: en el contenido de los sueños y en la relación con el dormir. Cerramos el contenedor grupal con respuestas a preguntas abiertas y una guía con herramientas y recursos para continuar trabajando con los sueños de manera individual.</p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="content-section">
+              <div style="margin-bottom:1.25rem;"><span class="content-label">Se llevaron</span></div>
+              <ul class="benefit-list">
+                <li class="benefit-item">Una comprensión clara de qué son las pesadillas y los sueños repetitivos, y cuál puede ser su función en nuestra vida emocional.</li>
+                <li class="benefit-item">Herramientas prácticas para trabajar con el contenido de los sueños desde la primera sesión, incluyendo imagery rehearsal, ejercicios somáticos y de escritura.</li>
+                <li class="benefit-item">Una rutina de diario de sueños y prácticas de higiene del sueño incorporadas en la vida cotidiana.</li>
+                <li class="benefit-item">Una relación distinta con su vida nocturna y el contenido de sus sueños.</li>
+                <li class="benefit-item"><strong>Bonus:</strong> un código de descuento para descargar Mindflow (app de sueños).</li>
+              </ul>
+            </div>
+
+            <div class="finalizado-box">
+              <p class="finalizado-title">Este taller ya concluyó.</p>
+              <p class="finalizado-text">¿Te interesa una próxima edición? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a> y te aviso cuando abra una nueva fecha.</p>
+            </div>
+
+          </div>
         </div>
       </div>
+      <!-- / EVENT CARD -->
 
     </div>
   </main>
@@ -322,9 +261,7 @@
     <span class="footer-copy">© 2026 Camila Figueroa</span>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-    // NAV SCROLL
     window.addEventListener('scroll', () => {
       document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
     });
@@ -333,66 +270,8 @@
       if (links.style.display === 'flex') { links.style.display = 'none'; }
       else { links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(190,218,238,0.92);backdrop-filter:blur(14px);padding:1.5rem 2rem;border-bottom:1px solid rgba(255,255,255,0.4);gap:1.5rem;'; }
     }
-
-    // DYNAMIC PRICE
-    const EARLY_END = new Date('2026-05-28T00:00:00-05:00');
-    const price = Date.now() < EARLY_END.getTime() ? 49 : 60;
-    const priceNote = price === 49 ? 'Precio hasta el 27 de mayo' : 'Precio regular';
-    document.getElementById('priceWrap').innerHTML =
-      '<div class="price-current">$' + price + ' USD</div>' +
-      '<p class="price-note">' + priceNote + '</p>' +
-      (price === 49 ? '<p class="price-future">$60 USD desde el 28 de mayo</p>' : '');
-    // EMAILJS — replace these three values after setting up your EmailJS account
-    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
-    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-
-    // FORM SUBMISSION
-    async function submitRegistration() {
-      const name      = document.getElementById('regName').value.trim();
-      const email     = document.getElementById('regEmail').value.trim();
-      const emailConf = document.getElementById('regEmailConfirm').value.trim();
-      const code      = document.getElementById('regPhoneCode').value.trim();
-      const num       = document.getElementById('regPhoneNum').value.trim();
-      let valid = true;
-
-      const err = (id, show) => { document.getElementById(id).style.display = show ? 'block' : 'none'; };
-
-      if (!name)                          { err('regNameError', true);        valid = false; } else err('regNameError', false);
-      if (!email || !email.includes('@')) { err('regEmailError', true);       valid = false; } else err('regEmailError', false);
-      if (email !== emailConf)            { err('regEmailConfirmError', true); valid = false; } else err('regEmailConfirmError', false);
-      if (!code.startsWith('+') || code.length < 2) { err('regPhoneError', true); valid = false; } else err('regPhoneError', false);
-      if (!valid) return;
-
-      const btn = document.getElementById('regBtn');
-      btn.disabled = true;
-      btn.textContent = 'Enviando…';
-
-      const phone = code + ' ' + num;
-
-      // Notify Camila via Formspree (hidden form submit — most reliable on static sites)
-      document.getElementById('fs_nombre').value   = name;
-      document.getElementById('fs_correo').value   = email;
-      document.getElementById('fs_replyto').value  = email;
-      document.getElementById('fs_telefono').value = phone;
-      document.getElementById('fs_monto').value    = '$' + price + ' USD';
-      document.getElementById('formspreeForm').submit();
-
-      // Auto-reply to registrant via EmailJS
-      try {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          to_name:    name,
-          to_email:   email,
-          phone:      phone,
-          amount:     '$' + price + ' USD',
-          price_note: priceNote,
-        });
-      } catch(e) { console.warn('EmailJS:', e); }
-
-      document.getElementById('regForm').style.display = 'none';
-      document.getElementById('confirmationBox').style.display = 'block';
-      document.getElementById('registerSection').scrollIntoView({ behavior:'smooth', block:'start' });
+    function toggleCard(id) {
+      document.getElementById(id).classList.toggle('open');
     }
   </script>
 </body>
