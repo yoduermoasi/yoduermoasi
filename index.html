@@ -65,7 +65,7 @@
       "@type": "Person",
       "name": "Camila Figueroa"
     },
-    "description": "A 60-minute individual dreamwork session. Uses evidence-based methods including depth psychology, Gestalt exploration, and imagery rehearsal therapy to explore dreams and connect unconscious patterns to waking life, emotional clarity, and behavioral change.",
+    "description": "A 90-minute individual dreamwork session. Uses evidence-based methods including depth psychology, Gestalt exploration, and imagery rehearsal therapy to explore dreams and connect unconscious patterns to waking life, emotional clarity, and behavioral change.",
     "offers": {
       "@type": "AggregateOffer",
       "lowPrice": "99",
@@ -129,7 +129,7 @@
         "name": "How long is a session and what does it cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Sessions are 60 minutes and offered on a sliding scale: $99 USD (need a little help) or $119 USD (true cost). Financial assistance is always available — reach out directly if needed. Sessions are available in English and Spanish."
+          "text": "Sessions are 90 minutes and offered on a sliding scale: $99 USD (need a little help) or $119 USD (true cost). Financial assistance is always available — reach out directly if needed. Sessions are available in English and Spanish."
         }
       },
       {
@@ -523,11 +523,11 @@
   <section class="hero" id="hero">
     <div class="hero-left">
       <p class="hero-eyebrow reveal" data-i18n="hero.eyebrow">Dream practice grounded in evidence</p>
-      <h1 class="hero-headline reveal delay-1" data-i18n-html="hero.headline">
-        Dreams are a reliable source of data we shouldn't overlook. Nor is there any good reason to keep neglecting <em>⅓ of our lives.</em>
+      <h1 class="hero-headline reveal delay-1" data-i18n="hero.headline">
+        A space for you.
       </h1>
       <p class="hero-subtext reveal delay-2" data-i18n="hero.subtext">
-        Our decisions, thoughts, and behaviors are largely influenced by unconscious processes. Our unconscious reveals itself through dreams, yet we have this very unfortunate tendency to neglect them.
+        If something isn't working in your relationships, your work, or in how you feel about yourself, this is a space to pause, understand what's happening, and find new ways to move forward.
       </p>
       <div class="hero-actions reveal delay-3">
         <a href="#" class="btn-primary" onclick="openModal(event)" data-i18n="hero.book">Book a 1:1 Session</a>
@@ -549,9 +549,9 @@
   <section class="approach-section">
     <div>
       <p class="approach-label reveal" data-i18n="approach.label">The Approach</p>
-      <h2 class="approach-headline reveal delay-1" data-i18n="approach.headline">A space for you.</h2>
+      <h2 class="approach-headline reveal delay-1" data-i18n="approach.headline">The methods.</h2>
       <p class="approach-body reveal delay-2" data-i18n="approach.body">
-        If something isn't working in your relationships, your work, or in how you feel about yourself, this is a space to pause, understand what's happening, and find new ways to move forward.
+        Five evidence-based approaches, integrated across every session.
       </p>
     </div>
     <div class="methods">
@@ -589,7 +589,7 @@
       <div class="offering-card featured reveal">
         <div class="offering-num" data-i18n="offering.num">Individual Session</div>
         <h3 class="offering-title" data-i18n="offering.title">1:1 Dream Session</h3>
-        <div class="offering-timing" data-i18n="offering.timing">By Appointment · 60 min · English & Spanish</div>
+        <div class="offering-timing" data-i18n="offering.timing">By Appointment · 90 min · English & Spanish</div>
         <p class="offering-desc" data-i18n="offering.desc">The goal is to use dreams to make sense of what feels random, meaningless, or disconnected, especially during moments of stress, transition and relational changes. Sessions can center on specific dreams, figures, personal or professional projects, recurring patterns, or the ongoing development of your creative self. You leave with concrete tools to work with dreams independently.</p>
         <a href="#" class="offering-cta primary" onclick="openModal(event)" data-i18n="offering.cta">Book a 1:1 Session</a>
         <a href="#" class="btn-gift" onclick="openGiftModal(event)" data-i18n="gift.btn">Gift Card for Someone Special</a>
@@ -714,7 +714,7 @@
       </details>
       <details class="faq-item reveal delay-1">
         <summary class="faq-question" data-i18n="faq.q6">How long is a session and what does it cost?</summary>
-        <p class="faq-answer" data-i18n="faq.a6">Sessions are 60 minutes. Pricing is on a sliding scale: $99 USD (need a little help) or $119 USD (true cost). Additional financial assistance is always available — just reach out.</p>
+        <p class="faq-answer" data-i18n="faq.a6">Sessions are 90 minutes. Pricing is on a sliding scale: $99 USD (need a little help) or $119 USD (true cost). Additional financial assistance is always available — just reach out.</p>
       </details>
       <details class="faq-item reveal delay-2">
         <summary class="faq-question" data-i18n="faq.q7">What languages are sessions available in?</summary>
@@ -776,19 +776,47 @@
         <button class="modal-back-btn" id="modalBack" onclick="goBack()" aria-label="Back" style="visibility:hidden">←</button>
         <div>
           <div class="modal-title" id="modalTitle">Choose your price</div>
-          <div class="modal-subtitle" id="modalSubtitle">1:1 Dream Session · 60 min · English & Spanish</div>
+          <div class="modal-subtitle" id="modalSubtitle">1:1 Dream Session · 90 min · English & Spanish</div>
         </div>
         <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
       </div>
 
       <!-- Step indicators -->
       <div class="modal-steps">
-        <div class="modal-step-dot active" id="dot1"></div>
+        <div class="modal-step-dot active" id="dot0"></div>
+        <div class="modal-step-dot" id="dot1"></div>
         <div class="modal-step-dot" id="dot2"></div>
         <div class="modal-step-dot" id="dot3"></div>
       </div>
 
       <div class="modal-body">
+
+        <!-- ── STEP 0: Session info ── -->
+        <div id="step0">
+          <p style="font-family:var(--ff-body);font-size:0.9rem;color:var(--text-soft);line-height:1.7;margin-bottom:1.5rem;" data-i18n="modal.step0.desc">The goal is to use dreams to make sense of what feels random, meaningless, or disconnected — especially during moments of stress, transition, and relational changes.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.75rem;">
+            <div>
+              <p style="font-family:var(--ff-display);font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--sun-deep);margin-bottom:0.85rem;" data-i18n="modal.step0.bring.label">What you can bring</p>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
+                <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="modal.bring.1">A specific dream or recurring dream</li>
+                <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="modal.bring.2">A nightmare or disturbing image</li>
+                <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="modal.bring.3">A creative or professional project</li>
+                <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="modal.bring.4">A life transition or relational difficulty</li>
+                <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="modal.bring.5">Curiosity about your inner life</li>
+              </ul>
+            </div>
+            <div>
+              <p style="font-family:var(--ff-display);font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--sun-deep);margin-bottom:0.85rem;" data-i18n="modal.step0.leave.label">What you'll leave with</p>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:0.55rem;">
+                <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);line-height:1.5;" data-i18n="modal.leave.1">A depth interpretation using your own words and images</li>
+                <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);line-height:1.5;" data-i18n="modal.leave.2">Concrete tools to work with dreams independently</li>
+                <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);line-height:1.5;" data-i18n="modal.leave.3">Clarity on patterns shaping decisions and relationships</li>
+                <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);line-height:1.5;" data-i18n="modal.leave.4">A written record of what emerged</li>
+              </ul>
+            </div>
+          </div>
+          <button onclick="showStep(1)" class="offering-cta primary" style="width:100%;text-align:center;display:block;padding:0.85rem 1.5rem;" data-i18n="modal.step0.cta">Continue to pricing →</button>
+        </div>
 
         <!-- ── STEP 1: Pricing tiers ── -->
         <div id="step1">
@@ -843,7 +871,7 @@
           </div>
           <div class="payment-summary">
             <div class="payment-summary-amount" id="paymentAmount">$119</div>
-            <div class="payment-summary-desc" data-i18n="step3.session.desc">1:1 Dream Session · 60 min</div>
+            <div class="payment-summary-desc" data-i18n="step3.session.desc">1:1 Dream Session · 90 min</div>
           </div>
           <div id="booking-payment-area">
             <button id="bookingPaypalBtn" onclick="openBookingPaypal()" class="paypal-btn">
@@ -964,7 +992,7 @@
 
         <!-- Gift Step 1: Price -->
         <div id="gstep1">
-          <p class="price-intro" data-i18n="gift.price.intro">Choose the amount you'd like to gift. All options include the full 60-minute session.</p>
+          <p class="price-intro" data-i18n="gift.price.intro">Choose the amount you'd like to gift. All options include the full 90-minute session.</p>
           <div class="price-tiers">
             <div class="price-tier" onclick="selectGiftTier(119)">
               <div class="price-tier-top">
@@ -1039,15 +1067,15 @@
         'nav.faq': 'FAQ',
         'nav.book': 'Book a 1:1 Session',
         'hero.eyebrow': 'Dream practice grounded in evidence',
-        'hero.headline': 'Dreams are a reliable source of data we shouldn\'t overlook. Nor is there any good reason to keep neglecting <em>⅓ of our lives.</em>',
-        'hero.subtext': 'Our decisions, thoughts, and behaviors are largely influenced by unconscious processes. Our unconscious reveals itself through dreams, yet we have this very unfortunate tendency to neglect them.',
+        'hero.headline': 'A space for you.',
+        'hero.subtext': 'If something isn\'t working in your relationships, your work, or in how you feel about yourself, this is a space to pause, understand what\'s happening, and find new ways to move forward.',
         'hero.book': 'Book a 1:1 Session',
         'hero.learn': 'Learn More',
         'hero.language': 'Sessions in English & Spanish',
         'hero.keywords': 'Sleep · Mental Health · Wellbeing',
         'approach.label': 'The Approach',
-        'approach.headline': 'A space for you.',
-        'approach.body': 'If something isn\'t working in your relationships, your work, or in how you feel about yourself, this is a space to pause, understand what\'s happening, and find new ways to move forward.',
+        'approach.headline': 'The methods.',
+        'approach.body': 'Five evidence-based approaches, integrated across every session.',
         'method1.name': 'Narrative Therapy',
         'method1.desc': 'Understand the story that limits you and find narratives that better reflect who you are and who you want to become.',
         'method2.name': 'Psychodynamic & Dreamwork',
@@ -1062,7 +1090,7 @@
         'offerings.label': 'One Way to Begin',
         'offering.num': 'Individual Session',
         'offering.title': '1:1 Dream Session',
-        'offering.timing': 'By Appointment · 60 min · English & Spanish',
+        'offering.timing': 'By Appointment · 90 min · English & Spanish',
         'offering.desc': 'The goal is to use dreams to make sense of what feels random, meaningless, or disconnected, especially during moments of stress, transition and relational changes. Sessions can center on specific dreams, figures, personal or professional projects, recurring patterns, or the ongoing development of your creative self. You leave with concrete tools to work with dreams independently.',
         'offering.cta': 'Book a 1:1 Session',
         'therapy.num': 'Long-term Therapy',
@@ -1115,7 +1143,7 @@
         'faq.q5': 'What is Imagery Rehearsal Therapy?',
         'faq.a5': 'IRT is an evidence-based technique originally developed for nightmare disorder. It involves consciously rewriting a distressing dream narrative and rehearsing the new version, reducing nightmare frequency and improving sleep quality.',
         'faq.q6': 'How long is a session and what does it cost?',
-        'faq.a6': 'Sessions are 60 minutes. Pricing is on a sliding scale: $99 USD (need a little help) or $119 USD (true cost). Additional financial assistance is always available — just reach out.',
+        'faq.a6': 'Sessions are 90 minutes. Pricing is on a sliding scale: $99 USD (need a little help) or $119 USD (true cost). Additional financial assistance is always available — just reach out.',
         'faq.q7': 'What languages are sessions available in?',
         'faq.a7': 'Sessions are available in English and Spanish.',
         'newsletter.label': 'Stay in the Loop',
@@ -1133,11 +1161,13 @@
         'footer.sessions': 'Sessions',
         'footer.about': 'About',
         'footer.contact': 'Contact',
+        'modal.title.0': '1:1 Dream Session',
         'modal.title.1': 'Choose your price',
         'modal.title.2': 'Book your time',
         'modal.title.3': 'Complete payment',
-        'modal.subtitle.1': '1:1 Dream Session · 60 min · English & Spanish',
-        'modal.subtitle.2': '1:1 Dream Session · 60 min · English & Spanish',
+        'modal.subtitle.0': '90 min · English & Spanish',
+        'modal.subtitle.1': '1:1 Dream Session · 90 min · English & Spanish',
+        'modal.subtitle.2': '1:1 Dream Session · 90 min · English & Spanish',
         'modal.subtitle.3': 'Secure your spot',
         'modal.price.intro': 'In an effort to keep this work accessible, sessions are offered on a sliding scale. You\'re welcome to choose an amount that feels comfortable and honest for your current situation.',
         'tier1.label': 'True cost',
@@ -1153,7 +1183,7 @@
         'step2.selected.label': 'Your selected price',
         'step3.badge': '✓ Session scheduled',
         'step3.title': 'Complete your payment to secure your spot',
-        'step3.session.desc': '1:1 Dream Session · 60 min',
+        'step3.session.desc': '1:1 Dream Session · 90 min',
         'step3.paypal': 'Pay with PayPal',
         'step3.fnf.note': 'Confirm your session by completing payment — select "Friends &amp; Family".',
         'step3.done.btn': 'I\'ve completed my payment →',
@@ -1163,8 +1193,21 @@
         'gift.confirmed.title': 'Thank you!',
         'gift.confirmed': 'You\'ll receive the gift card link by email once we verify your payment.',
         'step3.payment.issue': 'Having issues with payment? Contact <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
+        'modal.step0.desc': 'The goal is to use dreams to make sense of what feels random, meaningless, or disconnected — especially during moments of stress, transition, and relational changes.',
+        'modal.step0.bring.label': 'What you can bring',
+        'modal.bring.1': 'A specific dream or recurring dream',
+        'modal.bring.2': 'A nightmare or disturbing image',
+        'modal.bring.3': 'A creative or professional project',
+        'modal.bring.4': 'A life transition or relational difficulty',
+        'modal.bring.5': 'Curiosity about your inner life',
+        'modal.step0.leave.label': 'What you\'ll leave with',
+        'modal.leave.1': 'A depth interpretation using your own words and images',
+        'modal.leave.2': 'Concrete tools to work with dreams independently',
+        'modal.leave.3': 'Clarity on patterns shaping decisions and relationships',
+        'modal.leave.4': 'A written record of what emerged',
+        'modal.step0.cta': 'Continue to pricing →',
         'gift.btn': 'Gift Card for Someone Special',
-        'gift.price.intro': 'Choose the amount you\'d like to gift. All options include the full 60-minute session.',
+        'gift.price.intro': 'Choose the amount you\'d like to gift. All options include the full 90-minute session.',
         'gift.modal.title.1': 'Give a Dream Session',
         'gift.modal.title.2': 'Personalize Your Gift',
         'gift.modal.subtitle.1': 'A meaningful gift for someone you love',
@@ -1197,15 +1240,15 @@
         'nav.faq': 'Preguntas',
         'nav.book': 'Reserva tu sesión',
         'hero.eyebrow': 'Práctica de sueños basada en evidencia',
-        'hero.headline': 'Los sueños son una fuente de información importante. Ignorarlos es descuidar un <em>⅓ de nuestras vidas.</em>',
-        'hero.subtext': 'Nuestras decisiones, pensamientos y comportamientos están influenciados en gran medida por procesos inconscientes. Lo inconsciente se revela a través de los sueños, sin embargo, tenemos esta desafortunada tendencia a ignorarlos.',
+        'hero.headline': 'Un espacio para ti.',
+        'hero.subtext': 'Si algo no está funcionando en tus relaciones, tu trabajo o en cómo te sientes contigo mismo/a, este es un espacio para pausar, entender qué está pasando y encontrar nuevas formas de avanzar.',
         'hero.book': 'Reserva tu sesión',
         'hero.learn': 'Saber más',
         'hero.language': 'Sesiones en inglés y español',
         'hero.keywords': 'Sueño · Salud Mental · Bienestar',
         'approach.label': 'El Enfoque',
-        'approach.headline': 'Un espacio para ti.',
-        'approach.body': 'Si algo no está funcionando en tus relaciones, en tu trabajo, o en cómo te sientes contigo mismo/a, este es un espacio para hacer una pausa, entender qué está pasando y encontrar nuevas formas de avanzar.',
+        'approach.headline': 'Los métodos.',
+        'approach.body': 'Cinco enfoques basados en evidencia, integrados en cada sesión.',
         'method1.name': 'Terapia Narrativa',
         'method1.desc': 'Entender la historia que te limita y encontrar narrativas que reflejen mejor quién eres y quién quieres ser.',
         'method2.name': 'Terapia Psicodinámica y de Sueños',
@@ -1220,7 +1263,7 @@
         'offerings.label': 'Una Forma de Comenzar',
         'offering.num': 'Sesión Individual',
         'offering.title': 'Sesión 1:1 de Sueños',
-        'offering.timing': 'Con Cita · 60 min · Inglés y Español',
+        'offering.timing': 'Con Cita · 90 min · Inglés y Español',
         'offering.desc': 'El objetivo es usar los sueños para darle sentido a lo que parece aleatorio, sin significado o desconectado, especialmente durante momentos de estrés, transición y cambios relacionales. Las sesiones pueden centrarse en sueños específicos, figuras, proyectos personales o profesionales, patrones recurrentes, o el desarrollo continuo de tu yo creativo. Sales con herramientas concretas para trabajar con los sueños de manera independiente.',
         'offering.cta': 'Reserva tu sesión',
         'therapy.num': 'Terapia a largo plazo',
@@ -1273,7 +1316,7 @@
         'faq.q5': '¿Qué es la Terapia de Ensayo de Imágenes?',
         'faq.a5': 'La TEI es una técnica basada en evidencia desarrollada originalmente para el trastorno de pesadillas. Consiste en reescribir conscientemente la narrativa de un sueño perturbador y ensayar la nueva versión, lo que reduce la frecuencia de las pesadillas y mejora la calidad del sueño.',
         'faq.q6': '¿Cuánto dura una sesión y cuánto cuesta?',
-        'faq.a6': 'Las sesiones duran 60 minutos. Los precios son en escala variable: $99 USD (necesito un poco de ayuda) o $119 USD (costo real). Siempre hay apoyo financiero adicional disponible — solo escríbeme.',
+        'faq.a6': 'Las sesiones duran 90 minutos. Los precios son en escala variable: $99 USD (necesito un poco de ayuda) o $119 USD (costo real). Siempre hay apoyo financiero adicional disponible — solo escríbeme.',
         'faq.q7': '¿En qué idioma están disponibles las sesiones?',
         'faq.a7': 'Las sesiones están disponibles en español e inglés.',
         'newsletter.label': 'Mantente al Tanto',
@@ -1291,11 +1334,13 @@
         'footer.sessions': 'Sesiones',
         'footer.about': 'Sobre mí',
         'footer.contact': 'Contacto',
+        'modal.title.0': 'Sesión 1:1 de Sueños',
         'modal.title.1': 'Elige tu precio',
         'modal.title.2': 'Reserva tu horario',
         'modal.title.3': 'Completa el pago',
-        'modal.subtitle.1': 'Sesión 1:1 de Sueños · 60 min · Inglés y Español',
-        'modal.subtitle.2': 'Sesión 1:1 de Sueños · 60 min · Inglés y Español',
+        'modal.subtitle.0': '90 min · Inglés y Español',
+        'modal.subtitle.1': 'Sesión 1:1 de Sueños · 90 min · Inglés y Español',
+        'modal.subtitle.2': 'Sesión 1:1 de Sueños · 90 min · Inglés y Español',
         'modal.subtitle.3': 'Asegura tu lugar',
         'modal.price.intro': 'Con el fin de mantener este trabajo accesible, las sesiones se ofrecen en una escala variable. Eres bienvenido/a a elegir un monto que se sienta cómodo y honesto para tu situación actual.',
         'tier1.label': 'Costo real',
@@ -1311,7 +1356,7 @@
         'step2.selected.label': 'Tu precio seleccionado',
         'step3.badge': '✓ Sesión programada',
         'step3.title': 'Completa tu pago para asegurar tu lugar',
-        'step3.session.desc': 'Sesión 1:1 de Sueños · 60 min',
+        'step3.session.desc': 'Sesión 1:1 de Sueños · 90 min',
         'step3.paypal': 'Pagar con PayPal',
         'step3.fnf.note': 'Confirma tu sesión haciendo el pago y selecciona "Familiares y amigos".',
         'step3.done.btn': 'Completé mi pago →',
@@ -1321,8 +1366,21 @@
         'gift.confirmed.title': '¡Gracias!',
         'gift.confirmed': 'Recibirás el enlace de la tarjeta de regalo por correo una vez que verifiquemos tu pago.',
         'step3.payment.issue': '¿Problemas con el pago? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
+        'modal.step0.desc': 'El objetivo es usar los sueños para darle sentido a lo que parece aleatorio, sin significado o desconectado — especialmente durante momentos de estrés, transición y cambios relacionales.',
+        'modal.step0.bring.label': 'Qué puedes traer',
+        'modal.bring.1': 'Un sueño específico o recurrente',
+        'modal.bring.2': 'Una pesadilla o imagen perturbadora',
+        'modal.bring.3': 'Un proyecto creativo o profesional',
+        'modal.bring.4': 'Una transición vital o dificultad relacional',
+        'modal.bring.5': 'Curiosidad por tu vida interior',
+        'modal.step0.leave.label': 'Con qué te vas',
+        'modal.leave.1': 'Una interpretación profunda con tus propias palabras e imágenes',
+        'modal.leave.2': 'Herramientas concretas para trabajar con los sueños de manera independiente',
+        'modal.leave.3': 'Claridad sobre los patrones que moldean tus decisiones y relaciones',
+        'modal.leave.4': 'Un registro escrito de lo que emergió',
+        'modal.step0.cta': 'Continuar a los precios →',
         'gift.btn': 'Tarjeta de regalo para alguien especial',
-        'gift.price.intro': 'Elige el monto que deseas regalar. Todas las opciones incluyen la sesión completa de 60 minutos.',
+        'gift.price.intro': 'Elige el monto que deseas regalar. Todas las opciones incluyen la sesión completa de 90 minutos.',
         'gift.modal.title.1': 'Regala una sesión de sueños',
         'gift.modal.title.2': 'Personaliza tu regalo',
         'gift.modal.subtitle.1': 'Un regalo significativo para alguien especial',
@@ -1404,7 +1462,7 @@
     function openModal(e) {
       e.preventDefault();
       selectedPrice = null;
-      showStep(1);
+      showStep(0);
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -1418,17 +1476,20 @@
     function handleModalClick(e) { if (e.target === modal) closeModal(); }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+    let currentStep = 0;
     function showStep(step) {
+      currentStep = step;
+      document.getElementById('step0').style.display = step === 0 ? 'block' : 'none';
       document.getElementById('step1').style.display = step === 1 ? 'block' : 'none';
       document.getElementById('step2').style.display = step === 2 ? 'block' : 'none';
       document.getElementById('step3').style.display = step === 3 ? 'block' : 'none';
-      [1,2,3].forEach(n => {
+      [0,1,2,3].forEach(n => {
         const dot = document.getElementById('dot' + n);
         dot.classList.remove('active','done');
         if (n === step) dot.classList.add('active');
         else if (n < step) dot.classList.add('done');
       });
-      document.getElementById('modalBack').style.visibility = step === 2 ? 'visible' : 'hidden';
+      document.getElementById('modalBack').style.visibility = (step === 1 || step === 2) ? 'visible' : 'hidden';
       const t = translations[currentLang];
       document.getElementById('modalTitle').textContent    = t['modal.title.' + step];
       document.getElementById('modalSubtitle').textContent = t['modal.subtitle.' + step];
@@ -1444,7 +1505,10 @@
       showStep(2);
     }
 
-    function goBack() { showStep(1); }
+    function goBack() {
+      if (currentStep === 1) showStep(0);
+      else if (currentStep === 2) showStep(1);
+    }
 
     function openBookingPaypal() {
       window.open('https://www.paypal.me/yoduermoasi/' + selectedPrice, '_blank');
