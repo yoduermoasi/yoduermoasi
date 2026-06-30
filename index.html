@@ -293,6 +293,11 @@
     .contact-input:focus { border-color:var(--sun-deep); }
     .contact-input::placeholder { color:rgba(26,48,74,0.35); }
     select.contact-input { cursor:pointer; }
+    .focus-checkboxes { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem 1rem; }
+    .focus-checkbox-item { display:flex; align-items:center; gap:0.55rem; cursor:pointer; }
+    .focus-checkbox-item input[type="checkbox"] { appearance:none; -webkit-appearance:none; width:16px; height:16px; min-width:16px; border:1px solid rgba(26,48,74,0.25); border-radius:3px; background:rgba(255,255,255,0.85); cursor:pointer; transition:all 0.15s; }
+    .focus-checkbox-item input[type="checkbox"]:checked { background:var(--sun-deep); border-color:var(--sun-deep); background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 10 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4l3 3 5-6' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:center; background-size:10px; }
+    .focus-checkbox-item span { font-family:var(--ff-body); font-size:0.83rem; color:var(--text-soft); }
 
     /* ── FOR WHOM ── */
     .for-section { display: none; }
@@ -926,15 +931,21 @@
               <label class="contact-label">Phone</label>
               <input type="tel" name="phone" class="contact-input" placeholder="+1 (000) 000-0000"/>
             </div>
-            <div style="margin-bottom:1.1rem;">
-              <label class="contact-label">Reason for Inquiry *</label>
-              <select name="reason" required class="contact-input">
-                <option value="" disabled selected>Select an option</option>
-                <option value="Individual Therapy">Individual Therapy</option>
-                <option value="1:1 Dream Session">1:1 Dream Session</option>
-                <option value="Workshop or Group">Workshop or Group</option>
-                <option value="Other">Other</option>
-              </select>
+            <div style="margin-bottom:1.25rem;">
+              <label class="contact-label" style="margin-bottom:0.75rem;">What brings you here? <span style="font-style:italic;text-transform:none;letter-spacing:0;opacity:0.6;">(select all that apply)</span></label>
+              <div class="focus-checkboxes">
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Anxiety & stress"/><span>Anxiety &amp; stress</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Depressive symptoms"/><span>Depressive symptoms</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Life transitions"/><span>Life transitions</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Identity"/><span>Identity</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Relationship challenges"/><span>Relationship challenges</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Migration"/><span>Migration</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Trauma"/><span>Trauma</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Nightmares & sleep"/><span>Nightmares &amp; sleep</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Grief & loss"/><span>Grief &amp; loss</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Other" id="focusOther" onchange="toggleOtherField()"/><span>Other</span></label>
+              </div>
+              <input type="text" id="otherFocusInput" name="focus_other" placeholder="Please describe..." class="contact-input" style="margin-top:0.75rem;display:none;"/>
             </div>
             <div style="margin-bottom:1.75rem;">
               <label class="contact-label">Message *</label>
@@ -1518,6 +1529,10 @@
       document.body.style.overflow = '';
     }
     function handleContactModalClick(e) { if (e.target === document.getElementById('contactModal')) closeContactModal(); }
+    function toggleOtherField() {
+      const checked = document.getElementById('focusOther').checked;
+      document.getElementById('otherFocusInput').style.display = checked ? 'block' : 'none';
+    }
 
     async function submitContactForm(e) {
       e.preventDefault();
