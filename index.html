@@ -801,7 +801,7 @@
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.75rem;">
             <div>
               <p style="font-family:var(--ff-display);font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--sun-deep);margin-bottom:0.85rem;" data-i18n="modal.step0.bring.label">What you can bring</p>
-              <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
+              <ul style="list-style:disc;padding-left:1.1rem;display:flex;flex-direction:column;gap:0.45rem;">
                 <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="modal.bring.1">A specific dream or recurring dream</li>
                 <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="modal.bring.2">A nightmare or disturbing image</li>
                 <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="modal.bring.3">A creative or professional project</li>
@@ -811,7 +811,7 @@
             </div>
             <div>
               <p style="font-family:var(--ff-display);font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--sun-deep);margin-bottom:0.85rem;" data-i18n="modal.step0.leave.label">What you'll leave with</p>
-              <ul style="list-style:none;display:flex;flex-direction:column;gap:0.55rem;">
+              <ul style="list-style:disc;padding-left:1.1rem;display:flex;flex-direction:column;gap:0.55rem;">
                 <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);line-height:1.5;" data-i18n="modal.leave.1">Themes and patterns in your dreams you wouldn't catch on your own</li>
                 <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);line-height:1.5;" data-i18n="modal.leave.2">Concrete tools to work with your dreams independently, outside of sessions</li>
                 <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);line-height:1.5;" data-i18n="modal.leave.3">Fewer or less intense nightmares, using imagery rehearsal techniques</li>
@@ -947,9 +947,18 @@
               </div>
               <input type="text" id="otherFocusInput" name="focus_other" placeholder="Please describe..." class="contact-input" style="margin-top:0.75rem;display:none;"/>
             </div>
+            <div style="margin-bottom:1.25rem;">
+              <label class="contact-label" style="margin-bottom:0.75rem;">What are you looking for in this process? <span style="font-style:italic;text-transform:none;letter-spacing:0;opacity:0.6;">(select all that apply)</span></label>
+              <div class="focus-checkboxes">
+                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Clarity in decisions, relationships, and identity"/><span>Clarity in decisions, relationships, and identity</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Tools for managing anxiety, stress, and depressive symptoms"/><span>Tools for managing anxiety, stress, and depressive symptoms</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="A safe space to move through changes, grief, and transitions"/><span>A safe space to move through changes, grief, and transitions</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Understanding how my socio-cultural context shapes my experience"/><span>Understanding how my socio-cultural context shapes my experience</span></label>
+              </div>
+            </div>
             <div style="margin-bottom:1.75rem;">
-              <label class="contact-label">Message *</label>
-              <textarea name="message" required rows="4" class="contact-input" style="resize:vertical;" placeholder="Tell me a little about what brings you here..."></textarea>
+              <label class="contact-label">Message</label>
+              <textarea name="message" rows="4" class="contact-input" style="resize:vertical;" placeholder="Anything else you'd like me to know before we connect..."></textarea>
             </div>
             <button type="submit" id="contactSubmitBtn" class="btn-large" style="width:100%;text-align:center;cursor:pointer;border:none;">Send Message</button>
           </form>
