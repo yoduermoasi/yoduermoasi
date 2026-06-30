@@ -226,9 +226,9 @@
     .lang-btn:hover:not(.active) { background: rgba(26,48,74,0.08); }
 
     /* ── HERO ── */
-    .hero { display: grid; grid-template-columns: 1fr 1.4fr; align-items: start; padding: 4.5rem 3.5rem 2rem; gap: 2rem; }
+    .hero { display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; padding: 2rem 3.5rem 2rem; gap: 2rem; min-height: calc(100vh - 72px); max-height: calc(100vh - 72px); overflow: hidden; }
     .hero-left { display: flex; flex-direction: column; justify-content: center; }
-    .hero-right { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .hero-right { display: flex; align-items: center; justify-content: center; height: 100%; overflow: hidden; }
     .hero-bed { width: 100%; }
     .hero-bed img { width: 100%; display: block; mix-blend-mode: screen; }
     .hero-eyebrow { font-family: var(--ff-display); font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--navy-soft); margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
@@ -545,7 +545,7 @@
       <p class="hero-language reveal delay-4" data-i18n="hero.language">Sessions in English & Spanish</p>
     </div>
     <div class="hero-right reveal delay-2">
-      <img src="couch-cloud.png" alt="A couch nestled in clouds" style="width:100%;display:block;mix-blend-mode:multiply;"/>
+      <img src="couch-cloud.png" alt="A couch nestled in clouds" style="width:100%;max-height:calc(100vh - 72px);object-fit:contain;display:block;mix-blend-mode:multiply;"/>
     </div>
   </section>
 
