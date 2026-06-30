@@ -255,12 +255,13 @@
     .section-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--sun-deep); }
 
     /* ── APPROACH ── */
-    .approach-section { margin: 0 2rem; border-radius: 8px; background: rgba(255,255,255,0.52); border: 1px solid rgba(255,255,255,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 40px rgba(30,60,100,0.1), inset 0 1px 0 rgba(255,255,255,0.9); padding: 2.5rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .approach-section { margin: 0 2rem; border-radius: 8px; background: rgba(255,255,255,0.52); border: 1px solid rgba(255,255,255,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 40px rgba(30,60,100,0.1), inset 0 1px 0 rgba(255,255,255,0.9); padding: 2.5rem 3rem; display: block; }
+    .approach-section-header { margin-bottom: 1.5rem; }
     .approach-label { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 2rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
     .approach-label::before { content: ''; width: 28px; height: 1px; background: var(--sun-deep); }
     .approach-headline { font-family: var(--ff-display); font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 300; font-style: italic; line-height: 1.25; color: var(--navy); margin-bottom: 2rem; }
     .approach-body { font-family: var(--ff-body); font-size: 0.95rem; line-height: 1.85; color: var(--text-soft); }
-    .methods { display: flex; flex-direction: column; }
+    .methods { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; }
     .method-item { padding: 1.4rem 0; border-bottom: 1px solid rgba(26,48,74,0.1); display: flex; gap: 1.5rem; align-items: flex-start; }
     .method-item:first-child { border-top: 1px solid rgba(26,48,74,0.1); }
     .method-num { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.16em; color: var(--sun-deep); min-width: 1.5rem; margin-top: 0.2rem; background: rgba(255,255,255,0.55); padding: 0.2rem 0.65rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.8); }
@@ -470,7 +471,8 @@
       .about-body { grid-template-columns: 1fr; gap: 2rem; }
       .about-photo { order: -1; align-items: center; }
       .about-photo img { max-height: none; width: auto; max-width: 60%; object-fit: unset; }
-      .approach-section { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 2rem; margin: 0 1rem; }
+      .approach-section { padding: 3rem 2rem; margin: 0 1rem; }
+      .methods { grid-template-columns: 1fr; }
       .offerings-section { padding: 3.5rem 2rem; }
       .offerings-layout { grid-template-columns: 1fr; }
       .for-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -537,7 +539,7 @@
 
   <!-- APPROACH -->
   <section class="approach-section">
-    <div>
+    <div class="approach-section-header">
       <p class="approach-label reveal" data-i18n="approach.label">The Approach</p>
       <h2 class="approach-headline reveal delay-1" data-i18n="approach.headline">The methods.</h2>
       <p class="approach-body reveal delay-2" data-i18n="approach.body">Five evidence-based approaches, integrated across every session.</p>
