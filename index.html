@@ -549,27 +549,31 @@
   <section class="approach-section">
     <div>
       <p class="approach-label reveal" data-i18n="approach.label">The Approach</p>
-      <h2 class="approach-headline reveal delay-1" data-i18n-html="approach.headline">Not fixed symbols.<br/>Decentralized data<br/>from your inner life.</h2>
+      <h2 class="approach-headline reveal delay-1" data-i18n="approach.headline">A space for you.</h2>
       <p class="approach-body reveal delay-2" data-i18n="approach.body">
-        Rather than searching for generic interpretations, dreams are treated as a reliable source of data — about who you are, what you carry, and the socio-cultural world you inhabit. Dreams are placed in direct dialogue with waking life through the following approaches:
+        If something isn't working in your relationships, your work, or in how you feel about yourself, this is a space to pause, understand what's happening, and find new ways to move forward.
       </p>
     </div>
     <div class="methods">
       <div class="method-item reveal">
         <span class="method-num">I</span>
-        <div><div class="method-name" data-i18n="method1.name">Depth Psychology</div><div class="method-desc" data-i18n="method1.desc">Activate unconscious and archetypal patterns through active imagination and free association.</div></div>
+        <div><div class="method-name" data-i18n="method1.name">Narrative Therapy</div><div class="method-desc" data-i18n="method1.desc">Understand the story that limits you and find narratives that better reflect who you are and who you want to become.</div></div>
       </div>
       <div class="method-item reveal delay-1">
         <span class="method-num">II</span>
-        <div><div class="method-name" data-i18n="method2.name">Gestalt Exploration</div><div class="method-desc" data-i18n="method2.desc">Embodied, present-moment engagement with dream figures and images.</div></div>
+        <div><div class="method-name" data-i18n="method2.name">Psychodynamic & Dreamwork</div><div class="method-desc" data-i18n="method2.desc">Explore unconscious patterns shaping decisions, thoughts, and behaviors. Dreams are used as direct access to the unconscious.</div></div>
       </div>
       <div class="method-item reveal delay-2">
         <span class="method-num">III</span>
-        <div><div class="method-name" data-i18n="method3.name">Imagery Rehearsal</div><div class="method-desc" data-i18n="method3.desc">Evidence-based technique for reducing recurring nightmares and disturbing dreams.</div></div>
+        <div><div class="method-name" data-i18n="method3.name">Multicultural Psychology</div><div class="method-desc" data-i18n="method3.desc">Examine how race, ethnicity, language, migration, and social context intersect and shape your mental health.</div></div>
       </div>
       <div class="method-item reveal delay-3">
         <span class="method-num">IV</span>
-        <div><div class="method-name" data-i18n="method4.name">Somatic & Trauma-Informed</div><div class="method-desc" data-i18n="method4.desc">Body-based awareness integrated with trauma-sensitive support throughout all sessions.</div></div>
+        <div><div class="method-name" data-i18n="method4.name">Cognitive Behavioral Therapy</div><div class="method-desc" data-i18n="method4.desc">Identify automatic thoughts that sustain distress and build concrete strategies towards wellbeing.</div></div>
+      </div>
+      <div class="method-item reveal delay-4">
+        <span class="method-num">V</span>
+        <div><div class="method-name" data-i18n="method5.name">Somatic & Trauma-Informed</div><div class="method-desc" data-i18n="method5.desc">Body-based awareness integrated with trauma-sensitive support throughout all sessions.</div></div>
       </div>
     </div>
   </section>
@@ -590,7 +594,13 @@
         <a href="#" class="offering-cta primary" onclick="openModal(event)" data-i18n="offering.cta">Book a 1:1 Session</a>
         <a href="#" class="btn-gift" onclick="openGiftModal(event)" data-i18n="gift.btn">Gift Card for Someone Special</a>
       </div>
-      <div class="offerings-testimonials"></div>
+      <div class="offering-card reveal delay-1">
+        <div class="offering-num" data-i18n="therapy.num">Long-term Therapy</div>
+        <h3 class="offering-title" data-i18n="therapy.title">I want to start therapy.</h3>
+        <div class="offering-timing" data-i18n="therapy.timing">By Appointment · 50 min · Virtual · English & Spanish</div>
+        <p class="offering-desc" data-i18n="therapy.desc">If something isn't working — in your relationships, your work, or how you feel about yourself — therapy is a space to understand what's happening and find new ways to move forward. We work through what feels overwhelming together, at your pace.</p>
+        <a href="#" class="offering-cta" onclick="openTherapyModal(event)" data-i18n="therapy.cta">Learn more & write to me</a>
+      </div>
     </div>
   </section>
 
@@ -857,6 +867,68 @@
     </div>
   </div>
 
+  <!-- THERAPY MODAL -->
+  <div class="modal-overlay" id="therapyModal" onclick="handleTherapyModalClick(event)">
+    <div class="modal-box" style="max-width:620px;">
+      <div class="modal-header" style="grid-template-columns:1fr 2rem;">
+        <div>
+          <div class="modal-title" data-i18n="therapy.modal.title">Long-term Therapy</div>
+          <div class="modal-subtitle" data-i18n="therapy.modal.subtitle">50 min · Weekly · Virtual · English & Spanish</div>
+        </div>
+        <button class="modal-close" onclick="closeTherapyModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" style="display:flex;flex-direction:column;gap:2rem;">
+
+        <!-- Approaches -->
+        <div>
+          <p style="font-family:var(--ff-display);font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--sun-deep);margin-bottom:1rem;" data-i18n="therapy.modal.approaches.label">Psychological Approaches</p>
+          <div style="display:flex;flex-direction:column;gap:0.6rem;">
+            <div style="display:flex;gap:0.75rem;align-items:baseline;"><span style="font-family:var(--ff-display);font-size:0.62rem;color:var(--sun-deep);min-width:1.2rem;">I</span><div><span style="font-family:var(--ff-display);font-size:0.92rem;font-weight:500;color:var(--navy);" data-i18n="method1.name">Narrative Therapy</span><p style="font-family:var(--ff-body);font-size:0.8rem;color:var(--text-soft);line-height:1.6;margin-top:0.15rem;" data-i18n="method1.desc">Understand the story that limits you and find narratives that better reflect who you are and who you want to become.</p></div></div>
+            <div style="display:flex;gap:0.75rem;align-items:baseline;"><span style="font-family:var(--ff-display);font-size:0.62rem;color:var(--sun-deep);min-width:1.2rem;">II</span><div><span style="font-family:var(--ff-display);font-size:0.92rem;font-weight:500;color:var(--navy);" data-i18n="method2.name">Psychodynamic & Dreamwork</span><p style="font-family:var(--ff-body);font-size:0.8rem;color:var(--text-soft);line-height:1.6;margin-top:0.15rem;" data-i18n="method2.desc">Explore unconscious patterns shaping decisions, thoughts, and behaviors. Dreams are used as direct access to the unconscious.</p></div></div>
+            <div style="display:flex;gap:0.75rem;align-items:baseline;"><span style="font-family:var(--ff-display);font-size:0.62rem;color:var(--sun-deep);min-width:1.2rem;">III</span><div><span style="font-family:var(--ff-display);font-size:0.92rem;font-weight:500;color:var(--navy);" data-i18n="method3.name">Multicultural Psychology</span><p style="font-family:var(--ff-body);font-size:0.8rem;color:var(--text-soft);line-height:1.6;margin-top:0.15rem;" data-i18n="method3.desc">Examine how race, ethnicity, language, migration, and social context intersect and shape your mental health.</p></div></div>
+            <div style="display:flex;gap:0.75rem;align-items:baseline;"><span style="font-family:var(--ff-display);font-size:0.62rem;color:var(--sun-deep);min-width:1.2rem;">IV</span><div><span style="font-family:var(--ff-display);font-size:0.92rem;font-weight:500;color:var(--navy);" data-i18n="method4.name">Cognitive Behavioral Therapy</span><p style="font-family:var(--ff-body);font-size:0.8rem;color:var(--text-soft);line-height:1.6;margin-top:0.15rem;" data-i18n="method4.desc">Identify automatic thoughts that sustain distress and build concrete strategies towards wellbeing.</p></div></div>
+            <div style="display:flex;gap:0.75rem;align-items:baseline;"><span style="font-family:var(--ff-display);font-size:0.62rem;color:var(--sun-deep);min-width:1.2rem;">V</span><div><span style="font-family:var(--ff-display);font-size:0.92rem;font-weight:500;color:var(--navy);" data-i18n="method5.name">Somatic & Trauma-Informed</span><p style="font-family:var(--ff-body);font-size:0.8rem;color:var(--text-soft);line-height:1.6;margin-top:0.15rem;" data-i18n="method5.desc">Body-based awareness integrated with trauma-sensitive support throughout all sessions.</p></div></div>
+          </div>
+        </div>
+
+        <!-- Areas of focus + Benefits side by side -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+          <div>
+            <p style="font-family:var(--ff-display);font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--sun-deep);margin-bottom:0.85rem;" data-i18n="therapy.modal.focus.label">Areas of Focus</p>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="focus.1">Anxiety &amp; stress</li>
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="focus.2">Depressive symptoms</li>
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="focus.3">Life transitions</li>
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="focus.4">Identity</li>
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="focus.5">Relationship challenges</li>
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="focus.6">Migration</li>
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="focus.7">Trauma</li>
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="focus.8">Nightmares &amp; sleep</li>
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);" data-i18n="focus.9">Grief &amp; loss</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-family:var(--ff-display);font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--sun-deep);margin-bottom:0.85rem;" data-i18n="therapy.modal.benefits.label">Benefits</p>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:0.7rem;">
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);line-height:1.55;" data-i18n="benefit.1">Clarity in decisions, relationships, and sense of identity.</li>
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);line-height:1.55;" data-i18n="benefit.2">Tools for managing anxiety, stress, and depressive symptoms.</li>
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);line-height:1.55;" data-i18n="benefit.3">Safe space to move through changes, grief, and life transitions.</li>
+              <li style="font-family:var(--ff-body);font-size:0.82rem;color:var(--text-soft);line-height:1.55;" data-i18n="benefit.4">Understanding of how your socio-cultural context shapes your experience.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="border-top:1px solid var(--rule);padding-top:1.5rem;display:flex;flex-direction:column;gap:0.6rem;align-items:center;text-align:center;">
+          <p style="font-family:var(--ff-body);font-size:0.88rem;color:var(--text-soft);font-style:italic;line-height:1.7;" data-i18n="therapy.modal.cta.desc">To begin, reach out directly. I'll respond within 48 hours to schedule a brief introductory call.</p>
+          <a href="mailto:figueroacamila5@gmail.com" class="offering-cta primary" style="margin-top:0.5rem;" data-i18n="therapy.modal.cta.btn">Write to me</a>
+          <p style="font-family:var(--ff-display);font-size:0.68rem;letter-spacing:0.1em;color:var(--text-muted);">figueroacamila5@gmail.com &nbsp;·&nbsp; +1 (217) 518-4880</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- LEAD CAPTURE POPUP -->
   <div class="modal-overlay" id="leadModal" onclick="handleLeadModalClick(event)">
     <div class="modal-box lead-box">
@@ -986,16 +1058,18 @@
         'hero.language': 'Sessions in English & Spanish',
         'hero.keywords': 'Sleep · Mental Health · Wellbeing',
         'approach.label': 'The Approach',
-        'approach.headline': 'Not fixed symbols.<br/>Decentralized data<br/>from your inner life.',
-        'approach.body': 'Rather than searching for generic interpretations, dreams are treated as a reliable source of data — about who you are, what you carry, and the socio-cultural world you inhabit. Dreams are placed in direct dialogue with waking life through the following approaches:',
-        'method1.name': 'Depth Psychology',
-        'method1.desc': 'Activate unconscious and archetypal patterns through active imagination and free association.',
-        'method2.name': 'Gestalt Exploration',
-        'method2.desc': 'Embodied, present-moment engagement with dream figures and images.',
-        'method3.name': 'Imagery Rehearsal',
-        'method3.desc': 'Evidence-based technique for reducing recurring nightmares and disturbing dreams.',
-        'method4.name': 'Somatic & Trauma-Informed',
-        'method4.desc': 'Body-based awareness integrated with trauma-sensitive support throughout all sessions.',
+        'approach.headline': 'A space for you.',
+        'approach.body': 'If something isn\'t working in your relationships, your work, or in how you feel about yourself, this is a space to pause, understand what\'s happening, and find new ways to move forward.',
+        'method1.name': 'Narrative Therapy',
+        'method1.desc': 'Understand the story that limits you and find narratives that better reflect who you are and who you want to become.',
+        'method2.name': 'Psychodynamic & Dreamwork',
+        'method2.desc': 'Explore unconscious patterns shaping decisions, thoughts, and behaviors. Dreams are used as direct access to the unconscious.',
+        'method3.name': 'Multicultural Psychology',
+        'method3.desc': 'Examine how race, ethnicity, language, migration, and social context intersect and shape your mental health.',
+        'method4.name': 'Cognitive Behavioral Therapy',
+        'method4.desc': 'Identify automatic thoughts that sustain distress and build concrete strategies towards wellbeing.',
+        'method5.name': 'Somatic & Trauma-Informed',
+        'method5.desc': 'Body-based awareness integrated with trauma-sensitive support throughout all sessions.',
         'offerings.title': 'Work Together',
         'offerings.label': 'One Way to Begin',
         'offering.num': 'Individual Session',
@@ -1003,6 +1077,31 @@
         'offering.timing': 'By Appointment · 60 min · English & Spanish',
         'offering.desc': 'The goal is to use dreams to make sense of what feels random, meaningless, or disconnected, especially during moments of stress, transition and relational changes. Sessions can center on specific dreams, figures, personal or professional projects, recurring patterns, or the ongoing development of your creative self. You leave with concrete tools to work with dreams independently.',
         'offering.cta': 'Book a 1:1 Session',
+        'therapy.num': 'Long-term Therapy',
+        'therapy.title': 'I want to start therapy.',
+        'therapy.timing': 'By Appointment · 50 min · Virtual · English & Spanish',
+        'therapy.desc': 'If something isn\'t working — in your relationships, your work, or how you feel about yourself — therapy is a space to understand what\'s happening and find new ways to move forward. We work through what feels overwhelming together, at your pace.',
+        'therapy.cta': 'Learn more & write to me',
+        'therapy.modal.title': 'Long-term Therapy',
+        'therapy.modal.subtitle': '50 min · Weekly · Virtual · English & Spanish',
+        'therapy.modal.approaches.label': 'Psychological Approaches',
+        'therapy.modal.focus.label': 'Areas of Focus',
+        'therapy.modal.benefits.label': 'Benefits',
+        'therapy.modal.cta.desc': 'To begin, reach out directly. I\'ll respond within 48 hours to schedule a brief introductory call.',
+        'therapy.modal.cta.btn': 'Write to me',
+        'focus.1': 'Anxiety & stress',
+        'focus.2': 'Depressive symptoms',
+        'focus.3': 'Life transitions',
+        'focus.4': 'Identity',
+        'focus.5': 'Relationship challenges',
+        'focus.6': 'Migration',
+        'focus.7': 'Trauma',
+        'focus.8': 'Nightmares & sleep',
+        'focus.9': 'Grief & loss',
+        'benefit.1': 'Clarity in decisions, relationships, and sense of identity.',
+        'benefit.2': 'Tools for managing anxiety, stress, and depressive symptoms.',
+        'benefit.3': 'Safe space to move through changes, grief, and life transitions.',
+        'benefit.4': 'Understanding of how your socio-cultural context shapes your experience.',
         'testimonials.label': 'What Clients Say',
         't1.quote': 'I didn\'t expect the session to go so deep. It touched on things I haven\'t discussed in seven years of therapy.',
         't2.quote': 'I haven\'t met anyone so knowledgeable and passionate about dreams. Thank you for making this experience so intimate and thoughtful, and at the same time, fun.',
@@ -1117,16 +1216,18 @@
         'hero.language': 'Sesiones en inglés y español',
         'hero.keywords': 'Sueño · Salud Mental · Bienestar',
         'approach.label': 'El Enfoque',
-        'approach.headline': 'No hay manual para lo que sueñas.',
-        'approach.body': 'En lugar de buscar interpretaciones genéricas, los sueños se tratan como una fuente confiable de datos — sobre quién eres, lo que cargas, y el mundo sociocultural que habitas. Los sueños se ponen en diálogo directo con la vida despierta a través de los siguientes enfoques:',
-        'method1.name': 'Psicología Profunda',
-        'method1.desc': 'Activar patrones inconscientes y arquetípicos a través de la imaginación activa y la asociación libre.',
-        'method2.name': 'Exploración Gestalt',
-        'method2.desc': 'Activación corporal de figuras e imágenes del sueño.',
-        'method3.name': 'Terapia de Ensayo en Imaginación',
-        'method3.desc': 'Técnica basada en evidencia para reducir las pesadillas recurrentes y los sueños perturbadores.',
-        'method4.name': 'Somático e Informado por Trauma',
-        'method4.desc': 'Proceso guiado de activación somática e imaginación activa, anclado en principios trauma-informados.',
+        'approach.headline': 'Un espacio para ti.',
+        'approach.body': 'Si algo no está funcionando en tus relaciones, en tu trabajo, o en cómo te sientes contigo mismo/a, este es un espacio para hacer una pausa, entender qué está pasando y encontrar nuevas formas de avanzar.',
+        'method1.name': 'Terapia Narrativa',
+        'method1.desc': 'Entender la historia que te limita y encontrar narrativas que reflejen mejor quién eres y quién quieres ser.',
+        'method2.name': 'Terapia Psicodinámica y de Sueños',
+        'method2.desc': 'Explorar los patrones inconscientes que moldean tus decisiones, pensamientos y comportamientos. Usamos los sueños como acceso directo al inconsciente.',
+        'method3.name': 'Psicología Intercultural',
+        'method3.desc': 'Examinar cómo la raza, la etnia, el idioma, la migración y el contexto social se intersectan y moldean tu salud mental.',
+        'method4.name': 'Terapia Cognitivo Conductual',
+        'method4.desc': 'Identificar los pensamientos automáticos que sostienen el malestar y construir estrategias concretas hacia el bienestar.',
+        'method5.name': 'Somático e Informado por Trauma',
+        'method5.desc': 'Conciencia corporal integrada con apoyo sensible al trauma durante todas las sesiones.',
         'offerings.title': 'Lo que ofrezco',
         'offerings.label': 'Una Forma de Comenzar',
         'offering.num': 'Sesión Individual',
@@ -1134,6 +1235,31 @@
         'offering.timing': 'Con Cita · 60 min · Inglés y Español',
         'offering.desc': 'El objetivo es usar los sueños para darle sentido a lo que parece aleatorio, sin significado o desconectado, especialmente durante momentos de estrés, transición y cambios relacionales. Las sesiones pueden centrarse en sueños específicos, figuras, proyectos personales o profesionales, patrones recurrentes, o el desarrollo continuo de tu yo creativo. Sales con herramientas concretas para trabajar con los sueños de manera independiente.',
         'offering.cta': 'Reserva tu sesión',
+        'therapy.num': 'Terapia a largo plazo',
+        'therapy.title': 'Quiero iniciar un proceso terapéutico.',
+        'therapy.timing': 'Con Cita · 50 min · Virtual · Inglés y Español',
+        'therapy.desc': 'Si algo no está funcionando — en tus relaciones, en tu trabajo, o en cómo te sientes contigo mismo/a — la terapia es un espacio para entender qué está pasando y encontrar nuevas formas de avanzar. Trabajamos juntos lo que se siente abrumador, a tu ritmo.',
+        'therapy.cta': 'Saber más y escribirme',
+        'therapy.modal.title': 'Terapia a largo plazo',
+        'therapy.modal.subtitle': '50 min · Semanal · Virtual · Inglés y Español',
+        'therapy.modal.approaches.label': 'Enfoques Psicológicos',
+        'therapy.modal.focus.label': 'Temas a Tratar',
+        'therapy.modal.benefits.label': 'Beneficios',
+        'therapy.modal.cta.desc': 'Para comenzar, escríbeme directamente. Respondo en un plazo de 48 horas para coordinar una breve llamada inicial.',
+        'therapy.modal.cta.btn': 'Escríbeme',
+        'focus.1': 'Ansiedad y estrés',
+        'focus.2': 'Síntomas de depresión',
+        'focus.3': 'Transiciones vitales',
+        'focus.4': 'Identidad',
+        'focus.5': 'Cambios relacionales',
+        'focus.6': 'Migración',
+        'focus.7': 'Trauma',
+        'focus.8': 'Pesadillas y sueño',
+        'focus.9': 'Duelo y pérdida',
+        'benefit.1': 'Claridad frente a decisiones, relaciones y sentido de identidad.',
+        'benefit.2': 'Herramientas para manejar ansiedad, estrés y síntomas depresivos.',
+        'benefit.3': 'Un espacio seguro para transitar cambios, duelos y transiciones vitales.',
+        'benefit.4': 'Comprensión de cómo tu contexto sociocultural moldea tu experiencia.',
         'testimonials.label': 'Testimonios',
         't1.quote': 'No esperaba que la sesión fuera tan profunda. Tocó cosas que no había discutido en siete años de terapia.',
         't2.quote': 'No he conocido a nadie tan informada y apasionada por los sueños. Gracias por hacer esta experiencia tan íntima y reflexiva, y al mismo tiempo, divertida.',
@@ -1275,6 +1401,17 @@
     /* ── MODAL ── */
     const modal = document.getElementById('bookingModal');
     let selectedPrice = null;
+
+    function openTherapyModal(e) {
+      e.preventDefault();
+      document.getElementById('therapyModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeTherapyModal() {
+      document.getElementById('therapyModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function handleTherapyModalClick(e) { if (e.target === document.getElementById('therapyModal')) closeTherapyModal(); }
 
     function openModal(e) {
       e.preventDefault();
