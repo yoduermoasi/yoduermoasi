@@ -287,6 +287,13 @@
     .offering-cta.primary { background: var(--sun); border-color: var(--sun); box-shadow: 0 3px 14px rgba(200,160,40,0.28); }
     .offering-cta.primary:hover { background: var(--sun-deep); border-color: var(--sun-deep); color: #fff; }
 
+    /* ── CONTACT FORM ── */
+    .contact-label { display:block; font-family:var(--ff-display); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--navy-mid); margin-bottom:0.4rem; }
+    .contact-input { width:100%; font-family:var(--ff-body); font-size:0.88rem; color:var(--navy); background:rgba(255,255,255,0.85); border:1px solid rgba(26,48,74,0.18); border-radius:4px; padding:0.72rem 0.9rem; outline:none; transition:border-color 0.2s; box-sizing:border-box; }
+    .contact-input:focus { border-color:var(--sun-deep); }
+    .contact-input::placeholder { color:rgba(26,48,74,0.35); }
+    select.contact-input { cursor:pointer; }
+
     /* ── FOR WHOM ── */
     .for-section { display: none; }
     .for-grid { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0 5rem; }
@@ -528,13 +535,13 @@
       <p class="hero-subtext reveal delay-2" data-i18n="hero.subtext">If something isn't working in your relationships, your work, or in how you feel about yourself, this is a space to pause, understand what's happening, and find new ways to move forward.</p>
       <div class="hero-actions reveal delay-3">
         <a href="#" class="btn-primary" onclick="openModal(event)" data-i18n="hero.book">Book a 1:1 Session</a>
-        <a href="#" class="btn-ghost" onclick="openTherapyModal(event)" data-i18n="hero.therapy">Start Therapy</a>
+        <a href="#" class="btn-ghost" onclick="openContactModal(event)" data-i18n="hero.therapy">Start Therapy</a>
       </div>
       <p class="hero-language reveal delay-4" data-i18n="hero.language">Sessions in English & Spanish</p>
     </div>
     <div class="hero-right reveal delay-2">
-      <div style="position:relative;width:100%;">
-        <img src="hero-couch.jpg" alt="A couch floating in clouds" style="width:72%;max-width:340px;display:block;margin:0 auto;border-radius:8px;-webkit-mask-image:radial-gradient(ellipse 88% 88% at 50% 50%, black 30%, transparent 100%);mask-image:radial-gradient(ellipse 88% 88% at 50% 50%, black 30%, transparent 100%);"/>
+      <div style="width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:10px;-webkit-mask-image:radial-gradient(ellipse 92% 90% at 50% 52%, black 32%, transparent 100%);mask-image:radial-gradient(ellipse 92% 90% at 50% 52%, black 32%, transparent 100%);">
+        <img src="hero-couch.jpg" alt="A couch floating in clouds" style="width:100%;height:100%;object-fit:cover;object-position:center 60%;display:block;"/>
       </div>
     </div>
   </section>
@@ -593,7 +600,7 @@
         <h3 class="offering-title" data-i18n="therapy.title">I want to start therapy.</h3>
         <div class="offering-timing" data-i18n="therapy.timing">By Appointment · 50 min · Virtual · English & Spanish</div>
         <p class="offering-desc" data-i18n="therapy.desc">If something isn't working — in your relationships, your work, or how you feel about yourself — therapy is a space to understand what's happening and find new ways to move forward.</p>
-        <a href="#" class="offering-cta" onclick="openTherapyModal(event)" data-i18n="therapy.cta">Start therapy</a>
+        <a href="#" class="offering-cta" onclick="openContactModal(event)" data-i18n="therapy.cta">Start therapy</a>
       </div>
     </div>
   </section>
@@ -746,7 +753,7 @@
     <p class="book-subtext reveal delay-2" data-i18n="book.subtext">Book a session and begin to understand both.</p>
     <div class="reveal delay-3" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
       <a href="#" class="btn-large" onclick="openModal(event)" data-i18n="book.cta">Book a 1:1 Session</a>
-      <a href="#" class="btn-large" onclick="openTherapyModal(event)" data-i18n="book.therapy">Start Therapy</a>
+      <a href="#" class="btn-large" onclick="openContactModal(event)" data-i18n="book.therapy">Start Therapy</a>
     </div>
     <p class="book-note reveal delay-4" data-i18n="book.note">Sessions available in English & Spanish</p>
   </section>
@@ -885,6 +892,64 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT / INTAKE FORM MODAL -->
+  <div class="modal-overlay" id="contactModal" onclick="handleContactModalClick(event)">
+    <div class="modal-box" style="max-width:600px;">
+      <div class="modal-header" style="grid-template-columns:1fr 2rem;">
+        <div>
+          <div class="modal-title">Get started</div>
+          <div class="modal-subtitle">I'll get back to you within 48 hours.</div>
+        </div>
+        <button class="modal-close" onclick="closeContactModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="contactFormWrap">
+          <form id="contactForm" onsubmit="submitContactForm(event)">
+            <input type="hidden" name="_subject" value="New Inquiry — yoduermoasi"/>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem;">
+              <div>
+                <label class="contact-label">First Name *</label>
+                <input type="text" name="first_name" required class="contact-input" placeholder="Your first name"/>
+              </div>
+              <div>
+                <label class="contact-label">Last Name *</label>
+                <input type="text" name="last_name" required class="contact-input" placeholder="Your last name"/>
+              </div>
+            </div>
+            <div style="margin-bottom:1.1rem;">
+              <label class="contact-label">Email *</label>
+              <input type="email" name="email" required class="contact-input" placeholder="your@email.com"/>
+            </div>
+            <div style="margin-bottom:1.1rem;">
+              <label class="contact-label">Phone</label>
+              <input type="tel" name="phone" class="contact-input" placeholder="+1 (000) 000-0000"/>
+            </div>
+            <div style="margin-bottom:1.1rem;">
+              <label class="contact-label">Reason for Inquiry *</label>
+              <select name="reason" required class="contact-input">
+                <option value="" disabled selected>Select an option</option>
+                <option value="Individual Therapy">Individual Therapy</option>
+                <option value="1:1 Dream Session">1:1 Dream Session</option>
+                <option value="Workshop or Group">Workshop or Group</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div style="margin-bottom:1.75rem;">
+              <label class="contact-label">Message *</label>
+              <textarea name="message" required rows="4" class="contact-input" style="resize:vertical;" placeholder="Tell me a little about what brings you here..."></textarea>
+            </div>
+            <button type="submit" id="contactSubmitBtn" class="btn-large" style="width:100%;text-align:center;cursor:pointer;border:none;">Send Message</button>
+          </form>
+        </div>
+        <div id="contactThankYou" style="display:none;text-align:center;padding:2rem 0;">
+          <div class="payment-confirmed-check">✓</div>
+          <p class="payment-summary-title" style="margin-top:0.5rem;">Thank you!</p>
+          <p class="payment-fnf-note">I'll be in touch within 48 hours.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1064,7 +1129,7 @@
         'hero.headline': 'A space for you.',
         'hero.subtext': 'If something isn\'t working in your relationships, your work, or in how you feel about yourself, this is a space to pause, understand what\'s happening, and find new ways to move forward.',
         'hero.book': 'Book a 1:1 Session',
-        'hero.therapy': 'Start Therapy',
+        'hero.therapy': 'Click here to get started',
         'hero.learn': 'Learn More',
         'hero.language': 'Sessions in English & Spanish',
         'hero.keywords': 'Sleep · Mental Health · Wellbeing',
@@ -1092,7 +1157,7 @@
         'therapy.title': 'I want to start therapy.',
         'therapy.timing': 'By Appointment · 50 min · Virtual · English & Spanish',
         'therapy.desc': 'If something isn\'t working — in your relationships, your work, or how you feel about yourself — therapy is a space to understand what\'s happening and find new ways to move forward.',
-        'therapy.cta': 'Start therapy',
+        'therapy.cta': 'Click here to get started',
         'therapy.modal.title': 'Long-term Therapy',
         'therapy.modal.subtitle': '50 min · Weekly · Virtual · English & Spanish',
         'therapy.modal.approaches.label': 'Psychological Approaches',
@@ -1152,7 +1217,7 @@
         'book.headline': 'Your dreams complement your waking life.',
         'book.subtext': 'Book a session and begin to understand both.',
         'book.cta': 'Book a 1:1 Session',
-        'book.therapy': 'Start Therapy',
+        'book.therapy': 'Click here to get started',
         'book.note': 'Sessions available in English & Spanish',
         'footer.sessions': 'Sessions',
         'footer.about': 'About',
@@ -1239,7 +1304,7 @@
         'hero.headline': 'Un espacio para ti.',
         'hero.subtext': 'Si algo no está funcionando en tus relaciones, tu trabajo o en cómo te sientes contigo mismo/a, este es un espacio para pausar, entender qué está pasando y encontrar nuevas formas de avanzar.',
         'hero.book': 'Reserva tu sesión',
-        'hero.therapy': 'Iniciar terapia',
+        'hero.therapy': 'Haz clic aquí para comenzar',
         'hero.learn': 'Saber más',
         'hero.language': 'Sesiones en inglés y español',
         'hero.keywords': 'Sueño · Salud Mental · Bienestar',
@@ -1267,7 +1332,7 @@
         'therapy.title': 'Quiero iniciar un proceso terapéutico.',
         'therapy.timing': 'Con Cita · 50 min · Virtual · Inglés y Español',
         'therapy.desc': 'Si algo no está funcionando — en tus relaciones, en tu trabajo, o en cómo te sientes contigo mismo/a — la terapia es un espacio para entender qué está pasando y encontrar nuevas formas de avanzar.',
-        'therapy.cta': 'Iniciar terapia',
+        'therapy.cta': 'Haz clic aquí para comenzar',
         'therapy.modal.title': 'Terapia a largo plazo',
         'therapy.modal.subtitle': '50 min · Semanal · Virtual · Inglés y Español',
         'therapy.modal.approaches.label': 'Enfoques Psicológicos',
@@ -1327,7 +1392,7 @@
         'book.headline': 'Tus sueños complementan tu vida despierta.',
         'book.subtext': 'Reserva una sesión y empieza a entender ambas.',
         'book.cta': 'Reserva tu sesión',
-        'book.therapy': 'Iniciar terapia',
+        'book.therapy': 'Haz clic aquí para comenzar',
         'book.note': 'Sesiones disponibles en inglés y español',
         'footer.sessions': 'Sesiones',
         'footer.about': 'Sobre mí',
@@ -1441,6 +1506,44 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── CONTACT MODAL ── */
+    function openContactModal(e) {
+      e.preventDefault();
+      document.getElementById('contactFormWrap').style.display = 'block';
+      document.getElementById('contactThankYou').style.display = 'none';
+      document.getElementById('contactModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeContactModal() {
+      document.getElementById('contactModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function handleContactModalClick(e) { if (e.target === document.getElementById('contactModal')) closeContactModal(); }
+
+    async function submitContactForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contactSubmitBtn');
+      btn.textContent = currentLang === 'es' ? 'Enviando…' : 'Sending…';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://formspree.io/f/xbdqblkd', {
+          method: 'POST',
+          body: new FormData(e.target),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          document.getElementById('contactFormWrap').style.display = 'none';
+          document.getElementById('contactThankYou').style.display = 'block';
+        } else {
+          btn.textContent = currentLang === 'es' ? 'Intentar de nuevo' : 'Try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = currentLang === 'es' ? 'Intentar de nuevo' : 'Try again';
+        btn.disabled = false;
+      }
+    }
 
     /* ── MODAL ── */
     const modal = document.getElementById('bookingModal');
