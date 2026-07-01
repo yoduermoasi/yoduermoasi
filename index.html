@@ -960,8 +960,12 @@
         </div>
         <div id="contactThankYou" style="display:none;text-align:center;padding:2rem 0;">
           <div class="payment-confirmed-check">✓</div>
-          <p class="payment-summary-title" style="margin-top:0.5rem;">Thank you!</p>
-          <p class="payment-fnf-note">I'll be in touch within 48 hours.</p>
+          <p class="payment-summary-title" style="margin-top:0.5rem;" id="contactThanksTitle">Thank you!</p>
+          <p class="payment-fnf-note" style="max-width:38ch;margin:0.75rem auto 1.75rem;" id="contactThanksMsg">I'll reach out soon so we can schedule a 15-min free call. In the meantime, download this brochure to learn more about me and my practice.</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a href="dream-guide.pdf" download class="btn-large" style="font-size:0.72rem;padding:0.85rem 1.75rem;">Download — English</a>
+            <a href="guia-suenos.pdf" download class="btn-large-navy" style="font-size:0.72rem;padding:0.85rem 1.75rem;">Descargar — Español</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1551,7 +1555,12 @@
         });
         if (res.ok) {
           document.getElementById('contactFormWrap').style.display = 'none';
-          document.getElementById('contactThankYou').style.display = 'block';
+          const ty = document.getElementById('contactThankYou');
+          ty.style.display = 'block';
+          if (currentLang === 'es') {
+            document.getElementById('contactThanksTitle').textContent = '¡Gracias!';
+            document.getElementById('contactThanksMsg').textContent = 'Me pondré en contacto pronto para agendar una llamada gratuita de 15 min. Mientras tanto, descarga este folleto para conocer más sobre mí y mi práctica.';
+          }
         } else {
           btn.textContent = currentLang === 'es' ? 'Intentar de nuevo' : 'Try again';
           btn.disabled = false;
