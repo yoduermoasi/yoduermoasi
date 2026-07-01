@@ -376,6 +376,8 @@
     .book-subtext { font-family: var(--ff-body); font-size: 1rem; color: var(--text-soft); max-width: 44ch; margin: 0 auto 3.5rem; line-height: 1.75; font-style: italic; }
     .btn-large { font-family: var(--ff-display); font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: none; padding: 1.1rem 3.2rem; text-decoration: none; display: inline-block; border-radius: 2px; box-shadow: 0 6px 24px rgba(200,160,40,0.32); transition: all 0.3s; }
     .btn-large:hover { background: var(--sun-deep); color: #fff; }
+    .btn-large-navy { font-family: var(--ff-display); font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; color: #eef6fc; background: var(--navy); border: none; padding: 1.1rem 3.2rem; text-decoration: none; display: inline-block; border-radius: 2px; box-shadow: 0 6px 24px rgba(26,48,74,0.25); transition: all 0.3s; }
+    .btn-large-navy:hover { background: var(--navy-mid); color: #fff; }
     .book-note { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-top: 2rem; }
 
     /* ── FOOTER ── */
@@ -749,7 +751,7 @@
     <h2 class="book-headline reveal delay-1" data-i18n="book.headline">Book a session and begin to understand both.</h2>
     <div class="reveal delay-3" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
       <a href="#" class="btn-large" onclick="openModal(event)" data-i18n="book.cta">Book a 1:1 Session</a>
-      <a href="#" class="btn-large" onclick="openContactModal(event)" data-i18n="book.therapy">Start Therapy</a>
+      <a href="#" class="btn-large-navy" onclick="openContactModal(event)" data-i18n="book.therapy">Click here to get started</a>
     </div>
     <p class="book-note reveal delay-4" data-i18n="book.note">Sessions available in English & Spanish</p>
   </section>
