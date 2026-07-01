@@ -226,22 +226,19 @@
     .lang-btn:hover:not(.active) { background: rgba(26,48,74,0.08); }
 
     /* ── HERO ── */
-    .hero { display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; padding: 3rem 3.5rem 0; gap: 2rem; }
-    .hero-left { display: flex; flex-direction: column; justify-content: center; }
-    .hero-right { display: flex; align-items: center; justify-content: center; height: 100%; overflow: hidden; }
-    .hero-bed { width: 100%; }
-    .hero-bed img { width: 100%; display: block; mix-blend-mode: screen; }
-    .hero-eyebrow { font-family: var(--ff-display); font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--navy-soft); margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.25rem 0.85rem 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
-    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--sun-deep); flex-shrink: 0; }
-    .hero-headline { font-family: var(--ff-display); font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; line-height: 1.35; color: var(--navy); margin-bottom: 1.25rem; }
-    .hero-headline em { font-style: italic; color: var(--navy-mid); }
-    .hero-subtext { font-family: var(--ff-body); font-size: 0.95rem; line-height: 1.8; color: var(--text-soft); max-width: 58ch; margin-bottom: 2rem; font-style: italic; }
-    .hero-actions { display: flex; align-items: center; gap: 2rem; }
+    .hero { position: relative; width: 100%; min-height: 88vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 3.5rem 5rem; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: url('hero-chairs.jpg') center/cover no-repeat; z-index: 0; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: rgba(15, 28, 45, 0.48); }
+    .hero-content { position: relative; z-index: 1; max-width: 820px; }
+    .hero-headline { font-family: var(--ff-display); font-size: clamp(2.8rem, 5.5vw, 5rem); font-weight: 300; line-height: 1.15; color: #fff; margin-bottom: 1.25rem; }
+    .hero-tagline { font-family: var(--ff-body); font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.7; color: rgba(255,255,255,0.82); max-width: 52ch; margin: 0 auto 1rem; font-style: italic; }
+    .hero-subtext { font-family: var(--ff-body); font-size: 0.92rem; line-height: 1.8; color: rgba(255,255,255,0.65); max-width: 54ch; margin: 0 auto 2.5rem; }
+    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
     .btn-primary { font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: none; padding: 1rem 2.5rem; text-decoration: none; border-radius: 2px; box-shadow: 0 4px 18px rgba(200,160,40,0.3); transition: background 0.3s, box-shadow 0.3s, color 0.3s; }
     .btn-primary:hover { background: var(--sun-deep); color: #fff; box-shadow: 0 6px 24px rgba(180,130,20,0.35); }
-    .btn-ghost { font-family: var(--ff-display); font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy-mid); text-decoration: none; border-bottom: 1px solid var(--rule-strong); padding-bottom: 2px; transition: color 0.3s, border-color 0.3s; }
-    .btn-ghost:hover { color: var(--navy); border-color: var(--navy); }
-    .hero-language { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 1rem; }
+    .btn-ghost { font-family: var(--ff-display); font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.85); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.45); padding-bottom: 2px; transition: color 0.3s, border-color 0.3s; }
+    .btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.9); }
+    .hero-language { font-family: var(--ff-display); font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 1.5rem; }
     .hero-photo-frame { width: 100%; aspect-ratio: 3/4; border-radius: 4px; overflow: hidden; background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.85); box-shadow: 0 8px 32px rgba(30,60,100,0.12), inset 0 1px 0 rgba(255,255,255,0.9); backdrop-filter: blur(4px); }
     .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, rgba(255,255,255,0.5) 0%, rgba(180,215,240,0.3) 100%); }
@@ -478,8 +475,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       nav, nav.scrolled { padding: 1.1rem 2rem; }
-      .hero { grid-template-columns: 1fr; padding: 5rem 2rem 2.5rem; }
-      .hero-right { display: none; }
+      .hero { min-height: 70vh; padding: 7rem 2rem 4rem; }
       .about-body { grid-template-columns: 1fr; gap: 2rem; }
       .about-photo { order: -1; align-items: center; }
       .about-photo img { max-height: none; width: auto; max-width: 60%; object-fit: unset; }
@@ -503,7 +499,7 @@
     }
     @media (max-width: 600px) {
       .hero-headline { font-size: 1.5rem; }
-      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .hero-actions { flex-direction: column; align-items: center; }
       .modal-body { padding: 1.5rem; }
       .modal-header { padding: 1.5rem; }
     }
@@ -535,17 +531,16 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-left">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
       <h1 class="hero-headline reveal delay-1" data-i18n="hero.headline">A space for you.</h1>
-      <p class="hero-subtext reveal delay-2" data-i18n="hero.subtext">If something isn't working in your relationships, your work, or in how you feel about yourself, this is a space to pause, understand what's happening, and find new ways to move forward.</p>
-      <div class="hero-actions reveal delay-3">
+      <p class="hero-tagline reveal delay-2" data-i18n="hero.tagline">We work from curiosity — into who you are, what you feel, and what you want to change.</p>
+      <p class="hero-subtext reveal delay-3" data-i18n="hero.subtext">If something isn't working in your relationships, your work, or in how you feel about yourself, this is a space to pause, understand what's happening, and find new ways to move forward.</p>
+      <div class="hero-actions reveal delay-4">
         <a href="#" class="btn-primary" onclick="openModal(event)" data-i18n="hero.book">Book a 1:1 Session</a>
-        <a href="#" class="btn-ghost" onclick="openContactModal(event)" data-i18n="hero.therapy">Start Therapy</a>
+        <a href="#" class="btn-ghost" onclick="openContactModal(event)" data-i18n="hero.therapy">Click here to get started</a>
       </div>
       <p class="hero-language reveal delay-4" data-i18n="hero.language">Sessions in English & Spanish</p>
-    </div>
-    <div class="hero-right reveal delay-2">
-      <img src="couch-cloud.png" alt="A couch nestled in clouds" style="width:100%;max-height:600px;object-fit:contain;display:block;mix-blend-mode:multiply;"/>
     </div>
   </section>
 
@@ -1145,6 +1140,7 @@
         'nav.book': 'Book a 1:1 Session',
         'hero.eyebrow': 'Dream practice grounded in evidence',
         'hero.headline': 'A space for you.',
+        'hero.tagline': 'We work from curiosity — into who you are, what you feel, and what you want to change.',
         'hero.subtext': 'If something isn\'t working in your relationships, your work, or in how you feel about yourself, this is a space to pause, understand what\'s happening, and find new ways to move forward.',
         'hero.book': 'Book a 1:1 Session',
         'hero.therapy': 'Click here to get started',
@@ -1320,6 +1316,7 @@
         'nav.book': 'Reserva tu sesión',
         'hero.eyebrow': 'Práctica de sueños basada en evidencia',
         'hero.headline': 'Un espacio para ti.',
+        'hero.tagline': 'Trabajamos desde la curiosidad — hacia quién eres, lo que sientes y lo que quieres cambiar.',
         'hero.subtext': 'Si algo no está funcionando en tus relaciones, tu trabajo o en cómo te sientes contigo mismo/a, este es un espacio para pausar, entender qué está pasando y encontrar nuevas formas de avanzar.',
         'hero.book': 'Reserva tu sesión',
         'hero.therapy': 'Haz clic aquí para comenzar',
