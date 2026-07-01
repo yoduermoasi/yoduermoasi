@@ -943,7 +943,9 @@
                 <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Tools for managing anxiety, stress, and depressive symptoms"/><span data-i18n="contact.goal.2">Tools for managing anxiety, stress, and depressive symptoms</span></label>
                 <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="A safe space to move through changes, grief, and transitions"/><span data-i18n="contact.goal.3">A safe space to move through changes, grief, and transitions</span></label>
                 <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Understanding how my socio-cultural context shapes my experience"/><span data-i18n="contact.goal.4">Understanding how my socio-cultural context shapes my experience</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Other" id="goalOther" onchange="toggleGoalOtherField()"/><span data-i18n="contact.goal.other">Other</span></label>
               </div>
+              <input type="text" name="goal_other" id="goalOtherInput" class="contact-input" style="display:none;margin-top:0.75rem;" data-i18n-placeholder="contact.goal.other.ph" placeholder="Please describe..."/>
             </div>
             <div style="margin-bottom:1.75rem;">
               <label class="contact-label" data-i18n="contact.message">Message</label>
@@ -957,8 +959,8 @@
           <p class="payment-summary-title" style="margin-top:0.5rem;" data-i18n="contact.thanks.title">Thank you!</p>
           <p class="payment-fnf-note" style="max-width:40ch;margin:0.75rem auto 1.5rem;" data-i18n="contact.thanks.msg">I'll reach out soon so we can schedule a 15-min free call. In the meantime, download this brochure to learn more about me and my practice.</p>
           <div style="margin-bottom:1.5rem;">
-            <a id="dlBtnEn" href="dream-guide.pdf" download class="btn-large" style="font-size:0.72rem;padding:0.85rem 1.75rem;" data-i18n="contact.dl.btn">Download brochure</a>
-            <a id="dlBtnEs" href="guia-suenos.pdf" download class="btn-large" style="font-size:0.72rem;padding:0.85rem 1.75rem;display:none;" data-i18n="contact.dl.btn">Descargar folleto</a>
+            <a id="dlBtnEn" href="brochure-en.pdf" download="Camila Figueroa - Adult Therapy Brochure.pdf" class="btn-large" style="font-size:0.72rem;padding:0.85rem 1.75rem;" data-i18n="contact.dl.btn">Download brochure</a>
+            <a id="dlBtnEs" href="brochure-es.pdf" download="Camila Figueroa - Folleto Terapia Adultos.pdf" class="btn-large" style="font-size:0.72rem;padding:0.85rem 1.75rem;display:none;" data-i18n="contact.dl.btn">Descargar folleto</a>
           </div>
           <p style="font-family:var(--ff-display);font-size:0.72rem;letter-spacing:0.1em;color:var(--text-muted);line-height:1.9;" data-i18n-html="contact.thanks.contact">Any questions? Reach out directly at <a href="tel:+12175184880" style="color:var(--navy);text-decoration:underline;text-underline-offset:3px;">+1 (217) 518-4880</a></p>
         </div>
@@ -1204,6 +1206,8 @@
         'contact.goal.2': 'Tools for managing anxiety, stress, and depressive symptoms',
         'contact.goal.3': 'A safe space to move through changes, grief, and transitions',
         'contact.goal.4': 'Understanding how my socio-cultural context shapes my experience',
+        'contact.goal.other': 'Other',
+        'contact.goal.other.ph': 'Please describe...',
         'contact.message': 'Message',
         'contact.message.ph': 'Anything else you\'d like me to know before we connect...',
         'contact.send': 'Send Message',
@@ -1409,6 +1413,8 @@
         'contact.goal.2': 'Herramientas para manejar la ansiedad, el estrés y síntomas depresivos',
         'contact.goal.3': 'Un espacio seguro para atravesar cambios, duelos y transiciones',
         'contact.goal.4': 'Entender cómo mi contexto sociocultural moldea mi experiencia',
+        'contact.goal.other': 'Otro',
+        'contact.goal.other.ph': 'Describe aquí...',
         'contact.message': 'Mensaje',
         'contact.message.ph': 'Algo más que quieras que sepa antes de que conectemos...',
         'contact.send': 'Enviar mensaje',
@@ -1588,6 +1594,7 @@
       e.preventDefault();
       document.getElementById('contactFormWrap').style.display = 'block';
       document.getElementById('contactThankYou').style.display = 'none';
+      document.querySelector('#contactModal .modal-header').style.display = '';
       document.getElementById('contactModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -1599,6 +1606,10 @@
     function toggleOtherField() {
       const checked = document.getElementById('focusOther').checked;
       document.getElementById('otherFocusInput').style.display = checked ? 'block' : 'none';
+    }
+    function toggleGoalOtherField() {
+      const checked = document.getElementById('goalOther').checked;
+      document.getElementById('goalOtherInput').style.display = checked ? 'block' : 'none';
     }
 
     async function submitContactForm(e) {
@@ -1615,6 +1626,7 @@
         if (res.ok) {
           document.getElementById('contactFormWrap').style.display = 'none';
           document.getElementById('contactThankYou').style.display = 'block';
+          document.querySelector('#contactModal .modal-header').style.display = 'none';
         } else {
           btn.textContent = currentLang === 'es' ? 'Intentar de nuevo' : 'Try again';
           btn.disabled = false;
