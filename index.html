@@ -688,6 +688,28 @@
 
   <div class="sky-rule"></div>
 
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section" id="newsletter">
+    <div class="newsletter-card reveal">
+      <div class="newsletter-intro">
+        <div class="newsletter-label" data-i18n="newsletter.label">Stay in the Loop</div>
+        <h3 class="newsletter-title" data-i18n="newsletter.title">Be the first to hear about new offerings, workshops, and reflections.</h3>
+      </div>
+      <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)" action="https://formspree.io/f/xbdqblkd" method="POST">
+        <input type="hidden" name="_subject" value="New signup — Stay in the Loop"/>
+        <input type="hidden" name="_replyto" value="yoduermoasi@gmail.com"/>
+        <div class="newsletter-fields">
+          <input type="text" class="newsletter-input" name="name" data-i18n-placeholder="newsletter.placeholder.name" placeholder="Name" required autocomplete="given-name"/>
+          <input type="email" class="newsletter-input" name="email" data-i18n-placeholder="newsletter.placeholder.email" placeholder="Email" required autocomplete="email"/>
+        </div>
+        <button type="submit" class="newsletter-btn" data-i18n="newsletter.btn">Join</button>
+        <p class="newsletter-fine" data-i18n="newsletter.fine">No spam. Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </section>
+
+  <div class="sky-rule"></div>
+
   <!-- FAQ -->
   <section class="faq-section" id="faq">
     <p class="section-eyebrow reveal" data-i18n="faq.label">Questions</p>
@@ -720,28 +742,6 @@
         <summary class="faq-question" data-i18n="faq.q7">What languages are sessions available in?</summary>
         <p class="faq-answer" data-i18n="faq.a7">Sessions are available in English and Spanish.</p>
       </details>
-    </div>
-  </section>
-
-  <div class="sky-rule"></div>
-
-  <!-- NEWSLETTER -->
-  <section class="newsletter-section" id="newsletter">
-    <div class="newsletter-card reveal">
-      <div class="newsletter-intro">
-        <div class="newsletter-label" data-i18n="newsletter.label">Stay in the Loop</div>
-        <h3 class="newsletter-title" data-i18n="newsletter.title">Be the first to hear about new offerings, workshops, and reflections.</h3>
-      </div>
-      <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)" action="https://formspree.io/f/xbdqblkd" method="POST">
-        <input type="hidden" name="_subject" value="New signup — Stay in the Loop"/>
-        <input type="hidden" name="_replyto" value="yoduermoasi@gmail.com"/>
-        <div class="newsletter-fields">
-          <input type="text" class="newsletter-input" name="name" data-i18n-placeholder="newsletter.placeholder.name" placeholder="Name" required autocomplete="given-name"/>
-          <input type="email" class="newsletter-input" name="email" data-i18n-placeholder="newsletter.placeholder.email" placeholder="Email" required autocomplete="email"/>
-        </div>
-        <button type="submit" class="newsletter-btn" data-i18n="newsletter.btn">Join</button>
-        <p class="newsletter-fine" data-i18n="newsletter.fine">No spam. Unsubscribe anytime.</p>
-      </form>
     </div>
   </section>
 
