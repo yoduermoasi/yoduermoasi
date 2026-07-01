@@ -899,8 +899,8 @@
     <div class="modal-box" style="max-width:600px;">
       <div class="modal-header" style="grid-template-columns:1fr 2rem;">
         <div>
-          <div class="modal-title">Get started</div>
-          <div class="modal-subtitle">I'd love to hear from you. Fill out the form and I'll get back to you within two business days to discuss my availability and the process to see if we're a good fit.</div>
+          <div class="modal-title" data-i18n="contact.title">Get started</div>
+          <div class="modal-subtitle" data-i18n="contact.subtitle">I'd love to hear from you. Fill out the form and I'll get back to you within two business days to discuss my availability and the process to see if we're a good fit.</div>
         </div>
         <button class="modal-close" onclick="closeContactModal()" aria-label="Close">✕</button>
       </div>
@@ -910,61 +910,61 @@
             <input type="hidden" name="_subject" value="New Inquiry — yoduermoasi"/>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem;">
               <div>
-                <label class="contact-label">First Name *</label>
-                <input type="text" name="first_name" required class="contact-input" placeholder="Your first name"/>
+                <label class="contact-label" data-i18n="contact.firstName">First Name *</label>
+                <input type="text" name="first_name" required class="contact-input" data-i18n-placeholder="contact.firstName.ph" placeholder="Your first name"/>
               </div>
               <div>
-                <label class="contact-label">Last Name *</label>
-                <input type="text" name="last_name" required class="contact-input" placeholder="Your last name"/>
+                <label class="contact-label" data-i18n="contact.lastName">Last Name *</label>
+                <input type="text" name="last_name" required class="contact-input" data-i18n-placeholder="contact.lastName.ph" placeholder="Your last name"/>
               </div>
             </div>
             <div style="margin-bottom:1.1rem;">
-              <label class="contact-label">Email *</label>
+              <label class="contact-label" data-i18n="contact.email">Email *</label>
               <input type="email" name="email" required class="contact-input" placeholder="your@email.com"/>
             </div>
             <div style="margin-bottom:1.1rem;">
-              <label class="contact-label">Phone</label>
+              <label class="contact-label" data-i18n="contact.phone">Phone</label>
               <input type="tel" name="phone" class="contact-input" placeholder="+1 (000) 000-0000"/>
             </div>
             <div style="margin-bottom:1.25rem;">
-              <label class="contact-label" style="margin-bottom:0.75rem;">What brings you here? <span style="font-style:italic;text-transform:none;letter-spacing:0;opacity:0.6;">(select all that apply)</span></label>
+              <label class="contact-label" style="margin-bottom:0.75rem;"><span data-i18n="contact.focus.label">What brings you here?</span> <span style="font-style:italic;text-transform:none;letter-spacing:0;opacity:0.6;" data-i18n="contact.selectAll">(select all that apply)</span></label>
               <div class="focus-checkboxes">
-                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Anxiety & stress"/><span>Anxiety &amp; stress</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Depressive symptoms"/><span>Depressive symptoms</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Life transitions"/><span>Life transitions</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Identity"/><span>Identity</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Relationship challenges"/><span>Relationship challenges</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Migration"/><span>Migration</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Trauma"/><span>Trauma</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Nightmares & sleep"/><span>Nightmares &amp; sleep</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Grief & loss"/><span>Grief &amp; loss</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Other" id="focusOther" onchange="toggleOtherField()"/><span>Other</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Anxiety & stress"/><span data-i18n="contact.focus.1">Anxiety &amp; stress</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Depressive symptoms"/><span data-i18n="contact.focus.2">Depressive symptoms</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Life transitions"/><span data-i18n="contact.focus.3">Life transitions</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Identity"/><span data-i18n="contact.focus.4">Identity</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Relationship challenges"/><span data-i18n="contact.focus.5">Relationship challenges</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Migration"/><span data-i18n="contact.focus.6">Migration</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Trauma"/><span data-i18n="contact.focus.7">Trauma</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Nightmares & sleep"/><span data-i18n="contact.focus.8">Nightmares &amp; sleep</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Grief & loss"/><span data-i18n="contact.focus.9">Grief &amp; loss</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="focus" value="Other" id="focusOther" onchange="toggleOtherField()"/><span data-i18n="contact.focus.other">Other</span></label>
               </div>
-              <input type="text" id="otherFocusInput" name="focus_other" placeholder="Please describe..." class="contact-input" style="margin-top:0.75rem;display:none;"/>
+              <input type="text" id="otherFocusInput" name="focus_other" data-i18n-placeholder="contact.focus.other.ph" placeholder="Please describe..." class="contact-input" style="margin-top:0.75rem;display:none;"/>
             </div>
             <div style="margin-bottom:1.25rem;">
-              <label class="contact-label" style="margin-bottom:0.75rem;">What are you looking for in this process? <span style="font-style:italic;text-transform:none;letter-spacing:0;opacity:0.6;">(select all that apply)</span></label>
+              <label class="contact-label" style="margin-bottom:0.75rem;"><span data-i18n="contact.goals.label">What are you looking for in this process?</span> <span style="font-style:italic;text-transform:none;letter-spacing:0;opacity:0.6;" data-i18n="contact.selectAll">(select all that apply)</span></label>
               <div class="focus-checkboxes">
-                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Clarity in decisions, relationships, and identity"/><span>Clarity in decisions, relationships, and identity</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Tools for managing anxiety, stress, and depressive symptoms"/><span>Tools for managing anxiety, stress, and depressive symptoms</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="A safe space to move through changes, grief, and transitions"/><span>A safe space to move through changes, grief, and transitions</span></label>
-                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Understanding how my socio-cultural context shapes my experience"/><span>Understanding how my socio-cultural context shapes my experience</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Clarity in decisions, relationships, and identity"/><span data-i18n="contact.goal.1">Clarity in decisions, relationships, and identity</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Tools for managing anxiety, stress, and depressive symptoms"/><span data-i18n="contact.goal.2">Tools for managing anxiety, stress, and depressive symptoms</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="A safe space to move through changes, grief, and transitions"/><span data-i18n="contact.goal.3">A safe space to move through changes, grief, and transitions</span></label>
+                <label class="focus-checkbox-item"><input type="checkbox" name="goal" value="Understanding how my socio-cultural context shapes my experience"/><span data-i18n="contact.goal.4">Understanding how my socio-cultural context shapes my experience</span></label>
               </div>
             </div>
             <div style="margin-bottom:1.75rem;">
-              <label class="contact-label">Message</label>
-              <textarea name="message" rows="4" class="contact-input" style="resize:vertical;" placeholder="Anything else you'd like me to know before we connect..."></textarea>
+              <label class="contact-label" data-i18n="contact.message">Message</label>
+              <textarea name="message" rows="4" class="contact-input" style="resize:vertical;" data-i18n-placeholder="contact.message.ph" placeholder="Anything else you'd like me to know before we connect..."></textarea>
             </div>
-            <button type="submit" id="contactSubmitBtn" class="btn-large" style="width:100%;text-align:center;cursor:pointer;border:none;">Send Message</button>
+            <button type="submit" id="contactSubmitBtn" class="btn-large" style="width:100%;text-align:center;cursor:pointer;border:none;" data-i18n="contact.send">Send Message</button>
           </form>
         </div>
         <div id="contactThankYou" style="display:none;text-align:center;padding:2rem 0;">
           <div class="payment-confirmed-check">✓</div>
-          <p class="payment-summary-title" style="margin-top:0.5rem;" id="contactThanksTitle">Thank you!</p>
-          <p class="payment-fnf-note" style="max-width:38ch;margin:0.75rem auto 1.75rem;" id="contactThanksMsg">I'll reach out soon so we can schedule a 15-min free call. In the meantime, download this brochure to learn more about me and my practice.</p>
+          <p class="payment-summary-title" style="margin-top:0.5rem;" id="contactThanksTitle" data-i18n="contact.thanks.title">Thank you!</p>
+          <p class="payment-fnf-note" style="max-width:38ch;margin:0.75rem auto 1.75rem;" id="contactThanksMsg" data-i18n="contact.thanks.msg">I'll reach out soon so we can schedule a 15-min free call. In the meantime, download this brochure to learn more about me and my practice.</p>
           <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-            <a href="dream-guide.pdf" download class="btn-large" style="font-size:0.72rem;padding:0.85rem 1.75rem;">Download — English</a>
-            <a href="guia-suenos.pdf" download class="btn-large-navy" style="font-size:0.72rem;padding:0.85rem 1.75rem;">Descargar — Español</a>
+            <a href="dream-guide.pdf" download class="btn-large" style="font-size:0.72rem;padding:0.85rem 1.75rem;" data-i18n="contact.dl.en">Download — English</a>
+            <a href="guia-suenos.pdf" download class="btn-large-navy" style="font-size:0.72rem;padding:0.85rem 1.75rem;" data-i18n="contact.dl.es">Descargar — Español</a>
           </div>
         </div>
       </div>
@@ -1182,6 +1182,39 @@
         'therapy.modal.focus.label': 'Areas of Focus',
         'therapy.modal.benefits.label': 'Benefits',
         'therapy.modal.cta.desc': 'To begin, reach out directly. I\'ll respond within 48 hours to schedule a brief introductory call.',
+        'contact.title': 'Get started',
+        'contact.subtitle': 'I\'d love to hear from you. Fill out the form and I\'ll get back to you within two business days to discuss my availability and the process to see if we\'re a good fit.',
+        'contact.firstName': 'First Name *',
+        'contact.firstName.ph': 'Your first name',
+        'contact.lastName': 'Last Name *',
+        'contact.lastName.ph': 'Your last name',
+        'contact.email': 'Email *',
+        'contact.phone': 'Phone',
+        'contact.focus.label': 'What brings you here?',
+        'contact.selectAll': '(select all that apply)',
+        'contact.focus.1': 'Anxiety & stress',
+        'contact.focus.2': 'Depressive symptoms',
+        'contact.focus.3': 'Life transitions',
+        'contact.focus.4': 'Identity',
+        'contact.focus.5': 'Relationship challenges',
+        'contact.focus.6': 'Migration',
+        'contact.focus.7': 'Trauma',
+        'contact.focus.8': 'Nightmares & sleep',
+        'contact.focus.9': 'Grief & loss',
+        'contact.focus.other': 'Other',
+        'contact.focus.other.ph': 'Please describe...',
+        'contact.goals.label': 'What are you looking for in this process?',
+        'contact.goal.1': 'Clarity in decisions, relationships, and identity',
+        'contact.goal.2': 'Tools for managing anxiety, stress, and depressive symptoms',
+        'contact.goal.3': 'A safe space to move through changes, grief, and transitions',
+        'contact.goal.4': 'Understanding how my socio-cultural context shapes my experience',
+        'contact.message': 'Message',
+        'contact.message.ph': 'Anything else you\'d like me to know before we connect...',
+        'contact.send': 'Send Message',
+        'contact.thanks.title': 'Thank you!',
+        'contact.thanks.msg': 'I\'ll reach out soon so we can schedule a 15-min free call. In the meantime, download this brochure to learn more about me and my practice.',
+        'contact.dl.en': 'Download — English',
+        'contact.dl.es': 'Descargar — Español',
         'therapy.modal.cta.btn': 'Write to me',
         'focus.1': 'Anxiety & stress',
         'focus.2': 'Depressive symptoms',
@@ -1357,6 +1390,39 @@
         'therapy.modal.focus.label': 'Temas a Tratar',
         'therapy.modal.benefits.label': 'Beneficios',
         'therapy.modal.cta.desc': 'Para comenzar, escríbeme directamente. Respondo en un plazo de 48 horas para coordinar una breve llamada inicial.',
+        'contact.title': 'Quiero iniciar un proceso terapéutico',
+        'contact.subtitle': 'Me encantaría saber de ti. Completa el formulario y me pondré en contacto en un plazo de dos días hábiles para hablar sobre mi disponibilidad y el proceso, y ver si somos una buena opción.',
+        'contact.firstName': 'Nombre *',
+        'contact.firstName.ph': 'Tu nombre',
+        'contact.lastName': 'Apellido *',
+        'contact.lastName.ph': 'Tu apellido',
+        'contact.email': 'Correo electrónico *',
+        'contact.phone': 'Teléfono',
+        'contact.focus.label': '¿Qué te trae aquí?',
+        'contact.selectAll': '(selecciona todas las que apliquen)',
+        'contact.focus.1': 'Ansiedad y estrés',
+        'contact.focus.2': 'Síntomas depresivos',
+        'contact.focus.3': 'Transiciones de vida',
+        'contact.focus.4': 'Identidad',
+        'contact.focus.5': 'Dificultades relacionales',
+        'contact.focus.6': 'Migración',
+        'contact.focus.7': 'Trauma',
+        'contact.focus.8': 'Pesadillas y sueño',
+        'contact.focus.9': 'Duelo y pérdida',
+        'contact.focus.other': 'Otro',
+        'contact.focus.other.ph': 'Describe aquí...',
+        'contact.goals.label': '¿Qué buscas en este proceso?',
+        'contact.goal.1': 'Claridad en decisiones, relaciones e identidad',
+        'contact.goal.2': 'Herramientas para manejar la ansiedad, el estrés y síntomas depresivos',
+        'contact.goal.3': 'Un espacio seguro para atravesar cambios, duelos y transiciones',
+        'contact.goal.4': 'Entender cómo mi contexto sociocultural moldea mi experiencia',
+        'contact.message': 'Mensaje',
+        'contact.message.ph': 'Algo más que quieras que sepa antes de que conectemos...',
+        'contact.send': 'Enviar mensaje',
+        'contact.thanks.title': '¡Gracias!',
+        'contact.thanks.msg': 'Me pondré en contacto pronto para agendar una llamada gratuita de 15 min. Mientras tanto, descarga este folleto para conocer más sobre mí y mi práctica.',
+        'contact.dl.en': 'Download — English',
+        'contact.dl.es': 'Descargar — Español',
         'therapy.modal.cta.btn': 'Escríbeme',
         'focus.1': 'Ansiedad y estrés',
         'focus.2': 'Síntomas de depresión',
@@ -1555,12 +1621,7 @@
         });
         if (res.ok) {
           document.getElementById('contactFormWrap').style.display = 'none';
-          const ty = document.getElementById('contactThankYou');
-          ty.style.display = 'block';
-          if (currentLang === 'es') {
-            document.getElementById('contactThanksTitle').textContent = '¡Gracias!';
-            document.getElementById('contactThanksMsg').textContent = 'Me pondré en contacto pronto para agendar una llamada gratuita de 15 min. Mientras tanto, descarga este folleto para conocer más sobre mí y mi práctica.';
-          }
+          document.getElementById('contactThankYou').style.display = 'block';
         } else {
           btn.textContent = currentLang === 'es' ? 'Intentar de nuevo' : 'Try again';
           btn.disabled = false;
