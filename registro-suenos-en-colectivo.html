@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sueños en Colectivo | Registro | Camila Figueroa</title>
+  <meta name="description" content="Regístrate a Sueños en Colectivo x yoduermoasi, una serie grupal de exploración de sueños basada en la metodología Social Dreaming Matrix."/>
+  <link rel="canonical" href="https://yoduermoasi.github.io/yoduermoasi/registro-suenos-en-colectivo.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --sky-high:    #a8c8e8;
+      --sky-mid:     #c5ddf0;
+      --sky-low:     #deeef8;
+      --sky-horizon: #eef6fc;
+      --dawn:        #f5f0e4;
+      --navy:        #1a304a;
+      --navy-mid:    #2e4f72;
+      --navy-soft:   #4a6f96;
+      --sun:         #e8c84a;
+      --sun-deep:    #c9a82a;
+      --sun-pale:    #fdf3c0;
+      --cloud:       rgba(255,255,255,0.82);
+      --cloud-edge:  rgba(255,255,255,0.4);
+      --text-soft:   #3a5a7a;
+      --text-muted:  #6080a0;
+      --rule:        rgba(26,48,74,0.12);
+      --rule-strong: rgba(26,48,74,0.25);
+      --ff-display:  'Cormorant Garamond', Georgia, serif;
+      --ff-body:     'Lora', Georgia, serif;
+      --ease:        cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--sky-horizon); color: var(--navy); font-family: var(--ff-body); line-height: 1.7; overflow-x: hidden; }
+
+    /* SKY */
+    .sky-canvas { position: fixed; inset: 0; z-index: 0;
+      background: linear-gradient(180deg, var(--sky-high) 0%, var(--sky-mid) 28%, var(--sky-low) 58%, var(--sky-horizon) 82%, var(--dawn) 100%);
+    }
+    .sky-canvas::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 400px 95px at 14% 20%, var(--cloud) 60%, transparent 100%),
+        radial-gradient(ellipse 210px 58px at 6%  25%, var(--cloud) 68%, transparent 100%),
+        radial-gradient(ellipse 170px 48px at 30% 18%, var(--cloud) 58%, transparent 100%),
+        radial-gradient(ellipse 520px 115px at 74% 13%, var(--cloud) 52%, transparent 100%),
+        radial-gradient(ellipse 270px 68px at 90% 17%, var(--cloud) 62%, transparent 100%),
+        radial-gradient(ellipse 200px 52px at 62% 11%, var(--cloud) 48%, transparent 100%);
+    }
+    nav, main, footer { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 3.5rem; transition: all 0.5s var(--ease); }
+    nav.scrolled { background: rgba(190,218,238,0.75); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); padding: 0.9rem 3.5rem; border-bottom: 1px solid rgba(255,255,255,0.45); }
+    .nav-wordmark { font-family: var(--ff-display); font-size: 1rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: var(--ff-display); font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy-mid); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-cta { font-family: var(--ff-display); font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: 1.5px solid rgba(255,255,255,0.6); padding: 0.6rem 1.5rem; text-decoration: none; border-radius: 2px; box-shadow: 0 2px 16px rgba(255,255,255,0.5), 0 2px 8px rgba(150,110,0,0.2); transition: background 0.3s, color 0.3s; }
+    .nav-cta:hover { background: var(--sun-deep); color: #fff; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-hamburger span { width: 22px; height: 1.5px; background: var(--navy); display: block; }
+
+    /* PAGE HEADER */
+    .page-header { padding: 8rem 3.5rem 2.5rem; max-width: 780px; margin: 0 auto; text-align: center; }
+    .back-link { display: inline-block; font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy-soft); text-decoration: none; margin-bottom: 1.5rem; }
+    .back-link:hover { color: var(--navy); }
+    .page-title { font-family: var(--ff-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; font-style: italic; color: var(--navy); line-height: 1.1; margin-bottom: 0.75rem; }
+    .page-subtitle { font-family: var(--ff-body); font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; }
+
+    /* WRAP */
+    .events-wrap { max-width: 780px; margin: 0 auto; padding: 0 3.5rem 5rem; }
+
+    /* INFO / FORM CARD */
+    .info-card { background: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.9); border-radius: 8px; box-shadow: 0 4px 24px rgba(30,60,100,0.07); padding: 2.25rem 2rem 2.5rem; margin-bottom: 1.75rem; }
+
+    /* CONTENT SECTIONS (shared with talleres.html) */
+    .content-section { margin-bottom: 2.25rem; }
+    .content-section:last-child { margin-bottom: 0; }
+    .content-label { font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.3rem 1.1rem 0.3rem 0.9rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
+    .content-label::before { content: ''; display: block; width: 1.6rem; height: 1.5px; background: var(--sun-deep); flex-shrink: 0; }
+    .event-tagline { font-family: var(--ff-body); font-size: 0.95rem; color: var(--text-soft); line-height: 1.85; margin-bottom: 1.25rem; }
+    .event-tagline:last-child { margin-bottom: 0; }
+    .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .benefit-item { font-family: var(--ff-body); font-size: 0.9rem; color: var(--text-soft); line-height: 1.75; padding-left: 1.5rem; position: relative; }
+    .benefit-item::before { content: '—'; position: absolute; left: 0; color: var(--sun-deep); font-family: var(--ff-display); }
+
+    /* DETAIL STRIP */
+    .details-strip { display: flex; flex-wrap: wrap; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.9); border-radius: 6px; overflow: hidden; }
+    .detail-item { flex: 1; min-width: 140px; padding: 1rem 1.25rem; text-align: center; border-right: 1px solid var(--rule); }
+    .detail-item:last-child { border-right: none; }
+    .detail-icon { font-size: 1rem; margin-bottom: 0.2rem; }
+    .detail-label { font-family: var(--ff-display); font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .detail-value { font-family: var(--ff-display); font-size: 0.9rem; color: var(--navy); line-height: 1.3; }
+    .detail-sub { font-family: var(--ff-body); font-size: 0.68rem; color: var(--text-muted); font-style: italic; }
+
+    /* SAFETY / INFO NOTE */
+    .safety-note { background: rgba(238,246,252,0.75); border: 1px solid var(--rule-strong); border-left: 3px solid var(--navy-soft); border-radius: 4px; padding: 1.1rem 1.4rem; }
+    .safety-note-title { font-family: var(--ff-display); font-size: 0.9rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; letter-spacing: 0.04em; }
+    .safety-note p { font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-soft); line-height: 1.8; }
+    .safety-note a { color: var(--navy-soft); }
+
+    /* FORM */
+    .form-title { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 400; font-style: italic; color: var(--navy); margin-bottom: 0.4rem; }
+    .form-subtitle { font-family: var(--ff-body); font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
+    .contact-label { display: block; font-family: var(--ff-display); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy-mid); margin-bottom: 0.4rem; }
+    .contact-input { width: 100%; font-family: var(--ff-body); font-size: 0.88rem; color: var(--navy); background: rgba(255,255,255,0.85); border: 1px solid rgba(26,48,74,0.18); border-radius: 4px; padding: 0.72rem 0.9rem; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
+    .contact-input:focus { border-color: var(--sun-deep); }
+    .form-field { margin-bottom: 1.25rem; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .radio-group { display: flex; flex-direction: column; gap: 0.6rem; }
+    .radio-item { display: flex; align-items: flex-start; gap: 0.65rem; font-family: var(--ff-body); font-size: 0.88rem; color: var(--text-soft); line-height: 1.5; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.9); border-radius: 6px; padding: 0.85rem 1.1rem; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+    .radio-item:hover { background: rgba(255,255,255,0.78); }
+    .radio-item input[type="radio"] { margin-top: 0.2rem; accent-color: var(--navy); flex-shrink: 0; }
+    .radio-item.inline { align-items: center; }
+
+    .submit-btn { display: block; width: 100%; font-family: var(--ff-display); font-size: 0.82rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: none; padding: 1.05rem 2.5rem; cursor: pointer; border-radius: 2px; box-shadow: 0 4px 18px rgba(200,160,40,0.3); transition: background 0.3s, box-shadow 0.3s, color 0.3s; margin-top: 0.5rem; }
+    .submit-btn:hover { background: var(--sun-deep); color: #fff; }
+    .submit-btn:disabled { opacity: 0.65; cursor: default; }
+    .form-required-note { font-family: var(--ff-body); font-size: 0.72rem; color: var(--text-muted); font-style: italic; margin-bottom: 1.5rem; }
+
+    /* THANK YOU */
+    .thank-you-check { width: 3rem; height: 3rem; border-radius: 50%; background: var(--sun); color: var(--navy); font-size: 1.4rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+    .thank-you-title { font-family: var(--ff-display); font-size: 1.5rem; font-style: italic; color: var(--navy); margin-bottom: 0.75rem; }
+    .thank-you-text { font-family: var(--ff-body); font-size: 0.92rem; color: var(--text-soft); line-height: 1.85; max-width: 42ch; margin: 0 auto; }
+    .thank-you-text a { color: var(--navy-soft); }
+
+    /* FOOTER */
+    footer { display: flex; align-items: center; justify-content: space-between; padding: 2rem 3.5rem; border-top: 1px solid var(--rule); }
+    .footer-wordmark { font-family: var(--ff-display); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
+    .footer-copy { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-muted); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      nav.scrolled { padding: 0.8rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .page-header { padding: 6rem 1.5rem 2rem; }
+      .events-wrap { padding: 0 1.5rem 4rem; }
+      .info-card { padding: 1.5rem 1.25rem 2rem; }
+      .field-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sky-canvas" aria-hidden="true"></div>
+
+  <nav id="mainNav">
+    <a href="index.html" class="nav-wordmark">yoduermoasi x Camila Figueroa</a>
+    <ul class="nav-links">
+      <li><a href="index.html#offerings">Sesiones</a></li>
+      <li><a href="index.html#about">Sobre mí</a></li>
+      <li><a href="index.html#faq">Preguntas</a></li>
+      <li><a href="talleres.html" class="active">Talleres</a></li>
+    </ul>
+    <a href="index.html#offerings" class="nav-cta">Reserva tu sesión 1:1</a>
+    <button class="nav-hamburger" aria-label="Menú" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <a href="talleres.html" class="back-link">← Volver a talleres</a>
+      <h1 class="page-title">Sueños en Colectivo</h1>
+      <p class="page-subtitle">x yoduermoasi · Serie grupal de exploración de sueños</p>
+    </div>
+
+    <div class="events-wrap">
+
+      <!-- ABOUT -->
+      <div class="info-card">
+        <div class="content-section">
+          <p class="event-tagline">¡Bienvenid@s a esta nueva serie de <strong>Sueños en Colectivo x yoduermoasi</strong>, un espacio grupal para la exploración de sueños!</p>
+          <p class="event-tagline">En esta serie, basada en la metodología de <strong>Social Dreaming Matrix</strong>, compartimos sueños, escuchamos sueños, e identificamos conexiones, imágenes y temas en común, dejando que estos se relacionen entre sí a través de la asociación libre.</p>
+          <p class="event-tagline">A diferencia de las sesiones individuales, el foco no está en interpretar el sueño de quien lo comparte. En este espacio, exploramos los sueños como expresiones de realidades compartidas y como una ventana a los contextos sociales, culturales, políticos y sistémicos que habitamos.</p>
+        </div>
+
+        <div class="content-section">
+          <div style="margin-bottom:1.25rem;"><span class="content-label">¿Qué incluye la serie?</span></div>
+          <ul class="benefit-list">
+            <li class="benefit-item">8 encuentros virtuales, el primer sábado de cada mes.</li>
+            <li class="benefit-item">Acceso a una comunidad digital donde encontrarás recursos y resúmenes de cada sesión, y podrás compartir comentarios y reflexiones para mantenernos conectados entre encuentros.</li>
+            <li class="benefit-item">Una colaboración presencial especial en Bogotá con Liliana Ospina (<a href="https://www.instagram.com/arte_terapiasocial" target="_blank" rel="noopener" style="color:var(--navy-soft);">@arte_terapiasocial</a>), donde exploraremos los Sueños en Colectivo a través del arte. Las personas inscritas a la serie tendrán acceso prioritario a la información (cupo aparte).</li>
+          </ul>
+        </div>
+
+        <div class="content-section">
+          <div style="margin-bottom:1.25rem;"><span class="content-label">La serie: ¿cómo, cuándo, dónde?</span></div>
+          <div class="details-strip">
+            <div class="detail-item">
+              <div class="detail-icon">📅</div>
+              <div class="detail-label">Fechas</div>
+              <div class="detail-value">3 Oct 2026 –<br/>1 Mayo 2027</div>
+              <div class="detail-sub">8 encuentros · 1er sábado del mes</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon">⏰</div>
+              <div class="detail-label">Horario</div>
+              <div class="detail-value">10:00–11:30 am</div>
+              <div class="detail-sub">Hora Colombia</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon">📍</div>
+              <div class="detail-label">Lugar</div>
+              <div class="detail-value">Virtual</div>
+              <div class="detail-sub">+ comunidad digital</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <div style="margin-bottom:1.25rem;"><span class="content-label">Inversión</span></div>
+          <div class="details-strip">
+            <div class="detail-item">
+              <div class="detail-label">Membresía de lanzamiento</div>
+              <div class="detail-value">$175.000 COP<br/>$60 USD</div>
+              <div class="detail-sub">Hasta el 12 de septiembre</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Precio regular</div>
+              <div class="detail-value">$250.000 COP<br/>$80 USD</div>
+              <div class="detail-sub">Después del 12 de septiembre</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <div class="safety-note">
+            <p class="safety-note-title">¿Quieres conocer el espacio y la metodología antes de inscribirte?</p>
+            <p>Puedes unirte a la <strong>Sesión Introductoria gratuita</strong> — sábado 12 de septiembre · 10:00–11:30 am hora Colombia · Virtual. Completa el formulario y selecciona esta opción de participación.</p>
+          </div>
+        </div>
+      </div>
+      <!-- / ABOUT -->
+
+      <!-- FORM -->
+      <div class="info-card" id="formCard">
+        <div id="regFormWrap">
+          <p class="form-title">Regístrate</p>
+          <p class="form-subtitle">Completa tus datos y selecciona cómo te gustaría participar. Una vez completes el formulario, recibirás toda la información vía correo electrónico con los próximos pasos para completar tu registro.</p>
+
+          <form id="regForm" onsubmit="submitRegForm(event)">
+            <input type="hidden" name="_subject" value="Nueva inscripción — Sueños en Colectivo x yoduermoasi"/>
+
+            <div class="field-row">
+              <div class="form-field">
+                <label class="contact-label">Nombre *</label>
+                <input type="text" name="first_name" required class="contact-input" placeholder="Tu nombre"/>
+              </div>
+              <div class="form-field">
+                <label class="contact-label">Apellido *</label>
+                <input type="text" name="last_name" required class="contact-input" placeholder="Tu apellido"/>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="contact-label">Teléfono (+ indicativo) *</label>
+              <input type="tel" name="phone" required class="contact-input" placeholder="+57 300 000 0000"/>
+            </div>
+
+            <div class="form-field">
+              <label class="contact-label">Correo electrónico *</label>
+              <input type="email" name="email" required class="contact-input" placeholder="tu@correo.com"/>
+            </div>
+
+            <div class="form-field">
+              <label class="contact-label">¿Dónde vives actualmente? (ciudad/país) *</label>
+              <input type="text" name="location" required class="contact-input" placeholder="Ej. Bogotá, Colombia"/>
+            </div>
+
+            <div class="form-field">
+              <label class="contact-label" style="margin-bottom:0.75rem;">¿Has participado alguna vez en una Social Dreaming Matrix (Matriz de Sueño Social) o en algún grupo de exploración de sueños? *</label>
+              <div class="radio-group">
+                <label class="radio-item inline"><input type="radio" name="experience" value="Sí, conozco la metodología" required/><span>Sí, conozco la metodología.</span></label>
+                <label class="radio-item inline"><input type="radio" name="experience" value="No, primera vez en este espacio" required/><span>No, primera vez en este espacio.</span></label>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="contact-label" style="margin-bottom:0.75rem;">¿Cómo te gustaría participar? *</label>
+              <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="participation" value="Serie completa (8 encuentros) con descuento de lanzamiento" required/><span>Quiero inscribirme a la serie de 8 encuentros y obtener el descuento.</span></label>
+                <label class="radio-item"><input type="radio" name="participation" value="Sesión introductoria gratuita" required/><span>Quiero participar primero en la sesión introductoria gratuita.</span></label>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="contact-label" style="margin-bottom:0.75rem;">¿En qué moneda te gustaría hacer el pago? *</label>
+              <div class="radio-group">
+                <label class="radio-item inline"><input type="radio" name="currency" value="COP" required onchange="toggleOtherCurrency()"/><span>COP — Pesos colombianos</span></label>
+                <label class="radio-item inline"><input type="radio" name="currency" value="USD" required onchange="toggleOtherCurrency()"/><span>USD — Dólares</span></label>
+                <label class="radio-item inline"><input type="radio" name="currency" value="Otro" id="currencyOther" required onchange="toggleOtherCurrency()"/><span>Otro</span></label>
+              </div>
+              <input type="text" id="currencyOtherInput" name="currency_other" class="contact-input" placeholder="¿Qué moneda prefieres?" style="margin-top:0.75rem;display:none;"/>
+            </div>
+
+            <p class="form-required-note">* Campos obligatorios</p>
+
+            <button type="submit" id="regSubmitBtn" class="submit-btn">Registrarme</button>
+          </form>
+        </div>
+
+        <div id="regThankYou" style="display:none;text-align:center;padding:1.5rem 0;">
+          <div class="thank-you-check">✓</div>
+          <p class="thank-you-title">¡Gracias por registrarte!</p>
+          <p class="thank-you-text">Revisa tu correo — te enviaremos toda la información y los próximos pasos para completar tu inscripción en breve. ¿Preguntas mientras tanto? Escríbenos a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
+        </div>
+      </div>
+      <!-- / FORM -->
+
+    </div>
+  </main>
+
+  <footer>
+    <a href="index.html" class="footer-wordmark">yoduermoasi x Camila Figueroa</a>
+    <span class="footer-copy">© 2026 Camila Figueroa</span>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+    });
+    function toggleMobileMenu() {
+      const links = document.querySelector('.nav-links');
+      if (links.style.display === 'flex') { links.style.display = 'none'; }
+      else { links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(190,218,238,0.92);backdrop-filter:blur(14px);padding:1.5rem 2rem;border-bottom:1px solid rgba(255,255,255,0.4);gap:1.5rem;'; }
+    }
+    function toggleOtherCurrency() {
+      const checked = document.getElementById('currencyOther').checked;
+      document.getElementById('currencyOtherInput').style.display = checked ? 'block' : 'none';
+    }
+    async function submitRegForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('regSubmitBtn');
+      btn.textContent = 'Enviando…';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://formspree.io/f/xbdqblkd', {
+          method: 'POST',
+          body: new FormData(e.target),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          document.getElementById('regFormWrap').style.display = 'none';
+          document.getElementById('regThankYou').style.display = 'block';
+          document.getElementById('formCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          btn.textContent = 'Intentar de nuevo';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Intentar de nuevo';
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>

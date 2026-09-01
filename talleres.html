@@ -79,6 +79,7 @@
     .event-card-header { display: flex; align-items: center; justify-content: space-between; padding: 1.75rem 2rem; gap: 1.5rem; }
     .event-card-left { flex: 1; }
     .event-badge { font-family: var(--ff-display); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; background: rgba(26,48,74,0.08); color: var(--text-muted); border: 1px solid var(--rule-strong); border-radius: 20px; padding: 0.2rem 0.7rem; display: inline-block; margin-bottom: 0.6rem; }
+    .event-badge.open { background: rgba(232,200,74,0.2); color: var(--sun-deep); border-color: rgba(232,200,74,0.45); }
     .event-name { font-family: var(--ff-display); font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 400; font-style: italic; color: var(--navy); line-height: 1.15; margin-bottom: 0.4rem; }
     .event-meta { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
     .event-toggle { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy-soft); display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; transition: color 0.2s; flex-shrink: 0; }
@@ -122,6 +123,13 @@
     .finalizado-title { font-family: var(--ff-display); font-size: 1.1rem; font-style: italic; color: var(--navy); margin-bottom: 0.5rem; }
     .finalizado-text { font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
     .finalizado-text a { color: var(--navy-soft); }
+
+    /* REGISTRO CTA */
+    .registro-box { background: rgba(238,246,252,0.75); border: 1px solid var(--rule-strong); border-radius: 6px; padding: 2rem; text-align: center; margin-top: 1rem; }
+    .registro-title { font-family: var(--ff-display); font-size: 1.1rem; font-style: italic; color: var(--navy); margin-bottom: 0.5rem; }
+    .registro-text { font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.25rem; }
+    .registro-btn { display: inline-block; font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: none; padding: 1rem 2.75rem; text-decoration: none; border-radius: 2px; box-shadow: 0 4px 18px rgba(200,160,40,0.3); transition: background 0.3s, box-shadow 0.3s, color 0.3s; }
+    .registro-btn:hover { background: var(--sun-deep); color: #fff; }
 
     /* SAFETY NOTE */
     .safety-note { background: rgba(238,246,252,0.75); border: 1px solid var(--rule-strong); border-left: 3px solid var(--navy-soft); border-radius: 4px; padding: 1.1rem 1.4rem; margin-bottom: 2rem; }
@@ -172,7 +180,90 @@
     </div>
 
     <div class="events-wrap">
-      <span class="events-label">Talleres pasados</span>
+      <span class="events-label">Próximos talleres</span>
+
+      <!-- EVENT CARD: Sueños en Colectivo -->
+      <div class="event-card" id="card-colectivo" onclick="toggleCard('card-colectivo')">
+        <div class="event-card-header">
+          <div class="event-card-left">
+            <div class="event-badge open">Inscripciones abiertas</div>
+            <div class="event-name">Sueños en Colectivo x yoduermoasi</div>
+            <div class="event-meta">Serie grupal online · 8 encuentros · Primer sábado de cada mes · Oct 2026 – May 2027</div>
+          </div>
+          <div class="event-toggle">
+            Ver más <span class="event-toggle-arrow">↓</span>
+          </div>
+        </div>
+
+        <div class="event-detail">
+          <div class="event-detail-inner">
+
+            <p class="event-subtitle">Un espacio grupal para la exploración de sueños, basado en la metodología Social Dreaming Matrix.</p>
+            <p class="event-tagline">Compartimos sueños, escuchamos sueños, e identificamos conexiones, imágenes y temas en común, dejando que estos se relacionen entre sí a través de la asociación libre. A diferencia de las sesiones individuales, el foco no está en interpretar el sueño de quien lo comparte: exploramos los sueños como expresiones de realidades compartidas y como una ventana a los contextos sociales, culturales, políticos y sistémicos que habitamos.</p>
+
+            <div class="details-strip">
+              <div class="detail-item">
+                <div class="detail-icon">📅</div>
+                <div class="detail-label">Fechas</div>
+                <div class="detail-value">3 Oct 2026 –<br/>1 Mayo 2027</div>
+                <div class="detail-sub">8 encuentros · 1er sábado del mes</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-icon">⏰</div>
+                <div class="detail-label">Horario</div>
+                <div class="detail-value">10:00–11:30 am</div>
+                <div class="detail-sub">Hora Colombia</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-icon">📍</div>
+                <div class="detail-label">Lugar</div>
+                <div class="detail-value">Virtual</div>
+                <div class="detail-sub">+ comunidad digital</div>
+              </div>
+            </div>
+
+            <div class="content-section">
+              <div style="margin-bottom:1.25rem;"><span class="content-label">Qué incluye la serie</span></div>
+              <ul class="benefit-list">
+                <li class="benefit-item">8 encuentros virtuales, el primer sábado de cada mes.</li>
+                <li class="benefit-item">Acceso a una comunidad digital con recursos y resúmenes de cada sesión, y un espacio para compartir comentarios y reflexiones entre encuentros.</li>
+                <li class="benefit-item">Una colaboración presencial especial en Bogotá con Liliana Ospina (@arte_terapiasocial), explorando los Sueños en Colectivo a través del arte — acceso prioritario para quienes estén inscritas a la serie (cupo aparte).</li>
+              </ul>
+            </div>
+
+            <div class="content-section">
+              <div style="margin-bottom:1.25rem;"><span class="content-label">Inversión</span></div>
+              <div class="details-strip">
+                <div class="detail-item">
+                  <div class="detail-label">Membresía de lanzamiento</div>
+                  <div class="detail-value">$175.000 COP<br/>$60 USD</div>
+                  <div class="detail-sub">Hasta el 12 de septiembre</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Precio regular</div>
+                  <div class="detail-value">$250.000 COP<br/>$80 USD</div>
+                  <div class="detail-sub">Después del 12 de septiembre</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="safety-note">
+              <p class="safety-note-title">¿Quieres conocer el espacio antes de inscribirte?</p>
+              <p>Únete a la <strong>Sesión Introductoria gratuita</strong> — sábado 12 de septiembre · 10:00–11:30 am hora Colombia · Virtual. Selecciona esta opción al registrarte.</p>
+            </div>
+
+            <div class="registro-box">
+              <p class="registro-title">¿Lista para explorar tus sueños en colectivo?</p>
+              <p class="registro-text">Completa el formulario de registro y recibirás por correo los próximos pasos para confirmar tu cupo.</p>
+              <a href="registro-suenos-en-colectivo.html" class="registro-btn" onclick="event.stopPropagation()">Regístrate →</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- / EVENT CARD -->
+
+      <span class="events-label" style="margin-top:2.5rem;">Talleres pasados</span>
 
       <!-- EVENT CARD: 1:1 con tus Pesadillas -->
       <div class="event-card" id="card-pesadillas" onclick="toggleCard('card-pesadillas')">
@@ -273,6 +364,16 @@
     function toggleCard(id) {
       document.getElementById(id).classList.toggle('open');
     }
+    function openCardFromHash() {
+      const id = window.location.hash.slice(1);
+      if (!id) return;
+      const card = document.getElementById(id);
+      if (!card || !card.classList.contains('event-card')) return;
+      card.classList.add('open');
+      setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+    window.addEventListener('DOMContentLoaded', openCardFromHash);
+    window.addEventListener('hashchange', openCardFromHash);
   </script>
 </body>
 </html>
