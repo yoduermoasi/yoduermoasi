@@ -245,9 +245,11 @@
       <div class="info-card" id="formCard">
         <div id="regFormWrap">
           <p class="form-title">Regístrate</p>
-          <p class="form-subtitle">Completa tus datos y selecciona cómo te gustaría participar. Una vez completes el formulario, recibirás toda la información vía correo electrónico con los próximos pasos para completar tu registro.</p>
+          <p class="form-subtitle">Una vez completes el formulario, recibirás toda la información vía correo electrónico con los próximos pasos para completar tu registro.</p>
 
-          <form id="regForm" onsubmit="submitRegForm(event)">
+          <button type="button" id="showFormBtn" class="submit-btn" onclick="showRegForm()">Registrarme →</button>
+
+          <form id="regForm" onsubmit="submitRegForm(event)" style="display:none;margin-top:1.75rem;">
             <input type="hidden" name="_subject" value="Nueva inscripción — Sueños en Colectivo x yoduermoasi"/>
 
             <div class="field-row">
@@ -332,6 +334,12 @@
       const links = document.querySelector('.nav-links');
       if (links.style.display === 'flex') { links.style.display = 'none'; }
       else { links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(190,218,238,0.92);backdrop-filter:blur(14px);padding:1.5rem 2rem;border-bottom:1px solid rgba(255,255,255,0.4);gap:1.5rem;'; }
+    }
+    function showRegForm() {
+      document.getElementById('showFormBtn').style.display = 'none';
+      const form = document.getElementById('regForm');
+      form.style.display = 'block';
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     function toggleOtherCurrency() {
       const checked = document.getElementById('currencyOther').checked;
