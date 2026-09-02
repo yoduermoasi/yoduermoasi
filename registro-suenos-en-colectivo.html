@@ -293,17 +293,17 @@
             <div class="form-field">
               <label class="contact-label" style="margin-bottom:0.75rem;">¿Cómo te gustaría participar? *</label>
               <div class="radio-group">
-                <label class="radio-item"><input type="radio" name="participation" value="Serie completa (8 encuentros) con descuento de lanzamiento" required/><span>Quiero inscribirme a la serie de 8 encuentros y obtener el descuento.</span></label>
-                <label class="radio-item"><input type="radio" name="participation" value="Sesión introductoria gratuita" required/><span>Quiero participar primero en la sesión introductoria gratuita.</span></label>
+                <label class="radio-item"><input type="radio" name="participation" value="Serie completa (8 encuentros) con descuento de lanzamiento" required onchange="toggleCurrencyField()"/><span>Quiero inscribirme a la serie de 8 encuentros y obtener el descuento.</span></label>
+                <label class="radio-item"><input type="radio" name="participation" value="Sesión introductoria gratuita" required onchange="toggleCurrencyField()"/><span>Quiero participar primero en la sesión introductoria gratuita.</span></label>
               </div>
             </div>
 
-            <div class="form-field">
+            <div class="form-field" id="currencyField" style="display:none;">
               <label class="contact-label" style="margin-bottom:0.75rem;">¿En qué moneda te gustaría hacer el pago? *</label>
               <div class="radio-group">
-                <label class="radio-item inline"><input type="radio" name="currency" value="COP" required onchange="toggleOtherCurrency()"/><span>COP — Pesos colombianos</span></label>
-                <label class="radio-item inline"><input type="radio" name="currency" value="USD" required onchange="toggleOtherCurrency()"/><span>USD — Dólares</span></label>
-                <label class="radio-item inline"><input type="radio" name="currency" value="Otro" id="currencyOther" required onchange="toggleOtherCurrency()"/><span>Otro</span></label>
+                <label class="radio-item inline"><input type="radio" name="currency" value="COP" onchange="toggleOtherCurrency()"/><span>COP — Pesos colombianos</span></label>
+                <label class="radio-item inline"><input type="radio" name="currency" value="USD" onchange="toggleOtherCurrency()"/><span>USD — Dólares</span></label>
+                <label class="radio-item inline"><input type="radio" name="currency" value="Otro" id="currencyOther" onchange="toggleOtherCurrency()"/><span>Otro</span></label>
               </div>
               <input type="text" id="currencyOtherInput" name="currency_other" class="contact-input" placeholder="¿Qué moneda prefieres?" style="margin-top:0.75rem;display:none;"/>
             </div>
@@ -344,6 +344,17 @@
       const form = document.getElementById('regForm');
       form.style.display = 'block';
       form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function toggleCurrencyField() {
+      const wantsSeries = document.querySelector('input[name="participation"]:checked')?.value === 'Serie completa (8 encuentros) con descuento de lanzamiento';
+      const field = document.getElementById('currencyField');
+      const currencyRadios = document.querySelectorAll('input[name="currency"]');
+      field.style.display = wantsSeries ? 'block' : 'none';
+      currencyRadios.forEach(r => { r.required = wantsSeries; });
+      if (!wantsSeries) {
+        currencyRadios.forEach(r => { r.checked = false; });
+        document.getElementById('currencyOtherInput').style.display = 'none';
+      }
     }
     function toggleOtherCurrency() {
       const checked = document.getElementById('currencyOther').checked;
