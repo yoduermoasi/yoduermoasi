@@ -202,7 +202,7 @@
               <div class="detail-icon">📅</div>
               <div class="detail-label">Fechas</div>
               <div class="detail-value">3 Oct 2026 –<br/>1 Mayo 2027</div>
-              <div class="detail-sub">8 encuentros · 1er sábado del mes</div>
+              <div class="detail-sub">8 encuentros · 1er sábado del mes (en enero, 2do sábado)</div>
             </div>
             <div class="detail-item">
               <div class="detail-icon">⏰</div>
@@ -223,23 +223,21 @@
           <div style="margin-bottom:1.25rem;"><span class="content-label">Inversión</span></div>
           <div class="details-strip">
             <div class="detail-item">
-              <div class="detail-label">Membresía de lanzamiento</div>
-              <div class="detail-value">$175.000 COP<br/>$60 USD</div>
-              <div class="detail-sub">Hasta el 12 de septiembre</div>
+              <div class="detail-label">Serie completa</div>
+              <div class="detail-value">$250.000 COP<br/>$80 USD</div>
+              <div class="detail-sub">8 encuentros</div>
             </div>
             <div class="detail-item">
-              <div class="detail-label">Precio regular</div>
-              <div class="detail-value">$250.000 COP<br/>$80 USD</div>
-              <div class="detail-sub">Después del 12 de septiembre</div>
+              <div class="detail-label">Por encuentro</div>
+              <div class="detail-value">$55.000 COP<br/>$20 USD</div>
+              <div class="detail-sub">Sesión individual</div>
             </div>
           </div>
         </div>
 
         <div class="content-section">
           <div class="safety-note">
-            <p class="safety-note-title" style="font-weight:700;">¿Quieres conocer el espacio y la metodología antes de inscribirte?</p>
-            <p>Puedes unirte a la Sesión Introductoria gratuita el <strong>sábado 12 de septiembre a las 10:00–11:30 am hora Colombia</strong> (virtual). Completa el formulario y selecciona esta opción de participación.</p>
-            <p style="margin-top:0.6rem;">También te invito a leer mi <a href="https://yoduermoasi.substack.com/p/suenos-en-colectivo-una-invitacion?r=47gtjo&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" style="color:var(--navy-soft);">Substack sobre la historia de esta metodología</a>.</p>
+            <p>Te invito a leer mi <a href="https://yoduermoasi.substack.com/p/suenos-en-colectivo-una-invitacion?r=47gtjo&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" style="color:var(--navy-soft);">Substack sobre la historia de esta metodología</a>.</p>
           </div>
         </div>
       </div>
@@ -293,9 +291,24 @@
             <div class="form-field">
               <label class="contact-label" style="margin-bottom:0.75rem;">¿Cómo te gustaría participar? *</label>
               <div class="radio-group">
-                <label class="radio-item"><input type="radio" name="participation" value="Serie completa (8 encuentros) con descuento de lanzamiento" required onchange="toggleCurrencyField()"/><span>Quiero inscribirme a la serie de 8 encuentros y obtener el descuento.</span></label>
-                <label class="radio-item"><input type="radio" name="participation" value="Sesión introductoria gratuita" required onchange="toggleCurrencyField()"/><span>Quiero participar primero en la sesión introductoria gratuita.</span></label>
+                <label class="radio-item"><input type="radio" name="participation" value="Una sola sesión" required onchange="onParticipationChange()"/><span>Una sola sesión.</span></label>
+                <label class="radio-item"><input type="radio" name="participation" value="Serie completa (8 encuentros)" required onchange="onParticipationChange()"/><span>Quiero inscribirme a la serie de 8 encuentros.</span></label>
               </div>
+            </div>
+
+            <div class="form-field" id="dateField" style="display:none;">
+              <label class="contact-label">¿A cuál fecha te gustaría unirte? *</label>
+              <select name="single_session_date" id="singleSessionDate" class="contact-input">
+                <option value="">Selecciona una fecha</option>
+                <option value="Sábado 3 de octubre, 2026">Sábado 3 de octubre, 2026</option>
+                <option value="Sábado 7 de noviembre, 2026">Sábado 7 de noviembre, 2026</option>
+                <option value="Sábado 5 de diciembre, 2026">Sábado 5 de diciembre, 2026</option>
+                <option value="Sábado 9 de enero, 2027">Sábado 9 de enero, 2027</option>
+                <option value="Sábado 6 de febrero, 2027">Sábado 6 de febrero, 2027</option>
+                <option value="Sábado 6 de marzo, 2027">Sábado 6 de marzo, 2027</option>
+                <option value="Sábado 3 de abril, 2027">Sábado 3 de abril, 2027</option>
+                <option value="Sábado 1 de mayo, 2027">Sábado 1 de mayo, 2027</option>
+              </select>
             </div>
 
             <div class="form-field" id="currencyField" style="display:none;">
@@ -345,13 +358,22 @@
       form.style.display = 'block';
       form.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    function toggleCurrencyField() {
-      const wantsSeries = document.querySelector('input[name="participation"]:checked')?.value === 'Serie completa (8 encuentros) con descuento de lanzamiento';
-      const field = document.getElementById('currencyField');
+    function onParticipationChange() {
+      const participation = document.querySelector('input[name="participation"]:checked')?.value;
+      const isSingleSession = participation === 'Una sola sesión';
+
+      const dateField = document.getElementById('dateField');
+      const dateSelect = document.getElementById('singleSessionDate');
+      dateField.style.display = isSingleSession ? 'block' : 'none';
+      dateSelect.required = isSingleSession;
+      if (!isSingleSession) dateSelect.value = '';
+
+      const currencyField = document.getElementById('currencyField');
       const currencyRadios = document.querySelectorAll('input[name="currency"]');
-      field.style.display = wantsSeries ? 'block' : 'none';
-      currencyRadios.forEach(r => { r.required = wantsSeries; });
-      if (!wantsSeries) {
+      const showCurrency = !!participation;
+      currencyField.style.display = showCurrency ? 'block' : 'none';
+      currencyRadios.forEach(r => { r.required = showCurrency; });
+      if (!showCurrency) {
         currencyRadios.forEach(r => { r.checked = false; });
         document.getElementById('currencyOtherInput').style.display = 'none';
       }
