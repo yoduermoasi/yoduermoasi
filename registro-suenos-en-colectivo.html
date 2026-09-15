@@ -297,18 +297,17 @@
             </div>
 
             <div class="form-field" id="dateField" style="display:none;">
-              <label class="contact-label">¿A cuál fecha te gustaría unirte? *</label>
-              <select name="single_session_date" id="singleSessionDate" class="contact-input">
-                <option value="">Selecciona una fecha</option>
-                <option value="Sábado 3 de octubre, 2026">Sábado 3 de octubre, 2026</option>
-                <option value="Sábado 7 de noviembre, 2026">Sábado 7 de noviembre, 2026</option>
-                <option value="Sábado 5 de diciembre, 2026">Sábado 5 de diciembre, 2026</option>
-                <option value="Sábado 9 de enero, 2027">Sábado 9 de enero, 2027</option>
-                <option value="Sábado 6 de febrero, 2027">Sábado 6 de febrero, 2027</option>
-                <option value="Sábado 6 de marzo, 2027">Sábado 6 de marzo, 2027</option>
-                <option value="Sábado 3 de abril, 2027">Sábado 3 de abril, 2027</option>
-                <option value="Sábado 1 de mayo, 2027">Sábado 1 de mayo, 2027</option>
-              </select>
+              <label class="contact-label" style="margin-bottom:0.75rem;">¿A cuál fecha te gustaría unirte? * <span style="font-weight:400;font-style:italic;text-transform:none;letter-spacing:normal;">(puedes elegir más de una)</span></label>
+              <div class="radio-group">
+                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 3 de octubre, 2026" class="single-session-date"/><span>Sábado 3 de octubre, 2026</span></label>
+                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 7 de noviembre, 2026" class="single-session-date"/><span>Sábado 7 de noviembre, 2026</span></label>
+                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 5 de diciembre, 2026" class="single-session-date"/><span>Sábado 5 de diciembre, 2026</span></label>
+                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 9 de enero, 2027" class="single-session-date"/><span>Sábado 9 de enero, 2027</span></label>
+                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 6 de febrero, 2027" class="single-session-date"/><span>Sábado 6 de febrero, 2027</span></label>
+                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 6 de marzo, 2027" class="single-session-date"/><span>Sábado 6 de marzo, 2027</span></label>
+                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 3 de abril, 2027" class="single-session-date"/><span>Sábado 3 de abril, 2027</span></label>
+                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 1 de mayo, 2027" class="single-session-date"/><span>Sábado 1 de mayo, 2027</span></label>
+              </div>
             </div>
 
             <div class="form-field" id="currencyField" style="display:none;">
@@ -363,10 +362,10 @@
       const isSingleSession = participation === 'Una sola sesión';
 
       const dateField = document.getElementById('dateField');
-      const dateSelect = document.getElementById('singleSessionDate');
       dateField.style.display = isSingleSession ? 'block' : 'none';
-      dateSelect.required = isSingleSession;
-      if (!isSingleSession) dateSelect.value = '';
+      if (!isSingleSession) {
+        document.querySelectorAll('.single-session-date').forEach(cb => { cb.checked = false; });
+      }
 
       const currencyField = document.getElementById('currencyField');
       const currencyRadios = document.querySelectorAll('input[name="currency"]');
@@ -384,6 +383,11 @@
     }
     async function submitRegForm(e) {
       e.preventDefault();
+      const participation = document.querySelector('input[name="participation"]:checked')?.value;
+      if (participation === 'Una sola sesión' && document.querySelectorAll('.single-session-date:checked').length === 0) {
+        alert('Por favor selecciona al menos una fecha.');
+        return;
+      }
       const btn = document.getElementById('regSubmitBtn');
       btn.textContent = 'Enviando…';
       btn.disabled = true;
