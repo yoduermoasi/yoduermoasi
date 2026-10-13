@@ -421,14 +421,15 @@
     .price-assistance { font-family: var(--ff-body); font-size: 0.78rem; color: var(--text-muted); line-height: 1.65; margin-top: 1.25rem; text-align: center; font-style: italic; }
     .price-assistance a { color: var(--navy-soft); text-decoration: underline; text-underline-offset: 3px; }
     /* Calendly step */
-    .step-selected-price { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem; padding: 0.7rem 1.5rem; background: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.85); border-radius: 4px; }
-    .step-selected-label { font-family: var(--ff-display); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
-    .step-selected-value { font-family: var(--ff-display); font-size: 1rem; font-weight: 400; color: var(--sun-deep); }
+    .step-selected-price { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem 0.85rem; margin-bottom: 1.5rem; padding: 0.85rem 1.5rem; background: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.85); border-radius: 4px; }
+    .step-selected-label { font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
+    .step-selected-value { font-family: var(--ff-display); font-size: 1.25rem; font-weight: 500; color: var(--sun-deep); }
     /* Payment step */
     .payment-confirmed-badge { font-family: var(--ff-display); font-size: 0.64rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy-soft); background: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.85); border-radius: 20px; padding: 0.25rem 0.85rem; display: inline-block; margin-bottom: 1.5rem; }
     .payment-summary { text-align: center; margin-bottom: 2rem; }
     .payment-summary-title { font-family: var(--ff-display); font-size: 1.4rem; font-weight: 300; font-style: italic; color: var(--navy); margin-bottom: 0.35rem; }
     .payment-summary-amount { font-family: var(--ff-display); font-size: 2.8rem; font-weight: 300; color: var(--sun-deep); line-height: 1; margin-bottom: 0.25rem; }
+    .payment-summary-amount-secondary { font-family: var(--ff-display); font-size: 1rem; font-weight: 400; color: var(--text-muted); margin-bottom: 0.6rem; }
     .payment-summary-desc { font-family: var(--ff-body); font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
     .paypal-btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: #0070BA; color: #fff; font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 1rem 2rem; border-radius: 3px; margin: 1.5rem 0 1rem; transition: background 0.2s; box-shadow: 0 4px 16px rgba(0,112,186,0.28); border: none; cursor: pointer; width: 100%; }
     .paypal-btn:hover { background: #005fa3; }
@@ -861,6 +862,7 @@
           </div>
           <div class="payment-summary">
             <div class="payment-summary-amount" id="paymentAmount">$119</div>
+            <div class="payment-summary-amount-secondary" id="paymentAmountSecondary"></div>
             <div class="payment-summary-desc" data-i18n="step3.session.desc">1:1 Dream Session · 90 min</div>
           </div>
           <div id="booking-payment-area">
@@ -1549,6 +1551,29 @@
 
     let currentLang = localStorage.getItem('lang') || 'en';
 
+    /* ── Price formatting (USD tier <-> COP) ── */
+    const TIER_COP = { 119: 380000, 99: 315000, 75: 250000 };
+    function formatThousands(n) {
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+    function copAmount(usd) {
+      return TIER_COP[usd] || Math.round(usd * 3200);
+    }
+    // Full "primary (secondary)" string, e.g. selected-price bar
+    function formatPrice(usd) {
+      const usdStr = '$' + usd + ' USD';
+      const copStr = '$' + formatThousands(copAmount(usd)) + ' COP';
+      return currentLang === 'es' ? copStr + ' (' + usdStr + ')' : usdStr + ' (' + copStr + ')';
+    }
+    // Big primary amount only, e.g. payment summary
+    function formatPricePrimary(usd) {
+      return currentLang === 'es' ? '$' + formatThousands(copAmount(usd)) + ' COP' : '$' + usd + ' USD';
+    }
+    // Small secondary amount in parens, e.g. under payment summary
+    function formatPriceSecondary(usd) {
+      return currentLang === 'es' ? '($' + usd + ' USD)' : '($' + formatThousands(copAmount(usd)) + ' COP)';
+    }
+
     function setLang(lang) {
       currentLang = lang;
       localStorage.setItem('lang', lang);
@@ -1684,14 +1709,15 @@
       document.getElementById('modalTitle').textContent    = t['modal.title.' + step];
       document.getElementById('modalSubtitle').textContent = t['modal.subtitle.' + step];
       if (step === 3 && selectedPrice) {
-        document.getElementById('paymentAmount').textContent = '$' + selectedPrice;
+        document.getElementById('paymentAmount').textContent = formatPricePrimary(selectedPrice);
+        document.getElementById('paymentAmountSecondary').textContent = formatPriceSecondary(selectedPrice);
       }
       document.querySelector('.modal-box').scrollTop = 0;
     }
 
     function selectTier(price) {
       selectedPrice = price;
-      document.getElementById('selectedPriceDisplay').textContent = '$' + price + ' USD';
+      document.getElementById('selectedPriceDisplay').textContent = formatPrice(price);
       showStep(2);
     }
 
