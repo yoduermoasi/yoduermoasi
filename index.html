@@ -281,6 +281,11 @@
     .offering-title { font-family: var(--ff-display); font-size: 1.65rem; font-weight: 400; line-height: 1.2; color: var(--navy); margin-bottom: 1rem; }
     .offering-timing { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--rule); }
     .offering-desc { font-family: var(--ff-body); font-size: 0.88rem; line-height: 1.8; color: var(--text-soft); flex: 1; margin-bottom: 2rem; }
+    .offering-desc p { margin: 0 0 1rem; }
+    .offering-desc p:last-child { margin-bottom: 0; }
+    .offering-expect-label { font-family: var(--ff-display); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); margin: 0 0 0.65rem; }
+    .offering-expect-list { list-style: disc; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.5rem; margin: 0 0 1.1rem; }
+    .offering-expect-list li { font-family: var(--ff-body); font-size: 0.88rem; line-height: 1.6; color: var(--text-soft); }
     .offering-cta { font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); text-decoration: none; border: 1px solid var(--rule-strong); padding: 0.8rem 1.5rem; display: inline-block; text-align: center; border-radius: 2px; transition: all 0.3s; background: transparent; }
     .offering-cta:hover { background: var(--navy); color: var(--sky-horizon); border-color: var(--navy); }
     .offering-cta.primary { background: var(--sun); border-color: var(--sun); box-shadow: 0 3px 14px rgba(200,160,40,0.28); }
@@ -591,7 +596,18 @@
         <div class="offering-num" data-i18n="offering.num">Dream practice grounded in evidence</div>
         <h3 class="offering-title" data-i18n="offering.title">1:1 Dream Session</h3>
         <div class="offering-timing" data-i18n="offering.timing">By Appointment · 90 min · English & Spanish</div>
-        <p class="offering-desc" data-i18n="offering.desc">For anyone curious about understanding how the unconscious shapes everyday life: Dreams are a valuable source of information that complement your waking experiences, offering insight into emotions, relationships, and recurring patterns that often go unnoticed. Together, we'll explore your dreams to make sense of your daily experiences and deepen your understanding of yourself. As these figures, symbols and patterns become clearer, they can open the door to greater self-awareness, new perspectives, and meaningful change.</p>
+        <div class="offering-desc" data-i18n-html="offering.desc">
+          <p>For anyone curious about how the unconscious shapes everyday life. Together, we explore your dreams as a source of information about your emotions, relationships, and the patterns that often go unnoticed, and connect what we find to your waking life.</p>
+          <p class="offering-expect-label">What you can expect:</p>
+          <ul class="offering-expect-list">
+            <li>Fewer and less intense nightmares and recurring images, using evidence-based techniques like imagery rehearsal</li>
+            <li>Emotional clarity about what you're feeling and why</li>
+            <li>A deeper understanding of yourself and your patterns</li>
+            <li>Concrete next steps to bring that insight into your decisions and daily life</li>
+            <li>Tools to remember and work with your dreams on your own</li>
+          </ul>
+          <p>No dream to explore? If you're working on a creative or personal project, we can use the same process to unblock ideas and find new directions.</p>
+        </div>
         <a href="#" class="offering-cta primary" onclick="openModal(event)" data-i18n="offering.cta">1:1 Dream Session</a>
         <a href="#" class="btn-gift" onclick="openGiftModal(event)" data-i18n="gift.btn">Gift Card for Someone Special</a>
       </div>
@@ -1166,7 +1182,7 @@
         'offering.num': 'Dream practice grounded in evidence',
         'offering.title': '1:1 Dream Session',
         'offering.timing': 'By Appointment · 90 min · English & Spanish',
-        'offering.desc': 'For anyone curious about understanding how the unconscious shapes everyday life: Dreams are a valuable source of information that complement your waking experiences, offering insight into emotions, relationships, and recurring patterns that often go unnoticed. Together, we\'ll explore your dreams to make sense of your daily experiences and deepen your understanding of yourself. As these figures, symbols and patterns become clearer, they can open the door to greater self-awareness, new perspectives, and meaningful change.',
+        'offering.desc': '<p>For anyone curious about how the unconscious shapes everyday life. Together, we explore your dreams as a source of information about your emotions, relationships, and the patterns that often go unnoticed, and connect what we find to your waking life.</p><p class="offering-expect-label">What you can expect:</p><ul class="offering-expect-list"><li>Fewer and less intense nightmares and recurring images, using evidence-based techniques like imagery rehearsal</li><li>Emotional clarity about what you\'re feeling and why</li><li>A deeper understanding of yourself and your patterns</li><li>Concrete next steps to bring that insight into your decisions and daily life</li><li>Tools to remember and work with your dreams on your own</li></ul><p>No dream to explore? If you\'re working on a creative or personal project, we can use the same process to unblock ideas and find new directions.</p>',
         'offering.cta': '1:1 Dream Session',
         'therapy.num': 'Long-term Therapy',
         'therapy.title': 'I want to start therapy.',
@@ -1373,7 +1389,7 @@
         'offering.num': 'Práctica de sueños basada en evidencia',
         'offering.title': 'Sesión 1:1 de Sueños',
         'offering.timing': 'Con Cita · 90 min · Inglés y Español',
-        'offering.desc': 'Para quienes sienten curiosidad por entender cómo el inconsciente moldea la vida cotidiana: los sueños son una valiosa fuente de información que complementa tu experiencia despierta, ofreciendo perspectiva sobre emociones, relaciones y patrones recurrentes que suelen pasar desapercibidos. Juntos exploraremos tus sueños para darle sentido a tus experiencias cotidianas y profundizar tu autoconocimiento. A medida que estas figuras, símbolos y patrones se hacen más claros, pueden abrir la puerta a una mayor conciencia de ti mismo/a, nuevas perspectivas y cambios significativos.',
+        'offering.desc': '<p>Para quienes sienten curiosidad por entender cómo el inconsciente moldea la vida cotidiana. Juntos exploramos tus sueños como una fuente de información sobre tus emociones, relaciones y los patrones que suelen pasar desapercibidos, y conectamos lo que encontramos con tu vida despierta.</p><p class="offering-expect-label">Qué puedes esperar:</p><ul class="offering-expect-list"><li>Menos pesadillas e imágenes recurrentes, y de menor intensidad, usando técnicas basadas en evidencia como el ensayo de imágenes</li><li>Claridad emocional sobre lo que sientes y por qué</li><li>Una comprensión más profunda de ti mismo/a y tus patrones</li><li>Pasos concretos para llevar esa comprensión a tus decisiones y tu vida diaria</li><li>Herramientas para recordar y trabajar tus sueños por tu cuenta</li></ul><p>¿No tienes un sueño para explorar? Si estás trabajando en un proyecto creativo o personal, podemos usar el mismo proceso para destrabar ideas y encontrar nuevas direcciones.</p>',
         'offering.cta': 'Sesión 1:1 de sueños',
         'therapy.num': 'Terapia a largo plazo',
         'therapy.title': 'Quiero iniciar un proceso terapéutico.',
