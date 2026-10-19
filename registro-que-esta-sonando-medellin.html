@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¿Qué está soñando Medellín? | Registro | Camila Figueroa</title>
+  <meta name="description" content="Taller presencial de Sueños en Colectivo en Medellín. Sábado 21 de noviembre, 4:00-6:00pm, El Poblado. Un espacio grupal para la exploración de sueños basado en la Matriz de Sueño Social."/>
+  <link rel="canonical" href="https://yoduermoasi.github.io/yoduermoasi/registro-que-esta-sonando-medellin.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --sky-high:    #a8c8e8;
+      --sky-mid:     #c5ddf0;
+      --sky-low:     #deeef8;
+      --sky-horizon: #eef6fc;
+      --dawn:        #f5f0e4;
+      --navy:        #1a304a;
+      --navy-mid:    #2e4f72;
+      --navy-soft:   #4a6f96;
+      --sun:         #e8c84a;
+      --sun-deep:    #c9a82a;
+      --sun-pale:    #fdf3c0;
+      --cloud:       rgba(255,255,255,0.82);
+      --cloud-edge:  rgba(255,255,255,0.4);
+      --text-soft:   #3a5a7a;
+      --text-muted:  #6080a0;
+      --rule:        rgba(26,48,74,0.12);
+      --rule-strong: rgba(26,48,74,0.25);
+      --ff-display:  'Cormorant Garamond', Georgia, serif;
+      --ff-body:     'Lora', Georgia, serif;
+      --ease:        cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--sky-horizon); color: var(--navy); font-family: var(--ff-body); line-height: 1.7; overflow-x: hidden; }
+
+    /* SKY */
+    .sky-canvas { position: fixed; inset: 0; z-index: 0;
+      background: linear-gradient(180deg, var(--sky-high) 0%, var(--sky-mid) 28%, var(--sky-low) 58%, var(--sky-horizon) 82%, var(--dawn) 100%);
+    }
+    .sky-canvas::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 400px 95px at 14% 20%, var(--cloud) 60%, transparent 100%),
+        radial-gradient(ellipse 210px 58px at 6%  25%, var(--cloud) 68%, transparent 100%),
+        radial-gradient(ellipse 170px 48px at 30% 18%, var(--cloud) 58%, transparent 100%),
+        radial-gradient(ellipse 520px 115px at 74% 13%, var(--cloud) 52%, transparent 100%),
+        radial-gradient(ellipse 270px 68px at 90% 17%, var(--cloud) 62%, transparent 100%),
+        radial-gradient(ellipse 200px 52px at 62% 11%, var(--cloud) 48%, transparent 100%);
+    }
+    nav, main, footer { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 3.5rem; transition: all 0.5s var(--ease); }
+    nav.scrolled { background: rgba(190,218,238,0.75); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); padding: 0.9rem 3.5rem; border-bottom: 1px solid rgba(255,255,255,0.45); }
+    .nav-wordmark { font-family: var(--ff-display); font-size: 1rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: var(--ff-display); font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy-mid); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-cta { font-family: var(--ff-display); font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: 1.5px solid rgba(255,255,255,0.6); padding: 0.6rem 1.5rem; text-decoration: none; border-radius: 2px; box-shadow: 0 2px 16px rgba(255,255,255,0.5), 0 2px 8px rgba(150,110,0,0.2); transition: background 0.3s, color 0.3s; }
+    .nav-cta:hover { background: var(--sun-deep); color: #fff; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-hamburger span { width: 22px; height: 1.5px; background: var(--navy); display: block; }
+
+    /* EVENT HERO (photo banner) */
+    .event-hero { position: relative; width: 100%; min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7.5rem 3.5rem 3.5rem; overflow: hidden; }
+    .event-hero-bg { position: absolute; inset: 0; background: url('banner-medellin.jpg') center 32%/cover no-repeat; z-index: 0; }
+    .event-hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,28,45,0.62) 0%, rgba(15,28,45,0.58) 60%, rgba(15,28,45,0.7) 100%); }
+    .event-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 160px; background: linear-gradient(to bottom, transparent, var(--sky-horizon)); z-index: 2; pointer-events: none; }
+    .event-hero-content { position: relative; z-index: 3; max-width: 760px; }
+    .event-hero-back { display: inline-block; font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; margin-bottom: 1.5rem; }
+    .event-hero-back:hover { color: #fff; }
+    .event-hero-eyebrow { font-family: var(--ff-display); font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sun-pale); margin-bottom: 1rem; }
+    .event-hero-title { font-family: var(--ff-display); font-size: clamp(2.3rem, 5.2vw, 3.8rem); font-weight: 300; font-style: italic; color: #fff; line-height: 1.15; margin-bottom: 1rem; text-shadow: 0 2px 14px rgba(0,0,0,0.35); }
+    .event-hero-sub { font-family: var(--ff-body); font-size: 0.95rem; color: rgba(255,255,255,0.92); line-height: 1.75; max-width: 48ch; margin: 0 auto 1.75rem; text-shadow: 0 1px 8px rgba(0,0,0,0.35); }
+    .event-hero-cta { display: inline-block; font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: none; padding: 1rem 2.5rem; text-decoration: none; border-radius: 2px; box-shadow: 0 4px 18px rgba(0,0,0,0.25); transition: background 0.3s, box-shadow 0.3s, color 0.3s; }
+    .event-hero-cta:hover { background: var(--sun-deep); color: #fff; }
+
+    /* WRAP */
+    .events-wrap { max-width: 780px; margin: 0 auto; padding: 0 3.5rem 5rem; }
+
+    /* INFO / FORM CARD */
+    .info-card { background: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.9); border-radius: 8px; box-shadow: 0 4px 24px rgba(30,60,100,0.07); padding: 2.25rem 2rem 2.5rem; margin-bottom: 1.75rem; }
+    .info-card:first-of-type { margin-top: -2.5rem; position: relative; z-index: 3; }
+
+    /* CONTENT SECTIONS */
+    .content-section { margin-bottom: 2.25rem; }
+    .content-section:last-child { margin-bottom: 0; }
+    .content-label { font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sun-deep); margin-bottom: 1.25rem; display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.3rem 1.1rem 0.3rem 0.9rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.9); }
+    .content-label::before { content: ''; display: block; width: 1.6rem; height: 1.5px; background: var(--sun-deep); flex-shrink: 0; }
+    .event-tagline { font-family: var(--ff-body); font-size: 0.95rem; color: var(--text-soft); line-height: 1.85; margin-bottom: 1.25rem; }
+    .event-tagline:last-child { margin-bottom: 0; }
+    .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .benefit-item { font-family: var(--ff-body); font-size: 0.9rem; color: var(--text-soft); line-height: 1.75; padding-left: 1.5rem; position: relative; }
+    .benefit-item::before { content: '—'; position: absolute; left: 0; color: var(--sun-deep); font-family: var(--ff-display); }
+
+    /* DETAIL STRIP */
+    .details-strip { display: flex; flex-wrap: wrap; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.9); border-radius: 6px; overflow: hidden; }
+    .detail-item { flex: 1; min-width: 140px; padding: 1rem 1.25rem; text-align: center; border-right: 1px solid var(--rule); }
+    .detail-item:last-child { border-right: none; }
+    .detail-icon { font-size: 1rem; margin-bottom: 0.2rem; }
+    .detail-label { font-family: var(--ff-display); font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .detail-value { font-family: var(--ff-display); font-size: 0.9rem; color: var(--navy); line-height: 1.3; }
+    .detail-sub { font-family: var(--ff-body); font-size: 0.68rem; color: var(--text-muted); font-style: italic; }
+
+    /* PRESENCIAL BADGE */
+    .in-person-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--ff-display); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy); background: rgba(232,200,74,0.28); border: 1px solid rgba(232,200,74,0.6); border-radius: 20px; padding: 0.35rem 0.95rem; margin-bottom: 1.25rem; }
+
+    /* SAFETY / INFO NOTE */
+    .safety-note { background: rgba(238,246,252,0.75); border: 1px solid var(--rule-strong); border-left: 3px solid var(--navy-soft); border-radius: 4px; padding: 1.1rem 1.4rem; }
+    .safety-note-title { font-family: var(--ff-display); font-size: 0.9rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; letter-spacing: 0.04em; }
+    .safety-note p { font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-soft); line-height: 1.8; }
+    .safety-note a { color: var(--navy-soft); }
+
+    /* FACILITATOR */
+    .facilitator-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.9rem; flex-wrap: wrap; }
+    .facilitator-name { font-family: var(--ff-display); font-size: 1.05rem; font-style: italic; color: var(--navy); }
+    .facilitator-handle { font-family: var(--ff-body); font-size: 0.85rem; color: var(--navy-soft); text-decoration: none; }
+    .facilitator-handle:hover { text-decoration: underline; }
+    .facilitator-link { font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy-soft); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* FORM */
+    .form-title { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 400; font-style: italic; color: var(--navy); margin-bottom: 0.4rem; }
+    .form-subtitle { font-family: var(--ff-body); font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
+    .contact-label { display: block; font-family: var(--ff-display); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy-mid); margin-bottom: 0.4rem; }
+    .contact-input { width: 100%; font-family: var(--ff-body); font-size: 0.88rem; color: var(--navy); background: rgba(255,255,255,0.85); border: 1px solid rgba(26,48,74,0.18); border-radius: 4px; padding: 0.72rem 0.9rem; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
+    .contact-input:focus { border-color: var(--sun-deep); }
+    .form-field { margin-bottom: 1.25rem; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .radio-group { display: flex; flex-direction: column; gap: 0.6rem; }
+    .radio-item { display: flex; align-items: flex-start; gap: 0.65rem; font-family: var(--ff-body); font-size: 0.88rem; color: var(--text-soft); line-height: 1.5; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.9); border-radius: 6px; padding: 0.85rem 1.1rem; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+    .radio-item:hover { background: rgba(255,255,255,0.78); }
+    .radio-item input[type="radio"] { margin-top: 0.2rem; accent-color: var(--navy); flex-shrink: 0; }
+    .radio-item.inline { align-items: center; }
+
+    .submit-btn { display: block; width: 100%; font-family: var(--ff-display); font-size: 0.82rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: none; padding: 1.05rem 2.5rem; cursor: pointer; border-radius: 2px; box-shadow: 0 4px 18px rgba(200,160,40,0.3); transition: background 0.3s, box-shadow 0.3s, color 0.3s; margin-top: 0.5rem; }
+    .submit-btn:hover { background: var(--sun-deep); color: #fff; }
+    .submit-btn:disabled { opacity: 0.65; cursor: default; }
+    .form-required-note { font-family: var(--ff-body); font-size: 0.72rem; color: var(--text-muted); font-style: italic; margin-bottom: 1.5rem; }
+
+    /* THANK YOU */
+    .thank-you-check { width: 3rem; height: 3rem; border-radius: 50%; background: var(--sun); color: var(--navy); font-size: 1.4rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+    .thank-you-title { font-family: var(--ff-display); font-size: 1.5rem; font-style: italic; color: var(--navy); margin-bottom: 0.75rem; }
+    .thank-you-text { font-family: var(--ff-body); font-size: 0.92rem; color: var(--text-soft); line-height: 1.85; max-width: 42ch; margin: 0 auto; }
+    .thank-you-text a { color: var(--navy-soft); }
+
+    /* FOOTER */
+    footer { display: flex; align-items: center; justify-content: space-between; padding: 2rem 3.5rem; border-top: 1px solid var(--rule); }
+    .footer-wordmark { font-family: var(--ff-display); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); text-decoration: none; }
+    .footer-copy { font-family: var(--ff-display); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-muted); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      nav.scrolled { padding: 0.8rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .event-hero { padding: 6rem 1.5rem 3rem; min-height: 44vh; }
+      .events-wrap { padding: 0 1.5rem 4rem; }
+      .info-card { padding: 1.5rem 1.25rem 2rem; }
+      .info-card:first-of-type { margin-top: -2rem; }
+      .field-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sky-canvas" aria-hidden="true"></div>
+
+  <nav id="mainNav">
+    <a href="index.html" class="nav-wordmark">yoduermoasi x Camila Figueroa</a>
+    <ul class="nav-links">
+      <li><a href="index.html#offerings">Sesiones</a></li>
+      <li><a href="index.html#about">Sobre mí</a></li>
+      <li><a href="index.html#faq">Preguntas</a></li>
+      <li><a href="talleres.html" class="active">Talleres</a></li>
+    </ul>
+    <a href="index.html#offerings" class="nav-cta">Reserva tu sesión 1:1</a>
+    <button class="nav-hamburger" aria-label="Menú" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main>
+    <!-- HERO BANNER -->
+    <div class="event-hero">
+      <div class="event-hero-bg"></div>
+      <div class="event-hero-content">
+        <a href="talleres.html" class="event-hero-back">← Volver a talleres</a>
+        <p class="event-hero-eyebrow">Sueños en Colectivo · Edición Medellín</p>
+        <h1 class="event-hero-title">¿Qué está soñando Medellín?</h1>
+        <p class="event-hero-sub">Un espacio grupal presencial para la exploración de sueños · Sábado 21 de noviembre</p>
+        <a href="#formCard" class="event-hero-cta">¡Inscríbete y reserva tu cupo aquí!</a>
+      </div>
+    </div>
+    <!-- / HERO BANNER -->
+
+    <div class="events-wrap">
+
+      <!-- ABOUT -->
+      <div class="info-card">
+        <div class="content-section">
+          <p class="event-tagline">¡Bienvenid@s a <strong>Sueños en Colectivo</strong>, un espacio grupal para la exploración de sueños!</p>
+          <p class="event-tagline">Este es un espacio basado en la <strong>'Matriz de Sueño Social'</strong>, una metodología para la exploración de sueños como expresiones de realidades compartidas y como una ventana a los contextos sociales, culturales y políticos que habitamos.</p>
+          <p class="event-tagline">Aquí el sueño, no quien lo sueña, es el centro. Sin interpretar ni analizar, compartimos sueños, escuchamos sueños, asociamos libremente a su contenido y dejamos que las imágenes se conecten entre sí.</p>
+          <p class="event-tagline">Una invitación al pensamiento creativo y a descubrir los patrones y temas en común que emergen cuando nuestros sueños se juntan.</p>
+        </div>
+
+        <div class="content-section">
+          <div style="margin-bottom:1.25rem;"><span class="content-label">¿Qué incluye el taller?</span></div>
+          <ul class="benefit-list">
+            <li class="benefit-item">Un encuentro presencial único de exploración de sueños en grupo.</li>
+            <li class="benefit-item">Materiales incluidos para el ejercicio creativo.</li>
+            <li class="benefit-item">¡No necesitas recordar tus sueños para participar!</li>
+            <li class="benefit-item">Cupos limitados — inscríbete pronto para asegurar tu lugar.</li>
+          </ul>
+        </div>
+
+        <div class="content-section">
+          <div style="margin-bottom:1.25rem;"><span class="content-label">¿Cómo, cuándo, dónde?</span></div>
+          <div class="in-person-badge">📍 Evento presencial únicamente</div>
+          <div class="details-strip">
+            <div class="detail-item">
+              <div class="detail-icon">📅</div>
+              <div class="detail-label">Fecha</div>
+              <div class="detail-value">Sábado 21 de<br/>noviembre, 2026</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon">🕓</div>
+              <div class="detail-label">Horario</div>
+              <div class="detail-value">4:00 – 6:00 pm</div>
+              <div class="detail-sub">Hora Colombia</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon">📍</div>
+              <div class="detail-label">Lugar</div>
+              <div class="detail-value">El Poblado,<br/>Medellín</div>
+              <div class="detail-sub">Cra. 42 # 8-15 (frente a Palermo Cultural)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <div style="margin-bottom:1.25rem;"><span class="content-label">Inversión</span></div>
+          <div class="details-strip">
+            <div class="detail-item">
+              <div class="detail-label">Hasta el 10 de noviembre</div>
+              <div class="detail-value">$60.000 COP</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Desde el 11 de noviembre</div>
+              <div class="detail-value">$80.000 COP</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <div style="margin-bottom:1.25rem;"><span class="content-label">Facilita</span></div>
+          <div class="facilitator-row">
+            <span class="facilitator-name">Camila Figueroa</span>
+            <a href="https://www.instagram.com/yoduermoasi" target="_blank" rel="noopener" class="facilitator-handle">@yoduermoasi</a>
+          </div>
+          <p class="event-tagline">Psicóloga de Los Andes, magíster en Salud Mental Global de The New School e investigadora en Columbia University. Más de 200 sesiones y talleres de sueños realizados con personas de todo el mundo. <a href="index.html#about" class="facilitator-link">Más sobre mí aquí</a></p>
+        </div>
+
+        <div class="content-section">
+          <div class="safety-note">
+            <p class="safety-note-title">Este taller es 100% presencial.</p>
+            <p>Nos encontraremos en Cra. 42 # 8-15, El Poblado, Medellín (frente a Palermo Cultural). No hay opción virtual para esta edición. Si tienes alguna pregunta, escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>.</p>
+          </div>
+        </div>
+      </div>
+      <!-- / ABOUT -->
+
+      <!-- FORM -->
+      <div class="info-card" id="formCard">
+        <div id="regFormWrap">
+          <p class="form-title">Inscripción</p>
+          <p class="form-subtitle">Una vez completes el formulario, recibirás toda la información vía correo electrónico con los próximos pasos para completar tu registro y asegurar tu cupo. Recuerda que este es un evento presencial, en Medellín.</p>
+
+          <button type="button" id="showFormBtn" class="submit-btn" onclick="showRegForm()">Registrarme →</button>
+
+          <form id="regForm" onsubmit="submitRegForm(event)" style="display:none;margin-top:1.75rem;">
+            <input type="hidden" name="_subject" value="Nueva inscripción — ¿Qué está soñando Medellín? x yoduermoasi"/>
+
+            <div class="field-row">
+              <div class="form-field">
+                <label class="contact-label">Nombre *</label>
+                <input type="text" name="first_name" required class="contact-input" placeholder="Tu nombre"/>
+              </div>
+              <div class="form-field">
+                <label class="contact-label">Apellido *</label>
+                <input type="text" name="last_name" required class="contact-input" placeholder="Tu apellido"/>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="contact-label">Teléfono (+ indicativo) *</label>
+              <input type="tel" name="phone" required class="contact-input" placeholder="+57 300 000 0000"/>
+            </div>
+
+            <div class="form-field">
+              <label class="contact-label">Correo electrónico *</label>
+              <input type="email" name="email" required class="contact-input" placeholder="tu@correo.com"/>
+            </div>
+
+            <div class="form-field">
+              <label class="contact-label">¿Dónde vives actualmente? (ciudad/país) *</label>
+              <input type="text" name="location" required class="contact-input" placeholder="Ej. Medellín, Colombia"/>
+            </div>
+
+            <div class="form-field">
+              <label class="contact-label" style="margin-bottom:0.75rem;">¿Has participado alguna vez en una Social Dreaming Matrix (Matriz de Sueño Social) o en algún grupo de exploración de sueños? *</label>
+              <div class="radio-group">
+                <label class="radio-item inline"><input type="radio" name="experience" value="Sí, conozco la metodología" required/><span>Sí, conozco la metodología.</span></label>
+                <label class="radio-item inline"><input type="radio" name="experience" value="No, primera vez en este espacio" required/><span>No, primera vez en este espacio.</span></label>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="contact-label" style="margin-bottom:0.75rem;">¿En qué moneda te gustaría hacer el pago? *</label>
+              <div class="radio-group">
+                <label class="radio-item inline"><input type="radio" name="currency" value="COP" required onchange="toggleOtherCurrency()"/><span>COP — Pesos colombianos</span></label>
+                <label class="radio-item inline"><input type="radio" name="currency" value="USD" required onchange="toggleOtherCurrency()"/><span>USD — Dólares</span></label>
+                <label class="radio-item inline"><input type="radio" name="currency" value="Otro" id="currencyOther" required onchange="toggleOtherCurrency()"/><span>Otro</span></label>
+              </div>
+              <input type="text" id="currencyOtherInput" name="currency_other" class="contact-input" placeholder="¿Qué moneda prefieres?" style="margin-top:0.75rem;display:none;"/>
+            </div>
+
+            <p class="form-required-note">* Campos obligatorios</p>
+
+            <button type="submit" id="regSubmitBtn" class="submit-btn">Registrarme</button>
+          </form>
+        </div>
+
+        <div id="regThankYou" style="display:none;text-align:center;padding:1.5rem 0;">
+          <div class="thank-you-check">✓</div>
+          <p class="thank-you-title">¡Gracias por registrarte!</p>
+          <p class="thank-you-text">Revisa tu correo — recibirás en las próximas 24 horas toda la información y los próximos pasos para completar tu inscripción. Recuerda que es un evento presencial en Medellín. Si tienes alguna pregunta o no has recibido la confirmación de tu inscripción, escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
+        </div>
+      </div>
+      <!-- / FORM -->
+
+    </div>
+  </main>
+
+  <footer>
+    <a href="index.html" class="footer-wordmark">yoduermoasi x Camila Figueroa</a>
+    <span class="footer-copy">© 2026 Camila Figueroa</span>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+    });
+    function toggleMobileMenu() {
+      const links = document.querySelector('.nav-links');
+      if (links.style.display === 'flex') { links.style.display = 'none'; }
+      else { links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(190,218,238,0.92);backdrop-filter:blur(14px);padding:1.5rem 2rem;border-bottom:1px solid rgba(255,255,255,0.4);gap:1.5rem;'; }
+    }
+    function showRegForm() {
+      document.getElementById('showFormBtn').style.display = 'none';
+      const form = document.getElementById('regForm');
+      form.style.display = 'block';
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function toggleOtherCurrency() {
+      const checked = document.getElementById('currencyOther').checked;
+      document.getElementById('currencyOtherInput').style.display = checked ? 'block' : 'none';
+    }
+    async function submitRegForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('regSubmitBtn');
+      btn.textContent = 'Enviando…';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://formspree.io/f/xbdqblkd', {
+          method: 'POST',
+          body: new FormData(e.target),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          document.getElementById('regFormWrap').style.display = 'none';
+          document.getElementById('regThankYou').style.display = 'block';
+          document.getElementById('formCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          btn.textContent = 'Intentar de nuevo';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Intentar de nuevo';
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
