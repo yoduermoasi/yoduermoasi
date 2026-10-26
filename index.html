@@ -1932,11 +1932,13 @@
       document.getElementById('giftLinkReveal').style.display = 'block';
 
       // Notify Camila with all details so she can send gift link after verifying payment
+      // (buyer hasn't picked a payment method yet at this point, so show both options)
+      const amountLabel = '$' + selectedGiftPrice + ' USD or $' + formatThousands(TIER_COP[selectedGiftPrice]) + ' COP';
       const fd = new FormData();
-      fd.append('_subject', 'Gift Card Purchase — $' + selectedGiftPrice + ' USD');
+      fd.append('_subject', 'Gift Card Purchase — ' + amountLabel);
       fd.append('name',  name  || 'Anonymous');
       fd.append('email', email);
-      fd.append('amount', '$' + selectedGiftPrice + ' USD');
+      fd.append('amount', amountLabel);
       fd.append('gift_link', url);
       fetch('https://formspree.io/f/xbdqblkd', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }).catch(() => {});
     }
