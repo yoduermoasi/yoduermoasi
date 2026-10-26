@@ -440,6 +440,9 @@
     .paypal-btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: #0070BA; color: #fff; font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 1rem 2rem; border-radius: 3px; margin: 1.5rem 0 1rem; transition: background 0.2s; box-shadow: 0 4px 16px rgba(0,112,186,0.28); border: none; cursor: pointer; width: 100%; }
     .paypal-btn:hover { background: #005fa3; }
     .paypal-btn svg { flex-shrink: 0; }
+    .payment-or-divider { font-family: var(--ff-display); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); text-align: center; margin: 0.5rem 0 0.75rem; }
+    .bold-btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: #0a0a0a; color: #fff; font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 1rem 2rem; border-radius: 3px; margin: 0 0 1rem; transition: background 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.2); border: none; cursor: pointer; width: 100%; }
+    .bold-btn:hover { background: #262626; }
     .payment-done-btn { font-family: var(--ff-display); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; background: transparent; color: var(--navy); border: 1.5px solid var(--navy); padding: 0.75rem 1.75rem; cursor: pointer; border-radius: 3px; transition: background 0.2s, color 0.2s; }
     .payment-done-btn:hover { background: var(--navy); color: #fff; }
     .payment-confirmed-check { font-size: 2.5rem; color: var(--sun-deep); margin-bottom: 0.5rem; }
@@ -891,6 +894,11 @@
               <span data-i18n="step3.paypal">Pay with PayPal</span>
             </button>
             <p class="payment-fnf-note" data-i18n="step3.fnf.note">Confirm your session by completing payment — select "Friends &amp; Family".</p>
+            <p class="payment-or-divider" data-i18n="step3.or">or</p>
+            <button id="bookingBoldBtn" onclick="openBookingBold()" class="bold-btn">
+              <span data-i18n="step3.bold">Pay in Colombian Pesos (Bold)</span>
+            </button>
+            <p class="payment-fnf-note" data-i18n="step3.bold.note">After paying, come back here and confirm below.</p>
             <div id="booking-done-wrap" style="display:none; text-align:center; margin-top:1.25rem;">
               <button onclick="confirmBookingPayment()" class="payment-done-btn" data-i18n="step3.done.btn">I've completed my payment →</button>
               <p class="payment-fnf-note" style="margin-top:1rem;" data-i18n-html="step3.payment.issue">Having issues with payment? Contact <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
@@ -1315,6 +1323,9 @@
         'step3.session.desc': '1:1 Dream Session · 90 min',
         'step3.paypal': 'Pay with PayPal',
         'step3.fnf.note': 'Confirm your session by completing payment — select "Friends &amp; Family".',
+        'step3.or': 'or',
+        'step3.bold': 'Pay in Colombian Pesos (Bold)',
+        'step3.bold.note': 'After paying, come back here and confirm below.',
         'step3.done.btn': 'I\'ve completed my payment →',
         'step3.confirmed.title': 'Thank you!',
         'step3.confirmed': 'You\'ll receive instructions to prepare for your session by email. Questions? Write to <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
@@ -1523,6 +1534,9 @@
         'step3.session.desc': 'Sesión 1:1 de Sueños · 90 min',
         'step3.paypal': 'Pagar con PayPal',
         'step3.fnf.note': 'Confirma tu sesión haciendo el pago y selecciona "Familiares y amigos".',
+        'step3.or': 'o',
+        'step3.bold': 'Pagar en pesos colombianos (Bold)',
+        'step3.bold.note': 'Después de pagar, vuelve aquí y confirma abajo.',
         'step3.done.btn': 'Completé mi pago →',
         'step3.confirmed.title': '¡Gracias!',
         'step3.confirmed': 'Recibirás instrucciones para preparar tu sesión por correo. ¿Preguntas? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
@@ -1575,6 +1589,11 @@
 
     /* ── Price formatting (USD tier <-> COP) ── */
     const TIER_COP = { 135: 420000, 119: 380000, 99: 315000 };
+    const BOLD_LINKS = {
+      135: 'https://checkout.bold.co/payment/LNK_DLP1ONA9ET',
+      119: 'https://checkout.bold.co/payment/LNK_BRWEGL2FY4',
+      99:  'https://checkout.bold.co/payment/LNK_DESTI8OVSQ'
+    };
     function formatThousands(n) {
       return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
@@ -1750,6 +1769,12 @@
 
     function openBookingPaypal() {
       window.open('https://www.paypal.me/yoduermoasi/' + selectedPrice, '_blank');
+      document.getElementById('booking-done-wrap').style.display = 'block';
+    }
+    function openBookingBold() {
+      const link = BOLD_LINKS[selectedPrice];
+      if (!link) return;
+      window.open(link, '_blank');
       document.getElementById('booking-done-wrap').style.display = 'block';
     }
     function confirmBookingPayment() {
