@@ -1141,6 +1141,11 @@
                 <span data-i18n="step3.paypal">Pay with PayPal</span>
               </button>
               <p class="payment-fnf-note" data-i18n="gift.fnf.note">Select "Friends &amp; Family". Once payment is confirmed, you'll receive the gift card link by email.</p>
+              <p class="payment-or-divider" data-i18n="step3.or">or</p>
+              <button id="giftBoldBtn" onclick="openGiftBold()" class="bold-btn">
+                <span data-i18n="step3.bold">Pay in Colombian Pesos (Bold)</span>
+              </button>
+              <p class="payment-fnf-note" data-i18n="gift.bold.note">Once payment is confirmed, you'll receive the gift card link by email.</p>
               <div id="gift-done-wrap" style="display:none; text-align:center; margin-top:1.25rem;">
                 <button onclick="confirmGiftPayment()" class="payment-done-btn" data-i18n="step3.done.btn">I've completed my payment →</button>
                 <p class="payment-fnf-note" style="margin-top:1rem;" data-i18n-html="step3.payment.issue">Having issues with payment? Contact <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
@@ -1330,6 +1335,7 @@
         'step3.confirmed.title': 'Thank you!',
         'step3.confirmed': 'You\'ll receive instructions to prepare for your session by email. Questions? Write to <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
         'gift.fnf.note': 'Select "Friends &amp; Family". Once payment is confirmed, you\'ll receive the gift card link by email.',
+        'gift.bold.note': 'Once payment is confirmed, you\'ll receive the gift card link by email.',
         'gift.confirmed.title': 'Thank you!',
         'gift.confirmed': 'You\'ll receive the gift card link by email once we verify your payment.',
         'step3.payment.issue': 'Having issues with payment? Contact <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
@@ -1541,6 +1547,7 @@
         'step3.confirmed.title': '¡Gracias!',
         'step3.confirmed': 'Recibirás instrucciones para preparar tu sesión por correo. ¿Preguntas? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
         'gift.fnf.note': 'Selecciona "Familiares y amigos". Una vez confirmado el pago, recibirás el enlace de la tarjeta de regalo por correo.',
+        'gift.bold.note': 'Una vez confirmado el pago, recibirás el enlace de la tarjeta de regalo por correo.',
         'gift.confirmed.title': '¡Gracias!',
         'gift.confirmed': 'Recibirás el enlace de la tarjeta de regalo por correo una vez que verifiquemos tu pago.',
         'step3.payment.issue': '¿Problemas con el pago? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
@@ -1888,6 +1895,12 @@
 
     function openGiftPaypal() {
       window.open('https://www.paypal.me/yoduermoasi/' + selectedGiftPrice, '_blank');
+      document.getElementById('gift-done-wrap').style.display = 'block';
+    }
+    function openGiftBold() {
+      const link = BOLD_LINKS[selectedGiftPrice];
+      if (!link) return;
+      window.open(link, '_blank');
       document.getElementById('gift-done-wrap').style.display = 'block';
     }
     function confirmGiftPayment() {
