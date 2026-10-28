@@ -584,6 +584,37 @@
         <a href="#" class="btn-gift" onclick="openGiftModal(event)" data-i18n="gift.btn">Gift Card for Someone Special</a>
       </div>
       <div class="offering-card reveal delay-1">
+        <div class="offering-num" data-i18n="pesadillas.num">4-Week Nightmare Process</div>
+        <h3 class="offering-title" data-i18n="pesadillas.title">1:1 With Your Nightmares</h3>
+        <div class="offering-timing" data-i18n="pesadillas.timing">4 sessions · 1 hour each · 4 consecutive weeks · $320 USD ($989.000 COP)</div>
+        <div class="offering-desc" data-i18n-html="pesadillas.desc">
+          <p>Nightmares don't stay in the night. They shape how you wake up, how you sleep the following night, and sometimes how you move through your whole day. Ignoring them rarely makes them disappear. This is an individual four-week process to work directly with your nightmares and reduce their frequency and intensity.</p>
+          <p class="offering-expect-label">What you'll learn</p>
+          <ul class="offering-expect-list">
+            <li>The neuroscience behind nightmares: what happens in the brain and body while we dream.</li>
+            <li>The function of nightmares and why they repeat.</li>
+            <li>How to change their course with practical, evidence-based strategies.</li>
+          </ul>
+          <p class="offering-expect-label">What you can expect</p>
+          <ul class="offering-expect-list">
+            <li>Close work with your own nightmares and recurring dreams, not generic interpretations.</li>
+            <li>Imagery rehearsal and an expressive writing protocol — two evidence-based techniques for working with nightmares while awake.</li>
+            <li>Trauma-informed somatic tools to calm the body before sleep and after waking from a bad dream.</li>
+            <li>Simple practices to do at home between sessions.</li>
+          </ul>
+          <p class="offering-expect-label">The goal</p>
+          <p>Fewer, less intense nightmares, a calmer relationship with sleep, and more clarity about what your dreams may be pointing to in your waking life.</p>
+          <p class="offering-expect-label">This process isn't right for you if…</p>
+          <ul class="offering-expect-list">
+            <li>You had a traumatic experience less than a month ago.</li>
+            <li>You have active symptoms of post-traumatic stress.</li>
+            <li>You're in crisis or don't feel safe.</li>
+          </ul>
+          <p>In those cases, broader therapeutic support is the better fit. Write to me and I'll gladly help point you toward the support you need.</p>
+        </div>
+        <a href="#" class="offering-cta primary" onclick="openNightmaresModal(event)" data-i18n="pesadillas.cta">Register for this process</a>
+      </div>
+      <div class="offering-card reveal delay-2" style="grid-column:1 / -1;">
         <div class="offering-num" data-i18n="therapy.num">Long-term Therapy</div>
         <h3 class="offering-title" data-i18n="therapy.title">I want to start therapy.</h3>
         <div class="offering-timing" data-i18n="therapy.timing">By Appointment · 50 min · Virtual · English & Spanish</div>
@@ -1167,6 +1198,50 @@
     </div>
   </div>
 
+  <!-- NIGHTMARES PROCESS MODAL -->
+  <div class="modal-overlay" id="nightmaresModal" onclick="handleNightmaresModalClick(event)">
+    <div class="modal-box" style="max-width:600px;">
+      <div class="modal-header" style="grid-template-columns:1fr 2rem;">
+        <div>
+          <div class="modal-title" data-i18n="pesadillas.modal.title">1:1 With Your Nightmares</div>
+          <div class="modal-subtitle" data-i18n="pesadillas.modal.subtitle">4 sessions · 1 hour each · 4 consecutive weeks</div>
+        </div>
+        <button class="modal-close" onclick="closeNightmaresModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="nightmares-payment-wrap">
+          <div class="payment-summary">
+            <div class="payment-summary-amount">$320 USD</div>
+            <div class="payment-summary-amount-secondary">($989.000 COP)</div>
+            <div class="payment-summary-desc" data-i18n="pesadillas.modal.desc">4-week nightmare process · 1:1</div>
+          </div>
+          <div id="nightmares-payment-area">
+            <button onclick="openNightmaresPaypal()" class="paypal-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M7.144 19.532l1.049-5.751c.11-.606.691-1.002 1.304-.9.71.12 1.48.179 2.303.152 3.94-.13 7.2-2.966 7.2-7.25C19 2.585 16.318 0 12.31 0H5.036C4.36 0 3.785.49 3.67 1.156L1 17.278c-.08.462.268.88.738.88h3.7l1.706-9.354v-.272z"/><path d="M20.187 7.807c-.39 3.83-3.5 6.493-7.644 6.493H11.2l-1.1 6.02c-.07.384.224.736.614.736h3.12c.54 0 1-.39 1.085-.924l.77-4.127c.085-.534.545-.924 1.085-.924h.772c3.08 0 5.494-1.904 6.157-4.816.28-1.217.147-2.222-.516-2.858z"/></svg>
+              <span data-i18n="step3.paypal">Pay with PayPal</span>
+            </button>
+            <p class="payment-fnf-note" data-i18n="pesadillas.fnf.note">Select "Friends &amp; Family". After payment, write to me to schedule your 4 weekly sessions.</p>
+            <p class="payment-or-divider" data-i18n="step3.or">or</p>
+            <button onclick="openNightmaresBold()" class="bold-btn">
+              <span class="bold-mark" aria-hidden="true"></span>
+              <span data-i18n="step3.bold">Pay in Colombian Pesos (Bold)</span>
+            </button>
+            <p class="payment-fnf-note" data-i18n="pesadillas.bold.note">After payment, write to me to schedule your 4 weekly sessions.</p>
+            <div id="nightmares-done-wrap" style="display:none; text-align:center; margin-top:1.25rem;">
+              <button onclick="confirmNightmaresPayment()" class="payment-done-btn" data-i18n="step3.done.btn">I've completed my payment →</button>
+              <p class="payment-fnf-note" style="margin-top:1rem;" data-i18n-html="step3.payment.issue">Having issues with payment? Contact <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+        <div id="nightmares-confirmed-msg" style="display:none; text-align:center; padding:1.5rem 0 0.5rem;">
+          <div class="payment-confirmed-check">✓</div>
+          <p class="payment-summary-title" data-i18n="step3.confirmed.title">Thank you!</p>
+          <p class="payment-fnf-note" data-i18n-html="pesadillas.confirmed">Write to me and I'll help you schedule your 4 sessions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     /* ── TRANSLATIONS ── */
     const translations = {
@@ -1206,6 +1281,17 @@
         'offering.timing': 'By Appointment · 90 min · English & Spanish',
         'offering.desc': '<p>For anyone curious about how the unconscious shapes everyday life. Together, we explore your dreams as a source of information about your emotions, relationships, and the patterns that often go unnoticed, and connect what we find to your waking life.</p><p class="offering-expect-label">What you can expect:</p><ul class="offering-expect-list"><li>Fewer and less intense nightmares and recurring images, using evidence-based techniques like imagery rehearsal</li><li>Emotional clarity about what you\'re feeling and why</li><li>A deeper understanding of yourself and your patterns</li><li>Concrete next steps to bring that insight into your decisions and daily life</li><li>Tools to remember and work with your dreams on your own</li></ul><p>No dream to explore? If you\'re working on a creative or personal project, we can use the same process to unblock ideas and find new directions.</p>',
         'offering.cta': 'Schedule a 1:1 Dream Session',
+        'pesadillas.num': '4-Week Nightmare Process',
+        'pesadillas.title': '1:1 With Your Nightmares',
+        'pesadillas.timing': '4 sessions · 1 hour each · 4 consecutive weeks · $320 USD ($989.000 COP)',
+        'pesadillas.desc': '<p>Nightmares don\'t stay in the night. They shape how you wake up, how you sleep the following night, and sometimes how you move through your whole day. Ignoring them rarely makes them disappear. This is an individual four-week process to work directly with your nightmares and reduce their frequency and intensity.</p><p class="offering-expect-label">What you\'ll learn</p><ul class="offering-expect-list"><li>The neuroscience behind nightmares: what happens in the brain and body while we dream.</li><li>The function of nightmares and why they repeat.</li><li>How to change their course with practical, evidence-based strategies.</li></ul><p class="offering-expect-label">What you can expect</p><ul class="offering-expect-list"><li>Close work with your own nightmares and recurring dreams, not generic interpretations.</li><li>Imagery rehearsal and an expressive writing protocol — two evidence-based techniques for working with nightmares while awake.</li><li>Trauma-informed somatic tools to calm the body before sleep and after waking from a bad dream.</li><li>Simple practices to do at home between sessions.</li></ul><p class="offering-expect-label">The goal</p><p>Fewer, less intense nightmares, a calmer relationship with sleep, and more clarity about what your dreams may be pointing to in your waking life.</p><p class="offering-expect-label">This process isn\'t right for you if…</p><ul class="offering-expect-list"><li>You had a traumatic experience less than a month ago.</li><li>You have active symptoms of post-traumatic stress.</li><li>You\'re in crisis or don\'t feel safe.</li></ul><p>In those cases, broader therapeutic support is the better fit. Write to me and I\'ll gladly help point you toward the support you need.</p>',
+        'pesadillas.cta': 'Register for this process',
+        'pesadillas.modal.title': '1:1 With Your Nightmares',
+        'pesadillas.modal.subtitle': '4 sessions · 1 hour each · 4 consecutive weeks',
+        'pesadillas.modal.desc': '4-week nightmare process · 1:1',
+        'pesadillas.fnf.note': 'Select "Friends &amp; Family". After payment, write to me to schedule your 4 weekly sessions.',
+        'pesadillas.bold.note': 'After payment, write to me to schedule your 4 weekly sessions.',
+        'pesadillas.confirmed': 'Write to me at <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a> and I\'ll help you schedule your 4 sessions.',
         'therapy.num': 'Long-term Therapy',
         'therapy.title': 'I want to start therapy.',
         'therapy.timing': 'By Appointment · 50 min · Virtual · English & Spanish',
@@ -1418,6 +1504,17 @@
         'offering.timing': 'Con Cita · 90 min · Inglés y Español',
         'offering.desc': '<p>Para quienes sienten curiosidad por entender cómo el inconsciente moldea la vida cotidiana. En este espacio usamos el sueño (o los sueños que quieres explorar) como una fuente de información que complementa tu vida despierta. Trabajamos con sus figuras, imágenes y patrones a través de ejercicios corporales, imaginativos y de diálogo, para entender qué te están mostrando, cómo se conectan con tu día a día y qué caminos nuevos abren.</p><p class="offering-expect-label">Qué puedes esperar:</p><ul class="offering-expect-list"><li>Menos pesadillas e imágenes recurrentes, y de menor intensidad, usando técnicas basadas en evidencia como el ensayo de imágenes</li><li>Claridad emocional sobre lo que sientes y por qué</li><li>Una comprensión más profunda de ti mismo/a y tus patrones</li><li>Pasos concretos para llevar esa comprensión a tus decisiones y tu vida diaria</li><li>Herramientas para recordar y trabajar tus sueños por tu cuenta</li></ul><p>¿No tienes un sueño para explorar? Si estás trabajando en un proyecto creativo o personal, podemos usar el mismo proceso para destrabar ideas y encontrar nuevas direcciones.</p>',
         'offering.cta': 'Sesión 1:1 de sueños',
+        'pesadillas.num': 'Proceso de 4 semanas para pesadillas',
+        'pesadillas.title': '1:1 con tus pesadillas',
+        'pesadillas.timing': '4 sesiones · 1 hora cada una · 4 semanas consecutivas · $989.000 COP ($320 USD)',
+        'pesadillas.desc': '<p>Las pesadillas no se quedan en la noche. Influyen en cómo te despiertas, en cómo duermes la noche siguiente y, a veces, en cómo vives todo tu día. Ignorarlas rara vez hace que desaparezcan. Este es un proceso individual de cuatro semanas para trabajar directamente con tus pesadillas y reducir su frecuencia e intensidad.</p><p class="offering-expect-label">Qué vas a aprender</p><ul class="offering-expect-list"><li>La neurociencia detrás de las pesadillas: qué pasa en el cerebro y en el cuerpo cuando soñamos.</li><li>La función de las pesadillas y por qué se repiten.</li><li>Cómo cambiar su curso con estrategias prácticas y basadas en evidencia.</li></ul><p class="offering-expect-label">Qué puedes esperar</p><ul class="offering-expect-list"><li>Trabajo cercano con tus propias pesadillas y sueños recurrentes, no interpretaciones genéricas.</li><li>Ensayo en imaginación y un protocolo de escritura expresiva, dos técnicas basadas en evidencia para trabajar las pesadillas en vigilia.</li><li>Herramientas somáticas, con enfoque informado en trauma, para calmar el cuerpo antes de dormir y al despertar de un mal sueño.</li><li>Prácticas sencillas para hacer en casa entre sesiones.</li></ul><p class="offering-expect-label">El objetivo</p><p>Menos pesadillas y menos intensas, una relación más tranquila con el sueño y más claridad sobre lo que tus sueños pueden estar señalando en tu vida despierta.</p><p class="offering-expect-label">Este proceso no es para ti si…</p><ul class="offering-expect-list"><li>Tuviste una experiencia traumática hace menos de un mes.</li><li>Tienes síntomas activos de estrés postraumático.</li><li>Estás en crisis o no te sientes a salvo.</li></ul><p>En esos casos, lo más indicado es un acompañamiento terapéutico más amplio. Escríbeme y con gusto te oriento hacia el apoyo que necesitas.</p>',
+        'pesadillas.cta': 'Regístrate para este proceso',
+        'pesadillas.modal.title': '1:1 con tus pesadillas',
+        'pesadillas.modal.subtitle': '4 sesiones · 1 hora cada una · 4 semanas consecutivas',
+        'pesadillas.modal.desc': 'Proceso de 4 semanas para pesadillas · 1:1',
+        'pesadillas.fnf.note': 'Selecciona "Familiares y amigos". Después de pagar, escríbeme para agendar tus 4 sesiones semanales.',
+        'pesadillas.bold.note': 'Después de pagar, escríbeme para agendar tus 4 sesiones semanales.',
+        'pesadillas.confirmed': 'Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a> y te ayudo a agendar tus 4 sesiones.',
         'therapy.num': 'Terapia a largo plazo',
         'therapy.title': 'Quiero iniciar un proceso terapéutico.',
         'therapy.timing': 'Con Cita · 50 min · Virtual · Inglés y Español',
@@ -1913,6 +2010,41 @@
       const t = translations[currentLang];
       document.getElementById('giftModalTitle').textContent = t['gift.confirmed.title'];
       document.getElementById('giftModalSubtitle').textContent = '';
+    }
+
+    /* ── NIGHTMARES PROCESS MODAL ── */
+    const NIGHTMARES_PRICE_USD = 320;
+    // TODO: paste the Bold checkout link for the $989.000 COP nightmares package once Camila sends it
+    const NIGHTMARES_BOLD_LINK = '';
+    function openNightmaresModal(e) {
+      e.preventDefault();
+      document.getElementById('nightmares-payment-wrap').style.display = 'block';
+      document.getElementById('nightmares-confirmed-msg').style.display = 'none';
+      document.getElementById('nightmares-payment-area').style.display = 'block';
+      document.getElementById('nightmares-done-wrap').style.display = 'none';
+      document.getElementById('nightmaresModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNightmaresModal() {
+      document.getElementById('nightmaresModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function handleNightmaresModalClick(e) { if (e.target === document.getElementById('nightmaresModal')) closeNightmaresModal(); }
+    function openNightmaresPaypal() {
+      window.open('https://www.paypal.me/yoduermoasi/' + NIGHTMARES_PRICE_USD, '_blank');
+      document.getElementById('nightmares-done-wrap').style.display = 'block';
+    }
+    function openNightmaresBold() {
+      if (!NIGHTMARES_BOLD_LINK) {
+        alert(currentLang === 'es' ? 'Este link aún no está listo — escríbeme directamente a yoduermoasi@gmail.com' : 'This link isn\'t set up yet — please email yoduermoasi@gmail.com directly.');
+        return;
+      }
+      window.open(NIGHTMARES_BOLD_LINK, '_blank');
+      document.getElementById('nightmares-done-wrap').style.display = 'block';
+    }
+    function confirmNightmaresPayment() {
+      document.getElementById('nightmares-payment-wrap').style.display = 'none';
+      document.getElementById('nightmares-confirmed-msg').style.display = 'block';
     }
 
     function proceedToPayment() {
