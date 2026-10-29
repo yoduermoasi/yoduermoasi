@@ -130,6 +130,14 @@
     .registro-text { font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.25rem; }
     .registro-btn { display: inline-block; font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); background: var(--sun); border: none; padding: 1rem 2.75rem; text-decoration: none; border-radius: 2px; box-shadow: 0 4px 18px rgba(200,160,40,0.3); transition: background 0.3s, box-shadow 0.3s, color 0.3s; }
     .registro-btn:hover { background: var(--sun-deep); color: #fff; }
+    .registro-btn:disabled { opacity: 0.65; cursor: default; }
+
+    /* WAITLIST FORM */
+    .waitlist-form { max-width: 380px; margin: 1.5rem auto 0; text-align: left; }
+    .contact-label { display: block; font-family: var(--ff-display); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy-mid); margin-bottom: 0.4rem; }
+    .contact-input { width: 100%; font-family: var(--ff-body); font-size: 0.88rem; color: var(--navy); background: rgba(255,255,255,0.85); border: 1px solid rgba(26,48,74,0.18); border-radius: 4px; padding: 0.72rem 0.9rem; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
+    .contact-input:focus { border-color: var(--sun-deep); }
+    .form-field { margin-bottom: 1.1rem; }
 
     /* SAFETY NOTE */
     .safety-note { background: rgba(238,246,252,0.75); border: 1px solid var(--rule-strong); border-left: 3px solid var(--navy-soft); border-radius: 4px; padding: 1.1rem 1.4rem; margin-bottom: 2rem; }
@@ -180,7 +188,32 @@
     </div>
 
     <div class="events-wrap">
-      <span class="events-label">Próximos talleres</span>
+
+      <!-- WAITLIST SIGNUP -->
+      <div class="registro-box" id="waitlistBox">
+        <div id="waitlistFormWrap">
+          <p class="registro-title">¿Quieres enterarte de los próximos talleres?</p>
+          <p class="registro-text">En este momento no hay talleres con inscripciones abiertas. Déjame tu nombre y correo y te aviso apenas abra una nueva fecha.</p>
+          <button type="button" id="waitlistShowBtn" class="registro-btn" onclick="showWaitlistForm()">Agregar mis datos a la base de datos</button>
+          <form id="waitlistForm" class="waitlist-form" onsubmit="submitWaitlistForm(event)" style="display:none;">
+            <input type="hidden" name="_subject" value="Nueva lista de espera — Talleres yoduermoasi"/>
+            <div class="form-field">
+              <label class="contact-label">Nombre *</label>
+              <input type="text" name="name" required class="contact-input" placeholder="Tu nombre"/>
+            </div>
+            <div class="form-field">
+              <label class="contact-label">Correo electrónico *</label>
+              <input type="email" name="email" required class="contact-input" placeholder="tu@correo.com"/>
+            </div>
+            <button type="submit" id="waitlistSubmitBtn" class="registro-btn" style="width:100%;">Enviar</button>
+          </form>
+        </div>
+        <div id="waitlistThankYou" style="display:none;">
+          <p class="registro-title">¡Gracias!</p>
+          <p class="registro-text" style="margin-bottom:0;">Te escribiré apenas abra un nuevo taller.</p>
+        </div>
+      </div>
+      <!-- / WAITLIST SIGNUP -->
 
       <!-- EVENT CARD: ¿Qué está soñando Medellín? — HIDDEN FROM PUBLIC (kept here, commented out, for easy restore)
       <div class="event-card" id="card-medellin" onclick="window.location.href='registro-que-esta-sonando-medellin.html'">
@@ -198,7 +231,7 @@
       -->
       <!-- / EVENT CARD -->
 
-      <!-- EVENT CARD: Sueños en Colectivo (links out to its own info + registration page) -->
+      <!-- EVENT CARD: Sueños en Colectivo — HIDDEN FROM PUBLIC (kept here, commented out, for easy restore)
       <div class="event-card" id="card-colectivo" onclick="window.location.href='registro-suenos-en-colectivo.html'">
         <div class="event-card-header">
           <div class="event-card-left">
@@ -211,6 +244,7 @@
           </div>
         </div>
       </div>
+      -->
       <!-- / EVENT CARD -->
 
       <span class="events-label" style="margin-top:2.5rem;">Talleres pasados</span>
@@ -313,6 +347,35 @@
     }
     function toggleCard(id) {
       document.getElementById(id).classList.toggle('open');
+    }
+    function showWaitlistForm() {
+      document.getElementById('waitlistShowBtn').style.display = 'none';
+      const form = document.getElementById('waitlistForm');
+      form.style.display = 'block';
+      form.querySelector('input[name="name"]').focus();
+    }
+    async function submitWaitlistForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('waitlistSubmitBtn');
+      btn.textContent = 'Enviando…';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://formspree.io/f/xbdqblkd', {
+          method: 'POST',
+          body: new FormData(e.target),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          document.getElementById('waitlistFormWrap').style.display = 'none';
+          document.getElementById('waitlistThankYou').style.display = 'block';
+        } else {
+          btn.textContent = 'Intentar de nuevo';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Intentar de nuevo';
+        btn.disabled = false;
+      }
     }
     function openCardFromHash() {
       const id = window.location.hash.slice(1);
