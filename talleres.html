@@ -193,7 +193,7 @@
       <div class="registro-box" id="waitlistBox">
         <div id="waitlistFormWrap">
           <p class="registro-title">¿Quieres enterarte de los próximos talleres?</p>
-          <p class="registro-text">En este momento no hay talleres con inscripciones abiertas. Déjame tu nombre y correo y te aviso apenas abra una nueva fecha.</p>
+          <p class="registro-text">Déjame tu nombre y correo y te aviso cada vez que abra una nueva fecha o un nuevo taller.</p>
           <button type="button" id="waitlistShowBtn" class="registro-btn" onclick="showWaitlistForm()">Agregar mis datos a la base de datos</button>
           <form id="waitlistForm" class="waitlist-form" onsubmit="submitWaitlistForm(event)" style="display:none;">
             <input type="hidden" name="_subject" value="Nueva lista de espera — Talleres yoduermoasi"/>
@@ -231,7 +231,9 @@
       -->
       <!-- / EVENT CARD -->
 
-      <!-- EVENT CARD: Sueños en Colectivo — HIDDEN FROM PUBLIC (kept here, commented out, for easy restore)
+      <span class="events-label" style="margin-top:2.5rem;">Próximos talleres</span>
+
+      <!-- EVENT CARD: Sueños en Colectivo (links out to its own info + registration page) -->
       <div class="event-card" id="card-colectivo" onclick="window.location.href='registro-suenos-en-colectivo.html'">
         <div class="event-card-header">
           <div class="event-card-left">
@@ -244,7 +246,6 @@
           </div>
         </div>
       </div>
-      -->
       <!-- / EVENT CARD -->
 
       <span class="events-label" style="margin-top:2.5rem;">Talleres pasados</span>
