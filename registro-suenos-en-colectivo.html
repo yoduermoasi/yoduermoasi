@@ -106,6 +106,13 @@
     .safety-note p { font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-soft); line-height: 1.8; }
     .safety-note a { color: var(--navy-soft); }
 
+    /* CLOSED NOTICE */
+    .closed-badge { font-family: var(--ff-display); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; background: rgba(26,48,74,0.08); color: var(--text-muted); border: 1px solid var(--rule-strong); border-radius: 20px; padding: 0.25rem 0.85rem; display: inline-block; margin-bottom: 1rem; }
+    .finalizado-box { background: rgba(238,246,252,0.75); border: 1px solid var(--rule-strong); border-radius: 6px; padding: 1.5rem 2rem; text-align: center; }
+    .finalizado-title { font-family: var(--ff-display); font-size: 1.1rem; font-style: italic; color: var(--navy); margin-bottom: 0.5rem; }
+    .finalizado-text { font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
+    .finalizado-text a { color: var(--navy-soft); }
+
     /* FORM */
     .form-title { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 400; font-style: italic; color: var(--navy); margin-bottom: 0.4rem; }
     .form-subtitle { font-family: var(--ff-body); font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
@@ -176,6 +183,7 @@
 
     <div class="events-wrap">
 
+      <div class="closed-badge">Inscripción cerrada</div>
       <img src="flyer-suenos-en-colectivo.jpg" alt="Sueños en Colectivo — un espacio virtual para la exploración de sueños" class="flyer-img"/>
 
       <!-- ABOUT -->
@@ -220,22 +228,6 @@
         </div>
 
         <div class="content-section">
-          <div style="margin-bottom:1.25rem;"><span class="content-label">Inversión</span></div>
-          <div class="details-strip">
-            <div class="detail-item">
-              <div class="detail-label">Serie completa</div>
-              <div class="detail-value">$250.000 COP<br/>$80 USD</div>
-              <div class="detail-sub">8 encuentros</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-label">Por encuentro</div>
-              <div class="detail-value">$55.000 COP<br/>$20 USD</div>
-              <div class="detail-sub">Sesión individual</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="content-section">
           <div class="safety-note">
             <p>Te invito a leer mi <a href="https://yoduermoasi.substack.com/p/suenos-en-colectivo-una-invitacion?r=47gtjo&amp;utm_campaign=post&amp;utm_medium=web&amp;showWelcomeOnShare=true" target="_blank" rel="noopener" style="color:var(--navy-soft);">Substack sobre la historia de esta metodología</a>.</p>
           </div>
@@ -243,93 +235,11 @@
       </div>
       <!-- / ABOUT -->
 
-      <!-- FORM -->
+      <!-- FORM (closed) -->
       <div class="info-card" id="formCard">
-        <div id="regFormWrap">
-          <p class="form-title">Inscripción</p>
-          <p class="form-subtitle">Una vez completes el formulario, recibirás toda la información vía correo electrónico con los próximos pasos para completar tu registro.</p>
-
-          <button type="button" id="showFormBtn" class="submit-btn" onclick="showRegForm()">Registrarme →</button>
-
-          <form id="regForm" onsubmit="submitRegForm(event)" style="display:none;margin-top:1.75rem;">
-            <input type="hidden" name="_subject" value="Nueva inscripción — Sueños en Colectivo x yoduermoasi"/>
-
-            <div class="field-row">
-              <div class="form-field">
-                <label class="contact-label">Nombre *</label>
-                <input type="text" name="first_name" required class="contact-input" placeholder="Tu nombre"/>
-              </div>
-              <div class="form-field">
-                <label class="contact-label">Apellido *</label>
-                <input type="text" name="last_name" required class="contact-input" placeholder="Tu apellido"/>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label class="contact-label">Teléfono (+ indicativo) *</label>
-              <input type="tel" name="phone" required class="contact-input" placeholder="+57 300 000 0000"/>
-            </div>
-
-            <div class="form-field">
-              <label class="contact-label">Correo electrónico *</label>
-              <input type="email" name="email" required class="contact-input" placeholder="tu@correo.com"/>
-            </div>
-
-            <div class="form-field">
-              <label class="contact-label">¿Dónde vives actualmente? (ciudad/país) *</label>
-              <input type="text" name="location" required class="contact-input" placeholder="Ej. Bogotá, Colombia"/>
-            </div>
-
-            <div class="form-field">
-              <label class="contact-label" style="margin-bottom:0.75rem;">¿Has participado alguna vez en una Social Dreaming Matrix (Matriz de Sueño Social) o en algún grupo de exploración de sueños? *</label>
-              <div class="radio-group">
-                <label class="radio-item inline"><input type="radio" name="experience" value="Sí, conozco la metodología" required/><span>Sí, conozco la metodología.</span></label>
-                <label class="radio-item inline"><input type="radio" name="experience" value="No, primera vez en este espacio" required/><span>No, primera vez en este espacio.</span></label>
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label class="contact-label" style="margin-bottom:0.75rem;">¿Cómo te gustaría participar? *</label>
-              <div class="radio-group">
-                <label class="radio-item"><input type="radio" name="participation" value="Una sola sesión" required onchange="onParticipationChange()"/><span>Una sola sesión.</span></label>
-                <label class="radio-item"><input type="radio" name="participation" value="Serie completa (8 encuentros)" required onchange="onParticipationChange()"/><span>Quiero inscribirme a la serie de 8 encuentros.</span></label>
-              </div>
-            </div>
-
-            <div class="form-field" id="dateField" style="display:none;">
-              <label class="contact-label" style="margin-bottom:0.75rem;">¿A cuál fecha te gustaría unirte? * <span style="font-weight:400;font-style:italic;text-transform:none;letter-spacing:normal;">(puedes elegir más de una)</span></label>
-              <div class="radio-group">
-                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 3 de octubre, 2026" class="single-session-date"/><span>Sábado 3 de octubre, 2026</span></label>
-                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 7 de noviembre, 2026" class="single-session-date"/><span>Sábado 7 de noviembre, 2026</span></label>
-                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 5 de diciembre, 2026" class="single-session-date"/><span>Sábado 5 de diciembre, 2026</span></label>
-                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 9 de enero, 2027" class="single-session-date"/><span>Sábado 9 de enero, 2027</span></label>
-                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 6 de febrero, 2027" class="single-session-date"/><span>Sábado 6 de febrero, 2027</span></label>
-                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 6 de marzo, 2027" class="single-session-date"/><span>Sábado 6 de marzo, 2027</span></label>
-                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 3 de abril, 2027" class="single-session-date"/><span>Sábado 3 de abril, 2027</span></label>
-                <label class="radio-item inline"><input type="checkbox" name="single_session_date" value="Sábado 1 de mayo, 2027" class="single-session-date"/><span>Sábado 1 de mayo, 2027</span></label>
-              </div>
-            </div>
-
-            <div class="form-field" id="currencyField" style="display:none;">
-              <label class="contact-label" style="margin-bottom:0.75rem;">¿En qué moneda te gustaría hacer el pago? *</label>
-              <div class="radio-group">
-                <label class="radio-item inline"><input type="radio" name="currency" value="COP" onchange="toggleOtherCurrency()"/><span>COP — Pesos colombianos</span></label>
-                <label class="radio-item inline"><input type="radio" name="currency" value="USD" onchange="toggleOtherCurrency()"/><span>USD — Dólares</span></label>
-                <label class="radio-item inline"><input type="radio" name="currency" value="Otro" id="currencyOther" onchange="toggleOtherCurrency()"/><span>Otro</span></label>
-              </div>
-              <input type="text" id="currencyOtherInput" name="currency_other" class="contact-input" placeholder="¿Qué moneda prefieres?" style="margin-top:0.75rem;display:none;"/>
-            </div>
-
-            <p class="form-required-note">* Campos obligatorios</p>
-
-            <button type="submit" id="regSubmitBtn" class="submit-btn">Registrarme</button>
-          </form>
-        </div>
-
-        <div id="regThankYou" style="display:none;text-align:center;padding:1.5rem 0;">
-          <div class="thank-you-check">✓</div>
-          <p class="thank-you-title">¡Gracias por registrarte!</p>
-          <p class="thank-you-text">Revisa tu correo — recibirás en las próximas 24 horas toda la información y los próximos pasos para completar tu inscripción. Si tienes alguna pregunta o no has recibido la confirmación de tu inscripción, escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
+        <div class="finalizado-box">
+          <p class="finalizado-title">La inscripción está cerrada por ahora.</p>
+          <p class="finalizado-text">¿Te interesa una próxima edición o fecha? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a> y te aviso apenas vuelva a abrir.</p>
         </div>
       </div>
       <!-- / FORM -->
@@ -350,65 +260,6 @@
       const links = document.querySelector('.nav-links');
       if (links.style.display === 'flex') { links.style.display = 'none'; }
       else { links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(190,218,238,0.92);backdrop-filter:blur(14px);padding:1.5rem 2rem;border-bottom:1px solid rgba(255,255,255,0.4);gap:1.5rem;'; }
-    }
-    function showRegForm() {
-      document.getElementById('showFormBtn').style.display = 'none';
-      const form = document.getElementById('regForm');
-      form.style.display = 'block';
-      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    function onParticipationChange() {
-      const participation = document.querySelector('input[name="participation"]:checked')?.value;
-      const isSingleSession = participation === 'Una sola sesión';
-
-      const dateField = document.getElementById('dateField');
-      dateField.style.display = isSingleSession ? 'block' : 'none';
-      if (!isSingleSession) {
-        document.querySelectorAll('.single-session-date').forEach(cb => { cb.checked = false; });
-      }
-
-      const currencyField = document.getElementById('currencyField');
-      const currencyRadios = document.querySelectorAll('input[name="currency"]');
-      const showCurrency = !!participation;
-      currencyField.style.display = showCurrency ? 'block' : 'none';
-      currencyRadios.forEach(r => { r.required = showCurrency; });
-      if (!showCurrency) {
-        currencyRadios.forEach(r => { r.checked = false; });
-        document.getElementById('currencyOtherInput').style.display = 'none';
-      }
-    }
-    function toggleOtherCurrency() {
-      const checked = document.getElementById('currencyOther').checked;
-      document.getElementById('currencyOtherInput').style.display = checked ? 'block' : 'none';
-    }
-    async function submitRegForm(e) {
-      e.preventDefault();
-      const participation = document.querySelector('input[name="participation"]:checked')?.value;
-      if (participation === 'Una sola sesión' && document.querySelectorAll('.single-session-date:checked').length === 0) {
-        alert('Por favor selecciona al menos una fecha.');
-        return;
-      }
-      const btn = document.getElementById('regSubmitBtn');
-      btn.textContent = 'Enviando…';
-      btn.disabled = true;
-      try {
-        const res = await fetch('https://formspree.io/f/xbdqblkd', {
-          method: 'POST',
-          body: new FormData(e.target),
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          document.getElementById('regFormWrap').style.display = 'none';
-          document.getElementById('regThankYou').style.display = 'block';
-          document.getElementById('formCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          btn.textContent = 'Intentar de nuevo';
-          btn.disabled = false;
-        }
-      } catch {
-        btn.textContent = 'Intentar de nuevo';
-        btn.disabled = false;
-      }
     }
   </script>
 </body>
