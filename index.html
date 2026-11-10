@@ -600,6 +600,7 @@
           <p>⚠ If you had a traumatic experience less than a month ago or have active symptoms of post-traumatic stress, this process might not be right for you. Write to me and I'll point you in the right direction.</p>
         </div>
         <a href="#" class="offering-cta primary" onclick="openNightmaresModal(event)" data-i18n="pesadillas.cta">Register for 1:1 With Your Nightmares</a>
+        <a href="#" class="btn-gift" onclick="openNightmaresGiftModal(event)" data-i18n="gift.btn">Gift Card</a>
       </div>
       <div class="offering-card reveal delay-2" style="grid-column:1 / -1;">
         <div class="offering-num" data-i18n="therapy.num">Long-term Therapy</div>
@@ -1185,6 +1186,55 @@
     </div>
   </div>
 
+  <!-- NIGHTMARES GIFT CARD MODAL (single fixed price, no tier selection) -->
+  <div class="modal-overlay" id="nightmaresGiftModal" onclick="handleNightmaresGiftModalClick(event)">
+    <div class="modal-box">
+      <div class="modal-header" style="grid-template-columns:1fr 2rem;">
+        <div>
+          <div class="modal-title" data-i18n="nightmaresGift.modal.title">Give 1:1 With Your Nightmares</div>
+          <div class="modal-subtitle" data-i18n="pesadillas.modal.subtitle">4 sessions · 1 hour each</div>
+        </div>
+        <button class="modal-close" onclick="closeNightmaresGiftModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="nightmaresGiftFormWrap">
+          <div class="payment-summary">
+            <div class="payment-summary-amount" data-i18n="pesadillas.price.amount">$320 USD</div>
+            <div class="payment-summary-amount-secondary" data-i18n="pesadillas.price.secondary">($989.000 COP)</div>
+          </div>
+          <div class="gift-name-group">
+            <label class="gift-name-label" data-i18n="gift.name.label">Your name (so they know who it's from)</label>
+            <input id="nightmaresGiftGiverName" class="gift-name-input" type="text" data-i18n-placeholder="gift.name.placeholder" placeholder="Your name"/>
+          </div>
+          <div class="gift-name-group">
+            <label class="gift-name-label" data-i18n="gift.email.label">Your email <span style="color:#b87a8c">*</span></label>
+            <input id="nightmaresGiftGiverEmail" class="gift-name-input" type="email" data-i18n-placeholder="gift.email.placeholder" placeholder="your@email.com" required/>
+            <p id="nightmaresGiftEmailError" style="display:none;color:#b87a8c;font-size:0.75rem;margin-top:0.35rem;" data-i18n="gift.email.error">Please enter your email to continue.</p>
+          </div>
+          <button class="gift-create-btn" id="nightmaresGiftProceedBtn" onclick="proceedToNightmaresGiftPayment()" data-i18n="gift.proceed.btn">Continue to Payment</button>
+          <div id="nightmaresGiftLinkReveal" style="display:none" class="gift-link-reveal">
+            <div id="nightmares-gift-payment-area">
+              <button onclick="openNightmaresGiftBold()" class="bold-btn">
+                <span class="bold-mark" aria-hidden="true"></span>
+                <span data-i18n="step3.bold">Pay in Colombian Pesos (Bold)</span>
+              </button>
+              <p class="payment-fnf-note" data-i18n="gift.bold.note">Once payment is confirmed, you'll receive the gift card link by email.</p>
+              <div id="nightmares-gift-done-wrap" style="display:none; text-align:center; margin-top:1.25rem;">
+                <button onclick="confirmNightmaresGiftPayment()" class="payment-done-btn" data-i18n="step3.done.btn">I've completed my payment →</button>
+                <p class="payment-fnf-note" style="margin-top:1rem;" data-i18n-html="step3.payment.issue">Having issues with payment? Contact <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
+              </div>
+            </div>
+            <div id="nightmares-gift-confirmed-msg" style="display:none; text-align:center; padding:1.5rem 0 0.5rem;">
+              <div class="payment-confirmed-check">✓</div>
+              <p class="payment-summary-title" data-i18n="gift.confirmed.title">Thank you!</p>
+              <p class="payment-fnf-note" data-i18n-html="gift.confirmed">You'll receive the gift card link by email once we verify your payment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- NIGHTMARES PROCESS MODAL -->
   <div class="modal-overlay" id="nightmaresModal" onclick="handleNightmaresModalClick(event)">
     <div class="modal-box" style="max-width:600px;">
@@ -1281,6 +1331,7 @@
         'pesadillas.confirmed.title': 'Schedule your 4 sessions',
         'pesadillas.confirmed': 'Pick the times that work best for you: select one, confirm it, then repeat until all 4 sessions are booked.',
         'pesadillas.schedule.help': 'Any trouble booking? Write to me at <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
+        'nightmaresGift.modal.title': 'Give 1:1 With Your Nightmares',
         'therapy.num': 'Long-term Therapy',
         'therapy.title': 'I want to start therapy.',
         'therapy.timing': 'By Appointment · 50 min · Virtual · English & Spanish',
@@ -1429,7 +1480,7 @@
         'modal.leave.2': 'Concrete tools to work with your dreams independently, outside of sessions',
         'modal.leave.3': 'Fewer or less intense nightmares, using imagery rehearsal techniques',
         'modal.step0.cta': 'Continue to pricing →',
-        'gift.btn': 'Gift Card for Someone Special',
+        'gift.btn': 'Gift Card',
         'gift.price.intro': 'Choose the amount you\'d like to gift. All options include the full 90-minute session.',
         'gift.modal.title.1': 'Give a Dream Session',
         'gift.modal.title.2': 'Personalize Your Gift',
@@ -1508,6 +1559,7 @@
         'pesadillas.confirmed.title': 'Agenda tus 4 sesiones',
         'pesadillas.confirmed': 'Elige los horarios que mejor te convengan: selecciona uno, confírmalo, y repite hasta completar las 4 sesiones.',
         'pesadillas.schedule.help': '¿Problemas para agendar? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
+        'nightmaresGift.modal.title': 'Regala 1:1 con tus pesadillas',
         'therapy.num': 'Terapia a largo plazo',
         'therapy.title': 'Quiero iniciar un proceso terapéutico.',
         'therapy.timing': 'Con Cita · 50 min · Virtual · Inglés y Español',
@@ -1656,7 +1708,7 @@
         'modal.leave.2': 'Herramientas concretas para trabajar con tus sueños de manera independiente, fuera de las sesiones',
         'modal.leave.3': 'Menos pesadillas o menos intensas, usando técnicas de ensayo de imágenes',
         'modal.step0.cta': 'Continuar a los precios →',
-        'gift.btn': 'Tarjeta de regalo para alguien especial',
+        'gift.btn': 'Tarjeta de regalo',
         'gift.price.intro': 'Elige el monto que deseas regalar. Todas las opciones incluyen la sesión completa de 90 minutos.',
         'gift.modal.title.1': 'Regala una sesión de sueños',
         'gift.modal.title.2': 'Personaliza tu regalo',
@@ -2003,6 +2055,61 @@
       const t = translations[currentLang];
       document.getElementById('giftModalTitle').textContent = t['gift.confirmed.title'];
       document.getElementById('giftModalSubtitle').textContent = '';
+    }
+
+    /* ── NIGHTMARES GIFT CARD MODAL (single fixed price) ── */
+    function openNightmaresGiftModal(e) {
+      e.preventDefault();
+      document.getElementById('nightmaresGiftGiverName').value = '';
+      document.getElementById('nightmaresGiftGiverEmail').value = '';
+      document.getElementById('nightmaresGiftEmailError').style.display = 'none';
+      document.getElementById('nightmaresGiftLinkReveal').style.display = 'none';
+      document.getElementById('nightmares-gift-payment-area').style.display = 'block';
+      document.getElementById('nightmares-gift-confirmed-msg').style.display = 'none';
+      document.getElementById('nightmares-gift-done-wrap').style.display = 'none';
+      document.getElementById('nightmaresGiftProceedBtn').style.display = 'block';
+      document.getElementById('nightmaresGiftFormWrap').style.display = 'block';
+      document.getElementById('nightmaresGiftModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNightmaresGiftModal() {
+      document.getElementById('nightmaresGiftModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function handleNightmaresGiftModalClick(e) { if (e.target === document.getElementById('nightmaresGiftModal')) closeNightmaresGiftModal(); }
+    function proceedToNightmaresGiftPayment() {
+      const email = document.getElementById('nightmaresGiftGiverEmail').value.trim();
+      if (!email || !email.includes('@')) {
+        document.getElementById('nightmaresGiftEmailError').style.display = 'block';
+        document.getElementById('nightmaresGiftGiverEmail').focus();
+        return;
+      }
+      document.getElementById('nightmaresGiftEmailError').style.display = 'none';
+      document.getElementById('nightmaresGiftProceedBtn').style.display = 'none';
+
+      const name = document.getElementById('nightmaresGiftGiverName').value.trim();
+      const url  = 'https://yoduermoasi.github.io/yoduermoasi/gift.html?product=pesadillas'
+        + (name ? '&from=' + encodeURIComponent(name) : '') + '&lang=' + currentLang;
+
+      document.getElementById('nightmaresGiftLinkReveal').style.display = 'block';
+
+      // Notify Camila so she can send the gift link after verifying payment
+      const fd = new FormData();
+      fd.append('_subject', 'Nightmares Gift Card Purchase — $320 USD / $989.000 COP');
+      fd.append('name',  name  || 'Anonymous');
+      fd.append('email', email);
+      fd.append('amount', '$320 USD / $989.000 COP');
+      fd.append('gift_link', url);
+      fetch('https://formspree.io/f/xbdqblkd', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }).catch(() => {});
+    }
+    function openNightmaresGiftBold() {
+      if (!NIGHTMARES_BOLD_LINK) return;
+      window.open(NIGHTMARES_BOLD_LINK, '_blank');
+      document.getElementById('nightmares-gift-done-wrap').style.display = 'block';
+    }
+    function confirmNightmaresGiftPayment() {
+      document.getElementById('nightmares-gift-payment-area').style.display = 'none';
+      document.getElementById('nightmares-gift-confirmed-msg').style.display = 'block';
     }
 
     /* ── NIGHTMARES PROCESS MODAL ── */
