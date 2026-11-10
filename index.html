@@ -433,6 +433,9 @@
     /* Payment step */
     .payment-confirmed-badge { font-family: var(--ff-display); font-size: 0.64rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy-soft); background: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.85); border-radius: 20px; padding: 0.25rem 0.85rem; display: inline-block; margin-bottom: 1.5rem; }
     .payment-summary { text-align: center; margin-bottom: 2rem; }
+    .flow-steps { display: flex; flex-direction: column; gap: 0.6rem; background: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.9); border-radius: 6px; padding: 1.1rem 1.4rem; margin-bottom: 1.75rem; }
+    .flow-step { display: flex; align-items: flex-start; gap: 0.7rem; font-family: var(--ff-body); font-size: 0.85rem; color: var(--text-soft); line-height: 1.5; }
+    .flow-step-num { flex-shrink: 0; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--sun); color: var(--navy); font-family: var(--ff-display); font-size: 0.72rem; font-weight: 600; display: flex; align-items: center; justify-content: center; }
     .payment-summary-title { font-family: var(--ff-display); font-size: 1.4rem; font-weight: 300; font-style: italic; color: var(--navy); margin-bottom: 0.35rem; }
     .payment-summary-amount { font-family: var(--ff-display); font-size: 2.8rem; font-weight: 300; color: var(--sun-deep); line-height: 1; margin-bottom: 0.25rem; }
     .payment-summary-amount-secondary { font-family: var(--ff-display); font-size: 1rem; font-weight: 400; color: var(--text-muted); margin-bottom: 0.6rem; }
@@ -1194,6 +1197,10 @@
       </div>
       <div class="modal-body">
         <div id="nightmares-payment-wrap">
+          <div class="flow-steps">
+            <div class="flow-step"><span class="flow-step-num">1</span><span data-i18n="pesadillas.flow.step1">Process your payment below.</span></div>
+            <div class="flow-step"><span class="flow-step-num">2</span><span data-i18n="pesadillas.flow.step2">Then schedule your 4 sessions using the calendar that appears — right here on this page.</span></div>
+          </div>
           <div class="payment-summary">
             <div class="payment-summary-amount" data-i18n="pesadillas.price.amount">$320 USD</div>
             <div class="payment-summary-amount-secondary" data-i18n="pesadillas.price.secondary">($989.000 COP)</div>
@@ -1220,8 +1227,8 @@
         <div id="nightmares-confirmed-msg" style="display:none; text-align:center; padding:1.5rem 0 0.5rem;">
           <div class="payment-confirmed-check">✓</div>
           <p class="payment-summary-title" data-i18n="step3.confirmed.title">Thank you!</p>
-          <p class="payment-fnf-note" data-i18n="pesadillas.confirmed">Now book your 4 sessions. Pick the times that work best for you.</p>
-          <a href="https://koalendar.com/e/11-con-tus-pesadillas" target="_blank" rel="noopener" class="offering-cta primary" style="width:100%;text-align:center;display:block;padding:0.85rem 1.5rem;margin-top:1.25rem;" data-i18n="pesadillas.schedule.btn">Schedule my 4 sessions →</a>
+          <p class="payment-fnf-note" data-i18n="pesadillas.confirmed" style="margin-bottom:1.25rem;">Now schedule your 4 sessions below. Pick the times that work best for you.</p>
+          <iframe src="https://koalendar.com/e/11-con-tus-pesadillas" style="min-width:300px;width:100%;height:720px;border:none;border-radius:6px;" title="Schedule your 4 sessions"></iframe>
           <p class="payment-fnf-note" style="margin-top:1rem;" data-i18n-html="pesadillas.schedule.help">Any trouble booking? Write to me at <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a></p>
         </div>
       </div>
@@ -1277,10 +1284,11 @@
         'pesadillas.price.amount': '$320 USD',
         'pesadillas.price.secondary': '($989.000 COP)',
         'pesadillas.modal.desc': '4-week nightmare process · 1:1',
-        'pesadillas.fnf.note': 'Select "Friends &amp; Family". Once your payment is confirmed, you\'ll get the link to book your 4 sessions.',
-        'pesadillas.bold.note': 'Once your payment is confirmed, you\'ll get the link to book your 4 sessions.',
-        'pesadillas.confirmed': 'Now book your 4 sessions. Pick the times that work best for you.',
-        'pesadillas.schedule.btn': 'Schedule my 4 sessions →',
+        'pesadillas.flow.step1': 'Process your payment below.',
+        'pesadillas.flow.step2': 'Then schedule your 4 sessions using the calendar that appears — right here on this page.',
+        'pesadillas.fnf.note': 'Select "Friends &amp; Family". Once confirmed, you\'ll see the calendar to book your 4 sessions.',
+        'pesadillas.bold.note': 'Once confirmed, you\'ll see the calendar to book your 4 sessions.',
+        'pesadillas.confirmed': 'Now schedule your 4 sessions below. Pick the times that work best for you.',
         'pesadillas.schedule.help': 'Any trouble booking? Write to me at <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
         'therapy.num': 'Long-term Therapy',
         'therapy.title': 'I want to start therapy.',
@@ -1504,10 +1512,11 @@
         'pesadillas.price.amount': '$989.000 COP',
         'pesadillas.price.secondary': '($320 USD)',
         'pesadillas.modal.desc': 'Proceso de 4 semanas para pesadillas · 1:1',
-        'pesadillas.fnf.note': 'Selecciona "Familiares y amigos". Al confirmar tu pago, recibirás el enlace para agendar tus 4 sesiones.',
-        'pesadillas.bold.note': 'Al confirmar tu pago, recibirás el enlace para agendar tus 4 sesiones.',
-        'pesadillas.confirmed': 'Ahora agenda tus 4 sesiones. Elige los horarios que mejor te funcionen.',
-        'pesadillas.schedule.btn': 'Agendar mis 4 sesiones →',
+        'pesadillas.flow.step1': 'Procesa tu pago abajo.',
+        'pesadillas.flow.step2': 'Luego agenda tus 4 sesiones usando el calendario que aparece — aquí mismo, en esta página.',
+        'pesadillas.fnf.note': 'Selecciona "Familiares y amigos". Al confirmar, verás el calendario para agendar tus 4 sesiones.',
+        'pesadillas.bold.note': 'Al confirmar, verás el calendario para agendar tus 4 sesiones.',
+        'pesadillas.confirmed': 'Ahora agenda tus 4 sesiones abajo. Elige los horarios que mejor te funcionen.',
         'pesadillas.schedule.help': '¿Problemas para agendar? Escríbeme a <a href="mailto:yoduermoasi@gmail.com">yoduermoasi@gmail.com</a>',
         'therapy.num': 'Terapia a largo plazo',
         'therapy.title': 'Quiero iniciar un proceso terapéutico.',
